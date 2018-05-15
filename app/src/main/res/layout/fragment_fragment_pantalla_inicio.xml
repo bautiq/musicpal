@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentPantallaInicio"
+    android:background="@color/negro">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/text_recomendaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:layout_centerHorizontal="true"
+            android:text="@string/recomendaciones"
+            android:textSize="@dimen/size_text_title_scrollers" />
+        <ImageView
+            android:id="@+id/imagen_uno"
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_below="@+id/text_recomendaciones"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/meteora_album"
+            android:layout_marginRight="@dimen/separation_home_albums"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_uno"
+            android:gravity="center"
+            android:text="Breaking the habit"
+            android:textColor="@color/blanco"/>
+
+        <ImageView
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_alignTop="@id/imagen_uno"
+            android:layout_marginRight="@dimen/separation_home_albums"
+            android:layout_below="@id/text_recomendaciones"
+            android:id="@+id/imagen_dos"
+            android:layout_toRightOf="@id/imagen_uno"
+            android:src="@drawable/post_traumatic_album" />
+        <ImageView
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_alignTop="@id/imagen_uno"
+            android:layout_below="@id/text_recomendaciones"
+            android:layout_toRightOf="@id/imagen_dos"
+            android:src="@drawable/underpressure_album"/>
+        <TextView
+            android:id="@+id/text_populares"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/populares"
+            android:textColor="@color/blanco"
+            android:layout_below="@id/imagen_dos"
+            android:textSize="@dimen/size_text_title_scrollers"
+            />
+        <ImageView
+            android:id="@+id/imagen_cuatro"
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_below="@+id/text_populares"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/eminem_single"
+            android:layout_marginRight="@dimen/separation_home_albums"/>
+
+        <ImageView
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_alignTop="@id/imagen_cuatro"
+            android:layout_marginRight="@dimen/separation_home_albums"
+            android:layout_below="@id/text_populares"
+            android:id="@+id/imagen_cinco"
+            android:layout_toRightOf="@id/imagen_cuatro"
+            android:src="@drawable/tupac_loyal_album" />
+        <ImageView
+            android:layout_width="@dimen/size_home_albums"
+            android:layout_height="@dimen/size_home_albums"
+            android:layout_alignTop="@id/imagen_cinco"
+            android:id="@+id/imagen_seis"
+            android:layout_below="@id/text_recomendaciones"
+            android:layout_toRightOf="@id/imagen_cinco"
+            android:src="@drawable/underpressure_album"/>
+    </RelativeLayout>
+
+
+</FrameLayout>

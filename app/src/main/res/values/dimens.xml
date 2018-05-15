@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="size_text_title_scrollers">20sp</dimen>
+    <dimen name="size_home_albums">100dp</dimen>
+    <dimen name="separation_home_albums">15dp</dimen>
+    <dimen name="tamanio_titulo_cancion">12dp</dimen>
+</resources>
