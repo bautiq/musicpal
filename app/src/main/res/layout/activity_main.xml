@@ -65,23 +65,22 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
                 android:scaleType="centerInside"
-                android:src="@drawable/theverve"
-                android:layout_weight="2"/>
+                android:src="@drawable/theverve" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
                     android:src="@drawable/descargabotones1" />
@@ -91,28 +90,27 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="3">
+                android:layout_weight="3"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
                     android:text="Bitter Sweet Symphony"
-                    android:textStyle="italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
                     android:text="The Verve"
+                    android:textSize="10dp"
                     android:textStyle="italic" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
                     android:text="Urban Hymns"
+                    android:textSize="10dp"
                     android:textStyle="italic" />
 
             </LinearLayout>
@@ -123,32 +121,36 @@
             android:layout_height="0dp"
             android:layout_weight="1.3"
             android:background="@color/negro"
-            android:weightSum="4"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="4">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/home"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"/>
+                android:src="@drawable/home" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/favoritos"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"/>
+                android:src="@drawable/favoritos" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/descargaslogo"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"/>
+                android:src="@drawable/descargaslogo" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mas"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"/>
+                android:src="@drawable/mas" />
 
         </LinearLayout>
 
