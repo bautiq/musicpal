@@ -30,10 +30,10 @@
                 android:src="@drawable/perfil" />
 
             <ImageView
-                android:layout_width="230dp"
-                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:layout_gravity="center"
-                android:layout_weight="10"
+                android:layout_weight="18"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logomusicpal1" />
 
@@ -54,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7.5"
-            android:orientation="vertical">
+            android:background="@drawable/fondo1"
+            >
 
         </FrameLayout>
 
@@ -120,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.3"
-            android:background="@color/negro"
+            android:background="@android:color/black"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -143,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/descargaslogo" />
+                android:src="@drawable/descargas" />
 
             <ImageView
                 android:layout_width="wrap_content"
