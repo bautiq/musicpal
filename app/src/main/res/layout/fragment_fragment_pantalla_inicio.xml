@@ -27,15 +27,80 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/meteora_album"
             android:layout_marginRight="@dimen/separation_home_albums"/>
+        <!-- Descripciones de cada imagen -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/tamanio_titulo_cancion"
             android:layout_below="@id/imagen_uno"
             android:gravity="center"
-            android:text="Breaking the habit"
+            android:id="@+id/titulo_cancion1"
+            android:text="Breaking the habit
+Meteora
+ Linkin Park"
             android:textColor="@color/blanco"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_dos"
+            android:layout_toRightOf="@id/titulo_cancion1"
+            android:gravity="center"
+            android:id="@+id/titulo_2"
+            android:text="Post Traumatic
+Mike Shinoda"
+            android:textColor="@color/blanco"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_tres"
+            android:layout_toRightOf="@+id/titulo_2"
+            android:gravity="center"
+            android:id="@+id/titulo_cancion2"
+            android:layout_marginLeft="30dp"
+            android:text="Under Pressure
+Logic"
+            android:textColor="@color/blanco"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_cuatro"
+            android:gravity="center"
+            android:id="@+id/titulo_cancion3"
+            android:layout_marginLeft="15dp"
+            android:text="Not afraid
+Single
+Eminem"
+            android:textColor="@color/blanco"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_cinco"
+            android:layout_toRightOf="@+id/titulo_cancion3"
+            android:gravity="center"
+            android:id="@+id/titulo_cancion4"
+            android:layout_marginLeft="47dp"
+            android:text="Loyal to the game
+Tupac Shakur"
+            android:textColor="@color/blanco"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_below="@id/imagen_seis"
+            android:layout_toRightOf="@+id/titulo_2"
+            android:gravity="center"
+            android:id="@+id/titulo_cancion5"
+            android:layout_marginLeft="15dp"
+            android:text="Bitter sweet symphny
+Urban Hymns
+The Verve"
+            android:textColor="@color/blanco"/>
+<!-- Fin descripciones -->
         <ImageView
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
@@ -51,6 +116,7 @@
             android:layout_alignTop="@id/imagen_uno"
             android:layout_below="@id/text_recomendaciones"
             android:layout_toRightOf="@id/imagen_dos"
+            android:id="@+id/imagen_tres"
             android:src="@drawable/underpressure_album"/>
         <TextView
             android:id="@+id/text_populares"
