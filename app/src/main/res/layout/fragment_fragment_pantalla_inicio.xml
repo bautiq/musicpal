@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/blanco"
             android:layout_centerHorizontal="true"
+            android:textStyle="bold"
             android:text="@string/recomendaciones"
             android:textSize="@dimen/size_text_title_scrollers" />
         <ImageView
@@ -125,6 +126,7 @@ The Verve"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/populares"
+            android:textStyle="bold"
             android:textColor="@color/blanco"
             android:layout_below="@id/imagen_dos"
             android:textSize="@dimen/size_text_title_scrollers"
