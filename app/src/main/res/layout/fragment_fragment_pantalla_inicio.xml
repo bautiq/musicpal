@@ -33,7 +33,7 @@
         <!-- Descripciones de cada imagen -->
         <TextView
             android:id="@+id/titulo_cancion1"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_uno"
             android:layout_below="@id/imagen_uno"
@@ -45,7 +45,7 @@ Linkin Park"
 
         <TextView
             android:id="@+id/titulo_2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_dos"
             android:layout_below="@id/imagen_dos"
@@ -57,7 +57,7 @@ Mike Shinoda"
 
         <TextView
             android:id="@+id/titulo_cancion2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_tres"
             android:layout_below="@id/imagen_tres"
@@ -69,7 +69,7 @@ Logic"
 
         <TextView
             android:id="@+id/titulo_cancion3"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_cuatro"
             android:layout_below="@id/imagen_cuatro"
@@ -82,7 +82,7 @@ Eminem"
 
         <TextView
             android:id="@+id/titulo_cancion4"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_cinco"
             android:layout_below="@id/imagen_cinco"
@@ -94,7 +94,7 @@ Tupac Shakur"
 
         <TextView
             android:id="@+id/titulo_cancion5"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/size_home_albums"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/imagen_seis"
             android:layout_below="@id/imagen_seis"

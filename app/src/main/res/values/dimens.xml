@@ -7,7 +7,7 @@
     <dimen name="tamanio_titulo_cancion">10dp</dimen>
     <dimen name="tamanio_imagen_vista_previa">200dp</dimen>
     <dimen name="tamanio_texto_vista_previa">15dp</dimen>
-
     <dimen name="margin_imagen_grande">50dp</dimen>
     <dimen name="margin_imagen_texto">20dp</dimen>
+    <dimen name="size_text_imagenes_grades">20dp</dimen>
 </resources>

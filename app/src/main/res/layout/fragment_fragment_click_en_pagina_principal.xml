@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".FragmentClickEnPaginaPrincipal">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/id_imagen_vista_previa"
         android:layout_width="@dimen/tamanio_imagen_vista_previa"
@@ -24,17 +23,6 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/tamanio_texto_vista_previa"
         android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/id_nombre_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Album:"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
-
     <TextView
         android:id="@+id/id_anio_album"
         android:layout_width="wrap_content"
@@ -49,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Lista de canciones"
+        android:text="Lista"
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="bold" />
