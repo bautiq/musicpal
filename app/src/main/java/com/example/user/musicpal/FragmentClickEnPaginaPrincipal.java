@@ -35,7 +35,7 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
         Bundle bundle = getArguments();
         textArtista.setText("Artista: " + bundle.getString(CLAVE_ARTISTA));
         textAnio.setText("Año: " + bundle.getString(CLAVE_ANIO));
-        imagenGrande.setImageResource(bundle.getInt(CLAVE_ID_IMAGEN));
+        imagenGrande.setImageResource(R.drawable.meteora_album);
 
         return view;
     }
