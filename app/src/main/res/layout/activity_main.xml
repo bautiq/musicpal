@@ -85,7 +85,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/descargabotones1" />
+                    android:src="@drawable/ic_play_circle" />
 
             </LinearLayout>
 
