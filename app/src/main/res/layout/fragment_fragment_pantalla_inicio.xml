@@ -3,160 +3,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragmentPantallaInicio"
-    android:background="@drawable/fondo1">
+    android:background="@drawable/fondo1"
+    tools:context=".fragmentPantallaInicio">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_margin="10dp">
+        android:gravity="center">
+
         <TextView
             android:id="@+id/text_recomendaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/blanco"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
             android:text="@string/recomendaciones"
-            android:textSize="@dimen/size_text_title_scrollers" />
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/size_text_title_scrollers"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/imagen_uno"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_below="@+id/text_recomendaciones"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_marginTop="10dp"
-            android:src="@drawable/meteora_album"
-            android:layout_marginRight="@dimen/separation_home_albums"/>
+            android:src="@drawable/meteora_album" />
         <!-- Descripciones de cada imagen -->
         <TextView
+            android:id="@+id/titulo_cancion1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_uno"
             android:layout_below="@id/imagen_uno"
-            android:gravity="center"
-            android:id="@+id/titulo_cancion1"
             android:text="Breaking the habit
 Meteora
- Linkin Park"
-            android:textColor="@color/blanco"/>
+Linkin Park"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+
         <TextView
+            android:id="@+id/titulo_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_dos"
             android:layout_below="@id/imagen_dos"
-            android:layout_toRightOf="@id/titulo_cancion1"
             android:gravity="center"
-            android:id="@+id/titulo_2"
             android:text="Post Traumatic
 Mike Shinoda"
-            android:textColor="@color/blanco"/>
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+
         <TextView
+            android:id="@+id/titulo_cancion2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_tres"
             android:layout_below="@id/imagen_tres"
-            android:layout_toRightOf="@+id/titulo_2"
             android:gravity="center"
-            android:id="@+id/titulo_cancion2"
-            android:layout_marginLeft="30dp"
             android:text="Under Pressure
 Logic"
-            android:textColor="@color/blanco"/>
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+
         <TextView
+            android:id="@+id/titulo_cancion3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_cuatro"
             android:layout_below="@id/imagen_cuatro"
             android:gravity="center"
-            android:id="@+id/titulo_cancion3"
-            android:layout_marginLeft="15dp"
             android:text="Not afraid
 Single
 Eminem"
-            android:textColor="@color/blanco"/>
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+
         <TextView
+            android:id="@+id/titulo_cancion4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_cinco"
             android:layout_below="@id/imagen_cinco"
-            android:layout_toRightOf="@+id/titulo_cancion3"
             android:gravity="center"
-            android:id="@+id/titulo_cancion4"
-            android:layout_marginLeft="47dp"
             android:text="Loyal to the game
 Tupac Shakur"
-            android:textColor="@color/blanco"/>
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+
         <TextView
+            android:id="@+id/titulo_cancion5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/tamanio_titulo_cancion"
+            android:layout_alignLeft="@id/imagen_seis"
             android:layout_below="@id/imagen_seis"
-            android:layout_toRightOf="@+id/titulo_2"
             android:gravity="center"
-            android:id="@+id/titulo_cancion5"
-            android:layout_marginLeft="15dp"
-            android:text="Bitter sweet symphny
+            android:text="Bitter sweet symphony
 Urban Hymns
 The Verve"
-            android:textColor="@color/blanco"/>
-<!-- Fin descripciones -->
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/tamanio_titulo_cancion" />
+        <!-- Fin descripciones -->
         <ImageView
+            android:id="@+id/imagen_dos"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_alignTop="@id/imagen_uno"
-            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_below="@id/text_recomendaciones"
-            android:id="@+id/imagen_dos"
+            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_toRightOf="@id/imagen_uno"
             android:src="@drawable/post_traumatic_album" />
+
         <ImageView
+            android:id="@+id/imagen_tres"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_alignTop="@id/imagen_uno"
             android:layout_below="@id/text_recomendaciones"
             android:layout_toRightOf="@id/imagen_dos"
-            android:id="@+id/imagen_tres"
-            android:src="@drawable/underpressure_album"/>
+            android:src="@drawable/underpressure_album" />
+
         <TextView
             android:id="@+id/text_populares"
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/populares"
-            android:textStyle="bold"
-            android:textColor="@color/blanco"
             android:layout_below="@id/imagen_dos"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/populares"
+            android:textColor="@color/blanco"
             android:textSize="@dimen/size_text_title_scrollers"
-            />
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/imagen_cuatro"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_below="@+id/text_populares"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_marginTop="10dp"
-            android:src="@drawable/eminem_single"
-            android:layout_marginRight="@dimen/separation_home_albums"/>
+            android:src="@drawable/eminem_single" />
 
         <ImageView
+            android:id="@+id/imagen_cinco"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_alignTop="@id/imagen_cuatro"
-            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_below="@id/text_populares"
-            android:id="@+id/imagen_cinco"
+            android:layout_marginRight="@dimen/separation_home_albums"
             android:layout_toRightOf="@id/imagen_cuatro"
             android:src="@drawable/tupac_loyal_album" />
+
         <ImageView
+            android:id="@+id/imagen_seis"
             android:layout_width="@dimen/size_home_albums"
             android:layout_height="@dimen/size_home_albums"
             android:layout_alignTop="@id/imagen_cinco"
-            android:id="@+id/imagen_seis"
             android:layout_below="@id/text_recomendaciones"
             android:layout_toRightOf="@id/imagen_cinco"
-            android:src="@drawable/theverve"/>
+            android:src="@drawable/theverve" />
     </RelativeLayout>
 
 

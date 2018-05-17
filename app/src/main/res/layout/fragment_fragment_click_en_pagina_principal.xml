@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo1"
+    android:orientation="vertical"
+    tools:context=".FragmentClickEnPaginaPrincipal">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/id_imagen_vista_previa"
+        android:layout_width="@dimen/tamanio_imagen_vista_previa"
+        android:layout_height="@dimen/tamanio_imagen_vista_previa"
+        android:layout_gravity="center"
+        android:layout_margin="15sp" />
+
+    <TextView
+        android:id="@+id/id_nombre_artista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Artista:"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tamanio_texto_vista_previa"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/id_nombre_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Album:"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tamanio_texto_vista_previa"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/id_anio_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Año:"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tamanio_texto_vista_previa"
+        android:textStyle="italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Lista de canciones"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
