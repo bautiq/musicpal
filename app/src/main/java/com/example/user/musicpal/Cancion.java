@@ -6,5 +6,5 @@ package com.example.user.musicpal;
 
 public class Cancion {
     private String titulo;
-    private String duracion;
+    private Integer duracion;
 }

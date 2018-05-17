@@ -25,6 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:id="@+id/profile_button"
                 android:scaleType="centerCrop"
                 android:src="@drawable/perfil" />
 
@@ -42,8 +43,9 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:id="@+id/search_button"
                 android:scaleType="centerCrop"
-                android:src="@drawable/lupa2" />
+                android:src="@drawable/ic_search_white" />
 
 
         </LinearLayout>
@@ -129,28 +131,32 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:id="@+id/home_button"
                 android:src="@drawable/ic_home_black_24dp" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:id="@+id/playlist_button"
                 android:layout_weight="1"
-                android:src="@drawable/favoritos" />
+                android:src="@drawable/playlist_icon" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/descargas" />
+                android:id="@+id/download_button"
+                android:src="@drawable/ic_file_download_black_" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/mas" />
+                android:id="@+id/more_button"
+                android:src="@drawable/ic_more_horiz_white" />
 
         </LinearLayout>
 
