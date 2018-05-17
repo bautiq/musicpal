@@ -1,5 +1,7 @@
 package com.example.user.musicpal;
 
+import java.util.List;
+
 /**
  * Created by DH on 15/5/2018.
  */
@@ -7,4 +9,6 @@ package com.example.user.musicpal;
 public class Album {
     private String titulo;
     private Integer minutosTotal;
+    private List<Cancion> listaCanciones;
+    private Artista artista;
 }
