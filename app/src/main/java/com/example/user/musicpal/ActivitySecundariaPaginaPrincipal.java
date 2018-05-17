@@ -11,13 +11,14 @@ public class ActivitySecundariaPaginaPrincipal extends AppCompatActivity {
 private Bundle bundle;
     public static final String CLAVE_ID = "clave_id";
 
-    final FragmentClickEnPaginaPrincipal fragmentClickImagenUno = FragmentClickEnPaginaPrincipal.fabricaClickPrincipal("Linkin Park", "Meteora", "2003", bundle.getInt(CLAVE_ID));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secundaria_pagina_principal);
         Intent intent = getIntent();
         bundle = intent.getExtras();
+        final FragmentClickEnPaginaPrincipal fragmentClickImagenUno = FragmentClickEnPaginaPrincipal.fabricaClickPrincipal("Linkin park", "Meteora", "2003", bundle.getInt(CLAVE_ID));
         cargarFragment(fragmentClickImagenUno);
     }
 
