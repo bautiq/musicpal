@@ -71,20 +71,23 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:scaleType="centerInside"
-                android:src="@drawable/theverve" />
+                android:src="@drawable/theverve"
+                android:background="@color/fondo2"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/fondo2">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
+                    android:background="@color/fondo2"
                     android:src="@drawable/descargabotones1" />
 
             </LinearLayout>
@@ -93,7 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/fondo2">
 
                 <TextView
                     android:layout_width="wrap_content"
