@@ -1,5 +1,6 @@
 package com.example.user.musicpal;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements fragmentPantallaInicio.NotificadorActivities {
     private ImageView imageHome;
     private ImageView imagePlaylist;
     private ImageView imageDownload;
@@ -78,5 +79,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+    }
+
+    @Override
+    public void recibirData(Integer id) {
+        Intent intent = new Intent(this, ActivitySecundariaPaginaPrincipal.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt(ActivitySecundariaPaginaPrincipal.CLAVE_ID, id);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
