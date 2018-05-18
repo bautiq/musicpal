@@ -19,36 +19,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:text="Artista:"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
-    <TextView
-        android:id="@+id/id_nombre_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Album:"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
-    <TextView
-        android:id="@+id/id_anio_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Año:"
+        android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tamanio_texto_vista_previa"
         android:textStyle="italic" />
 
     <TextView
+        android:id="@+id/id_nombre_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Album:"
         android:layout_gravity="center"
-        android:text="Lista"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/tamanio_texto_vista_previa"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/id_anio_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Año:"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tamanio_texto_vista_previa"
+        android:textStyle="italic" />
+
+    <!-- <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:text="Lista"
+         android:textColor="@android:color/white"
+         android:textSize="20dp"
+         android:textStyle="bold" /> -->
 
 </LinearLayout>

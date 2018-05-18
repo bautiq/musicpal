@@ -4,170 +4,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".MainActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:background="@android:color/black"
-        android:weightSum="10">
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/perfil" />
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:background="@android:color/black"
-            android:orientation="horizontal">
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_weight="18"
+            android:scaleType="centerCrop"
+            android:src="@drawable/copia_logo_musicpal" />
 
-            <ImageView
-                android:id="@+id/profile_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src="@drawable/perfil" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_gravity="center"
-                android:layout_weight="18"
-                android:scaleType="centerCrop"
-                android:src="@drawable/copia_logo_musicpal" />
-
-            <ImageView
-                android:id="@+id/search_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_search_white" />
-
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/container_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7.5"
-            android:background="@drawable/fondo1">
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:background="@color/fondo2"
-                android:scaleType="centerInside"
-                android:src="@drawable/theverve" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/fondo2"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:background="@color/fondo2"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_play_circle" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="@color/fondo2"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bitter Sweet Symphony"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="The Verve"
-                    android:textSize="10dp"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Urban Hymns"
-                    android:textSize="10dp"
-                    android:textStyle="italic" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.3"
-            android:background="@android:color/black"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <ImageView
-                android:id="@+id/home_button"
-                android:layout_width="@dimen/tamanio_botones_barra_inferior"
-                android:layout_height="@dimen/tamanio_botones_barra_inferior"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_home_black_24dp" />
-
-            <ImageView
-                android:id="@+id/playlist_button"
-                android:layout_width="@dimen/tamanio_botones_barra_inferior"
-                android:layout_height="@dimen/tamanio_botones_barra_inferior"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/playlist_icon" />
-
-            <ImageView
-                android:id="@+id/download_button"
-                android:layout_width="@dimen/tamanio_botones_barra_inferior"
-                android:layout_height="@dimen/tamanio_botones_barra_inferior"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_file_download_black_" />
-
-            <ImageView
-                android:id="@+id/more_button"
-                android:layout_width="@dimen/tamanio_botones_barra_inferior"
-                android:layout_height="@dimen/tamanio_botones_barra_inferior"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_more_horiz_white" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/search_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_search_white" />
 
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/container_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7.5"
+        android:background="@drawable/fondo1">
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBarraAbajo"
+        android:orientation="horizontal">
+
+        <!-- <ImageView
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:layout_weight="2"
+             android:layout_gravity="center"
+             android:scaleType="centerInside"
+             android:src="@drawable/theverve" /> -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorBarraAbajo"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/boton_play"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_play_circle" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/colorBarraAbajo"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bitter Sweet Symphony"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Verve"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urban Hymns"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
+        android:background="@color/colorBarraAbajo"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/home_button"
+            android:layout_width="@dimen/tamanio_botones_barra_inferior"
+            android:layout_height="@dimen/tamanio_botones_barra_inferior"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home_black_24dp" />
+
+        <ImageView
+            android:id="@+id/playlist_button"
+            android:layout_width="@dimen/tamanio_botones_barra_inferior"
+            android:layout_height="@dimen/tamanio_botones_barra_inferior"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/playlist_icon" />
+
+        <ImageView
+            android:id="@+id/download_button"
+            android:layout_width="@dimen/tamanio_botones_barra_inferior"
+            android:layout_height="@dimen/tamanio_botones_barra_inferior"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_file_download_black_" />
+
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="@dimen/tamanio_botones_barra_inferior"
+            android:layout_height="@dimen/tamanio_botones_barra_inferior"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_more_horiz_white" />
+
+    </LinearLayout>
+
+
 </LinearLayout>
