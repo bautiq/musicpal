@@ -21,6 +21,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="Artista:"
+        android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tamanio_texto_vista_previa"
         android:textStyle="italic" />
@@ -32,6 +33,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="Album:"
+        android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tamanio_texto_vista_previa"
         android:textStyle="italic" />
@@ -43,6 +45,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="Año:"
+        android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tamanio_texto_vista_previa"
         android:textStyle="italic" />
