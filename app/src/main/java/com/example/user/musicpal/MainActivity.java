@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity implements fragmentPantallaInicio.NotificadorActivities {
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -92,10 +93,13 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
     }
 
     @Override
-    public void recibirData(Integer id) {
+    public void recibirData(String artista, String album, String anio, int imagen) {
         Intent intent = new Intent(this, ActivitySecundariaPaginaPrincipal.class);
         Bundle bundle = new Bundle();
-        bundle.putInt(ActivitySecundariaPaginaPrincipal.CLAVE_ID, id);
+        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ARTISTA, artista);
+        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ALBUM, album);
+        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ANIO, anio);
+        bundle.putInt(FragmentClickEnPaginaPrincipal.CLAVE_IMAGEN,imagen);
         intent.putExtras(bundle);
         startActivity(intent);
     }

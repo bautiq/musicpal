@@ -38,38 +38,37 @@ public class fragmentPantallaInicio extends Fragment {
         imagenUno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer integer = imagenUno.getId();
-                notificador.recibirData(integer);
+                notificador.recibirData("Linkin Park", "Meteora", "2003", R.drawable.meteora_album);
             }
         });
         imagenDos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen 2", Toast.LENGTH_SHORT).show();
+                notificador.recibirData("Mike Shinoda", "Post Traumatic", "2018", R.drawable.post_traumatic_album);
             }
         });
         imagenTres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen 3", Toast.LENGTH_SHORT).show();
+                notificador.recibirData("Logic", "Under Pressure", "2005", R.drawable.underpressure_album);
             }
         });
         imagenCuatro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen 4", Toast.LENGTH_SHORT).show();
+                notificador.recibirData("Eminem", "Not Afraid", "2003", R.drawable.eminem_single);
             }
         });
         imagenCinco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen 5", Toast.LENGTH_SHORT).show();
+                notificador.recibirData("Tupac Shakur", "Loyal to the game", "2000", R.drawable.tupac_loyal_album);
             }
         });
         imagenSeis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen 6", Toast.LENGTH_SHORT).show();
+                notificador.recibirData("The Verve", "Urban Hymns", "2009", R.drawable.theverve);
             }
         });
         return view;
@@ -82,6 +81,6 @@ public class fragmentPantallaInicio extends Fragment {
     }
 
     public interface NotificadorActivities {
-        public void recibirData(Integer id);
+        public void recibirData(String artista, String album, String anio, int imagen);
     }
 }
