@@ -8,9 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class ActivitySecundariaPaginaPrincipal extends AppCompatActivity {
-    public static final String CLAVE_ARTISTA = "clave_artista";
-    public static final String CLAVE_ALBUM = "clave_album";
-    public static final String CLAVE_ANIO = "clave_anio";
+
 
 
     @Override

@@ -22,6 +22,7 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
     public static final String CLAVE_ARTISTA = "clave_artista";
     public static final String CLAVE_ALBUM = "clave_album";
     public static final String CLAVE_ANIO = "clave_anio";
+    public static final String CLAVE_IMAGEN = "clave_imagen";
 
 
     @Override
@@ -37,7 +38,7 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
         textArtista.setText("Artista: " + bundle.getString(CLAVE_ARTISTA));
         textAnio.setText("Año: " + bundle.getString(CLAVE_ANIO));
         textAlbum.setText("Album: " + bundle.getString(CLAVE_ALBUM));
-        imagenGrande.setImageResource(R.drawable.meteora_album);
+        imagenGrande.setImageResource(bundle.getInt(CLAVE_IMAGEN));
 
         return view;
     }
