@@ -63,15 +63,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/colorBarraAbajo"
             android:layout_height="50dp"
-            android:background="@color/fondo2"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="2"
-                android:background="@color/fondo2"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
                 android:src="@drawable/theverve" />
@@ -80,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/fondo2"
+                android:background="@color/colorBarraAbajo"
                 android:orientation="vertical">
 
                 <ImageView
@@ -89,7 +91,6 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:background="@color/fondo2"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_play_circle" />
 
@@ -100,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="@color/fondo2"
+                android:background="@color/colorBarraAbajo"
                 android:orientation="vertical">
 
                 <TextView
@@ -130,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.3"
-            android:background="@android:color/black"
+            android:background="@color/colorBarraAbajo"
             android:orientation="horizontal"
             android:weightSum="4">
 
