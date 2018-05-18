@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 /**
@@ -28,7 +29,11 @@ public class fragmentPantallaInicio extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         imagenUno = view.findViewById(R.id.imagen_uno);
-
+        imagenDos = view.findViewById(R.id.imagen_dos);
+        imagenTres = view.findViewById(R.id.imagen_tres);
+        imagenCuatro = view.findViewById(R.id.imagen_cuatro);
+        imagenCinco = view.findViewById(R.id.imagen_cinco);
+        imagenSeis = view.findViewById(R.id.imagen_seis);
 
         imagenUno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,8 +42,36 @@ public class fragmentPantallaInicio extends Fragment {
                 notificador.recibirData(integer);
             }
         });
-
-
+        imagenDos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imagenTres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imagenCuatro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imagenCinco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imagenSeis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
