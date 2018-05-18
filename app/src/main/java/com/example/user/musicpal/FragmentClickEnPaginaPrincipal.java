@@ -19,10 +19,10 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
     private TextView textArtista;
     private TextView textAnio;
     private TextView textAlbum;
-    private static final String CLAVE_ARTISTA = "clave_artista";
-    private static final String CLAVE_ALBUM = "clave_album";
-    private static final String CLAVE_ANIO = "clave_anio";
-    private static final String CLAVE_ID_IMAGEN = "clave_id";
+    public static final String CLAVE_ARTISTA = "clave_artista";
+    public static final String CLAVE_ALBUM = "clave_album";
+    public static final String CLAVE_ANIO = "clave_anio";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,17 +41,4 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
 
         return view;
     }
-
-
-    public static FragmentClickEnPaginaPrincipal fabricaClickPrincipal(String artista, String album, String anio, Integer idImagen) {
-        Bundle bundle = new Bundle();
-        bundle.putString(CLAVE_ARTISTA, artista);
-        bundle.putString(CLAVE_ALBUM, album);
-        bundle.putString(CLAVE_ANIO, anio);
-        bundle.putInt(CLAVE_ID_IMAGEN, idImagen);
-        FragmentClickEnPaginaPrincipal fragmentPrincipal = new FragmentClickEnPaginaPrincipal();
-        fragmentPrincipal.setArguments(bundle);
-        return fragmentPrincipal;
-    }
-
 }

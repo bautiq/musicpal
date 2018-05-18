@@ -92,10 +92,12 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
     }
 
     @Override
-    public void recibirData(Integer id) {
+    public void recibirData(String artista, String album, String anio) {
         Intent intent = new Intent(this, ActivitySecundariaPaginaPrincipal.class);
         Bundle bundle = new Bundle();
-        bundle.putInt(ActivitySecundariaPaginaPrincipal.CLAVE_ID, id);
+        bundle.putString(ActivitySecundariaPaginaPrincipal.CLAVE_ARTISTA, artista);
+        bundle.putString(ActivitySecundariaPaginaPrincipal.CLAVE_ALBUM, album);
+        bundle.putString(ActivitySecundariaPaginaPrincipal.CLAVE_ANIO, anio);
         intent.putExtras(bundle);
         startActivity(intent);
     }
