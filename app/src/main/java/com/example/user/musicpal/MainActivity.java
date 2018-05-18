@@ -1,6 +1,7 @@
 package com.example.user.musicpal;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
     private ImageView imageMore;
     private ImageView imageProfile;
     private ImageView imageSearch;
+    private ImageView botonPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,15 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         imageMore = findViewById(R.id.more_button);
         imageProfile = findViewById(R.id.profile_button);
         imageSearch = findViewById(R.id.search_button);
+        botonPlay = findViewById(R.id.boton_play);
 
+
+        botonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Click play", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override

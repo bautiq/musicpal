@@ -15,6 +15,11 @@ import android.widget.ImageView;
  */
 public class fragmentPantallaInicio extends Fragment {
     private ImageView imagenUno;
+    private ImageView imagenDos;
+    private ImageView imagenTres;
+    private ImageView imagenCuatro;
+    private ImageView imagenCinco;
+    private ImageView imagenSeis;
     private NotificadorActivities notificador;
 
     @Override
@@ -23,6 +28,8 @@ public class fragmentPantallaInicio extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         imagenUno = view.findViewById(R.id.imagen_uno);
+
+
         imagenUno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +37,8 @@ public class fragmentPantallaInicio extends Fragment {
                 notificador.recibirData(integer);
             }
         });
+
+
         return view;
     }
 

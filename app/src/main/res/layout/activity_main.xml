@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@android:color/black"
+        android:orientation="vertical"
         android:weightSum="10">
 
         <LinearLayout
@@ -64,8 +64,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@android:color/black"
             android:orientation="horizontal">
 
@@ -85,8 +85,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:id="@+id/boton_play"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:background="@color/fondo2"

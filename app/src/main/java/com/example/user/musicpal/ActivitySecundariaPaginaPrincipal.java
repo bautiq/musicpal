@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class ActivitySecundariaPaginaPrincipal extends AppCompatActivity {
-private Bundle bundle;
+    private Bundle bundle;
     public static final String CLAVE_ID = "clave_id";
 
 
@@ -18,7 +18,7 @@ private Bundle bundle;
         setContentView(R.layout.activity_secundaria_pagina_principal);
         Intent intent = getIntent();
         bundle = intent.getExtras();
-        final FragmentClickEnPaginaPrincipal fragmentClickImagenUno = FragmentClickEnPaginaPrincipal.fabricaClickPrincipal("Linkin park", "Meteora", "2003", bundle.getInt(CLAVE_ID));
+        final FragmentClickEnPaginaPrincipal fragmentClickImagenUno = FragmentClickEnPaginaPrincipal.fabricaClickPrincipal("Linkin Park", "Meteora", "2003", bundle.getInt(CLAVE_ID));
         cargarFragment(fragmentClickImagenUno);
     }
 
@@ -27,7 +27,7 @@ private Bundle bundle;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contenedor_fragment_vista_previa, fragment);
-        fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }
