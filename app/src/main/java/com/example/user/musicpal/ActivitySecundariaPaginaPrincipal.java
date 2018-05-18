@@ -27,7 +27,6 @@ public class ActivitySecundariaPaginaPrincipal extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.contenedor_fragment_vista_previa, fragment);
-        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }

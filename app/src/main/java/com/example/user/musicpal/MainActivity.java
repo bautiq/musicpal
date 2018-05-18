@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click play", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Play", Toast.LENGTH_SHORT).show();
             }
         });
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click home", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Home", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -52,32 +52,32 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "Click playlist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Playlist", Toast.LENGTH_SHORT).show();
             }
         });
         imageDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click download", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Download", Toast.LENGTH_SHORT).show();
             }
         });
 
         imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click more", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click More", Toast.LENGTH_SHORT).show();
             }
         });
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Profile", Toast.LENGTH_SHORT).show();
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click search", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Search", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -45,31 +45,31 @@ public class fragmentPantallaInicio extends Fragment {
         imagenDos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Click imagen 2", Toast.LENGTH_SHORT).show();
             }
         });
         imagenTres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Click imagen 3", Toast.LENGTH_SHORT).show();
             }
         });
         imagenCuatro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Click imagen 4", Toast.LENGTH_SHORT).show();
             }
         });
         imagenCinco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Click imagen 5", Toast.LENGTH_SHORT).show();
             }
         });
         imagenSeis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click imagen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Click imagen 6", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
