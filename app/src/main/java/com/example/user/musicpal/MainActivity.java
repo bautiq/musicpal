@@ -2,12 +2,14 @@ package com.example.user.musicpal;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
     private ImageView imageMore;
     private ImageView imageProfile;
     private ImageView imageSearch;
-    private ImageView botonPlay;
+    private Button botonPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +36,28 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         imageSearch = findViewById(R.id.search_button);
         botonPlay = findViewById(R.id.boton_play);
 
-
+        final MediaPlayer mP = MediaPlayer.create(MainActivity.this, R.raw.bitter_sweet_symphony);
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Play", Toast.LENGTH_SHORT).show();
+                if (mP.isPlaying()) {
+                    mP.pause();
+                    botonPlay.setBackgroundResource(R.drawable.ic_play_circle);
+                } else {
+                    mP.start();
+                    botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                }
             }
         });
+
+
+        //botonPlay.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //Toast.makeText(MainActivity.this, "Click Play", Toast.LENGTH_SHORT).show();
+
+        //   }
+        //  });
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ARTISTA, artista);
         bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ALBUM, album);
         bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ANIO, anio);
-        bundle.putInt(FragmentClickEnPaginaPrincipal.CLAVE_IMAGEN,imagen);
+        bundle.putInt(FragmentClickEnPaginaPrincipal.CLAVE_IMAGEN, imagen);
         intent.putExtras(bundle);
         startActivity(intent);
     }

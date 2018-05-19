@@ -83,14 +83,14 @@
             android:background="@color/colorBarraAbajo"
             android:orientation="vertical">
 
-            <ImageView
+            <Button
                 android:id="@+id/boton_play"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_play_circle" />
+                android:background="@drawable/ic_play_circle" />
 
 
         </LinearLayout>
