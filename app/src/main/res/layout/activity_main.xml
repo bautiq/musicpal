@@ -106,6 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bitter Sweet Symphony"
+                android:fontFamily="sans-serif"
+                android:textSize="12sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
@@ -114,7 +116,8 @@
                 android:layout_height="wrap_content"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
             <TextView
@@ -122,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
         </LinearLayout>
