@@ -1,7 +1,6 @@
 package com.example.user.musicpal;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -111,12 +110,12 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
 
     @Override
     public void recibirData(String artista, String album, String anio, int imagen) {
-        Intent intent = new Intent(this, ActivitySecundariaPaginaPrincipal.class);
+        Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ARTISTA, artista);
-        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ALBUM, album);
-        bundle.putString(FragmentClickEnPaginaPrincipal.CLAVE_ANIO, anio);
-        bundle.putInt(FragmentClickEnPaginaPrincipal.CLAVE_IMAGEN, imagen);
+        bundle.putString(DetalleFragment.CLAVE_ARTISTA, artista);
+        bundle.putString(DetalleFragment.CLAVE_ALBUM, album);
+        bundle.putString(DetalleFragment.CLAVE_ANIO, anio);
+        bundle.putInt(DetalleFragment.CLAVE_IMAGEN, imagen);
         intent.putExtras(bundle);
         startActivity(intent);
     }

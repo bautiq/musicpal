@@ -7,17 +7,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ActivitySecundariaPaginaPrincipal extends AppCompatActivity {
+public class DetalleActivity extends AppCompatActivity {
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secundaria_pagina_principal);
+        setContentView(R.layout.activity_detalle);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        FragmentClickEnPaginaPrincipal fragmentDetalle = new FragmentClickEnPaginaPrincipal();
+        DetalleFragment fragmentDetalle = new DetalleFragment();
         fragmentDetalle.setArguments(bundle);
         cargarFragment(fragmentDetalle);
     }

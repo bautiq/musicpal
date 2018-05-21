@@ -1,7 +1,6 @@
 package com.example.user.musicpal;
 
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentClickEnPaginaPrincipal extends Fragment {
+public class DetalleFragment extends Fragment {
     private ImageView imagenGrande;
     private TextView textArtista;
     private TextView textAnio;
@@ -29,7 +28,7 @@ public class FragmentClickEnPaginaPrincipal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment_click_en_pagina_principal, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalle, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
         textArtista = view.findViewById(R.id.id_nombre_artista);
         textAlbum = view.findViewById(R.id.id_nombre_album);
