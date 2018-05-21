@@ -52,15 +52,14 @@
         android:layout_height="1dp">
 
     </LinearLayout>
-
     <FrameLayout
-        android:id="@+id/container_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7.5"
-        android:background="@drawable/fondo1">
+    android:id="@+id/container_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="7.5"
+    android:background="@drawable/fondo1">
+</FrameLayout>
 
-    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,14 +82,14 @@
             android:background="@color/colorBarraAbajo"
             android:orientation="vertical">
 
-            <ImageView
+            <Button
                 android:id="@+id/boton_play"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_play_circle" />
+                android:background="@drawable/ic_play_circle" />
 
 
         </LinearLayout>
@@ -106,6 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bitter Sweet Symphony"
+                android:fontFamily="sans-serif"
+                android:textSize="12sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
@@ -114,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
             <TextView
@@ -122,7 +124,8 @@
                 android:layout_height="wrap_content"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
         </LinearLayout>

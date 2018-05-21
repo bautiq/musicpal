@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_principal_vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo1"
-    android:gravity="center"
+    android:gravity="center|top"
     tools:context=".fragmentPantallaInicio">
 
 
@@ -14,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/recomendaciones"
+        android:layout_marginTop="20dp"
         android:textColor="@color/blanco"
         android:textSize="@dimen/size_text_title_scrollers"
         android:textStyle="bold" />
@@ -219,3 +226,4 @@
 
 
 </RelativeLayout>
+</ScrollView>
