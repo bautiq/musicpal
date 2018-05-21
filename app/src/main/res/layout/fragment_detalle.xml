@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo1"
     android:orientation="vertical"
-    tools:context=".FragmentClickEnPaginaPrincipal">
+    tools:context=".DetalleFragment">
 
     <ImageView
         android:id="@+id/id_imagen_vista_previa"
