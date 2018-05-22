@@ -2,13 +2,14 @@ package com.example.user.musicpal;
 
 import android.widget.ImageView;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by DH on 15/5/2018.
  */
 
-public class Album {
+public class Album implements Serializable {
     private String titulo;
     private List<Cancion> listaCanciones;
     private Artista artista;

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +18,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment {
-   /*private ImageView imagenUno;
-    private ImageView imagenDos;
-    private ImageView imagenTres;
-    private ImageView imagenCuatro;
-    private ImageView imagenCinco;
-    private ImageView imagenSeis;*/
+public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda {
 
-    private NotificadorActivities notificador;
+
+    private NotificadorActivities notificadorActivities;
 
     private RecyclerView recyclerViewRecomendaciones;
     private RecyclerView recyclerViewPopulares;
@@ -56,62 +52,21 @@ public class FragmentPantallaInicio extends Fragment {
         recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
         setAdapterAlbums(albumListaClasicos, recyclerViewClasicos);
 
-       /* imagenUno = view.findViewById(R.id.imagen_uno);
-        imagenDos = view.findViewById(R.id.imagen_dos);
-        imagenTres = view.findViewById(R.id.imagen_tres);
-        imagenCuatro = view.findViewById(R.id.imagen_cuatro);
-        imagenCinco = view.findViewById(R.id.imagen_cinco);
-        imagenSeis = view.findViewById(R.id.imagen_seis);
-
-        imagenUno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notificador.recibirData("Linkin Park", "Meteora", "2003", R.drawable.meteora_album);
-            }
-        });
-        imagenDos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notificador.recibirData("Mike Shinoda", "Post Traumatic", "2018", R.drawable.post_traumatic_album);
-            }
-        });
-        imagenTres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notificador.recibirData("Logic", "Under Pressure", "2005", R.drawable.underpressure_album);
-            }
-        });
-        imagenCuatro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notificador.recibirData("Eminem", "Not Afraid", "2003", R.drawable.eminem_single);
-            }
-        });
-        imagenCinco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notificador.recibirData("Tupac Shakur", "Loyal to the game", "2000", R.drawable.tupac_loyal_album);
-            }
-        });
-        imagenSeis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notificador.recibirData("The Verve", "Urban Hymns", "2009", R.drawable.theverve);
-            }
-        });
-        */
         return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.notificador = (NotificadorActivities) context;
+        notificadorActivities = (NotificadorActivities) context;
     }
 
-    public interface NotificadorActivities {
-        public void recibirData(String artista, String album, String anio, int imagen);
+    @Override
+    public void notificarCeldaClickeada(Album album) {
+        notificadorActivities.notificar(album);
     }
+
+
 
     private void armarListadoAlbum() {
         albumListaRecomendaciones = new ArrayList<>();
@@ -144,10 +99,13 @@ public class FragmentPantallaInicio extends Fragment {
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album));
     }
     public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView){
-        albumAdapter = new AlbumAdapter(listaAlbum);
+        albumAdapter = new AlbumAdapter(listaAlbum, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);
+    }
+    public interface NotificadorActivities{
+        public void notificar(Album album);
     }
 
 }

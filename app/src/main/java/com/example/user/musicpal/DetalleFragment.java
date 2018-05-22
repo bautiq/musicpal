@@ -14,6 +14,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleFragment extends Fragment {
+    public static final String ALBUM_KEY = "album_key";
     private ImageView imagenGrande;
     private TextView textArtista;
     private TextView textAnio;
@@ -34,10 +35,11 @@ public class DetalleFragment extends Fragment {
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAnio = view.findViewById(R.id.id_anio_album);
         Bundle bundle = getArguments();
-        textArtista.setText("Artista: " + bundle.getString(CLAVE_ARTISTA));
-        textAnio.setText("Año: " + bundle.getString(CLAVE_ANIO));
-        textAlbum.setText("Album: " + bundle.getString(CLAVE_ALBUM));
-        imagenGrande.setImageResource(bundle.getInt(CLAVE_IMAGEN));
+        Album album = (Album) bundle.getSerializable(ALBUM_KEY);
+        textArtista.setText(album.getArtista().getNombre());
+        textAnio.setText(album.getAnio());
+        textAlbum.setText(album.getTitulo());
+        imagenGrande.setImageResource(album.getImagenAlbum());
 
         return view;
     }

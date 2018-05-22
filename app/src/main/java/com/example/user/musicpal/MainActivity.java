@@ -2,9 +2,7 @@ package com.example.user.musicpal;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities{
+public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities {
     private ImageView imageHome;
     private ImageView imagePlaylist;
     private ImageView imageDownload;
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       imageHome = findViewById(R.id.home_button);
+        imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageDownload = findViewById(R.id.download_button);
         imageMore = findViewById(R.id.more_button);
@@ -95,17 +93,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     }
 
 
-
     @Override
-    public void recibirData(String artista, String album, String anio, int imagen) {
+    public void notificar(Album album) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(DetalleFragment.CLAVE_ARTISTA, artista);
-        bundle.putString(DetalleFragment.CLAVE_ALBUM, album);
-        bundle.putString(DetalleFragment.CLAVE_ANIO, anio);
-        bundle.putInt(DetalleFragment.CLAVE_IMAGEN, imagen);
+        bundle.putSerializable(DetalleFragment.ALBUM_KEY, album);
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
 }

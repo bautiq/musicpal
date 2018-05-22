@@ -6,16 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter {
-    private List<Album> albumLista;
 
-    public AlbumAdapter(List<Album> albumLista) {
+    private List<Album> albumLista;
+    private NotificadorAlbumCelda notificadorAlbumCelda;
+
+    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda) {
         this.albumLista = albumLista;
+        this.notificadorAlbumCelda = notificadorAlbumCelda;
     }
 
     public void setAlbumLista(List<Album> albumLista) {
@@ -34,7 +36,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Album album = albumLista.get(position);
-        ViewHolderRecomendaciones viewHolderRecomendaciones= (ViewHolderRecomendaciones) holder;
+        ViewHolderRecomendaciones viewHolderRecomendaciones = (ViewHolderRecomendaciones) holder;
         viewHolderRecomendaciones.cargarAlbum(album);
     }
 
@@ -52,14 +54,21 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         private TextView textViewNombreAlbum;
         private TextView textViewNombreArtista;
         private ImageView imagenAlbum;
-        private LinearLayout container;
+
 
         public ViewHolderRecomendaciones(View itemView) {
             super(itemView);
             textViewNombreAlbum = itemView.findViewById(R.id.titulo_fragment_album);
             textViewNombreArtista = itemView.findViewById(R.id.titulo_fragment_artista);
             imagenAlbum = itemView.findViewById(R.id.imagen_fragment_album);
-            container = itemView.findViewById(R.id.linear_container);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int posicionAlbumClickeado = getAdapterPosition();
+                    Album album = albumLista.get(posicionAlbumClickeado);
+                    notificadorAlbumCelda.notificarCeldaClickeada(album);
+                }
+            });
         }
 
         public void cargarAlbum(Album album) {
@@ -69,5 +78,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
     }
 
-    ;
+    public interface NotificadorAlbumCelda {
+        public void notificarCeldaClickeada(Album album);
+    }
 }
