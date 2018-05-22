@@ -6,5 +6,16 @@ package com.example.user.musicpal;
 
 public class Cancion {
     private String titulo;
-    private Integer duracion;
+
+    public Cancion(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 }

@@ -5,4 +5,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recomendaciones">Recomendaciones</string>
     <string name="populares">Populares</string>
+    <string name="top">Top</string>
+    <string name="clasicos">Clasicos</string>
 </resources>

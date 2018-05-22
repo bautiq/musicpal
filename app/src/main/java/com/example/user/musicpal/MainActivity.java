@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cargarFragment(new fragmentPantallaInicio());
-        imageHome = findViewById(R.id.home_button);
+       imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageDownload = findViewById(R.id.download_button);
         imageMore = findViewById(R.id.more_button);
@@ -49,14 +49,6 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
             }
         });
 
-
-        //botonPlay.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //Toast.makeText(MainActivity.this, "Click Play", Toast.LENGTH_SHORT).show();
-
-        //   }
-        //  });
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,4 +110,5 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
 }

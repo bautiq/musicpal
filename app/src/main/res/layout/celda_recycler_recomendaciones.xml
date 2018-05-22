@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_container"
+    android:layout_width="133dp"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imagen_fragment_album"
+        android:layout_width="@dimen/size_home_albums"
+        android:layout_height="@dimen/size_home_albums"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/titulo-fragment_album"
+        android:layout_width="@dimen/size_home_albums"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/tamanio_titulo_cancion" />
+
+    <TextView
+        android:id="@+id/titulo-fragment_artista"
+        android:layout_width="@dimen/size_home_albums"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/tamanio_titulo_cancion" />
+
+</LinearLayout>
