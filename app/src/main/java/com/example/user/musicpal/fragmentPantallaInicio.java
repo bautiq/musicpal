@@ -27,44 +27,35 @@ public class fragmentPantallaInicio extends Fragment {
 
     private NotificadorActivities notificador;
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewRecomendaciones;
+    private RecyclerView recyclerViewPopulares;
+    private RecyclerView recyclerViewTop;
+    private RecyclerView recyclerViewClasicos;
     private List<Album> albumListaRecomendaciones;
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
+    private AlbumAdapter albumAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
-        recyclerView = view.findViewById(R.id.recycler_recomendaciones_id);
+        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         armarListadoAlbum();
-        AlbumAdapter adapter1 = new AlbumAdapter(albumListaRecomendaciones);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter1);
+        albumAdapter = new AlbumAdapter(albumListaRecomendaciones);
+        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, view);
 
-        recyclerView = view.findViewById(R.id.recycler_populares_id);
-        armarListadoAlbum();
-        AlbumAdapter adapter2 = new AlbumAdapter(albumListaTop);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter2);
 
-        recyclerView = view.findViewById(R.id.recycler_top_id);
-        armarListadoAlbum();
-        AlbumAdapter adapter3 = new AlbumAdapter(albumListaPopulares);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter3);
+        recyclerViewPopulares= view.findViewById(R.id.recycler_populares_id);
+        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares, view);
 
-        recyclerView = view.findViewById(R.id.recycler_clasicos_id);
-        armarListadoAlbum();
-        AlbumAdapter adapter4 = new AlbumAdapter(albumListaClasicos);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter4);
+        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
+        setAdapterAlbums(albumListaTop, recyclerViewTop, view);
+
+        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
+        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, view);
 
        /* imagenUno = view.findViewById(R.id.imagen_uno);
         imagenDos = view.findViewById(R.id.imagen_dos);
@@ -153,4 +144,11 @@ public class fragmentPantallaInicio extends Fragment {
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album));
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album));
     }
+    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, View view){
+        albumAdapter.setAlbumLista(listaAlbum);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(albumAdapter);
+    }
+
 }

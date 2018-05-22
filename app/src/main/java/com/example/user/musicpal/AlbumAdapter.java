@@ -18,6 +18,10 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         this.albumLista = albumLista;
     }
 
+    public void setAlbumLista(List<Album> albumLista) {
+        this.albumLista = albumLista;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
