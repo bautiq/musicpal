@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements fragmentPantallaInicio.NotificadorActivities {
+public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities {
     private ImageView imageHome;
     private ImageView imagePlaylist;
     private ImageView imageDownload;
@@ -21,12 +21,13 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
     private ImageView imageProfile;
     private ImageView imageSearch;
     private Button botonPlay;
+    private FragmentPantallaInicio fragmentPantallaInicio;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        cargarFragment(new fragmentPantallaInicio());
        imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageDownload = findViewById(R.id.download_button);
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         imageProfile = findViewById(R.id.profile_button);
         imageSearch = findViewById(R.id.search_button);
         botonPlay = findViewById(R.id.boton_play);
+        fragmentPantallaInicio = new FragmentPantallaInicio();
+        fragmentManager = getSupportFragmentManager();
+        FragmentHelper.cargarFragmemt(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
 
         final MediaPlayer mP = MediaPlayer.create(MainActivity.this, R.raw.bitter_sweet_symphony);
         botonPlay.setOnClickListener(new View.OnClickListener() {
@@ -90,13 +94,7 @@ public class MainActivity extends AppCompatActivity implements fragmentPantallaI
         });
     }
 
-    public void cargarFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container_fragment, fragment);
-        fragmentTransaction.commit();
 
-    }
 
     @Override
     public void recibirData(String artista, String album, String anio, int imagen) {

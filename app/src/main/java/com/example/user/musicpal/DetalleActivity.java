@@ -8,7 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class DetalleActivity extends AppCompatActivity {
-
+private DetalleFragment detalleFragment;
+private FragmentManager fragmentManager;
 
 
     @Override
@@ -17,17 +18,10 @@ public class DetalleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        DetalleFragment fragmentDetalle = new DetalleFragment();
-        fragmentDetalle.setArguments(bundle);
-        cargarFragment(fragmentDetalle);
+        detalleFragment = new DetalleFragment();
+        detalleFragment.setArguments(bundle);
+        fragmentManager = getSupportFragmentManager();
+        FragmentHelper.cargarFragmemt(detalleFragment, R.id.contenedor_fragment_vista_previa, fragmentManager);
     }
 
-
-    public void cargarFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.contenedor_fragment_vista_previa, fragment);
-        fragmentTransaction.commit();
-
-    }
 }

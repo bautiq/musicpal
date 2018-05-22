@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class fragmentPantallaInicio extends Fragment {
+public class FragmentPantallaInicio extends Fragment {
    /*private ImageView imagenUno;
     private ImageView imagenDos;
     private ImageView imagenTres;
