@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:textColor="@color/blanco"
         android:textSize="@dimen/tamanio_titulo_cancion" />
 
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:gravity="center"
-        android:textColor="@color/blanco"
+        android:textColor="@color/gris"
         android:textSize="@dimen/tamanio_titulo_cancion" />
 
 </LinearLayout>

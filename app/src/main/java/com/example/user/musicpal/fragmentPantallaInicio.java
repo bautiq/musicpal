@@ -44,18 +44,17 @@ public class fragmentPantallaInicio extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         armarListadoAlbum();
-        albumAdapter = new AlbumAdapter(albumListaRecomendaciones);
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, view);
+        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones);
 
 
         recyclerViewPopulares= view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares, view);
+        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares);
 
         recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewTop, view);
+        setAdapterAlbums(albumListaTop, recyclerViewTop);
 
         recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, view);
+        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos);
 
        /* imagenUno = view.findViewById(R.id.imagen_uno);
         imagenDos = view.findViewById(R.id.imagen_dos);
@@ -144,9 +143,9 @@ public class fragmentPantallaInicio extends Fragment {
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album));
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album));
     }
-    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, View view){
-        albumAdapter.setAlbumLista(listaAlbum);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView){
+        albumAdapter = new AlbumAdapter(listaAlbum);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);
     }
