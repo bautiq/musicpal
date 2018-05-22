@@ -31,6 +31,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
+    private List<Cancion> cancionesUrbanHymns;
     private AlbumAdapter albumAdapter;
 
     @Override
@@ -40,6 +41,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         armarListadoAlbum();
+        armarListadoDeCanciones();
         setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones);
 
 
@@ -95,6 +97,22 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaClasicos.add(new Album("Under Pressure", new Artista("logic"), "2005", R.drawable.underpressure_album));
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album));
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album));
+    }
+    private void armarListadoDeCanciones(){
+        cancionesUrbanHymns=new ArrayList<>();
+        cancionesUrbanHymns.add(new Cancion("Bitter Sweet Symphony"));
+        cancionesUrbanHymns.add(new Cancion("Sonnet"));
+        cancionesUrbanHymns.add(new Cancion("The Rolling People"));
+        cancionesUrbanHymns.add(new Cancion("The Drugs Don´t Work"));
+        cancionesUrbanHymns.add(new Cancion("Catching the Butterfly"));
+        cancionesUrbanHymns.add(new Cancion("Neon Wilderness"));
+        cancionesUrbanHymns.add(new Cancion("Space and Time"));
+        cancionesUrbanHymns.add(new Cancion("Weeping Willow"));
+        cancionesUrbanHymns.add(new Cancion("Lucky Man"));
+        cancionesUrbanHymns.add(new Cancion("One Day"));
+        cancionesUrbanHymns.add(new Cancion("This Time"));
+        cancionesUrbanHymns.add(new Cancion("Velvet Morning"));
+        cancionesUrbanHymns.add(new Cancion("Come On / Deep Freeze"));
     }
 
     public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView){
