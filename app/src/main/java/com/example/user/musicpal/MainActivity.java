@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         });
     }
 
-
     @Override
     public void notificar(Album album) {
         Intent intent = new Intent(this, DetalleActivity.class);

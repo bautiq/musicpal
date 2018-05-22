@@ -52,13 +52,15 @@
         android:layout_height="1dp">
 
     </LinearLayout>
+
     <FrameLayout
-    android:id="@+id/container_fragment"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="7.5"
-    android:background="@drawable/fondo1">
-</FrameLayout>
+        android:id="@+id/container_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7.5"
+        android:background="@drawable/fondo1">
+
+    </FrameLayout>
 
 
     <LinearLayout
@@ -76,11 +78,7 @@
 
             <Button
                 android:id="@+id/boton_play"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
+                style="@style/StyleBotonReproductor"
                 android:background="@drawable/ic_play_circle" />
 
 
@@ -96,28 +94,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bitter Sweet Symphony"
                 android:fontFamily="sans-serif"
-                android:textSize="12sp"
+                android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif-monospace"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="serif-monospace"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:fontFamily="serif-monospace"
                 android:textStyle="italic" />
 
         </LinearLayout>
@@ -139,34 +137,22 @@
 
         <ImageView
             android:id="@+id/home_button"
-            android:layout_width="@dimen/tamanio_botones_barra_inferior"
-            android:layout_height="@dimen/tamanio_botones_barra_inferior"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
+            style="@style/StyleBotonBarraInferior"
             android:src="@drawable/ic_home_black_24dp" />
 
         <ImageView
             android:id="@+id/playlist_button"
-            android:layout_width="@dimen/tamanio_botones_barra_inferior"
-            android:layout_height="@dimen/tamanio_botones_barra_inferior"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
+            style="@style/StyleBotonBarraInferior"
             android:src="@drawable/playlist_icon" />
 
         <ImageView
             android:id="@+id/download_button"
-            android:layout_width="@dimen/tamanio_botones_barra_inferior"
-            android:layout_height="@dimen/tamanio_botones_barra_inferior"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
+            style="@style/StyleBotonBarraInferior"
             android:src="@drawable/ic_file_download_black_" />
 
         <ImageView
             android:id="@+id/more_button"
-            android:layout_width="@dimen/tamanio_botones_barra_inferior"
-            android:layout_height="@dimen/tamanio_botones_barra_inferior"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
+            style="@style/StyleBotonBarraInferior"
             android:src="@drawable/ic_more_horiz_white" />
 
     </LinearLayout>

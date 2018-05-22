@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class DetalleActivity extends AppCompatActivity {
+
 private DetalleFragment detalleFragment;
 private FragmentManager fragmentManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -55,12 +55,12 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         private TextView textViewNombreArtista;
         private ImageView imagenAlbum;
 
-
         public ViewHolderRecomendaciones(View itemView) {
             super(itemView);
             textViewNombreAlbum = itemView.findViewById(R.id.titulo_fragment_album);
             textViewNombreArtista = itemView.findViewById(R.id.titulo_fragment_artista);
             imagenAlbum = itemView.findViewById(R.id.imagen_fragment_album);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

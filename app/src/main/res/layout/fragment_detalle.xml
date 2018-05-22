@@ -9,46 +9,22 @@
 
     <ImageView
         android:id="@+id/id_imagen_vista_previa"
-        android:layout_width="@dimen/tamanio_imagen_vista_previa"
-        android:layout_height="@dimen/tamanio_imagen_vista_previa"
-        android:layout_gravity="center"
-        android:layout_margin="15sp" />
+        style="@style/StyleImagenVistaPrevia" />
 
     <TextView
         android:id="@+id/id_nombre_artista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Artista:"
-        android:layout_gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
+        style="@style/StyleTextViewVistaPrevia"
+        android:text="Artista:" />
 
     <TextView
         android:id="@+id/id_nombre_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Album:"
-        android:layout_gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
+        style="@style/StyleTextViewVistaPrevia"
+        android:text="Album:" />
 
     <TextView
         android:id="@+id/id_anio_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Año:"
-        android:layout_gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tamanio_texto_vista_previa"
-        android:textStyle="italic" />
+        style="@style/StyleTextViewVistaPrevia"
+        android:text="Año:" />
 
     <!-- <TextView
          android:layout_width="wrap_content"

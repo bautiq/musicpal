@@ -8,4 +8,44 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="StyleTituloListadoScroll">
+        <item name="android:layout_marginTop">21dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">@dimen/size_text_title_scrollers</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StyleBotonBarraInferior">
+        <item name="android:layout_width">@dimen/tamanio_botones_barra_inferior</item>
+        <item name="android:layout_height">@dimen/tamanio_botones_barra_inferior</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="StyleBotonReproductor">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="StyleTextViewVistaPrevia">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">@dimen/tamanio_texto_vista_previa</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="StyleImagenVistaPrevia">
+        <item name="android:layout_width">@dimen/tamanio_imagen_vista_previa</item>
+        <item name="android:layout_height">@dimen/tamanio_imagen_vista_previa</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">15dp</item>
+    </style>
 </resources>

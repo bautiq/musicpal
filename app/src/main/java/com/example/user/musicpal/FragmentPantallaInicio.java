@@ -66,8 +66,6 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         notificadorActivities.notificar(album);
     }
 
-
-
     private void armarListadoAlbum() {
         albumListaRecomendaciones = new ArrayList<>();
         albumListaRecomendaciones.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve));
@@ -98,12 +96,14 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album));
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album));
     }
+
     public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView){
         albumAdapter = new AlbumAdapter(listaAlbum, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);
     }
+
     public interface NotificadorActivities{
         public void notificar(Album album);
     }

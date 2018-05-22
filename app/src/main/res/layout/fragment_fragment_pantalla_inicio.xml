@@ -14,14 +14,8 @@
 
         <TextView
             android:id="@+id/text_recomendaciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:gravity="center"
-            android:text="@string/recomendaciones"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/size_text_title_scrollers"
-            android:textStyle="bold" />
+            style="@style/StyleTituloListadoScroll"
+            android:text="@string/recomendaciones" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -33,14 +27,8 @@
 
         <TextView
             android:id="@+id/text_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:gravity="center"
-            android:text="@string/top"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/size_text_title_scrollers"
-            android:textStyle="bold" />
+            style="@style/StyleTituloListadoScroll"
+            android:text="@string/top" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -52,14 +40,8 @@
 
         <TextView
             android:id="@+id/text_populares"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:gravity="center"
-            android:text="@string/populares"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/size_text_title_scrollers"
-            android:textStyle="bold" />
+            style="@style/StyleTituloListadoScroll"
+            android:text="@string/populares" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -71,14 +53,8 @@
 
         <TextView
             android:id="@+id/text_clasicos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:gravity="center"
-            android:text="@string/clasicos"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/size_text_title_scrollers"
-            android:textStyle="bold" />
+            style="@style/StyleTituloListadoScroll"
+            android:text="@string/clasicos" />
 
 
         <android.support.v7.widget.RecyclerView
