@@ -78,11 +78,11 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaRecomendaciones.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
         albumListaRecomendaciones.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
         albumListaRecomendaciones.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.eminem_single, cancionesRecovery));
-        albumListaRecomendaciones.add(new Album("Under Pressure", new Artista("logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
+        albumListaRecomendaciones.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaRecomendaciones.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaRecomendaciones.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
         albumListaTop = new ArrayList<>();
-        albumListaTop.add(new Album("Under Pressure", new Artista("logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
+        albumListaTop.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaTop.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaTop.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
         albumListaTop.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
@@ -91,7 +91,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaPopulares = new ArrayList<>();
         albumListaPopulares.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
         albumListaPopulares.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
-        albumListaPopulares.add(new Album("Under Pressure", new Artista("logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
+        albumListaPopulares.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaPopulares.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaPopulares.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
         albumListaPopulares.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.eminem_single, cancionesRecovery));
@@ -99,7 +99,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaClasicos.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
         albumListaClasicos.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
         albumListaClasicos.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.eminem_single, cancionesRecovery));
-        albumListaClasicos.add(new Album("Under Pressure", new Artista("logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
+        albumListaClasicos.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
     }

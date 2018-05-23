@@ -26,13 +26,11 @@
         style="@style/StyleTextViewVistaPrevia"
         android:text="Año:" />
 
-    <!-- <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center"
-         android:text="Lista"
-         android:textColor="@android:color/white"
-         android:textSize="20dp"
-         android:textStyle="bold" /> -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_fragment_canciones_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

@@ -3,6 +3,8 @@ package com.example.user.musicpal;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +24,8 @@ public class DetalleFragment extends Fragment {
     private TextView textArtista;
     private TextView textAnio;
     private TextView textAlbum;
-    private List<Cancion> listaDeCanciones;
+    private RecyclerView recyclerViewCanciones;
+    private ListaDeCancionesAdapter listaDeCancionesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,9 +38,17 @@ public class DetalleFragment extends Fragment {
         textArtista = view.findViewById(R.id.id_nombre_artista);
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAnio = view.findViewById(R.id.id_anio_album);
+        recyclerViewCanciones = view.findViewById(R.id.recycler_fragment_canciones_id);
 
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
+
+
+
+        recyclerViewCanciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewCanciones.setHasFixedSize(true);
+        listaDeCancionesAdapter = new ListaDeCancionesAdapter(album.getListaCanciones());
+        recyclerViewCanciones.setAdapter(listaDeCancionesAdapter);
 
         textArtista.setText(album.getArtista().getNombre());
         textAnio.setText(album.getAnio());
