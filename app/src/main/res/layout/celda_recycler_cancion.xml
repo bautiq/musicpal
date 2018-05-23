@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/linear_container_cancion"
+    android:layout_height="25dp"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:background="@color/fondo2"
         android:gravity="center"
+        android:padding="1dp"
+        android:layout_margin="1dp"
         android:textColor="@color/blanco"
-        android:text="Lista"
-        android:textStyle="bold" />
+        android:textStyle="italic" />
 
 </LinearLayout>

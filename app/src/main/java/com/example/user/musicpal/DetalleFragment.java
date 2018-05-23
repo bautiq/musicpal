@@ -25,11 +25,11 @@ public class DetalleFragment extends Fragment {
     private TextView textAnio;
     private TextView textAlbum;
     private RecyclerView recyclerViewCanciones;
-    private ListaDeCancionesAdapter listaDeCancionesAdapter;
+    private CancionesAdapter cancionesAdapter;
+    private List<Cancion> listaCanciones;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle, container, false);
@@ -38,17 +38,16 @@ public class DetalleFragment extends Fragment {
         textArtista = view.findViewById(R.id.id_nombre_artista);
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAnio = view.findViewById(R.id.id_anio_album);
-        recyclerViewCanciones = view.findViewById(R.id.recycler_fragment_canciones_id);
+        recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
 
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
 
-
-
+        listaCanciones = album.getListaCanciones();
+        cancionesAdapter = new CancionesAdapter(listaCanciones);
         recyclerViewCanciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerViewCanciones.setHasFixedSize(true);
-        listaDeCancionesAdapter = new ListaDeCancionesAdapter(album.getListaCanciones());
-        recyclerViewCanciones.setAdapter(listaDeCancionesAdapter);
+        recyclerViewCanciones.setAdapter(cancionesAdapter);
 
         textArtista.setText(album.getArtista().getNombre());
         textAnio.setText(album.getAnio());
@@ -56,4 +55,5 @@ public class DetalleFragment extends Fragment {
         imagenGrande.setImageResource(album.getImagenAlbum());
         return view;
     }
+
 }

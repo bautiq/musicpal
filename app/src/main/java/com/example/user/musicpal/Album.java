@@ -29,7 +29,6 @@ public class Album implements Serializable {
     }
 
     public String getAnio() {
-
         return anio;
     }
 
