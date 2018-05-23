@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +22,7 @@ public class DetalleFragment extends Fragment {
     private TextView textArtista;
     private TextView textAnio;
     private TextView textAlbum;
+    private List<Cancion> listaDeCanciones;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

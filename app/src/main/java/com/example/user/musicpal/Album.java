@@ -16,11 +16,12 @@ public class Album implements Serializable {
     private int imagenAlbum;
     private String anio;
 
-    public Album(String titulo, Artista artista, String anio, int imagenAlbum) {
+    public Album(String titulo, Artista artista, String anio, int imagenAlbum, List<Cancion> listaCanciones) {
         this.titulo = titulo;
         this.anio = anio;
         this.artista = artista;
         this.imagenAlbum = imagenAlbum;
+        this.listaCanciones = listaCanciones;
     }
 
     public void setAnio(String anio) {
