@@ -31,12 +31,12 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
-    private List<Cancion> cancionesUrbanHymns;
-    private List<Cancion> cancionesLoyalToTheGame;
-    private List<Cancion> cancionesRecovery;
-    private List<Cancion> cancionesMeteora;
-    private List<Cancion> cancionesUnderPressure;
-    private List<Cancion> cancionesPostTraumatic;
+    protected List<Cancion> cancionesUrbanHymns;
+    protected List<Cancion> cancionesLoyalToTheGame;
+    protected List<Cancion> cancionesRecovery;
+    protected List<Cancion> cancionesMeteora;
+    protected List<Cancion> cancionesUnderPressure;
+    protected List<Cancion> cancionesPostTraumatic;
     private AlbumAdapter albumAdapter;
 
     @Override
@@ -44,8 +44,10 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        armarListadoAlbum();
+
         armarListadoDeCanciones();
+        armarListadoAlbum();
+
         setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones);
 
 
@@ -80,6 +82,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaRecomendaciones.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaRecomendaciones.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaRecomendaciones.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
+
         albumListaTop = new ArrayList<>();
         albumListaTop.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaTop.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
@@ -87,6 +90,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaTop.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
         albumListaTop.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
         albumListaTop.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.eminem_single, cancionesRecovery));
+
         albumListaPopulares = new ArrayList<>();
         albumListaPopulares.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
         albumListaPopulares.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
@@ -94,6 +98,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaPopulares.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaPopulares.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
         albumListaPopulares.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.eminem_single, cancionesRecovery));
+
         albumListaClasicos = new ArrayList<>();
         albumListaClasicos.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.theverve, cancionesUrbanHymns));
         albumListaClasicos.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));

@@ -49,9 +49,9 @@ public class DetalleFragment extends Fragment {
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(cancionesAdapter);
 
-        textArtista.setText(album.getArtista().getNombre());
-        textAnio.setText(album.getAnio());
-        textAlbum.setText(album.getTitulo());
+        textArtista.setText("Artista: " + album.getArtista().getNombre());
+        textAnio.setText("Año: " + album.getAnio());
+        textAlbum.setText("Album: " + album.getTitulo());
         imagenGrande.setImageResource(album.getImagenAlbum());
         return view;
     }

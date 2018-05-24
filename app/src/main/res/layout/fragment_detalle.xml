@@ -13,18 +13,20 @@
 
     <TextView
         android:id="@+id/id_nombre_artista"
-        style="@style/StyleTextViewVistaPrevia"
-        android:text="Artista:" />
+        style="@style/StyleTextViewVistaPrevia" />
 
     <TextView
         android:id="@+id/id_nombre_album"
-        style="@style/StyleTextViewVistaPrevia"
-        android:text="Album:" />
+        style="@style/StyleTextViewVistaPrevia" />
 
     <TextView
         android:id="@+id/id_anio_album"
-        style="@style/StyleTextViewVistaPrevia"
-        android:text="Año:" />
+        style="@style/StyleTextViewVistaPrevia" />
+
+    <TextView
+        style="@style/StyleTituloListadoScroll"
+        android:text="Lista de Canciones"
+        android:background="@color/gris"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_canciones_id"
