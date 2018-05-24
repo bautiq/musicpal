@@ -8,7 +8,6 @@
     android:weightSum="10"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,7 +43,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_search_white" />
 
-
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +59,6 @@
         android:background="@drawable/fondo1">
 
     </FrameLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,7 +77,6 @@
                 android:id="@+id/boton_play"
                 style="@style/StyleBotonReproductor"
                 android:background="@drawable/ic_play_circle" />
-
 
         </LinearLayout>
 
@@ -123,9 +119,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp">
-
-    </LinearLayout>
+        android:layout_height="1dp"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

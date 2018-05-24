@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda {
 
-
     private NotificadorActivities notificadorActivities;
 
     private RecyclerView recyclerViewRecomendaciones;
@@ -49,7 +48,6 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         armarListadoAlbum();
 
         setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones);
-
 
         recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
         setAdapterAlbums(albumListaPopulares, recyclerViewPopulares);

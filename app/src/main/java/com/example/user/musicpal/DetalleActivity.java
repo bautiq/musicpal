@@ -16,6 +16,7 @@ private FragmentManager fragmentManager;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         detalleFragment = new DetalleFragment();

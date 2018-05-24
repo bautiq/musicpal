@@ -12,7 +12,6 @@ public class CancionesAdapter extends RecyclerView.Adapter {
 
     private List<Cancion> listaDeCanciones;
 
-
     public CancionesAdapter(List<Cancion> listaDeCanciones) {
         this.listaDeCanciones = listaDeCanciones;
     }

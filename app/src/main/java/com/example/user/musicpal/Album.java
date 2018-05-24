@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public class Album implements Serializable {
+
     private String titulo;
     private List<Cancion> listaCanciones;
     private Artista artista;

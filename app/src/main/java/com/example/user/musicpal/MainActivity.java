@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities {
+    
     private ImageView imageHome;
     private ImageView imagePlaylist;
     private ImageView imageDownload;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageDownload = findViewById(R.id.download_button);
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageProfile = findViewById(R.id.profile_button);
         imageSearch = findViewById(R.id.search_button);
         botonPlay = findViewById(R.id.boton_play);
+
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragmemt(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
