@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1.2"
         android:background="@android:color/black"
         android:orientation="horizontal">
 
@@ -140,9 +140,9 @@
             android:src="@drawable/playlist_icon" />
 
         <ImageView
-            android:id="@+id/download_button"
+            android:id="@+id/explore_button"
             style="@style/StyleBotonBarraInferior"
-            android:src="@drawable/ic_file_download_black_" />
+            android:src="@drawable/ic_explore" />
 
         <ImageView
             android:id="@+id/more_button"

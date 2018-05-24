@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     
     private ImageView imageHome;
     private ImageView imagePlaylist;
-    private ImageView imageDownload;
+    private ImageView imageExplore;
     private ImageView imageMore;
     private ImageView imageProfile;
     private ImageView imageSearch;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
-        imageDownload = findViewById(R.id.download_button);
+        imageExplore = findViewById(R.id.explore_button);
         imageMore = findViewById(R.id.more_button);
         imageProfile = findViewById(R.id.profile_button);
         imageSearch = findViewById(R.id.search_button);
@@ -68,10 +68,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                 Toast.makeText(MainActivity.this, "Click Playlist", Toast.LENGTH_SHORT).show();
             }
         });
-        imageDownload.setOnClickListener(new View.OnClickListener() {
+        imageExplore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Download", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click explore", Toast.LENGTH_SHORT).show();
             }
         });
 
