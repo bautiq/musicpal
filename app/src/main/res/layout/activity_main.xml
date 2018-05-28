@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:background="@android:color/black"
         android:orientation="horizontal">
 
@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:layout_weight="18"
             android:scaleType="centerCrop"
-            android:src="@drawable/copia_logo_musicpal" />
+            android:src="@drawable/logomusic3" />
 
         <ImageView
             android:id="@+id/search_button"
@@ -55,7 +55,7 @@
         android:id="@+id/container_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5"
+        android:layout_weight="8"
         android:background="@drawable/fondo1">
 
     </FrameLayout>
