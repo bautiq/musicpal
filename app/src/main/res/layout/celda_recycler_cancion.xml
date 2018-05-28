@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:background="@color/fondo2"
+        android:background="@color/fondo3"
         android:gravity="center"
         android:padding="1dp"
-        android:textColor="@color/blanco"
-        android:textStyle="italic" />
+        android:textColor="@color/negro"
+        android:textStyle="italic"
+        />
 
 </LinearLayout>
