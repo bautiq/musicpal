@@ -28,7 +28,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.celda_recycler_recomendaciones, parent, false);
+        View view = inflater.inflate(R.layout.celda_recycler_scroll, parent, false);
         ViewHolderRecomendaciones viewHolderRecomendaciones = new ViewHolderRecomendaciones(view);
         return viewHolderRecomendaciones;
     }
