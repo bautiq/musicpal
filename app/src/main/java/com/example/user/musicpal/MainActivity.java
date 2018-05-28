@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities {
-    
+
     private ImageView imageHome;
     private ImageView imagePlaylist;
     private ImageView imageExplore;
