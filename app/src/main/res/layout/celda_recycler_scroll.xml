@@ -10,7 +10,7 @@
         android:layout_width="@dimen/size_home_albums"
         android:layout_height="@dimen/size_home_albums"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/titulo-fragment_album"
