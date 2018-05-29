@@ -55,7 +55,7 @@
         android:id="@+id/container_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="8.25"
         android:background="@drawable/fondo1">
 
     </FrameLayout>
@@ -93,7 +93,7 @@
                 android:fontFamily="sans-serif"
                 android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -102,7 +102,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="italic" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="italic" />
 
         </LinearLayout>
@@ -124,7 +124,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
+        android:layout_weight="0.75"
         android:background="@color/colorBarraAbajo"
         android:orientation="horizontal"
         android:weightSum="4">

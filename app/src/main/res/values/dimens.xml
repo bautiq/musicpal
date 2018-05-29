@@ -6,9 +6,9 @@
     <dimen name="separation_home_albums">20dp</dimen>
     <dimen name="separation_home_texts">20dp</dimen>
     <dimen name="tamanio_titulo_cancion">14sp</dimen>
-    <dimen name="tamanio_imagen_vista_previa">200dp</dimen>
+    <dimen name="tamanio_imagen_vista_previa">150dp</dimen>
     <dimen name="tamanio_texto_vista_previa">16sp</dimen>
-    <dimen name="tamanio_botones_barra_inferior">34dp</dimen>
+    <dimen name="tamanio_botones_barra_inferior">30dp</dimen>
     <dimen name="margin_imagen_grande">50dp</dimen>
     <dimen name="margin_imagen_texto">20dp</dimen>
     <dimen name="size_text_imagenes_grandes">20sp</dimen>

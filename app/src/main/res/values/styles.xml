@@ -10,8 +10,10 @@
 
     <style name="StyleTituloListadoScroll">
         <item name="android:layout_marginTop">21dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/blanco</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textColor">@color/fondo2</item>
         <item name="android:textSize">@dimen/size_text_title_scrollers</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_width">match_parent</item>
@@ -35,7 +37,7 @@
     <style name="StyleTextViewVistaPrevia">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">2dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/blanco</item>
         <item name="android:textSize">@dimen/tamanio_texto_vista_previa</item>

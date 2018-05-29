@@ -22,10 +22,18 @@
     <TextView
         android:id="@+id/id_anio_album"
         style="@style/StyleTextViewVistaPrevia" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/fondo2"
+        />
 
     <TextView
         style="@style/StyleTituloListadoScroll"
-        android:background="@color/gris"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/blanco"
+        android:layout_width="match_parent"
+        android:background="@color/negroposta"
         android:text="Lista de Canciones" />
 
     <android.support.v7.widget.RecyclerView
