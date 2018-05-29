@@ -39,7 +39,6 @@ public class DetalleFragment extends Fragment {
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAnio = view.findViewById(R.id.id_anio_album);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
-
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
 

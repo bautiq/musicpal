@@ -15,7 +15,7 @@
 
         </activity>
         <activity android:name=".DetalleActivity" />
-        <activity android:name=".SplashScreen" android:noHistory="true">
+        <activity android:name=".SplashScreen"  android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
