@@ -40,6 +40,6 @@
         android:id="@+id/recycler_canciones_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/negroposta"></android.support.v7.widget.RecyclerView>
+        android:background="@color/negroposta"/>
 
 </LinearLayout>
