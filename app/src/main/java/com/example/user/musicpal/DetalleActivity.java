@@ -9,8 +9,9 @@ import android.os.Bundle;
 
 public class DetalleActivity extends AppCompatActivity {
 
-private DetalleFragment detalleFragment;
-private FragmentManager fragmentManager;
+//private DetalleFragment detalleFragment; probe sacar los atributos y no se necesitan por lo q veo..ok?
+//private FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +20,9 @@ private FragmentManager fragmentManager;
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        detalleFragment = new DetalleFragment();
+        DetalleFragment detalleFragment = new DetalleFragment();
         detalleFragment.setArguments(bundle);
-        fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragmemt(detalleFragment, R.id.contenedor_fragment_vista_previa, fragmentManager);
     }
 
