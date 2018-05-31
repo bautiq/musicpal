@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
->
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +16,8 @@
 
         <ImageView
             android:id="@+id/profile_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="1"
@@ -27,7 +26,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_weight="18"
             android:scaleType="centerCrop"
@@ -47,7 +46,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp">
+        android:layout_height="1dp"
+        android:background="@color/negro">
 
     </LinearLayout>
 
@@ -55,7 +55,7 @@
         android:id="@+id/container_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8.25"
+        android:layout_weight="7.25"
         android:background="@drawable/fondo1">
 
     </FrameLayout>
@@ -63,26 +63,53 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="1dp"
+        android:background="@color/negro">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/colorBarraAbajo"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:background="@color/negro_reproductor"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="@drawable/ic_fast_rewind"
+                android:padding="10dp" />
 
             <Button
                 android:id="@+id/boton_play"
                 style="@style/StyleBotonReproductor"
                 android:background="@drawable/ic_play_circle" />
 
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="@drawable/ic_fast_forward"
+                android:padding="10dp" />
+
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:background="@color/negro_reproductor"
@@ -91,29 +118,31 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif"
-                android:layout_marginTop="2dp"
                 android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:fontFamily="serif-monospace"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="italic" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:fontFamily="serif-monospace"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="italic" />
 
         </LinearLayout>
@@ -128,7 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.75"
-        android:background="@color/negro_reproductor"
+        android:background="@color/negroposta"
         android:orientation="horizontal"
         android:weightSum="4">
 
