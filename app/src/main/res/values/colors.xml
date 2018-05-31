@@ -2,13 +2,13 @@
 <resources>
     <color name="colorPrimary">#161616</color>
     <color name="colorPrimaryDark">#01094b</color>
-    <color name="colorAccent">#ff0008</color>
-    <color name="colorBarraAbajo">#464344</color>
-    <color name="negro">#383737</color>
+    <color name="colorAccent">#d50000</color>
+    <color name="colorBarraAbajo">#424242</color>
     <color name="negroposta">#000000</color>
-    <color name="negro_reproductor">#161616</color>
+    <color name="negro_reproductor">#212121</color>
     <color name="blanco">#FFFFFF</color>
     <color name="fondo2">#ff9800</color>
-    <color name="fondo3">#e3e8e22b</color>
-    <color name="gris">#666461</color>
+    <color name="fondo3">#fdd835</color>
+    <color name="gris">#616161</color>
+    <color name="grisBlanco">#e0e0e0</color>
 </resources>

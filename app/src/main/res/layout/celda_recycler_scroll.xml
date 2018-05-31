@@ -19,7 +19,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="center"
         android:letterSpacing="-0.05"
-        android:textColor="@color/blanco"
+        android:textColor="@color/grisBlanco"
         android:textSize="@dimen/tamanio_titulo_cancion"
         android:textStyle="bold" />
 
