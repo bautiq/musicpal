@@ -172,8 +172,6 @@
         <ImageView
             android:id="@+id/home_button"
             style="@style/StyleBotonBarraInferior"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
             android:src="@drawable/icono_home_naranja_28dp" />
 
         <ImageView
