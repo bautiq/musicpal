@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
