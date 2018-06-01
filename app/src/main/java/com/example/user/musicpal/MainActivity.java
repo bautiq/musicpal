@@ -17,6 +17,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private ImageView imagePlaylist;
     private ImageView imageExplore;
     private ImageView imageMore;
+    private boolean homeIsClicked;
+    private boolean playlistIsClicked;
+    private boolean exploreIsClicked;
+    private boolean moreIsClicked;
     private ImageView imageProfile;
     private ImageView imageSearch;
     private Button botonRewind;
@@ -29,7 +33,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        homeIsClicked = true;
+        playlistIsClicked = false;
+        exploreIsClicked = false;
+        moreIsClicked = false;
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageExplore = findViewById(R.id.explore_button);
@@ -62,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Click Home", Toast.LENGTH_SHORT).show();
+                clickBotonesInferiores(homeIsClicked);
+                if (homeIsClicked == true) {
+                    imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
+                } else {
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                }
             }
         });
 
@@ -120,5 +133,13 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         bundle.putSerializable(DetalleFragment.ALBUM_KEY, album);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    public void clickBotonesInferiores(boolean booleano) {
+        if (booleano == true) {
+            booleano = false;
+        } else {
+            booleano = true;
+        }
     }
 }
