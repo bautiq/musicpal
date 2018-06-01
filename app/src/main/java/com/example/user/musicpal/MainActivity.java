@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private Button botonPlay;
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
-    private boolean algunoFueClickeado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         playlistIsClicked = false;
         exploreIsClicked = false;
         moreIsClicked = false;
-        algunoFueClickeado = false;
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageExplore = findViewById(R.id.explore_button);
@@ -114,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     imageExplore.setImageResource(R.drawable.icono_explore_naranja_28dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
                     imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                 }
             }
         });
