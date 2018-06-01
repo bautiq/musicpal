@@ -5,7 +5,7 @@
 
         <item
             android:id="@+id/perfil"
-            android:icon="@drawable/perfil"
+            android:icon="@drawable/icono_persona_blanco_24dp"
             android:title="@string/perfil" />
 
         <item

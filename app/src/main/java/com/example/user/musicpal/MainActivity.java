@@ -214,6 +214,18 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Toast.makeText(this, "Click Perfil", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.favoritos:
+                Toast.makeText(this, "Click Favoritos", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.configuracion:
+                Toast.makeText(this, "Click Configuracion", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawerLayout.closeDrawers();
         return false;
     }
 }
