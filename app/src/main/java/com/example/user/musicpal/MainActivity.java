@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private ImageView imageMore;
     private ImageView imageProfile;
     private ImageView imageSearch;
+    private Button botonRewind;
+    private Button botonForward;
     private Button botonPlay;
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageProfile = findViewById(R.id.profile_button);
         imageSearch = findViewById(R.id.search_button);
         botonPlay = findViewById(R.id.boton_play);
+        botonForward = findViewById(R.id.boton_forward);
+        botonRewind = findViewById(R.id.boton_rewind);
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
@@ -58,6 +62,20 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Click Home", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        botonRewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Click Rewind", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        botonForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Click Forward", Toast.LENGTH_SHORT).show();
             }
         });
 
