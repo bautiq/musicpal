@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private Button botonPlay;
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
+    private boolean algunoFueClickeado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         playlistIsClicked = false;
         exploreIsClicked = false;
         moreIsClicked = false;
+        algunoFueClickeado = false;
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
         imageExplore = findViewById(R.id.explore_button);
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Click Home", Toast.LENGTH_SHORT).show();
-                clickBotonesInferiores(homeIsClicked);
+                clickBotonesInferiores(homeIsClicked, "home");
                 if (homeIsClicked == true) {
                     imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
                 } else {
@@ -95,8 +97,13 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imagePlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Toast.makeText(MainActivity.this, "Click Playlist", Toast.LENGTH_SHORT).show();
+                clickBotonesInferiores(playlistIsClicked, "playlist");
+                if (playlistIsClicked == true) {
+                    imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
+                } else {
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                }
             }
         });
         imageExplore.setOnClickListener(new View.OnClickListener() {
@@ -135,11 +142,47 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         startActivity(intent);
     }
 
-    public void clickBotonesInferiores(boolean booleano) {
-        if (booleano == true) {
-            booleano = false;
-        } else {
-            booleano = true;
+    public void clickBotonesInferiores(boolean booleano, String clickeado) {
+
+        switch (clickeado) {
+            case "home":
+                if (booleano == true) {
+                    booleano = false;
+                    homeIsClicked = false;
+                } else {
+                    homeIsClicked = true;
+                    booleano = true;
+                }
+                break;
+            case "playlist":
+                if (booleano == true) {
+                    booleano = false;
+                    playlistIsClicked = false;
+                } else {
+                    playlistIsClicked = true;
+                    booleano = true;
+                }
+                break;
+
+            case "more":
+                if (booleano == true) {
+                    booleano = false;
+                    moreIsClicked = false;
+                } else {
+                    moreIsClicked = true;
+                    booleano = true;
+                }
+                break;
+            case "explore":
+                if (booleano == true) {
+                    booleano = false;
+                    exploreIsClicked = false;
+                } else {
+                    exploreIsClicked = true;
+                    booleano = true;
+                }
+                break;
         }
+
     }
 }
