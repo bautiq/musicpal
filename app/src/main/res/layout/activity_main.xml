@@ -40,7 +40,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_search_white" />
+            android:src="@drawable/icono_search_blanco_24dp" />
 
     </LinearLayout>
 
@@ -170,7 +170,7 @@
         <ImageView
             android:id="@+id/home_button"
             style="@style/StyleBotonBarraInferior"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/icono_home_blanco_24dp" />
 
         <ImageView
             android:id="@+id/playlist_button"
@@ -180,12 +180,12 @@
         <ImageView
             android:id="@+id/explore_button"
             style="@style/StyleBotonBarraInferior"
-            android:src="@drawable/ic_explore" />
+            android:src="@drawable/icono_explore_blanco_24dp" />
 
         <ImageView
             android:id="@+id/more_button"
             style="@style/StyleBotonBarraInferior"
-            android:src="@drawable/ic_more_horiz_white" />
+            android:src="@drawable/icono_more_horiz_blanco_24dp" />
 
     </LinearLayout>
 
