@@ -7,4 +7,7 @@
     <string name="populares">Populares</string>
     <string name="top">Top</string>
     <string name="clasicos">Clasicos</string>
+    <string name="perfil">Perfil</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="favoritos">Favoritos</string>
 </resources>

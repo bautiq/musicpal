@@ -2,16 +2,20 @@ package com.example.user.musicpal;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities {
+public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private Button botonPlay;
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
 
     @Override
@@ -47,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         botonPlay = findViewById(R.id.boton_play);
         botonForward = findViewById(R.id.boton_forward);
         botonRewind = findViewById(R.id.boton_rewind);
+        navigationView = findViewById(R.id.navigation_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
@@ -200,5 +210,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                 break;
         }
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }
