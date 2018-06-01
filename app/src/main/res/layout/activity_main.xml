@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_weight="18"
             android:scaleType="centerCrop"
-            android:src="@drawable/logomusic3" />
+            android:src="@drawable/logoprueba" />
 
         <ImageView
             android:id="@+id/search_button"
