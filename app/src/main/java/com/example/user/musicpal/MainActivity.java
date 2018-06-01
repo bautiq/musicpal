@@ -70,12 +70,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Home", Toast.LENGTH_SHORT).show();
-                clickBotonesInferiores(homeIsClicked, "home");
+                clickBotonesInferiores("home");
                 if (homeIsClicked == true) {
                     imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
-                } else {
-                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
                 }
             }
         });
@@ -97,26 +97,37 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imagePlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Playlist", Toast.LENGTH_SHORT).show();
-                clickBotonesInferiores(playlistIsClicked, "playlist");
+                clickBotonesInferiores("playlist");
                 if (playlistIsClicked == true) {
                     imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
-                } else {
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                 }
             }
         });
         imageExplore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click explore", Toast.LENGTH_SHORT).show();
+                clickBotonesInferiores("explore");
+                if (exploreIsClicked == true) {
+                    imageExplore.setImageResource(R.drawable.icono_explore_naranja_28dp);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                }
             }
         });
 
         imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click More", Toast.LENGTH_SHORT).show();
+                clickBotonesInferiores("more");
+                if(moreIsClicked == true){
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_naranja_28dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                }
             }
         });
         imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -142,44 +153,49 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         startActivity(intent);
     }
 
-    public void clickBotonesInferiores(boolean booleano, String clickeado) {
+    public void clickBotonesInferiores(String clickeado) {
 
         switch (clickeado) {
             case "home":
-                if (booleano == true) {
-                    booleano = false;
+                if (homeIsClicked == true) {
                     homeIsClicked = false;
                 } else {
                     homeIsClicked = true;
-                    booleano = true;
+                    playlistIsClicked = false;
+                    moreIsClicked = false;
+                    exploreIsClicked = false;
+
                 }
                 break;
             case "playlist":
-                if (booleano == true) {
-                    booleano = false;
+                if (playlistIsClicked == true) {
                     playlistIsClicked = false;
                 } else {
                     playlistIsClicked = true;
-                    booleano = true;
+                    homeIsClicked = false;
+                    moreIsClicked = false;
+                    exploreIsClicked = false;
                 }
                 break;
 
             case "more":
-                if (booleano == true) {
-                    booleano = false;
+                if (moreIsClicked == true) {
                     moreIsClicked = false;
                 } else {
                     moreIsClicked = true;
-                    booleano = true;
+                    exploreIsClicked = false;
+                    homeIsClicked = false;
+                    playlistIsClicked = false;
                 }
                 break;
             case "explore":
-                if (booleano == true) {
-                    booleano = false;
+                if (exploreIsClicked == true) {
                     exploreIsClicked = false;
                 } else {
                     exploreIsClicked = true;
-                    booleano = true;
+                    moreIsClicked = false;
+                    homeIsClicked = false;
+                    playlistIsClicked = false;
                 }
                 break;
         }
