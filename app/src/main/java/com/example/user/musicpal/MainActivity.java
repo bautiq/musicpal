@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private FragmentManager fragmentManager;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    private FragmentPerfil fragmentPerfil;
 
 
     @Override
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imagePlaylist = findViewById(R.id.playlist_button);
         imageExplore = findViewById(R.id.explore_button);
         imageMore = findViewById(R.id.more_button);
-        imageProfile = findViewById(R.id.profile_button);
+        imageProfile = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
         botonPlay = findViewById(R.id.boton_play);
         botonForward = findViewById(R.id.boton_forward);
@@ -143,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Click Menu", Toast.LENGTH_SHORT).show();
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
@@ -216,7 +218,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.perfil:
-                Toast.makeText(this, "Click Perfil", Toast.LENGTH_SHORT).show();
+                fragmentPerfil = new FragmentPerfil();
+                fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_fragment, fragmentPerfil);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
                 break;
             case R.id.favoritos:
                 Toast.makeText(this, "Click Favoritos", Toast.LENGTH_SHORT).show();

@@ -10,4 +10,5 @@
     <string name="perfil">Perfil</string>
     <string name="configuracion">Configuracion</string>
     <string name="favoritos">Favoritos</string>
+    <string name="editarPerfil">Editar Perfil</string>
 </resources>

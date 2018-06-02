@@ -11,6 +11,5 @@ public class FragmentHelper {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(container, fragment);
         fragmentTransaction.commit();
-
     }
 }
