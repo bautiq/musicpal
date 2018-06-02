@@ -82,12 +82,6 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 clickBotonesInferiores("home");
-                if (homeIsClicked == true) {
-                    imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
-                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
-                }
             }
         });
 
@@ -109,24 +103,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 clickBotonesInferiores("playlist");
-                if (playlistIsClicked == true) {
-                    imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
-                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
-                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
-                }
             }
         });
         imageExplore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickBotonesInferiores("explore");
-                if (exploreIsClicked == true) {
-                    imageExplore.setImageResource(R.drawable.icono_explore_naranja_28dp);
-                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
-                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
-                }
             }
         });
 
@@ -134,12 +116,6 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 clickBotonesInferiores("more");
-                if (moreIsClicked == true) {
-                    imageMore.setImageResource(R.drawable.icono_more_horiz_naranja_28dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
-                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
-                }
             }
         });
         imageProfile.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +152,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     playlistIsClicked = false;
                     moreIsClicked = false;
                     exploreIsClicked = false;
+                    imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
 
                 }
                 break;
@@ -187,6 +167,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     homeIsClicked = false;
                     moreIsClicked = false;
                     exploreIsClicked = false;
+                    imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                 }
                 break;
 
@@ -198,6 +182,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     exploreIsClicked = false;
                     homeIsClicked = false;
                     playlistIsClicked = false;
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_naranja_28dp);
+                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
                 }
                 break;
             case "explore":
@@ -208,6 +196,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     moreIsClicked = false;
                     homeIsClicked = false;
                     playlistIsClicked = false;
+                    imageExplore.setImageResource(R.drawable.icono_explore_naranja_28dp);
+                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                 }
                 break;
         }

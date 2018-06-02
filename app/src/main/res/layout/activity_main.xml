@@ -204,7 +204,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/fondo2"
+        android:background="@color/navigation_view"
+        app:itemTextColor="@color/blanco"
+        app:itemIconTint="@color/blanco"
         app:menu="@menu/menu_navigation">
 
     </android.support.design.widget.NavigationView>
