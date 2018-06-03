@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
-    private ImageView imageExplore;
+    private ImageView imageCompartir;
     private ImageView imageMore;
     private boolean homeIsClicked;
     private boolean playlistIsClicked;
-    private boolean exploreIsClicked;
+    private boolean compartirIsClicked;
     private boolean moreIsClicked;
     private ImageView imageProfile;
     private ImageView imageSearch;
@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private FragmentPerfil fragmentPerfil;
+    private FragmentPlaylist fragmentPlaylist;
+    private FragmentCompartir fragmentCompartir;
 
 
     @Override
@@ -44,11 +46,11 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         setContentView(R.layout.activity_main);
         homeIsClicked = true;
         playlistIsClicked = false;
-        exploreIsClicked = false;
+        compartirIsClicked = false;
         moreIsClicked = false;
         imageHome = findViewById(R.id.home_button);
         imagePlaylist = findViewById(R.id.playlist_button);
-        imageExplore = findViewById(R.id.explore_button);
+        imageCompartir = findViewById(R.id.compartir_button);
         imageMore = findViewById(R.id.more_button);
         imageProfile = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
@@ -105,10 +107,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                 clickBotonesInferiores("playlist");
             }
         });
-        imageExplore.setOnClickListener(new View.OnClickListener() {
+        imageCompartir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickBotonesInferiores("explore");
+                clickBotonesInferiores("compartir");
             }
         });
 
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     public void notificar(Album album) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(DetalleFragment.ALBUM_KEY, album);
+        bundle.putSerializable(FragmentDetalle.ALBUM_KEY, album);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -151,11 +153,15 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     homeIsClicked = true;
                     playlistIsClicked = false;
                     moreIsClicked = false;
-                    exploreIsClicked = false;
+                    compartirIsClicked = false;
                     imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
                     imagePlaylist.setImageResource(R.drawable.playlist_icon);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageCompartir.setImageResource(R.drawable.icono_compartir_blanco_24dp);
+
+                    fragmentPantallaInicio = new FragmentPantallaInicio();
+                    fragmentManager = getSupportFragmentManager();
+                    FragmentHelper.cargarFragmemt(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
 
                 }
                 break;
@@ -166,11 +172,15 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     playlistIsClicked = true;
                     homeIsClicked = false;
                     moreIsClicked = false;
-                    exploreIsClicked = false;
+                    compartirIsClicked = false;
                     imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageCompartir.setImageResource(R.drawable.icono_compartir_blanco_24dp);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
+
+                    fragmentPlaylist = new FragmentPlaylist();
+                    fragmentManager = getSupportFragmentManager();
+                    FragmentHelper.cargarFragmemt(fragmentPlaylist, R.id.container_fragment, fragmentManager);
                 }
                 break;
 
@@ -179,27 +189,31 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     moreIsClicked = false;
                 } else {
                     moreIsClicked = true;
-                    exploreIsClicked = false;
+                    compartirIsClicked = false;
                     homeIsClicked = false;
                     playlistIsClicked = false;
                     imageMore.setImageResource(R.drawable.icono_more_horiz_naranja_28dp);
-                    imageExplore.setImageResource(R.drawable.icono_explore_blanco_24dp);
+                    imageCompartir.setImageResource(R.drawable.icono_compartir_blanco_24dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
                     imagePlaylist.setImageResource(R.drawable.playlist_icon);
                 }
                 break;
-            case "explore":
-                if (exploreIsClicked == true) {
-                    exploreIsClicked = false;
+            case "compartir":
+                if (compartirIsClicked == true) {
+                    compartirIsClicked = false;
                 } else {
-                    exploreIsClicked = true;
+                    compartirIsClicked = true;
                     moreIsClicked = false;
                     homeIsClicked = false;
                     playlistIsClicked = false;
-                    imageExplore.setImageResource(R.drawable.icono_explore_naranja_28dp);
+                    imageCompartir.setImageResource(R.drawable.icono_compartir_naranja_24dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
                     imagePlaylist.setImageResource(R.drawable.playlist_icon);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
+
+                    fragmentCompartir = new FragmentCompartir();
+                    fragmentManager = getSupportFragmentManager();
+                    FragmentHelper.cargarFragmemt(fragmentCompartir, R.id.container_fragment, fragmentManager);
                 }
                 break;
         }

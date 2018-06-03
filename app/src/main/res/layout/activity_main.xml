@@ -186,9 +186,9 @@
                 android:src="@drawable/playlist_icon" />
 
             <ImageView
-                android:id="@+id/explore_button"
+                android:id="@+id/compartir_button"
                 style="@style/StyleBotonBarraInferior"
-                android:src="@drawable/icono_explore_blanco_24dp" />
+                android:src="@drawable/icono_compartir_blanco_24dp" />
 
             <ImageView
                 android:id="@+id/more_button"

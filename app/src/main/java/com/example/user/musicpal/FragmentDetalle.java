@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetalleFragment extends Fragment {
+public class FragmentDetalle extends Fragment {
 
     public static final String ALBUM_KEY = "album_key";
     private ImageView imagenGrande;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo1"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context=".FragmentCompartir">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        style="@style/StyleTituloListadoScroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/fondo2"
+        android:padding="10dp"
+        android:text="@string/comparti_en_tu_estado"
+        android:textColor="@color/gris" />
+
+</LinearLayout>
