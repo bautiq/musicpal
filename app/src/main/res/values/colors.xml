@@ -8,6 +8,7 @@
     <color name="negro_reproductor">#212121</color>
     <color name="blanco">#FFFFFF</color>
     <color name="fondo2">#ff9800</color>
+    <color name="header_nav_view">#c77b0b</color>
     <color name="navigation_view">#000000</color>
     <color name="fondo3">#fdd835</color>
     <color name="gris">#616161</color>

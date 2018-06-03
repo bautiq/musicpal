@@ -207,7 +207,8 @@
         android:background="@color/navigation_view"
         app:itemTextColor="@color/blanco"
         app:itemIconTint="@color/blanco"
-        app:menu="@menu/menu_navigation">
+        app:menu="@menu/menu_navigation"
+        app:headerLayout="@layout/header_navigation_view">
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
