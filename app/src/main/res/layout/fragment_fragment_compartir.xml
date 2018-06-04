@@ -25,27 +25,12 @@
         android:padding="5dp"
         android:text="@string/comparti_en_tu_estado" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_red_social_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
 
-    <ImageView
-        style="@style/StyleIconoRedSocal"
-        android:src="@drawable/logof" />
-
-    <ImageView
-        style="@style/StyleIconoRedSocal"
-        android:background="@color/grisBlanco"
-        android:src="@drawable/logoinst" />
-
-    <ImageView
-        style="@style/StyleIconoRedSocal"
-        android:src="@drawable/logotwi" />
-
-
-    <ImageView
-        style="@style/StyleIconoRedSocal"
-        android:src="@drawable/logosnap" />
-
-    <ImageView
-        style="@style/StyleIconoRedSocal"
-        android:src="@drawable/logowhat" />
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
