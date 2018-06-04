@@ -47,6 +47,7 @@ public class FragmentCompartir extends Fragment {
         redesSociales.add(new RedSocial("Twitter", R.drawable.logotwi));
         redesSociales.add(new RedSocial("WhatsApp", R.drawable.logowhat));
         redesSociales.add(new RedSocial("Snapchat", R.drawable.logosnap));
+        redesSociales.add(new RedSocial("VK",R.drawable.logovk));
     }
 
 }
