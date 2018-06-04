@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
                     fragmentPlaylist = new FragmentPlaylist();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmentAddToBackNull(fragmentPlaylist, R.id.container_fragment, fragmentManager);
+                    FragmentHelper.cargarFragmentConBackStack(fragmentPlaylist, R.id.container_fragment, fragmentManager);
                 }
                 break;
 
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
                     fragmentCompartir = new FragmentCompartir();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmentAddToBackNull(fragmentCompartir, R.id.container_fragment, fragmentManager);
+                    FragmentHelper.cargarFragmentConBackStack(fragmentCompartir, R.id.container_fragment, fragmentManager);
                 }
                 break;
         }
