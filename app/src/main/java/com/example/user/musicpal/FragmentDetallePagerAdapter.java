@@ -23,4 +23,6 @@ private List<FragmentDetalle> listafragmentDetalle;
     public int getCount() {
         return listafragmentDetalle.size();
     }
+
+
 }

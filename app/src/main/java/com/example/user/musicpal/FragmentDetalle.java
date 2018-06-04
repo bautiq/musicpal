@@ -3,6 +3,7 @@ package com.example.user.musicpal;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class FragmentDetalle extends Fragment {
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAnio = view.findViewById(R.id.id_anio_album);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
+
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
 
