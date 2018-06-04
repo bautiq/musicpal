@@ -12,4 +12,12 @@ public class FragmentHelper {
         fragmentTransaction.add(container, fragment);
         fragmentTransaction.commit();
     }
+
+    public static final void cargarFragmentConBackStack(Fragment fragment, int container, FragmentManager fragmentManager){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+}
 }
