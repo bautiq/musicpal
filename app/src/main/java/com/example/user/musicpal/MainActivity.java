@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
                     imagePlaylist.setImageResource(R.drawable.playlist_icon);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
-
                     fragmentCompartir = new FragmentCompartir();
                     fragmentManager = getSupportFragmentManager();
                     FragmentHelper.cargarFragmentConBackStack(fragmentCompartir, R.id.container_fragment, fragmentManager);
