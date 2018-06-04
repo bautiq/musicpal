@@ -21,51 +21,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         android:text="@string/comparti_en_tu_estado" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+    <ImageView
+        style="@style/StyleIconoRedSocal"
+        android:src="@drawable/logof" />
 
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:src="@drawable/logof" />
+    <ImageView
+        style="@style/StyleIconoRedSocal"
+        android:background="@color/grisBlanco"
+        android:src="@drawable/logoinst" />
 
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:background="@color/grisBlanco"
-                android:src="@drawable/logoinst" />
+    <ImageView
+        style="@style/StyleIconoRedSocal"
+        android:src="@drawable/logotwi" />
 
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:src="@drawable/logotwi" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+    <ImageView
+        style="@style/StyleIconoRedSocal"
+        android:src="@drawable/logosnap" />
 
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:src="@drawable/logosnap" />
+    <ImageView
+        style="@style/StyleIconoRedSocal"
+        android:src="@drawable/logowhat" />
 
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:src="@drawable/logowhat" />
-
-            <ImageView
-                style="@style/StyleIconoRedSocal"
-                android:src="@drawable/logovk" />
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

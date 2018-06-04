@@ -19,7 +19,7 @@ private FragmentManager fragmentManager;
         fragmentDetalle = new FragmentDetalle();
         fragmentDetalle.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
-        FragmentHelper.cargarFragmemt(fragmentDetalle, R.id.contenedor_fragment_vista_previa, fragmentManager);
+        FragmentHelper.cargarFragment(fragmentDetalle, R.id.contenedor_fragment_vista_previa, fragmentManager);
     }
 
 }

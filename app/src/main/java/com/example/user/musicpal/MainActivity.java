@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
-        FragmentHelper.cargarFragmemt(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
+        FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
 
         final MediaPlayer mP = MediaPlayer.create(MainActivity.this, R.raw.bitter_sweet_symphony);
         botonPlay.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
                     fragmentPantallaInicio = new FragmentPantallaInicio();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmemt(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
+                    FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
 
                 }
                 break;
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
                     fragmentPlaylist = new FragmentPlaylist();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmemt(fragmentPlaylist, R.id.container_fragment, fragmentManager);
+                    FragmentHelper.cargarFragmentAddToBackNull(fragmentPlaylist, R.id.container_fragment, fragmentManager);
                 }
                 break;
 
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
                     fragmentCompartir = new FragmentCompartir();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmemt(fragmentCompartir, R.id.container_fragment, fragmentManager);
+                    FragmentHelper.cargarFragmentAddToBackNull(fragmentCompartir, R.id.container_fragment, fragmentManager);
                 }
                 break;
         }
