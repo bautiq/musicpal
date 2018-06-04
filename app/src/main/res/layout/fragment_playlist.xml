@@ -14,13 +14,15 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:background="@drawable/icono_add_circle_48dp"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:id="@+id/button_agregar_playlist"/>
 
     <TextView
         style="@style/StyleTituloListadoScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/agregarPlaylist" />
+        android:text="@string/agregarPlaylist"
+        android:id="@+id/text_agregar_playlist"/>
 
 </LinearLayout>
