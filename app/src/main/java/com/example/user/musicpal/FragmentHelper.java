@@ -13,10 +13,11 @@ public class FragmentHelper {
         fragmentTransaction.commit();
     }
 
-    public static final void cargarFragmentAddToBackNull(Fragment fragment, int container, FragmentManager fragmentManager) {
+    public static final void cargarFragmentConBackStack(Fragment fragment, int container, FragmentManager fragmentManager){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+
+}
 }

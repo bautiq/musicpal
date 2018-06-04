@@ -225,11 +225,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         switch (item.getItemId()) {
             case R.id.perfil:
                 fragmentPerfil = new FragmentPerfil();
-                fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container_fragment, fragmentPerfil);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                FragmentHelper.cargarFragmentConBackStack(fragmentPerfil, R.id.container_fragment, fragmentManager);
                 break;
             case R.id.favoritos:
                 Toast.makeText(this, "Click Favoritos", Toast.LENGTH_SHORT).show();
