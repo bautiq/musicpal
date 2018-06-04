@@ -29,6 +29,7 @@ public class FragmentDetalle extends Fragment {
     private CancionesAdapter cancionesAdapter;
     private List<Cancion> listaCanciones;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -54,6 +55,7 @@ public class FragmentDetalle extends Fragment {
         textAnio.setText("Año: " + album.getAnio());
         textAlbum.setText("Album: " + album.getTitulo());
         imagenGrande.setImageResource(album.getImagenAlbum());
+
         return view;
     }
 
