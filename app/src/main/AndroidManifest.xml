@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".DetalleActivity" />
-        <activity android:name=".SplashScreen"  android:noHistory="true">
+        <activity android:name=".view.DetalleActivity" />
+        <activity android:name=".view.SplashScreen"  android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

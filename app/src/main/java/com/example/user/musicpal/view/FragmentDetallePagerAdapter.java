@@ -1,4 +1,4 @@
-package com.example.user.musicpal;
+package com.example.user.musicpal.view;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

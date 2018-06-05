@@ -6,7 +6,7 @@
     android:background="@drawable/fondo1"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".FragmentCompartir">
+    tools:context=".view.FragmentCompartir">
 
     <ImageView
         android:layout_width="48dp"

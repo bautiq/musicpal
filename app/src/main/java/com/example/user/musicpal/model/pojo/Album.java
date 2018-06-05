@@ -1,6 +1,4 @@
-package com.example.user.musicpal;
-
-import android.widget.ImageView;
+package com.example.user.musicpal.model.pojo;
 
 import java.io.Serializable;
 import java.util.List;

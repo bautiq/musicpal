@@ -6,7 +6,7 @@
     android:background="@drawable/fondo1"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".FragmentPerfil">
+    tools:context=".view.FragmentPerfil">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

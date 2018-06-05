@@ -1,4 +1,4 @@
-package com.example.user.musicpal;
+package com.example.user.musicpal.model.pojo;
 
 public class RedSocial {
     private String nombre;

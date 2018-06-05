@@ -1,9 +1,11 @@
-package com.example.user.musicpal;
+package com.example.user.musicpal.view;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.user.musicpal.R;
 
 public class SplashScreen extends AppCompatActivity {
 

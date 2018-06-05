@@ -1,4 +1,4 @@
-package com.example.user.musicpal;
+package com.example.user.musicpal.view;
 
 
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.user.musicpal.R;
 
 
 /**
