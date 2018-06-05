@@ -135,10 +135,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificar(Album album) {
+    public void notificar(Album album, int posicion, int idRecycler) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentDetalle.ALBUM_KEY, album);
+        bundle.putInt(FragmentDetalle.POSICION_KEY, posicion);
+        bundle.putInt(FragmentDetalle.ID_RECYCLER_CLICKEADO, idRecycler);
         intent.putExtras(bundle);
         startActivity(intent);
     }
