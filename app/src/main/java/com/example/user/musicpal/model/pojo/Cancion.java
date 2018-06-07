@@ -1,5 +1,8 @@
 package com.example.user.musicpal.model.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +16,10 @@ public class Cancion implements Serializable {
         this.titulo = titulo;
     }
 
+    protected Cancion(Parcel in) {
+        titulo = in.readString();
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -20,4 +27,6 @@ public class Cancion implements Serializable {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+
 }

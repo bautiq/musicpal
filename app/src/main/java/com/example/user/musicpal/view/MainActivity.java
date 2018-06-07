@@ -141,9 +141,9 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     public void notificar(Album album, int posicion, int idRecycler) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(FragmentDetalle.ALBUM_KEY, album);
-        bundle.putInt(FragmentDetalle.POSICION_KEY, posicion);
-        bundle.putInt(FragmentDetalle.ID_RECYCLER_CLICKEADO, idRecycler);
+        bundle.putSerializable(DetalleActivity.ALBUM_KEY, album);
+        bundle.putInt(DetalleActivity.POSICION_KEY, posicion);
+        bundle.putInt(DetalleActivity.ID_RECYCLER_CLICKEADO, idRecycler);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        
         switch (item.getItemId()) {
             case R.id.perfil:
                 fragmentPerfil = new FragmentPerfil();
