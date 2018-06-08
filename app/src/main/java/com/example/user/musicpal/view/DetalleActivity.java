@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.user.musicpal.FragmentHelper;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.controller.ControllerAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ public class DetalleActivity extends AppCompatActivity {
     private Album albumRecibido;
     private int recyclerIdRecibido;
     private ViewPager viewPager;
+    private ControllerAlbum controllerAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+        controllerAlbum = new ControllerAlbum();
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -49,38 +52,34 @@ public class DetalleActivity extends AppCompatActivity {
 
     public void crearListaFragments(int idRecycler) {
         listaFragments = new ArrayList<>();
-        switch (idRecycler){
+        List<Album> clasicos;
+        List<Album> top;
+        List<Album> recomendaciones;
+        List<Album> populares;
+        switch (idRecycler) {
             case R.id.recycler_clasicos_id:
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
+                clasicos = controllerAlbum.getListaAlbumes(this, "clasicos");
+                for (Album clasicoRecorrido : clasicos) {
+                    listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
+                }
                 break;
             case R.id.recycler_populares_id:
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
+                populares = controllerAlbum.getListaAlbumes(this, "populares");
+                for (Album popularRecorrido : populares) {
+                    listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
+                }
                 break;
             case R.id.recycler_recomendaciones_id:
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
+                recomendaciones = controllerAlbum.getListaAlbumes(this, "recomendaciones");
+                for (Album recomendacionRecorrido : recomendaciones) {
+                    listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
+                }
                 break;
             case R.id.recycler_top_id:
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
-                listaFragments.add(FragmentDetalle.dameUnFragment());
+                top = controllerAlbum.getListaAlbumes(this, "top");
+                for (Album topRecorrido : top) {
+                    listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
+                }
                 break;
         }
         listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
