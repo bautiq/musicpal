@@ -24,8 +24,7 @@ import java.util.List;
 public class FragmentDetalle extends Fragment {
 
     public static final String ALBUM_KEY = "album_key";
-    public static final String POSICION_KEY = "posicion_key";
-    public static final String ID_RECYCLER_CLICKEADO = "id_recycler_clickeado";
+
     private ImageView imagenGrande;
     private TextView textArtista;
     private TextView textAnio;
@@ -33,6 +32,14 @@ public class FragmentDetalle extends Fragment {
     private RecyclerView recyclerViewCanciones;
     private CancionesAdapter cancionesAdapter;
     private List<Cancion> listaCanciones;
+
+    public static FragmentDetalle dameUnFragment(Album album) {
+        FragmentDetalle fragmentCreado = new FragmentDetalle();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ALBUM_KEY, album);
+        fragmentCreado.setArguments(bundle);
+        return fragmentCreado;
+    }
 
 
     @Override
