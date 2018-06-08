@@ -24,8 +24,9 @@ public class AlbumDao {
     protected List<Cancion> cancionesPostTraumatic;
 
     public List<Album> obtenerAlbumes(Context context, String categoria) {
-        armarListadoAlbum();
         armarListadoDeCanciones();
+        armarListadoAlbum();
+
 
         List<Album> listaAlbums = new ArrayList<>();
         switch (categoria) {
