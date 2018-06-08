@@ -67,7 +67,8 @@ public class AlbumAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int idRecycler = itemView.getId();
+                    //aca esta el problema
+                    int idRecycler = v.getId();
                     int posicionAlbumClickeado = getAdapterPosition();
                     Album album = albumLista.get(posicionAlbumClickeado);
                     notificadorAlbumCelda.notificarCeldaClickeada(album, posicionAlbumClickeado, idRecycler);

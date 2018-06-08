@@ -81,8 +81,9 @@ public class DetalleActivity extends AppCompatActivity {
                     listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
                 }
                 break;
+                default: listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
         }
-        listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
+
     }
 
 }
