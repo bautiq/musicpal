@@ -1,4 +1,4 @@
-package com.example.user.musicpal.model.controller;
+package com.example.user.musicpal.controller;
 
 
 import android.content.Context;

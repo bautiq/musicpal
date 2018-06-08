@@ -17,10 +17,12 @@ public class AlbumAdapter extends RecyclerView.Adapter {
 
     private List<Album> albumLista;
     private NotificadorAlbumCelda notificadorAlbumCelda;
+    private String categoria;
 
-    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda) {
+    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria) {
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
+        this.categoria = categoria;
     }
 
     public void setAlbumLista(List<Album> albumLista) {
@@ -67,11 +69,9 @@ public class AlbumAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //aca esta el problema
-                    int idRecycler = v.getId();
                     int posicionAlbumClickeado = getAdapterPosition();
                     Album album = albumLista.get(posicionAlbumClickeado);
-                    notificadorAlbumCelda.notificarCeldaClickeada(album, posicionAlbumClickeado, idRecycler);
+                    notificadorAlbumCelda.notificarCeldaClickeada(album, posicionAlbumClickeado, categoria);
                 }
             });
         }
@@ -84,6 +84,6 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     }
 
     public interface NotificadorAlbumCelda {
-        public void notificarCeldaClickeada(Album album, int posicion, int idRecycler);
+        public void notificarCeldaClickeada(Album album, int posicion, String categoria);
     }
 }

@@ -10,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.user.musicpal.model.controller.ControllerAlbum;
+import com.example.user.musicpal.controller.ControllerAlbum;
 import com.example.user.musicpal.model.pojo.Album;
-import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,16 +52,16 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaPopulares = controllerAlbum.getListaAlbumes(getActivity(), "populares");
         albumListaTop = controllerAlbum.getListaAlbumes(getActivity(), "top");
         albumListaClasicos= controllerAlbum.getListaAlbumes(getActivity(), "clasicos");
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones);
+        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, "recomendaciones");
 
         recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares);
+        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares, "populares");
 
         recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewTop);
+        setAdapterAlbums(albumListaTop, recyclerViewTop, "top");
 
         recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos);
+        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, "clasicos");
 
         return view;
     }
@@ -75,19 +73,19 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     }
 
     @Override
-    public void notificarCeldaClickeada(Album album, int posicion, int idRecycler) {
-        notificadorActivities.notificar(album, posicion, idRecycler);
+    public void notificarCeldaClickeada(Album album, int posicion, String categoria) {
+        notificadorActivities.notificar(album, posicion, categoria);
     }
 
-    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView) {
-        albumAdapter = new AlbumAdapter(listaAlbum, this);
+    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, String categoria) {
+        albumAdapter = new AlbumAdapter(listaAlbum, this, categoria);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);
     }
 
     public interface NotificadorActivities {
-        public void notificar(Album album, int posicion, int idRecycler);
+        public void notificar(Album album, int posicion, String categoria);
     }
 
 }
