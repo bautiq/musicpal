@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.model.pojo.Album;
-import com.example.user.musicpal.FragmentHelper;
+import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
 

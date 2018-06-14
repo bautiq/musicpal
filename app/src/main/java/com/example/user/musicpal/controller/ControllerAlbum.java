@@ -16,4 +16,8 @@ public class ControllerAlbum {
         List<Album> list = albumDao.obtenerAlbumes(context, categoria);
         return list;
     }
+
+    public List<Album> getListaAlbumOnline(){
+        return null;
+    }
 }
