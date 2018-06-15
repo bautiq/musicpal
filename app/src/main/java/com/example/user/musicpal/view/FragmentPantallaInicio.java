@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.model.adapters.AlbumAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;

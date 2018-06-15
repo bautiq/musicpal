@@ -1,5 +1,7 @@
 package com.example.user.musicpal.model.pojo;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 
 public class Album implements Serializable {
-
+    @SerializedName("title")
     private String titulo;
     private List<Cancion> listaCanciones;
     private Artista artista;

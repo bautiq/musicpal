@@ -1,4 +1,4 @@
-package com.example.user.musicpal.view;
+package com.example.user.musicpal.model.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

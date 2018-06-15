@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.adapters.RedSocialAdapter;
 import com.example.user.musicpal.model.pojo.RedSocial;
 
 import java.util.ArrayList;
