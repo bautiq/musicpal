@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:background="@color/header_nav_view">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/logoprueba"
+    android:scaleType="centerCrop"
+    android:padding="5dp"
+    android:background="@drawable/shadow_2"
+    android:layout_margin="50dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Bienvenido a Music Pal"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:letterSpacing="0.075"
-        android:textColor="@color/negroposta"/>
 </FrameLayout>

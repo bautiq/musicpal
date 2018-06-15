@@ -123,6 +123,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/reproductor_main_id"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -205,10 +206,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/navigation_view"
-        app:itemTextColor="@color/blanco"
+        app:headerLayout="@layout/header_navigation_view"
         app:itemIconTint="@color/blanco"
-        app:menu="@menu/menu_navigation"
-        app:headerLayout="@layout/header_navigation_view">
+        app:itemTextColor="@color/blanco"
+        app:menu="@menu/menu_navigation">
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

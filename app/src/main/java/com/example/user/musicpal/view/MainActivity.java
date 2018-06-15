@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.user.musicpal.model.pojo.Album;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private FragmentPerfil fragmentPerfil;
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
+    private LinearLayout linearLayoutReproductor;
+    private FragmentReproductor fragmentReproductor;
 
 
     @Override
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         botonRewind = findViewById(R.id.boton_rewind);
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
+        linearLayoutReproductor = findViewById(R.id.reproductor_main_id);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -135,6 +139,14 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Click Search", Toast.LENGTH_SHORT).show();
+            }
+        });
+        linearLayoutReproductor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentReproductor = new FragmentReproductor();
+                fragmentManager = getSupportFragmentManager();
+                FragmentHelper.cargarFragment(fragmentReproductor, R.id.container_fragment, fragmentManager);
             }
         });
     }
