@@ -2,6 +2,7 @@ package com.example.user.musicpal.view;
 
 
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,6 +36,21 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
+
+        final MediaPlayer mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
+        buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mP.isPlaying()) {
+                    mP.pause();
+                    buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
+                } else {
+                    mP.start();
+                    buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                }
+            }
+        });
+
         return view;
     }
 
