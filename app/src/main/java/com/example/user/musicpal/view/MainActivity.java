@@ -120,9 +120,11 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 clickBotonesInferiores("more");
             }
         });
+
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        
+
         switch (item.getItemId()) {
             case R.id.perfil:
                 fragmentPerfil = new FragmentPerfil();

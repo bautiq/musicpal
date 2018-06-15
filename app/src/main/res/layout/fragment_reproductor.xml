@@ -16,47 +16,60 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/blanco"
-            tools:text="Reproduciendo de playlist" />
+            android:textColor="@color/fondo2"
+            tools:text="Better Sweet Symphony"
+            android:layout_margin="5dp"
+            />
+
         <TextView
+            android:id="@+id/text_reproductor_playfrom"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:id="@+id/text_reproductor_playfrom"/>
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:text="The Verve - Urban Hymns"
+            android:textColor="@color/grisBlanco"/>
 
         <ImageView
             android:id="@+id/imagen_reproductor"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:src="@drawable/urbanhymns"
+            android:elevation="12dp"
+            />
 
         <TextView
             android:layout_width="250dp"
             android:layout_height="60dp"
-            android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:gravity="center" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <ImageView
-                style="@style/styleBotonesReproductor"
                 android:id="@+id/button_back_reproductorGrande"
-                android:src="@drawable/ic_fast_rewind"
-                android:layout_gravity="center"/>
-            <ImageView
                 style="@style/styleBotonesReproductor"
-                android:layout_height="100dp"
-                android:layout_width="100dp"
-                android:src="@drawable/ic_play_circle"
-                android:id="@+id/button_play_reproductorGrande"/>
-            <ImageView
-                style="@style/styleBotonesReproductor"
-                 android:src="@drawable/ic_fast_forward"
                 android:layout_gravity="center"
-                android:id="@+id/button_forward_reproductorGrande"/>
+                android:src="@drawable/ic_fast_rewind" />
+
+            <ImageView
+                android:id="@+id/button_play_reproductorGrande"
+                style="@style/styleBotonesReproductor"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_play_circle" />
+
+            <ImageView
+                android:id="@+id/button_forward_reproductorGrande"
+                style="@style/styleBotonesReproductor"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_fast_forward" />
         </LinearLayout>
 
     </LinearLayout>
