@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface ServiceAlbum {
+public interface Service {
 
     @GET("album")
     Call<ContenedorAlbum> getAlbum(@Query("album") String albumAencontrar);

@@ -6,14 +6,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DaoRetroFit {
     private Retrofit retrofit;
-    private ServiceAlbum serviceAlbum;
+    private Service service;
 
-    public DaoRetroFit(Class clase) {
+    public DaoRetroFit() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit.Builder retroBuilder = new Retrofit.Builder()
                 .baseUrl("https://api.deezer.com/")
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = retroBuilder.client(httpClient.build()).build();
-        clase = retrofit.create(Class.class);
+        service = retrofit.create(Service.class);
     }
+
+
 }

@@ -31,7 +31,7 @@ public class DetalleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
-        controllerAlbum = new ControllerAlbum();
+        controllerAlbum = new ControllerAlbum(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -53,25 +53,25 @@ public class DetalleActivity extends AppCompatActivity {
         List<Album> populares;
         switch (categoria) {
             case "clasicos":
-                clasicos = controllerAlbum.getListaAlbumes(this, "clasicos");
+                clasicos = controllerAlbum.getListaAlbumes( "clasicos");
                 for (Album clasicoRecorrido : clasicos) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
                 }
                 break;
             case "populares":
-                populares = controllerAlbum.getListaAlbumes(this, "populares");
+                populares = controllerAlbum.getListaAlbumes("populares");
                 for (Album popularRecorrido : populares) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
                 }
                 break;
             case "recomendaciones":
-                recomendaciones = controllerAlbum.getListaAlbumes(this, "recomendaciones");
+                recomendaciones = controllerAlbum.getListaAlbumes("recomendaciones");
                 for (Album recomendacionRecorrido : recomendaciones) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
                 }
                 break;
             case "top":
-                top = controllerAlbum.getListaAlbumes(this, "top");
+                top = controllerAlbum.getListaAlbumes("top");
                 for (Album topRecorrido : top) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
                 }

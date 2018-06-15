@@ -48,11 +48,11 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
 
-        ControllerAlbum controllerAlbum = new ControllerAlbum();
-        albumListaRecomendaciones = controllerAlbum.getListaAlbumes(getActivity(), "recomendaciones");
-        albumListaPopulares = controllerAlbum.getListaAlbumes(getActivity(), "populares");
-        albumListaTop = controllerAlbum.getListaAlbumes(getActivity(), "top");
-        albumListaClasicos= controllerAlbum.getListaAlbumes(getActivity(), "clasicos");
+        ControllerAlbum controllerAlbum = new ControllerAlbum(getActivity());
+        albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
+        albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
+        albumListaTop = controllerAlbum.getListaAlbumes("top");
+        albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
         setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, "recomendaciones");
 
         recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
