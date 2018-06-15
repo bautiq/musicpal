@@ -36,7 +36,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="StyleBotonReproductor">
+    <style name="StyleBotonReproductorChico">
         <item name="android:layout_width">55dp</item>
         <item name="android:layout_height">55dp</item>
         <item name="android:padding">10dp</item>
@@ -62,4 +62,14 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">15dp</item>
     </style>
+
+    <style name="styleBotonesReproductor">
+        <item name="android:layout_width">@dimen/tamanio_botones_reproductor</item>
+        <item name="android:layout_height">@dimen/tamanio_botones_reproductor</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:tint">@color/fondo2</item>
+
+    </style>
+
+
 </resources>

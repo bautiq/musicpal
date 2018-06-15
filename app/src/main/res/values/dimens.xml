@@ -12,5 +12,6 @@
     <dimen name="margin_imagen_grande">50dp</dimen>
     <dimen name="margin_imagen_texto">20dp</dimen>
     <dimen name="size_text_imagenes_grandes">20sp</dimen>
+    <dimen name="tamanio_botones_reproductor">75dp</dimen>
 
 </resources>

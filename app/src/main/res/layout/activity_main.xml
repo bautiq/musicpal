@@ -103,7 +103,7 @@
 
                 <Button
                     android:id="@+id/boton_play"
-                    style="@style/StyleBotonReproductor"
+                    style="@style/StyleBotonReproductorChico"
                     android:background="@drawable/ic_play_circle"
                     android:backgroundTint="@color/grisBlanco"
                     android:elevation="10dp" />

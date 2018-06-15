@@ -4,10 +4,62 @@
     android:layout_height="match_parent"
     tools:context="com.example.user.musicpal.view.FragmentReproductor">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/fondo1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_reproductor_playtype"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/blanco"
+            tools:text="Reproduciendo de playlist" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/text_reproductor_playfrom"/>
+
+        <ImageView
+            android:id="@+id/imagen_reproductor"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                style="@style/styleBotonesReproductor"
+                android:id="@+id/button_back_reproductorGrande"
+                android:src="@drawable/ic_fast_rewind"
+                android:layout_gravity="center"/>
+            <ImageView
+                style="@style/styleBotonesReproductor"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:src="@drawable/ic_play_circle"
+                android:id="@+id/button_play_reproductorGrande"/>
+            <ImageView
+                style="@style/styleBotonesReproductor"
+                 android:src="@drawable/ic_fast_forward"
+                android:layout_gravity="center"
+                android:id="@+id/button_forward_reproductorGrande"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </FrameLayout>

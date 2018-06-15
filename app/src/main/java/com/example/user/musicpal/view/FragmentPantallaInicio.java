@@ -34,12 +34,6 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
-    protected List<Cancion> cancionesUrbanHymns;
-    protected List<Cancion> cancionesLoyalToTheGame;
-    protected List<Cancion> cancionesRecovery;
-    protected List<Cancion> cancionesMeteora;
-    protected List<Cancion> cancionesUnderPressure;
-    protected List<Cancion> cancionesPostTraumatic;
     private AlbumAdapter albumAdapter;
 
     @Override
