@@ -12,8 +12,11 @@ import java.util.List;
 public class Album implements Serializable {
     @SerializedName("title")
     private String titulo;
+    @SerializedName("tracks")
     private List<Cancion> listaCanciones;
+    @SerializedName("artist")
     private Artista artista;
+    @SerializedName("cover_medium")
     private int imagenAlbum;
     private String anio;
 
