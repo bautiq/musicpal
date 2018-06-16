@@ -1,5 +1,6 @@
 package com.example.user.musicpal.model.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,11 +20,13 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     private List<Album> albumLista;
     private NotificadorAlbumCelda notificadorAlbumCelda;
     private String categoria;
+    private Context context;
 
-    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria) {
+    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria, Context context) {
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.categoria = categoria;
+        this.context = context;
     }
 
     public void setAlbumLista(List<Album> albumLista) {
@@ -55,9 +59,10 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     }
 
     public void agregarAlbunes(List<Album> albumLista) {
+
         for (Album albumAAgregar : albumLista) {
-            if (!albumLista.contains(albumAAgregar)) {
-                albumLista.add(albumAAgregar);
+            if (!this.albumLista.contains(albumAAgregar)) {
+                this.albumLista.add(albumAAgregar);
             }
         }
         notifyDataSetChanged();
@@ -86,9 +91,11 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
 
         public void cargarAlbum(Album album) {
+
+            Picasso.with(context).load(album.getUrl()).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
-            imagenAlbum.setImageResource(album.getImagenAlbum());
+
         }
     }
 

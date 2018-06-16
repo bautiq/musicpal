@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
 import com.example.user.musicpal.model.adapters.AlbumAdapter;
@@ -71,7 +72,12 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
      controllerAlbum.obtenerAlbunes(new ResultListener<List<Album>>() {
          @Override
          public void finish(List<Album> resultado) {
-             albumAdapter.agregarAlbunes(resultado);
+             if(resultado.size() == 0){
+                 Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+             }else{
+                 albumAdapter.agregarAlbunes(resultado);
+             }
+
          }
      });
     }
@@ -88,7 +94,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     }
 
     public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, String categoria) {
-        albumAdapter = new AlbumAdapter(listaAlbum, this, categoria);
+        albumAdapter = new AlbumAdapter(listaAlbum, this, categoria, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);
