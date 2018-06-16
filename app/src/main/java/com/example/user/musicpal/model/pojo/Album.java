@@ -64,4 +64,13 @@ public class Album implements Serializable {
     public void setArtista(Artista artista) {
         this.artista = artista;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Album)) {
+            return false;
+        }
+        Album albumAComparar = (Album) obj;
+        return (albumAComparar.getTitulo().equals(this.titulo));
+    }
 }

@@ -15,6 +15,7 @@ import com.example.user.musicpal.model.adapters.AlbumAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
@@ -35,18 +36,21 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
     private AlbumAdapter albumAdapter;
+    private ControllerAlbum controllerAlbum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
-        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
 
-        ControllerAlbum controllerAlbum = new ControllerAlbum(getActivity());
+        controllerAlbum = new ControllerAlbum(getActivity());
+
         albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
         albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
         albumListaTop = controllerAlbum.getListaAlbumes("top");
         albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
+
+        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, "recomendaciones");
 
         recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
@@ -58,7 +62,17 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
         setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, "clasicos");
 
+        obtenerAlbunes();
         return view;
+    }
+
+    private void obtenerAlbunes(){
+     controllerAlbum.obtenerAlbunes(new ResultListener<List<Album>>() {
+         @Override
+         public void finish(List<Album> resultado) {
+             albumAdapter.agregarAlbunes(resultado);
+         }
+     });
     }
 
     @Override
