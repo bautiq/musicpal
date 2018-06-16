@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.user.musicpal.controller.ControllerAlbum;
 import com.example.user.musicpal.model.adapters.AlbumAdapter;
 import com.example.user.musicpal.model.pojo.Album;
-import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -44,6 +43,13 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
 
+
+        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
+        recyclerViewRecomendaciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewRecomendaciones.setHasFixedSize(true);
+        albumAdapter = new AlbumAdapter(getActivity());
+        recyclerViewRecomendaciones.setAdapter(albumAdapter);
+
         controllerAlbum = new ControllerAlbum(getActivity());
 
        /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
@@ -64,22 +70,23 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, "clasicos");
 */
 
-        obtenerAlbunes();
+        obtenerAlbumes();
         return view;
     }
 
-    private void obtenerAlbunes(){
-     controllerAlbum.obtenerAlbunes(new ResultListener<List<Album>>() {
-         @Override
-         public void finish(List<Album> resultado) {
-             if(resultado.size() == 0){
-                 Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-             }else{
-                 albumAdapter.agregarAlbunes(resultado);
-             }
+    private void obtenerAlbumes() {
+        controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
+            @Override
+            public void finish(List<Album> resultado) {
+                if (resultado.size() == 0) {
+                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                } else {
 
-         }
-     });
+                    albumAdapter.agregarAlbumes(resultado);
+                }
+
+            }
+        });
     }
 
     @Override

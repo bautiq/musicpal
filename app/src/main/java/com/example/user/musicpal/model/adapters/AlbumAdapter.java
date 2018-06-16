@@ -13,6 +13,7 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter {
@@ -27,6 +28,11 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.categoria = categoria;
         this.context = context;
+    }
+
+    public AlbumAdapter(Context context) {
+        this.context = context;
+        albumLista = new ArrayList<>();
     }
 
     public void setAlbumLista(List<Album> albumLista) {
@@ -58,13 +64,15 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void agregarAlbunes(List<Album> albumLista) {
+    public void agregarAlbumes(List<Album> albums) {
 
-        for (Album albumAAgregar : albumLista) {
-            if (!this.albumLista.contains(albumAAgregar)) {
-                this.albumLista.add(albumAAgregar);
+       /* for (Album albumAAgregar : albums) {
+            if (!albumLista.contains(albumAAgregar)) {
+                albumLista.add(albumAAgregar);
             }
-        }
+        }*/
+
+        albumLista.addAll(albums);
         notifyDataSetChanged();
     }
 

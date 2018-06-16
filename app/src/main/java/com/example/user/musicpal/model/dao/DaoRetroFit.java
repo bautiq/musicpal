@@ -28,16 +28,18 @@ public class DaoRetroFit {
     }
 
 
-    public void obtenerAlbunes(final ResultListener<List<Album>> resultListenerDelController) {
+    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController) {
 
-        Call<ContenedorAlbum> call = service.obtenerAlbunes();
+        Call<ContenedorAlbum> call = service.obtenerAlbumes();
         call.enqueue(new Callback<ContenedorAlbum>() {
             @Override
             public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
                 ContenedorAlbum contenedorAlbumObtenido = response.body();
+
                 //aca esta el problema, en el onresponse, el contenedor.getalbumlist retorna null
-                if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.getAlbumList() != null) {
-                    List<Album> albumLista = contenedorAlbumObtenido.getAlbumList();
+
+                if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.obtenerData() != null) {
+                    List<Album> albumLista = contenedorAlbumObtenido.obtenerData();
                     resultListenerDelController.finish(albumLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Album>());

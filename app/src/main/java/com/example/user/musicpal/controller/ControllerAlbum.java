@@ -28,10 +28,10 @@ public class ControllerAlbum {
         return null;
     }
 
-    public void obtenerAlbunes(final ResultListener<List<Album>> resultListenerDeLaVista) {
+    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
-            DaoRetroFit daoRetroFit=new DaoRetroFit();
-            daoRetroFit.obtenerAlbunes(new ResultListener<List<Album>>() {
+            DaoRetroFit daoRetroFit = new DaoRetroFit();
+            daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {
                     resultListenerDeLaVista.finish(resultado);

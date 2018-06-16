@@ -6,10 +6,10 @@ import java.util.List;
 
 public class ContenedorAlbum {
 
-    @SerializedName("data")
-    private List<Album> albumList;
 
-    public List<Album> getAlbumList() {
-        return albumList;
+    private List<Album> data;
+
+    public List<Album> obtenerData() {
+        return data;
     }
 }
