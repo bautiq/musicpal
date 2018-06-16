@@ -47,7 +47,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         recyclerViewRecomendaciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewRecomendaciones.setHasFixedSize(true);
-        albumAdapter = new AlbumAdapter(getActivity());
+        albumAdapter = new AlbumAdapter(getActivity(),this);
         recyclerViewRecomendaciones.setAdapter(albumAdapter);
 
         controllerAlbum = new ControllerAlbum(getActivity());

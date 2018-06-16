@@ -30,9 +30,10 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         this.context = context;
     }
 
-    public AlbumAdapter(Context context) {
+    public AlbumAdapter(Context context, NotificadorAlbumCelda notificadorAlbumCelda) {
         this.context = context;
-        albumLista = new ArrayList<>();
+        this.notificadorAlbumCelda = notificadorAlbumCelda;
+        this.albumLista = new ArrayList<>();
     }
 
     public void setAlbumLista(List<Album> albumLista) {
