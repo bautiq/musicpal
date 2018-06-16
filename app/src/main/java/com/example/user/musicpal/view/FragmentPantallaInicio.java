@@ -89,8 +89,8 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     }
 
     @Override
-    public void notificarCeldaClickeada(Album album, int posicion, String categoria) {
-        notificadorActivities.notificar(album, posicion, categoria);
+    public void notificarCeldaClickeada(List<Album> list, int posicion, String categoria) {
+        notificadorActivities.notificar(list, posicion, categoria);
     }
 
     public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, String categoria) {
@@ -101,7 +101,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     }
 
     public interface NotificadorActivities {
-        public void notificar(Album album, int posicion, String categoria);
+        public void notificar(List<Album> listaAlbums, int posicion, String categoria);
     }
 
 }

@@ -1,6 +1,10 @@
 package com.example.user.musicpal.model.pojo;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,23 +21,18 @@ public class Album implements Serializable {
     @SerializedName("artist")
     private Artista artista;
     @SerializedName("cover_medium")
+    private String url;
     private int imagenAlbum;
-    private String anio;
 
-    public Album(String titulo, Artista artista, String anio, int imagenAlbum, List<Cancion> listaCanciones) {
+
+    public Album(String titulo, Artista artista, List<Cancion> listaCanciones) {
         this.titulo = titulo;
-        this.anio = anio;
         this.artista = artista;
-        this.imagenAlbum = imagenAlbum;
         this.listaCanciones = listaCanciones;
     }
 
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
-
-    public String getAnio() {
-        return anio;
+    public String getUrl() {
+        return url;
     }
 
     public int getImagenAlbum() {

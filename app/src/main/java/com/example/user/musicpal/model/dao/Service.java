@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface Service {
 
-    @GET("album")
+    @GET("chart/0/albums")
     Call<ContenedorAlbum> obtenerAlbunes();
 }

@@ -15,6 +15,7 @@ import com.example.user.musicpal.model.adapters.CancionesAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,7 +29,6 @@ public class FragmentDetalle extends Fragment {
 
     private ImageView imagenGrande;
     private TextView textArtista;
-    private TextView textAnio;
     private TextView textAlbum;
     private RecyclerView recyclerViewCanciones;
     private CancionesAdapter cancionesAdapter;
@@ -52,7 +52,6 @@ public class FragmentDetalle extends Fragment {
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
         textArtista = view.findViewById(R.id.id_nombre_artista);
         textAlbum = view.findViewById(R.id.id_nombre_album);
-        textAnio = view.findViewById(R.id.id_anio_album);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
 
         Bundle bundle = getArguments();
@@ -65,9 +64,8 @@ public class FragmentDetalle extends Fragment {
         recyclerViewCanciones.setAdapter(cancionesAdapter);
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
-        textAnio.setText("Año: " + album.getAnio());
         textAlbum.setText("Album: " + album.getTitulo());
-        imagenGrande.setImageResource(album.getImagenAlbum());
+        Picasso.with(getContext()).load(album.getUrl()).into(imagenGrande);
 
         return view;
     }

@@ -19,6 +19,9 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
+import java.io.Serializable;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
 
@@ -152,10 +155,10 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificar(Album album, int posicion, String categoria) {
+    public void notificar(List<Album> list, int posicion, String categoria) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(DetalleActivity.ALBUM_KEY, album);
+        bundle.putSerializable(DetalleActivity.ALBUM_KEY, (Serializable) list);
         bundle.putInt(DetalleActivity.POSICION_KEY, posicion);
         bundle.putString(DetalleActivity.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);

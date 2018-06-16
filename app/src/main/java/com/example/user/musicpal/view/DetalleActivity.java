@@ -22,7 +22,7 @@ public class DetalleActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalle> listaFragments;
-    private Album albumRecibido;
+    private List<Album> listaAlbumesRecibida;
     private String categoriaRecibida;
     private ViewPager viewPager;
     private ControllerAlbum controllerAlbum;
@@ -35,7 +35,7 @@ public class DetalleActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        albumRecibido = (Album) bundle.getSerializable(ALBUM_KEY);
+        listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
         categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
         crearListaFragments(categoriaRecibida);
         FragmentDetallePagerAdapter detallePagerAdapter = new FragmentDetallePagerAdapter(getSupportFragmentManager(), listaFragments);
@@ -46,6 +46,10 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
         public void crearListaFragments(String categoria) {
+        for(Album  album : listaAlbumesRecibida){
+            listaFragments.add(FragmentDetalle.dameUnFragment(album));
+        }
+        /*
         listaFragments = new ArrayList<>();
         List<Album> clasicos;
         List<Album> top;
@@ -77,8 +81,9 @@ public class DetalleActivity extends AppCompatActivity {
                 }
                 break;
                 default: listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
+                */
         }
 
     }
 
-}
+

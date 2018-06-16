@@ -84,14 +84,12 @@ public class AlbumAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int posicionAlbumClickeado = getAdapterPosition();
-                    Album album = albumLista.get(posicionAlbumClickeado);
-                    notificadorAlbumCelda.notificarCeldaClickeada(album, posicionAlbumClickeado, categoria);
+                    notificadorAlbumCelda.notificarCeldaClickeada(albumLista, posicionAlbumClickeado, categoria);
                 }
             });
         }
 
         public void cargarAlbum(Album album) {
-
             Picasso.with(context).load(album.getUrl()).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
@@ -100,6 +98,6 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     }
 
     public interface NotificadorAlbumCelda {
-        public void notificarCeldaClickeada(Album album, int posicion, String categoria);
+        public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion, String categoria);
     }
 }
