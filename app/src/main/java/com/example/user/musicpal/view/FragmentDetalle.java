@@ -67,7 +67,7 @@ public class FragmentDetalle extends Fragment {
         recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(cancionesAdapter);
-        
+
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
         Picasso.with(getContext()).load(album.getUrl()).into(imagenGrande);
