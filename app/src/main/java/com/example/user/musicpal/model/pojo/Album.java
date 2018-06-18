@@ -22,6 +22,8 @@ public class Album implements Serializable {
     private Artista artista;
     @SerializedName("cover_medium")
     private String url;
+    @SerializedName("tracklist")
+    private String trackListUrl;
     private int imagenAlbum;
 
 
@@ -29,6 +31,10 @@ public class Album implements Serializable {
         this.titulo = titulo;
         this.artista = artista;
         this.listaCanciones = listaCanciones;
+    }
+
+    public String getTrackListUrl() {
+        return trackListUrl;
     }
 
     public String getUrl() {

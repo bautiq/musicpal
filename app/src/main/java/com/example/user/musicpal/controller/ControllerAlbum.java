@@ -4,7 +4,6 @@ package com.example.user.musicpal.controller;
 import android.content.Context;
 
 import com.example.user.musicpal.model.dao.AlbumDao;
-import com.example.user.musicpal.model.dao.DaoRetroFit;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -30,7 +29,7 @@ public class ControllerAlbum {
 
     public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
-            DaoRetroFit daoRetroFit = new DaoRetroFit();
+            AlbumDao daoRetroFit = new AlbumDao();
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {

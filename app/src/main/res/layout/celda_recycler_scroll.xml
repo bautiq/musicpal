@@ -13,7 +13,7 @@
         android:layout_height="@dimen/size_home_albums" />
 
     <TextView
-        android:id="@+id/titulo-fragment_album"
+        android:id="@+id/title-fragment_album"
         android:layout_width="@dimen/size_home_albums"
         android:layout_height="wrap_content"
         android:layout_marginTop="2.5dp"
@@ -25,7 +25,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/titulo-fragment_artista"
+        android:id="@+id/title-fragment_artista"
         android:layout_width="@dimen/size_home_albums"
         android:layout_height="wrap_content"
         android:layout_marginTop="2.5dp"

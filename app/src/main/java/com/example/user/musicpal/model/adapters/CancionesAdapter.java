@@ -21,6 +21,7 @@ public class CancionesAdapter extends RecyclerView.Adapter {
 
     public void setListaDeCanciones(List<Cancion> listaDeCanciones) {
         this.listaDeCanciones = listaDeCanciones;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -57,7 +58,7 @@ public class CancionesAdapter extends RecyclerView.Adapter {
         }
 
         public void cargarCancion(Cancion cancion) {
-            textViewNombre.setText(cancion.getTitulo());
+            textViewNombre.setText(cancion.getTitle());
         }
     }
 
