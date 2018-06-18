@@ -3,6 +3,7 @@ package com.example.user.musicpal.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,10 +60,14 @@ public class FragmentDetalle extends Fragment {
         //listaCanciones = album.getListaCanciones();
         listaCanciones = new ArrayList<>();
         cancionesAdapter = new CancionesAdapter(listaCanciones);
-        recyclerViewCanciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+
+        recyclerViewCanciones.setLayoutManager(linearLayoutManager);
+        recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(cancionesAdapter);
-
+        
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
         Picasso.with(getContext()).load(album.getUrl()).into(imagenGrande);
