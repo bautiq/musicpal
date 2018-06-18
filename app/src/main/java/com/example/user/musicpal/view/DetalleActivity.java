@@ -36,8 +36,9 @@ public class DetalleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
+        Album albumClickeado = listaAlbumesRecibida.get(bundle.getInt(POSICION_KEY));
         categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
-        crearListaFragments(categoriaRecibida);
+        crearListaFragments();
         FragmentDetallePagerAdapter detallePagerAdapter = new FragmentDetallePagerAdapter(getSupportFragmentManager(), listaFragments);
         viewPager.setAdapter(detallePagerAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY);
@@ -45,8 +46,9 @@ public class DetalleActivity extends AppCompatActivity {
 
     }
 
-        public void crearListaFragments(String categoria) {
-        for(Album  album : listaAlbumesRecibida){
+    public void crearListaFragments() {
+        listaFragments = new ArrayList<>();
+        for (Album album : listaAlbumesRecibida) {
             listaFragments.add(FragmentDetalle.dameUnFragment(album));
         }
         /*
@@ -82,8 +84,8 @@ public class DetalleActivity extends AppCompatActivity {
                 break;
                 default: listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
                 */
-        }
-
     }
+
+}
 
 

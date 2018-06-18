@@ -17,6 +17,7 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,13 +44,16 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
 
-
+        albumAdapter = new AlbumAdapter(getActivity(), this);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        recyclerViewRecomendaciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewRecomendaciones.setHasFixedSize(true);
-        albumAdapter = new AlbumAdapter(getActivity(),this);
-        recyclerViewRecomendaciones.setAdapter(albumAdapter);
+        recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
+        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
+        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
 
+        setAdapterAlbums(recyclerViewRecomendaciones);
+        setAdapterAlbums(recyclerViewTop);
+        setAdapterAlbums(recyclerViewClasicos);
+        setAdapterAlbums(recyclerViewPopulares);
         controllerAlbum = new ControllerAlbum(getActivity());
 
        /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
@@ -100,8 +104,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         notificadorActivities.notificar(list, posicion, categoria);
     }
 
-    public void setAdapterAlbums(List<Album> listaAlbum, RecyclerView recyclerView, String categoria) {
-        albumAdapter = new AlbumAdapter(listaAlbum, this, categoria, getActivity());
+    public void setAdapterAlbums(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(albumAdapter);

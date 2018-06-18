@@ -17,6 +17,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,7 +47,6 @@ public class FragmentDetalle extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle, container, false);
 
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
@@ -56,8 +56,8 @@ public class FragmentDetalle extends Fragment {
 
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
-
-        listaCanciones = album.getListaCanciones();
+        //listaCanciones = album.getListaCanciones();
+        listaCanciones = new ArrayList<>();
         cancionesAdapter = new CancionesAdapter(listaCanciones);
         recyclerViewCanciones.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerViewCanciones.setHasFixedSize(true);
