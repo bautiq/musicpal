@@ -29,7 +29,6 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:elevation="12dp"
         android:src="@drawable/urbanhymns" />
 
 
@@ -60,6 +59,5 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_fast_forward" />
     </LinearLayout>
-
 
 </LinearLayout>

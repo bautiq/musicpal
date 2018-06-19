@@ -20,9 +20,6 @@
                 android:id="@+id/id_nombre_album"
                 style="@style/StyleTextViewVistaPrevia" />
 
-            <TextView
-                android:id="@+id/id_anio_album"
-                style="@style/StyleTextViewVistaPrevia" />
 
             <ImageView
                 android:layout_width="match_parent"

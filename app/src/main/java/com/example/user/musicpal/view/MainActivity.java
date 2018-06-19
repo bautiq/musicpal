@@ -19,6 +19,9 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
+import java.io.Serializable;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,9 +35,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private boolean moreIsClicked;
     private ImageView imageProfile;
     private ImageView imageSearch;
-    private Button botonRewind;
-    private Button botonForward;
-    private Button botonPlay;
+
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
     private NavigationView navigationView;
@@ -42,8 +43,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
     private FragmentPerfil fragmentPerfil;
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
-    private LinearLayout linearLayoutReproductor;
-    private FragmentReproductor fragmentReproductor;
+
 
 
     @Override
@@ -60,51 +60,24 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageMore = findViewById(R.id.more_button);
         imageProfile = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
-        botonPlay = findViewById(R.id.boton_play);
-        botonForward = findViewById(R.id.boton_forward);
-        botonRewind = findViewById(R.id.boton_rewind);
+
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-        linearLayoutReproductor = findViewById(R.id.reproductor_main_id);
+
 
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
+        FragmentReproductorChico fragmentReproductorChico = new FragmentReproductorChico();
+        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico, fragmentManager);
 
-        final MediaPlayer mP = MediaPlayer.create(MainActivity.this, R.raw.bitter_sweet_symphony);
-        botonPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mP.isPlaying()) {
-                    mP.pause();
-                    botonPlay.setBackgroundResource(R.drawable.ic_play_circle);
-                } else {
-                    mP.start();
-                    botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
-                }
-            }
-        });
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickBotonesInferiores("home");
-            }
-        });
-
-        botonRewind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Rewind", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        botonForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Forward", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -141,21 +114,13 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                 Toast.makeText(MainActivity.this, "Click Search", Toast.LENGTH_SHORT).show();
             }
         });
-        linearLayoutReproductor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentReproductor = new FragmentReproductor();
-                fragmentManager = getSupportFragmentManager();
-                FragmentHelper.cargarFragment(fragmentReproductor, R.id.container_fragment, fragmentManager);
-            }
-        });
     }
 
     @Override
-    public void notificar(Album album, int posicion, String categoria) {
+    public void notificar(List<Album> list, int posicion, String categoria) {
         Intent intent = new Intent(this, DetalleActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(DetalleActivity.ALBUM_KEY, album);
+        bundle.putSerializable(DetalleActivity.ALBUM_KEY, (Serializable) list);
         bundle.putInt(DetalleActivity.POSICION_KEY, posicion);
         bundle.putString(DetalleActivity.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);

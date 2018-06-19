@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +21,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_recomendaciones_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/text_top"
@@ -32,7 +32,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_top_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/text_populares"
@@ -43,7 +43,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_populares_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/text_clasicos"
@@ -54,7 +54,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_clasicos_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 </ScrollView>

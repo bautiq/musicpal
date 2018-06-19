@@ -1,5 +1,6 @@
 package com.example.user.musicpal.model.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter {
@@ -18,11 +21,19 @@ public class AlbumAdapter extends RecyclerView.Adapter {
     private List<Album> albumLista;
     private NotificadorAlbumCelda notificadorAlbumCelda;
     private String categoria;
+    private Context context;
 
-    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria) {
+    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria, Context context) {
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.categoria = categoria;
+        this.context = context;
+    }
+
+    public AlbumAdapter(Context context, NotificadorAlbumCelda notificadorAlbumCelda) {
+        this.context = context;
+        this.notificadorAlbumCelda = notificadorAlbumCelda;
+        this.albumLista = new ArrayList<>();
     }
 
     public void setAlbumLista(List<Album> albumLista) {
@@ -54,6 +65,18 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public void agregarAlbumes(List<Album> albums) {
+
+       /* for (Album albumAAgregar : albums) {
+            if (!albumLista.contains(albumAAgregar)) {
+                albumLista.add(albumAAgregar);
+            }
+        }*/
+
+        albumLista.addAll(albums);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolderAlbum extends RecyclerView.ViewHolder {
 
         private TextView textViewNombreAlbum;
@@ -70,20 +93,20 @@ public class AlbumAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int posicionAlbumClickeado = getAdapterPosition();
-                    Album album = albumLista.get(posicionAlbumClickeado);
-                    notificadorAlbumCelda.notificarCeldaClickeada(album, posicionAlbumClickeado, categoria);
+                    notificadorAlbumCelda.notificarCeldaClickeada(albumLista, posicionAlbumClickeado, categoria);
                 }
             });
         }
 
         public void cargarAlbum(Album album) {
+            Picasso.with(context).load(album.getImagenUrl()).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
-            imagenAlbum.setImageResource(album.getImagenAlbum());
+
         }
     }
 
     public interface NotificadorAlbumCelda {
-        public void notificarCeldaClickeada(Album album, int posicion, String categoria);
+        public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion, String categoria);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="75dp"
     android:gravity="center"
     android:background="@drawable/shadow_1"
     android:layout_marginTop="8dp"
@@ -9,10 +9,11 @@
 
     <TextView
         android:id="@+id/nombre_red_social_id"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:gravity="center"
+        android:layout_weight="1"
         android:letterSpacing="0.125"
         android:padding="5dp"
         android:textStyle="italic"
@@ -20,7 +21,9 @@
 
     <ImageView
         android:id="@+id/imagen_red_social_id"
-        android:layout_width="48dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
         style="@style/StyleImagenVistaPrevia"/>
 </LinearLayout>
