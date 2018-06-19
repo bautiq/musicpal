@@ -13,7 +13,7 @@ public interface Service {
     @GET("chart/0/albums")
     Call<ContenedorAlbum> obtenerAlbumes();
 
-    @GET("{tracks}")
-    Call<ContenedorDeCanciones>obtenerCancionesPorAlbum  (@Path("tracks")String url);
+    @GET("album/{id}")
+    Call<ContenedorDeCanciones>obtenerCancionesPorAlbum  (@Path("id")int id);
     
 }

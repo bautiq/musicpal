@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 
 public class Cancion implements Serializable {
+
     private String title;
 
     public Cancion(String title) {

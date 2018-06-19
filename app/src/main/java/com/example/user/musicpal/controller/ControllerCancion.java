@@ -9,14 +9,14 @@ import java.util.List;
 
 public class ControllerCancion {
 
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, String URL) {
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, int id) {
         CancionDao cancionDao = new CancionDao();
         cancionDao.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
                 listener.finish(resultado);
             }
-        }, URL);
+        }, id);
     }
 
 }

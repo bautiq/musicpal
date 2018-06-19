@@ -1,8 +1,6 @@
 package com.example.user.musicpal.model.dao;
 
-import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
-import com.example.user.musicpal.model.pojo.ContenedorAlbum;
 import com.example.user.musicpal.model.pojo.ContenedorDeCanciones;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -28,15 +26,15 @@ public class CancionDao {
         retrofit = retroBuilder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
     }
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController, String URL) {
-        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbum(URL);
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,int id) {
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbum(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
             public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
                 ContenedorDeCanciones contenedorObtenido = response.body();
 
-                if (contenedorObtenido != null  && contenedorObtenido.getData() != null) {
-                    List<Cancion> listaCancion = contenedorObtenido.getData();
+                if (contenedorObtenido != null  && contenedorObtenido.getCanciones() != null) {
+                    List<Cancion> listaCancion = contenedorObtenido.getCanciones();
                     resultListenerDelController.finish(listaCancion);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Cancion>());

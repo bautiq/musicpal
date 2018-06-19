@@ -81,7 +81,7 @@ public class FragmentDetalle extends Fragment {
             public void finish(List<Cancion> resultado) {
                 cancionesAdapter.setListaDeCanciones(resultado);
             }
-        }, album.getTrackListUrl());
+        }, album.getId());
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
