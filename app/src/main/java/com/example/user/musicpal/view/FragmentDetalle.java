@@ -57,8 +57,7 @@ public class FragmentDetalle extends Fragment {
 
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
-        //listaCanciones = album.getListaCanciones();
-        listaCanciones = new ArrayList<>();
+        //listaCanciones = album.getContenedorCanciones().getCancionList();
         cancionesAdapter = new CancionesAdapter(listaCanciones);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
@@ -70,7 +69,7 @@ public class FragmentDetalle extends Fragment {
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
-        Picasso.with(getContext()).load(album.getUrl()).into(imagenGrande);
+        Picasso.with(getContext()).load(album.getImagenUrl()).into(imagenGrande);
 
         return view;
     }

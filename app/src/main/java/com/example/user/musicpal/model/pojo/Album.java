@@ -9,30 +9,41 @@ import com.squareup.picasso.Picasso;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by DH on 15/5/2018.
- */
-
 public class Album implements Serializable {
     @SerializedName("title")
     private String titulo;
-    @SerializedName("tracks")
-    private List<Cancion> listaCanciones;
+
     @SerializedName("artist")
     private Artista artista;
+
     @SerializedName("cover_medium")
-    private String url;
+    private String ImagenUrl;
+
+    private int id;
+
     private int imagenAlbum;
 
 
-    public Album(String titulo, Artista artista, List<Cancion> listaCanciones) {
+    public Album(String titulo, Artista artista) {
         this.titulo = titulo;
         this.artista = artista;
-        this.listaCanciones = listaCanciones;
+
     }
 
-    public String getUrl() {
-        return url;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getImagenUrl() {
+        return ImagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        ImagenUrl = imagenUrl;
     }
 
     public int getImagenAlbum() {
@@ -49,14 +60,6 @@ public class Album implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public List<Cancion> getListaCanciones() {
-        return listaCanciones;
-    }
-
-    public void setListaCanciones(List<Cancion> listaCanciones) {
-        this.listaCanciones = listaCanciones;
     }
 
     public Artista getArtista() {

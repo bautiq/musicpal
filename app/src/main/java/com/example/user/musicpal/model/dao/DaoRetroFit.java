@@ -35,9 +35,6 @@ public class DaoRetroFit {
             @Override
             public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
                 ContenedorAlbum contenedorAlbumObtenido = response.body();
-
-                //aca esta el problema, en el onresponse, el contenedor.getalbumlist retorna null
-
                 if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.obtenerData() != null) {
                     List<Album> albumLista = contenedorAlbumObtenido.obtenerData();
                     resultListenerDelController.finish(albumLista);
