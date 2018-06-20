@@ -1,6 +1,7 @@
 package com.example.user.musicpal.view;
 
 
+import android.content.Context;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -46,7 +48,11 @@ public class FragmentReproductor extends Fragment {
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
 
         final MediaPlayer mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
-        agregarCancionClikeada();
+        try {
+            agregarCancionClikeada(mP, cancionQueContiene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,8 +69,12 @@ public class FragmentReproductor extends Fragment {
         return view;
     }
 
-    private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) {
+
+
+    private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) throws IOException {
         mediaPlayer.setDataSource(cancion.getUrlPreview());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
     }
 
 }

@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Cancion implements Serializable {
 
     private String title;
+    @SerializedName("preview")
     private String urlPreview;
 
     public String getUrlPreview() {

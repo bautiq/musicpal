@@ -1,6 +1,7 @@
 package com.example.user.musicpal.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -28,7 +29,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalle extends Fragment {
+public class FragmentDetalle extends Fragment implements CancionesAdapter.NotificadorCancionCelda {
 
     public static final String ALBUM_KEY = "album_key";
 
@@ -40,6 +41,7 @@ public class FragmentDetalle extends Fragment {
     private CancionesAdapter cancionesAdapter;
     private List<Cancion> listaCanciones;
     private ControllerCancion controllerCancion;
+    private NotificadorCancion notificadorCancion;
 
     public static FragmentDetalle dameUnFragment(Album album) {
         FragmentDetalle fragmentCreado = new FragmentDetalle();
@@ -67,7 +69,7 @@ public class FragmentDetalle extends Fragment {
         controllerCancion = new ControllerCancion();
 
         listaCanciones = new ArrayList<>();
-        cancionesAdapter = new CancionesAdapter(listaCanciones, getActivity().getSupportFragmentManager());
+        cancionesAdapter = new CancionesAdapter(listaCanciones, getActivity().getSupportFragmentManager(),this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
@@ -96,4 +98,18 @@ public class FragmentDetalle extends Fragment {
         }, album.getId());
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        notificadorCancion = (NotificadorCancion) context;
+    }
+
+    @Override
+    public void notificarCeldaClikeada(Cancion cancion) {
+        notificadorCancion.notificarCancion(cancion);
+    }
+
+    public interface NotificadorCancion{
+        public void notificarCancion(Cancion cancion);
+    }
 }
