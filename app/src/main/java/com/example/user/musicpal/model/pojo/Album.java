@@ -21,7 +21,7 @@ public class Album implements Serializable {
     @SerializedName("artist")
     private Artista artista;
     @SerializedName("cover_medium")
-    private String url;
+    private String ImagenUrl;
     private int id;
     private int imagenAlbum;
 
@@ -36,8 +36,8 @@ public class Album implements Serializable {
         return id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImagenUrl() {
+        return ImagenUrl;
     }
 
     public int getImagenAlbum() {

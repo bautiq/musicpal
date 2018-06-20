@@ -76,19 +76,22 @@ public class FragmentDetalle extends Fragment {
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(cancionesAdapter);
 
+        obtenerCancionesPorAlbum(album);
+
+        textArtista.setText("Artista: " + album.getArtista().getNombre());
+        textAlbum.setText("Album: " + album.getTitulo());
+        Picasso.with(getContext()).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
+
+        return view;
+    }
+
+    public void obtenerCancionesPorAlbum(Album album){
         controllerCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
                 cancionesAdapter.setListaDeCanciones(resultado);
             }
         }, album.getId());
-
-        textArtista.setText("Artista: " + album.getArtista().getNombre());
-        textAlbum.setText("Album: " + album.getTitulo());
-        Picasso.with(getContext()).load(album.getUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
-
-
-        return view;
     }
 
 }

@@ -99,7 +99,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
 
         public void cargarAlbum(Album album) {
-            Picasso.with(context).load(album.getUrl()).into(imagenAlbum);
+            Picasso.with(context).load(album.getImagenUrl()).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
 
