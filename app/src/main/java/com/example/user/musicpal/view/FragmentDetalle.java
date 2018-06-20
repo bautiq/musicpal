@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.user.musicpal.controller.ControllerCancion;
 import com.example.user.musicpal.model.adapters.CancionesAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class FragmentDetalle extends Fragment {
     private RecyclerView recyclerViewCanciones;
     private CancionesAdapter cancionesAdapter;
     private List<Cancion> listaCanciones;
+    private ControllerCancion controllerCancion;
 
     public static FragmentDetalle dameUnFragment(Album album) {
         FragmentDetalle fragmentCreado = new FragmentDetalle();
@@ -57,21 +60,38 @@ public class FragmentDetalle extends Fragment {
 
         Bundle bundle = getArguments();
         Album album = (Album) bundle.getSerializable(ALBUM_KEY);
-        //listaCanciones = album.getContenedorCanciones().getCancionList();
+
+
+        controllerCancion = new ControllerCancion();
+
+        listaCanciones = new ArrayList<>();
         cancionesAdapter = new CancionesAdapter(listaCanciones);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+
 
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
         recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(cancionesAdapter);
 
+        obtenerCancionesPorAlbum(album);
+
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
-        Picasso.with(getContext()).load(album.getImagenUrl()).into(imagenGrande);
+        Picasso.with(getContext()).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
         return view;
+    }
+
+    public void obtenerCancionesPorAlbum(Album album){
+        controllerCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                cancionesAdapter.setListaDeCanciones(resultado);
+            }
+        }, album.getId());
     }
 
 }

@@ -36,7 +36,6 @@ public class DetalleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
-        Album albumClickeado = listaAlbumesRecibida.get(bundle.getInt(POSICION_KEY));
         categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
         crearListaFragments();
         FragmentDetallePagerAdapter detallePagerAdapter = new FragmentDetallePagerAdapter(getSupportFragmentManager(), listaFragments);

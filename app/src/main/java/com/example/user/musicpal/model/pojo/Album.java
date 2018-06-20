@@ -18,9 +18,7 @@ public class Album implements Serializable {
 
     @SerializedName("cover_medium")
     private String ImagenUrl;
-
     private int id;
-
     private int imagenAlbum;
 
 
@@ -34,16 +32,8 @@ public class Album implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getImagenUrl() {
         return ImagenUrl;
-    }
-
-    public void setImagenUrl(String imagenUrl) {
-        ImagenUrl = imagenUrl;
     }
 
     public int getImagenAlbum() {

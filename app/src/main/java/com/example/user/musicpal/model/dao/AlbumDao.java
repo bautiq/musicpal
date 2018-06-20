@@ -6,9 +6,18 @@ import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.model.pojo.ContenedorAlbum;
+import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AlbumDao {
@@ -22,6 +31,42 @@ public class AlbumDao {
     protected List<Cancion> cancionesMeteora;
     protected List<Cancion> cancionesUnderPressure;
     protected List<Cancion> cancionesPostTraumatic;
+
+    private Retrofit retrofit;
+    private Service service;
+
+    public AlbumDao() {
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        Retrofit.Builder retroBuilder = new Retrofit.Builder()
+                .baseUrl("https://api.deezer.com/")
+                .addConverterFactory(GsonConverterFactory.create());
+        retrofit = retroBuilder.client(httpClient.build()).build();
+        service = retrofit.create(Service.class);
+    }
+
+
+    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController) {
+
+        Call<ContenedorAlbum> call = service.obtenerAlbumes();
+        call.enqueue(new Callback<ContenedorAlbum>() {
+            @Override
+            public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
+                ContenedorAlbum contenedorAlbumObtenido = response.body();
+
+                if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.obtenerData() != null) {
+                    List<Album> albumLista = contenedorAlbumObtenido.obtenerData();
+                    resultListenerDelController.finish(albumLista);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Album>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContenedorAlbum> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Album>());
+            }
+        });
+    }
 
     public List<Album> obtenerAlbumes(Context context, String categoria) {
        // armarListadoDeCanciones();
