@@ -21,8 +21,9 @@ public class CancionesAdapter extends RecyclerView.Adapter {
     private List<Cancion> listaDeCanciones;
     private FragmentManager fragmentManager;
     private Cancion cancion;
+    private NotificadorCancionCelda notificadorCancionCelda;
 
-    public CancionesAdapter(List<Cancion> listaDeCanciones, FragmentManager fragmentManager) {
+    public CancionesAdapter(List<Cancion> listaDeCanciones, FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
     }
@@ -66,10 +67,8 @@ public class CancionesAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FragmentReproductor fragmentReproductor = new FragmentReproductor();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(cancion, FragmentReproductor.CANCION_KEY);
-                    FragmentHelper.cargarFragment(fragmentReproductor, R.id.drawer_layout, fragmentManager);
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
         }
@@ -79,4 +78,7 @@ public class CancionesAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public interface NotificadorCancionCelda{
+       public void notificarCeldaClikeada(Cancion cancion);
+    }
 }

@@ -8,12 +8,15 @@ import android.os.Bundle;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.model.adapters.CancionesAdapter;
 import com.example.user.musicpal.model.pojo.Album;
+import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.FragmentHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleActivity extends AppCompatActivity {
+public class DetalleActivity extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
@@ -85,6 +88,15 @@ public class DetalleActivity extends AppCompatActivity {
                 */
     }
 
+
+    @Override
+    public void notificarCancion(Cancion cancion) {
+        FragmentReproductor fragmentReproductor = new FragmentReproductor();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
+        fragmentReproductor.setArguments(bundle);
+        FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id ,fragmentManager);
+    }
 }
 
 
