@@ -20,6 +20,7 @@ import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import java.util.List;
 public class FragmentDetalle extends Fragment {
 
     public static final String ALBUM_KEY = "album_key";
+
 
     private ImageView imagenGrande;
     private TextView textArtista;
@@ -65,7 +67,7 @@ public class FragmentDetalle extends Fragment {
         controllerCancion = new ControllerCancion();
 
         listaCanciones = new ArrayList<>();
-        cancionesAdapter = new CancionesAdapter(listaCanciones);
+        cancionesAdapter = new CancionesAdapter(listaCanciones, getActivity().getSupportFragmentManager());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());

@@ -85,7 +85,6 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
                 if (resultado.size() == 0) {
                     Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
                 } else {
-
                     albumAdapter.agregarAlbumes(resultado);
                 }
 
