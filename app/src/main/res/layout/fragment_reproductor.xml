@@ -8,13 +8,13 @@
     tools:context="com.example.user.musicpal.view.FragmentReproductor">
 
     <TextView
-        android:id="@+id/text_reproductor_playtype"
+        android:id="@+id/text_reproductor_artista"
         style="@style/StyleTituloListadoScroll"
         android:gravity="center"
-        android:text="Better Sweet Symphony" />
+        android:text="Bitter Sweet Symphony" />
 
     <TextView
-        android:id="@+id/text_reproductor_playfrom"
+        android:id="@+id/text_reproductor_cancion"
         style="@style/StyleTituloListadoScroll"
         android:layout_gravity="center"
         android:layout_margin="12dp"

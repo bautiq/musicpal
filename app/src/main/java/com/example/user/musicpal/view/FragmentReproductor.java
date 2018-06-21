@@ -26,8 +26,8 @@ import java.io.Serializable;
  */
 public class FragmentReproductor extends Fragment {
     public static final String CANCION_KEY = "key_cancion";
-    private TextView textViewPlayFrom;
-    private TextView textViewPlayType;
+    private TextView textViewArtista;
+    private TextView textViewTitulo;
     private ImageView imagen;
     private ImageView buttonPlayPausa;
     private Cancion cancionQueContiene;
@@ -43,16 +43,18 @@ public class FragmentReproductor extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
         Bundle bundle = getArguments();
         cancionQueContiene = (Cancion) bundle.getSerializable(CANCION_KEY);
-        textViewPlayFrom = view.findViewById(R.id.text_reproductor_playfrom);
-        textViewPlayType = view.findViewById(R.id.text_reproductor_playtype);
+        textViewArtista = view.findViewById(R.id.text_reproductor_artista);
+        textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
 
+        textViewTitulo.setText(cancionQueContiene.getTitle());
+
         mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
         try {
-            //esta linea siempre es true :/
+            //esta linea siempre es false :/
             if(mP.isPlaying()){
                 mP.pause();
                 agregarCancionClikeada(mP, cancionQueContiene);
