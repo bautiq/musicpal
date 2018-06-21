@@ -24,11 +24,6 @@ public class Cancion implements Serializable {
         this.title = title;
     }
 
-    // que es esto dani?
-    protected Cancion(Parcel in) {
-        title = in.readString();
-    }
-
     public String getTitle() {
         return title;
     }

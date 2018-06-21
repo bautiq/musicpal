@@ -1,6 +1,5 @@
 package com.example.user.musicpal.model.adapters;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,9 +9,6 @@ import android.widget.TextView;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Cancion;
-import com.example.user.musicpal.utils.FragmentHelper;
-import com.example.user.musicpal.view.FragmentDetalle;
-import com.example.user.musicpal.view.FragmentReproductor;
 
 import java.util.List;
 
@@ -26,6 +22,7 @@ public class CancionesAdapter extends RecyclerView.Adapter {
     public CancionesAdapter(List<Cancion> listaDeCanciones, FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
+        this.notificadorCancionCelda = notificadorCancionCelda;
     }
 
     public void setListaDeCanciones(List<Cancion> listaDeCanciones) {
@@ -78,7 +75,7 @@ public class CancionesAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface NotificadorCancionCelda{
-       public void notificarCeldaClikeada(Cancion cancion);
+    public interface NotificadorCancionCelda {
+        public void notificarCeldaClikeada(Cancion cancion);
     }
 }

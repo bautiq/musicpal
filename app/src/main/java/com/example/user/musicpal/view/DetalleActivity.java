@@ -91,6 +91,7 @@ public class DetalleActivity extends AppCompatActivity implements FragmentDetall
 
     @Override
     public void notificarCancion(Cancion cancion) {
+        fragmentManager=getSupportFragmentManager();
         FragmentReproductor fragmentReproductor = new FragmentReproductor();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);

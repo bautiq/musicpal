@@ -28,12 +28,15 @@ public class FragmentReproductorChico extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_reproductor_chico, container, false);
+
         linearLayout = view.findViewById(R.id.linear_layout_reproductor_chico);
         botonPlay = view.findViewById(R.id.boton_play);
         botonForward = view.findViewById(R.id.boton_forward);
         botonRewind = view.findViewById(R.id.boton_rewind);
         fragmentManager = getActivity().getSupportFragmentManager();
+
         final MediaPlayer mP = MediaPlayer.create(getContext(), R.raw.bitter_sweet_symphony);
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +68,7 @@ public class FragmentReproductorChico extends Fragment {
             @Override
             public void onClick(View view) {
                 fragmentReproductor = new FragmentReproductor();
-                FragmentHelper.cargarFragment(fragmentReproductor, R.id.drawer_layout, fragmentManager);
+                FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
             }
         });
         return view;
