@@ -2,6 +2,7 @@ package com.example.user.musicpal.view;
 
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class FragmentReproductor extends Fragment {
         final MediaPlayer mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
         try {
             agregarCancionClikeada(mP, cancionQueContiene);
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException e) {
             e.printStackTrace();
         }
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +73,8 @@ public class FragmentReproductor extends Fragment {
 
 
     private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) throws IOException {
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
         mediaPlayer.prepare();
         mediaPlayer.start();
