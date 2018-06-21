@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Album;
@@ -32,6 +33,7 @@ public class FragmentReproductor extends Fragment {
     private Cancion cancionQueContiene;
     private ImageView buttonForward;
     private ImageView buttonBack;
+    private MediaPlayer mP;
 
 
     @Override
@@ -48,9 +50,16 @@ public class FragmentReproductor extends Fragment {
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
 
-        final MediaPlayer mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
+        mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
         try {
-            agregarCancionClikeada(mP, cancionQueContiene);
+            //esta linea siempre es true :/
+            if(mP.isPlaying()){
+                mP.pause();
+                agregarCancionClikeada(mP, cancionQueContiene);
+            }else{
+                agregarCancionClikeada(mP, cancionQueContiene);
+            }
+
         } catch (IOException | IllegalStateException e) {
             e.printStackTrace();
         }
@@ -60,6 +69,7 @@ public class FragmentReproductor extends Fragment {
                 if (mP.isPlaying()) {
                     mP.pause();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
+                    mP.release();
                 } else {
                     mP.start();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
@@ -68,6 +78,12 @@ public class FragmentReproductor extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mP != null){ mP.release();}
     }
 
 
