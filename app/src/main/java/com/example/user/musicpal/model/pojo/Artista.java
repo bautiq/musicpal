@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class Artista implements Serializable {
     @SerializedName("name")
     private String nombre;
+    private String imagenUrl;
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
 
     public Artista(String nombre) {
         this.nombre = nombre;
