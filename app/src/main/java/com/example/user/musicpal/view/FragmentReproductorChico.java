@@ -67,8 +67,9 @@ public class FragmentReproductorChico extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentReproductor = new FragmentReproductor();
-                FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
+                Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
+               // fragmentReproductor = new FragmentReproductor();
+               // FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
             }
         });
         return view;

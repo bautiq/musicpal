@@ -22,6 +22,9 @@ public class Album implements Serializable {
     private int imagenAlbum;
 
 
+    public Album() {
+    }
+
     public Album(String titulo, Artista artista) {
         this.titulo = titulo;
         this.artista = artista;
