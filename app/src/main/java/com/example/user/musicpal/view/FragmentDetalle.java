@@ -42,6 +42,7 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
     private List<Cancion> listaCanciones;
     private ControllerCancion controllerCancion;
     private NotificadorCancion notificadorCancion;
+    private Album album;
 
     public static FragmentDetalle dameUnFragment(Album album) {
         FragmentDetalle fragmentCreado = new FragmentDetalle();
@@ -63,7 +64,8 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
 
         Bundle bundle = getArguments();
-        Album album = (Album) bundle.getSerializable(ALBUM_KEY);
+        album = (Album) bundle.getSerializable(ALBUM_KEY);
+
 
 
         controllerCancion = new ControllerCancion();
@@ -106,10 +108,10 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
 
     @Override
     public void notificarCeldaClikeada(Cancion cancion) {
-        notificadorCancion.notificarCancion(cancion);
+        notificadorCancion.notificarCancion(cancion, album);
     }
 
     public interface NotificadorCancion{
-        public void notificarCancion(Cancion cancion);
+        public void notificarCancion(Cancion cancion, Album album);
     }
 }
