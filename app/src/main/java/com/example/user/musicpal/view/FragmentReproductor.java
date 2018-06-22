@@ -78,11 +78,23 @@ public class FragmentReproductor extends Fragment {
                 if (mP.isPlaying()) {
                     mP.pause();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
-                    // mP.release();
                 } else {
                     mP.start();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
                 }
+            }
+        });
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Click Back Track", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Click Forward Track", Toast.LENGTH_SHORT).show();
             }
         });
 
