@@ -9,7 +9,7 @@ public class FragmentHelper {
     public static final void cargarFragment(Fragment fragment, int container, FragmentManager fragmentManager) {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(container, fragment);
+        fragmentTransaction.replace(container, fragment);
         fragmentTransaction.commit();
     }
 
