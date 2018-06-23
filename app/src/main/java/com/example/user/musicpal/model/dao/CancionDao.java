@@ -27,7 +27,7 @@ public class CancionDao {
         service = retrofit.create(Service.class);
     }
     public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,int id) {
-        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbum(id);
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbumConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
             public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {

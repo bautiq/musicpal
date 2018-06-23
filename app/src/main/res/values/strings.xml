@@ -14,4 +14,8 @@
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="agregarPlaylist">Agrega Tu Playlist</string>
     <string name="comparti_en_tu_estado">Compartí en tu Estado</string>
+    <string name="albumesTop">Top Albumes</string>
+    <string name="artistatop">Top Artistas</string>
+    <string name="playlistTop">Top Playlists</string>
+    <string name="tracksTop">Top Tracks</string>
 </resources>

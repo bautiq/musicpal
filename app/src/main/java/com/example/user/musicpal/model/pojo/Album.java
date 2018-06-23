@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Album implements Serializable {
+
     @SerializedName("title")
     private String titulo;
 

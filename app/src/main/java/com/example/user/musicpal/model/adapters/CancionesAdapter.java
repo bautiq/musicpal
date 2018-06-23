@@ -1,11 +1,14 @@
 package com.example.user.musicpal.model.adapters;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Cancion;
@@ -57,15 +60,34 @@ public class CancionesAdapter extends RecyclerView.Adapter {
     public class ViewHolderCancion extends RecyclerView.ViewHolder {
 
         private TextView textViewNombre;
+        private ImageView imagenPlay;
+        private ImageView imagenMore;
+
 
         public ViewHolderCancion(final View itemView) {
             super(itemView);
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            this.imagenPlay = itemView.findViewById(R.id.play_chico);
+            this.imagenMore = itemView.findViewById(R.id.more_chico);
+
+            textViewNombre.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                }
+            });
+            imagenPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                }
+            });
+            imagenMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(itemView.getContext(), "Click More", Toast.LENGTH_SHORT).show();
                 }
             });
         }

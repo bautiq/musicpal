@@ -13,46 +13,46 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_recomendaciones"
+            android:id="@+id/text_albumes_top"
             style="@style/StyleTituloListadoScroll"
-            android:text="@string/recomendaciones" />
+            android:text="@string/albumesTop" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_recomendaciones_id"
+            android:id="@+id/recycler_albumes_top_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <TextView
-            android:id="@+id/text_top"
+            android:id="@+id/text_artistas_top"
             style="@style/StyleTituloListadoScroll"
-            android:text="@string/top" />
+            android:text="@string/artistatop" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_top_id"
+            android:id="@+id/recycler_artista_top_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <TextView
-            android:id="@+id/text_populares"
+            android:id="@+id/text_playlist_top"
             style="@style/StyleTituloListadoScroll"
-            android:text="@string/populares" />
+            android:text="@string/playlistTop" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_populares_id"
+            android:id="@+id/recycler_playlist_top_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <TextView
-            android:id="@+id/text_clasicos"
+            android:id="@+id/text_tracksTop"
             style="@style/StyleTituloListadoScroll"
-            android:text="@string/clasicos" />
+            android:text="@string/tracksTop" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_clasicos_id"
+            android:id="@+id/recycler_tracks_top_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

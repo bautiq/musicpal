@@ -17,7 +17,6 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,10 +27,10 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
 
     private NotificadorActivities notificadorActivities;
 
-    private RecyclerView recyclerViewRecomendaciones;
-    private RecyclerView recyclerViewPopulares;
-    private RecyclerView recyclerViewTop;
-    private RecyclerView recyclerViewClasicos;
+    private RecyclerView recyclerViewAlbumesTop;
+    private RecyclerView recyclerViewPlaylistsTop;
+    private RecyclerView recyclerViewArtistasTop;
+    private RecyclerView recyclerViewTracksTop;
     private List<Album> albumListaRecomendaciones;
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
@@ -45,15 +44,15 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
 
         albumAdapter = new AlbumAdapter(getActivity(), this);
-        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
-        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
+        recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
+        recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
+        recyclerViewArtistasTop = view.findViewById(R.id.recycler_artista_top_id);
+        recyclerViewTracksTop = view.findViewById(R.id.recycler_tracks_top_id);
 
-        setAdapterAlbums(recyclerViewRecomendaciones);
-        setAdapterAlbums(recyclerViewTop);
-        setAdapterAlbums(recyclerViewClasicos);
-        setAdapterAlbums(recyclerViewPopulares);
+        setAdapterAlbums(recyclerViewAlbumesTop);
+        setAdapterAlbums(recyclerViewArtistasTop);
+        setAdapterAlbums(recyclerViewTracksTop);
+        setAdapterAlbums(recyclerViewPlaylistsTop);
         controllerAlbum = new ControllerAlbum(getActivity());
 
        /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
@@ -61,17 +60,17 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         albumListaTop = controllerAlbum.getListaAlbumes("top");
         albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
 
-        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, "recomendaciones");
+        recyclerViewAlbumesTop = view.findViewById(R.id.recycler_recomendaciones_id);
+        setAdapterAlbums(albumListaRecomendaciones, recyclerViewAlbumesTop, "recomendaciones");
 
-        recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares, "populares");
+        recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_populares_id);
+        setAdapterAlbums(albumListaPopulares, recyclerViewPlaylistsTop, "populares");
 
-        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewTop, "top");
+        recyclerViewArtistasTop = view.findViewById(R.id.recycler_top_id);
+        setAdapterAlbums(albumListaTop, recyclerViewArtistasTop, "top");
 
-        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, "clasicos");
+        recyclerViewTracksTop = view.findViewById(R.id.recycler_clasicos_id);
+        setAdapterAlbums(albumListaClasicos, recyclerViewTracksTop, "clasicos");
 */
 
         obtenerAlbumes();
