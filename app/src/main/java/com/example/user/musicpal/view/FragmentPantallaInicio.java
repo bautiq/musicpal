@@ -12,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.controller.ControllerArtista;
 import com.example.user.musicpal.model.adapters.AlbumAdapter;
+import com.example.user.musicpal.model.adapters.ArtistaAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda {
+public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda, ArtistaAdapter.NotificadorArtistaAdapter {
 
     private NotificadorActivities notificadorActivities;
 
@@ -37,13 +40,15 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private List<Album> albumListaPopulares;
     private List<Album> albumListaClasicos;
     private AlbumAdapter albumAdapter;
+    private ArtistaAdapter artistaAdapter;
     private ControllerAlbum controllerAlbum;
+    private ControllerArtista controllerArtista;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
-
+artistaAdapter = new ArtistaAdapter(getContext(), this);
         albumAdapter = new AlbumAdapter(getActivity(), this);
         recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
         recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
@@ -55,6 +60,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         setAdapterAlbums(recyclerViewClasicos);
         setAdapterAlbums(recyclerViewPopulares);
         controllerAlbum = new ControllerAlbum(getActivity());
+        controllerArtista = new ControllerArtista();
 
        /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
         albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
@@ -92,6 +98,15 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         });
     }
 
+    private void obtenerArtistas(){
+        controllerArtista.obtenerArtistas(new ResultListener<List<Artista>>() {
+            @Override
+            public void finish(List<Artista> resultado) {
+
+            }
+        });
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -109,8 +124,14 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         recyclerView.setAdapter(albumAdapter);
     }
 
+    @Override
+    public void notificar(Artista artista) {
+        notificadorActivities.notificarArtista(artista);
+    }
+
     public interface NotificadorActivities {
         public void notificar(List<Album> listaAlbums, int posicion, String categoria);
+        public void notificarArtista(Artista artista);
     }
 
 }

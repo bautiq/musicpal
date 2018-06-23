@@ -20,7 +20,7 @@ public class ArtistaAdapter extends RecyclerView.Adapter {
     private List<Artista> artistaList;
     private NotificadorArtistaAdapter notificadorArtistaAdapter;
 
-    public ArtistaAdapter(Context context, List<Artista> artistaList, NotificadorArtistaAdapter notificadorArtistaAdapter) {
+    public ArtistaAdapter(Context context, NotificadorArtistaAdapter notificadorArtistaAdapter) {
         this.context = context;
         this.artistaList = artistaList;
         this.notificadorArtistaAdapter = notificadorArtistaAdapter;
@@ -68,7 +68,7 @@ public class ArtistaAdapter extends RecyclerView.Adapter {
 
     }
 
-    private interface NotificadorArtistaAdapter {
+    public interface NotificadorArtistaAdapter {
         public void notificar(Artista artista);
     }
 }

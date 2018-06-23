@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.user.musicpal.model.pojo.Album;
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
@@ -125,6 +126,12 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         bundle.putString(DetalleActivity.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void notificarArtista(Artista artista) {
+        Intent intent = new Intent(this, DetalleActivity.class);
+        Bundle bundle = new Bundle();
     }
 
     public void clickBotonesInferiores(String clickeado) {
