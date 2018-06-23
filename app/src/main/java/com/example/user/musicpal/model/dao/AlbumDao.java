@@ -2,9 +2,7 @@ package com.example.user.musicpal.model.dao;
 
 import android.content.Context;
 
-import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Album;
-import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.ContenedorAlbum;
 import com.example.user.musicpal.utils.ResultListener;
@@ -53,8 +51,8 @@ public class AlbumDao {
             public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
                 ContenedorAlbum contenedorAlbumObtenido = response.body();
 
-                if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.obtenerData() != null) {
-                    List<Album> albumLista = contenedorAlbumObtenido.obtenerData();
+                if (contenedorAlbumObtenido != null  && contenedorAlbumObtenido.obtenerListaDeAlbumes() != null) {
+                    List<Album> albumLista = contenedorAlbumObtenido.obtenerListaDeAlbumes();
                     resultListenerDelController.finish(albumLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Album>());

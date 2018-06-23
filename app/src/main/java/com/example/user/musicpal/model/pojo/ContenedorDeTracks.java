@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
+public class ContenedorDeTracks {
 
-public class ContenedorCanciones {
     @SerializedName("data")
-    private List<Cancion> cancionList;
+    private List<Cancion> listaDeTracks;
 
     public List<Cancion> getCancionList() {
-        return cancionList;
+        return listaDeTracks;
     }
 }

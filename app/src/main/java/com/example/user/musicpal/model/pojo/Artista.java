@@ -3,16 +3,31 @@ package com.example.user.musicpal.model.pojo;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by DH on 15/5/2018.
  */
 
 public class Artista implements Serializable {
+
     @SerializedName("name")
     private String nombre;
     @SerializedName("picture_medium")
     private String imagenUrl;
+
+    @SerializedName("tracklist")
+    private String cancionesDeArtistaUrl;
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getCancionesDeArtistaUrl() {
+        return cancionesDeArtistaUrl;
+    }
 
     public String getImagenUrl() {
         return imagenUrl;

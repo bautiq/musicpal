@@ -10,9 +10,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gris"
         android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"/>
+        android:layout_marginRight="60dp"
+        android:background="@color/gris" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
         android:weightSum="10">
 
         <ImageView
+            android:id="@+id/play_chico"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="12dp"
@@ -44,6 +45,7 @@
             android:textStyle="italic" />
 
         <ImageView
+            android:id="@+id/more_chico"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="12dp"
