@@ -1,7 +1,6 @@
 package com.example.user.musicpal.view;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -10,9 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.user.musicpal.model.pojo.Album;
@@ -23,7 +20,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
+public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -105,24 +102,24 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Menu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityMain.this, "Click Menu", Toast.LENGTH_SHORT).show();
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Search", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityMain.this, "Click Search", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public void notificar(List<Album> list, int posicion, String categoria) {
-        Intent intent = new Intent(this, DetalleActivity.class);
+        Intent intent = new Intent(this, ActivityDetalle.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(DetalleActivity.ALBUM_KEY, (Serializable) list);
-        bundle.putInt(DetalleActivity.POSICION_KEY, posicion);
-        bundle.putString(DetalleActivity.CATEGORIA_CLICKEADA, categoria);
+        bundle.putSerializable(ActivityDetalle.ALBUM_KEY, (Serializable) list);
+        bundle.putInt(ActivityDetalle.POSICION_KEY, posicion);
+        bundle.putString(ActivityDetalle.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -139,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     moreIsClicked = false;
                     compartirIsClicked = false;
                     imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imagePlaylist.setImageResource(R.drawable.icono_playlist);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                     imageCompartir.setImageResource(R.drawable.icono_compartir_blanco_24dp);
 
@@ -179,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     imageMore.setImageResource(R.drawable.icono_more_horiz_naranja_28dp);
                     imageCompartir.setImageResource(R.drawable.icono_compartir_blanco_24dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imagePlaylist.setImageResource(R.drawable.icono_playlist);
                 }
                 break;
             case "compartir":
@@ -192,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements FragmentPantallaI
                     playlistIsClicked = false;
                     imageCompartir.setImageResource(R.drawable.icono_compartir_naranja_24dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-                    imagePlaylist.setImageResource(R.drawable.playlist_icon);
+                    imagePlaylist.setImageResource(R.drawable.icono_playlist);
                     imageMore.setImageResource(R.drawable.icono_more_horiz_blanco_24dp);
                     fragmentCompartir = new FragmentCompartir();
                     fragmentManager = getSupportFragmentManager();

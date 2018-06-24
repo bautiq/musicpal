@@ -5,18 +5,18 @@
     tools:context="com.example.user.musicpal.view.FragmentReproductorChico">
 
     <LinearLayout
+        android:id="@+id/linear_layout_reproductor_chico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorBarraAbajo"
-        android:orientation="horizontal"
-        android:id="@+id/linear_layout_reproductor_chico">
+        android:background="@color/colorBarraAbajoGris"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:background="@color/negro_reproductor"
+            android:background="@color/negro_gris_reproductor"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -46,9 +46,7 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/ic_fast_forward"
                 android:backgroundTint="@color/grisBlanco"
-                android:elevation="10dp"
                 android:padding="10dp" />
-
 
         </LinearLayout>
 
@@ -57,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:background="@color/negro_reproductor"
+            android:background="@color/negro_gris_reproductor"
             android:orientation="vertical">
 
             <TextView

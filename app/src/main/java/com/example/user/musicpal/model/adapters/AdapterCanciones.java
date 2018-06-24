@@ -15,14 +15,14 @@ import com.example.user.musicpal.model.pojo.Cancion;
 
 import java.util.List;
 
-public class CancionesAdapter extends RecyclerView.Adapter {
+public class AdapterCanciones extends RecyclerView.Adapter {
 
     private List<Cancion> listaDeCanciones;
     private FragmentManager fragmentManager;
     private Cancion cancion;
     private NotificadorCancionCelda notificadorCancionCelda;
 
-    public CancionesAdapter(List<Cancion> listaDeCanciones, FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
+    public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;

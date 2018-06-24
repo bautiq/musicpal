@@ -15,12 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ArtistaAdapter extends RecyclerView.Adapter {
+public class AdapterArtista extends RecyclerView.Adapter {
     private Context context;
     private List<Artista> artistaList;
     private NotificadorArtistaAdapter notificadorArtistaAdapter;
 
-    public ArtistaAdapter(Context context, List<Artista> artistaList, NotificadorArtistaAdapter notificadorArtistaAdapter) {
+    public AdapterArtista(Context context, List<Artista> artistaList, NotificadorArtistaAdapter notificadorArtistaAdapter) {
         this.context = context;
         this.artistaList = artistaList;
         this.notificadorArtistaAdapter = notificadorArtistaAdapter;

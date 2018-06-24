@@ -12,18 +12,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
-import com.example.user.musicpal.model.adapters.AlbumAdapter;
+import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda {
+public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda {
 
     private NotificadorActivities notificadorActivities;
 
@@ -31,19 +30,14 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private RecyclerView recyclerViewPlaylistsTop;
     private RecyclerView recyclerViewArtistasTop;
     private RecyclerView recyclerViewTracksTop;
-    private List<Album> albumListaRecomendaciones;
-    private List<Album> albumListaTop;
-    private List<Album> albumListaPopulares;
-    private List<Album> albumListaClasicos;
-    private AlbumAdapter albumAdapter;
+    private AdapterAlbum adapterAlbum;
     private ControllerAlbum controllerAlbum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
+        View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
 
-        albumAdapter = new AlbumAdapter(getActivity(), this);
+        adapterAlbum = new AdapterAlbum(getActivity(), this);
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
         recyclerViewArtistasTop = view.findViewById(R.id.recycler_artista_top_id);
@@ -53,25 +47,8 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         setAdapterAlbums(recyclerViewArtistasTop);
         setAdapterAlbums(recyclerViewTracksTop);
         setAdapterAlbums(recyclerViewPlaylistsTop);
+
         controllerAlbum = new ControllerAlbum(getActivity());
-
-       /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
-        albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
-        albumListaTop = controllerAlbum.getListaAlbumes("top");
-        albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
-
-        recyclerViewAlbumesTop = view.findViewById(R.id.recycler_recomendaciones_id);
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewAlbumesTop, "recomendaciones");
-
-        recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPlaylistsTop, "populares");
-
-        recyclerViewArtistasTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewArtistasTop, "top");
-
-        recyclerViewTracksTop = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewTracksTop, "clasicos");
-*/
 
         obtenerAlbumes();
         return view;
@@ -84,12 +61,13 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
                 if (resultado.size() == 0) {
                     Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
                 } else {
-                    albumAdapter.agregarAlbumes(resultado);
+                    adapterAlbum.agregarAlbumes(resultado);
                 }
 
             }
         });
     }
+    
 
     @Override
     public void onAttach(Context context) {
@@ -105,7 +83,7 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     public void setAdapterAlbums(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(albumAdapter);
+        recyclerView.setAdapter(adapterAlbum);
     }
 
     public interface NotificadorActivities {

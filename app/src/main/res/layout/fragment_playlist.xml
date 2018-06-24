@@ -3,26 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
     tools:context=".view.FragmentPlaylist">
 
     <ImageView
+        android:id="@+id/button_agregar_playlist"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:background="@drawable/icono_add_circle_48dp"
-        android:padding="5dp"
-        android:id="@+id/button_agregar_playlist"/>
+        android:padding="5dp" />
 
     <TextView
+        android:id="@+id/text_agregar_playlist"
         style="@style/StyleTituloListadoScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/agregarPlaylist"
-        android:id="@+id/text_agregar_playlist"/>
+        android:text="@string/agregarPlaylist" />
 
 </LinearLayout>
