@@ -31,25 +31,48 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private RecyclerView recyclerViewAlbumesTop;
     private RecyclerView recyclerViewPlaylistsTop;
     private RecyclerView recyclerViewArtistasTop;
-    private RecyclerView recyclerViewTracksTop;
+    private RecyclerView recyclerViewCancionTop;
+    private LinearLayoutManager linearLayoutManagerAlbum;
+    private LinearLayoutManager linearLayoutManagerPlaylist;
+    private LinearLayoutManager linearLayoutManagerArtista;
+    private LinearLayoutManager linearLayoutManagerCancion;
     private AdapterAlbum adapterAlbum;
     private ControllerAlbum controllerAlbum;
     private ControllerArtista controllerArtista;
+    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
 
         adapterAlbum = new AdapterAlbum(getActivity(), this);
+        linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerCancion = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
         recyclerViewArtistasTop = view.findViewById(R.id.recycler_artista_top_id);
-        recyclerViewTracksTop = view.findViewById(R.id.recycler_tracks_top_id);
+        recyclerViewCancionTop = view.findViewById(R.id.recycler_tracks_top_id);
 
-        setAdapterAlbums(recyclerViewAlbumesTop);
-        setAdapterAlbums(recyclerViewArtistasTop);
-        setAdapterAlbums(recyclerViewTracksTop);
-        setAdapterAlbums(recyclerViewPlaylistsTop);
+        recyclerViewAlbumesTop.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int ultimaPosicion = linearLayoutManagerAlbum.getItemCount();
+                int posicionActual = linearLayoutManagerAlbum.findLastVisibleItemPosition();
+
+                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO){
+                    obtenerAlbumes();
+                }
+
+            }
+        });
+
+        setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
+        setAdapterAlbums(recyclerViewArtistasTop, linearLayoutManagerArtista);
+        setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
+        setAdapterAlbums(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
         controllerAlbum = new ControllerAlbum(getActivity());
         controllerArtista = new ControllerArtista();
@@ -59,17 +82,19 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     }
 
     private void obtenerAlbumes() {
-        controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
-            @Override
-            public void finish(List<Album> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterAlbum.agregarAlbumes(resultado);
-                }
+        if(controllerAlbum.getHayPaginas()){
+            controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
+                @Override
+                public void finish(List<Album> resultado) {
+                    if (resultado.size() == 0) {
+                        Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapterAlbum.agregarAlbumes(resultado);
+                    }
 
-            }
-        });
+                }
+            });
+        }
     }
     
 
@@ -93,8 +118,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         notificadorActivities.notificar(list, posicion, categoria);
     }
 
-    public void setAdapterAlbums(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+    public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterAlbum);
     }

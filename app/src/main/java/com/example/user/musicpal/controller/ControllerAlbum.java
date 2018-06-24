@@ -11,9 +11,15 @@ import java.util.List;
 
 public class ControllerAlbum {
     private Context context;
+    private Integer offset;
+    private Boolean hayPaginas;
+    private int LIST_SIZE = 5;
+
 
     public ControllerAlbum(Context context) {
         this.context = context;
+        hayPaginas = true;
+        offset = 0;
     }
 
     public List<Album> getListaAlbumes(String categoria) {
@@ -33,13 +39,21 @@ public class ControllerAlbum {
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
                     resultListenerDeLaVista.finish(resultado);
+                    offset += resultado.size();
                 }
-            });
+            }, offset, LIST_SIZE);
         }
     }
 
     private boolean hayInternet() {
         return true;
+    }
+
+    public Boolean getHayPaginas() {
+        return hayPaginas;
     }
 }

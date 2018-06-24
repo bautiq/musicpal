@@ -127,7 +127,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public void notificarArtista(Artista artista) {
-        Intent intent = new Intent(this, DetalleActivity.class);
+        Intent intent = new Intent(this, ActivityDetalle.class);
         Bundle bundle = new Bundle();
     }
 

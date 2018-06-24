@@ -8,11 +8,13 @@ import com.example.user.musicpal.model.pojo.ContenedorPlaylist;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Service {
 
     @GET("chart/0/albums")
-    Call<ContenedorAlbum> obtenerAlbumes();
+    Call<ContenedorAlbum> obtenerAlbumes(@Query("index") int offset,
+                                         @Query("limit") int limit);
 
     @GET("chart/0/playlists")
     Call<ContenedorPlaylist> obtenerPlaylist();

@@ -43,9 +43,9 @@ public class DaoAlbum {
     }
 
 
-    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController) {
+    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController, Integer offset, Integer limit) {
 
-        Call<ContenedorAlbum> call = service.obtenerAlbumes();
+        Call<ContenedorAlbum> call = service.obtenerAlbumes(offset, limit);
         call.enqueue(new Callback<ContenedorAlbum>() {
             @Override
             public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
