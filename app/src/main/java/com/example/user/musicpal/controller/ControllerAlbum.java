@@ -13,7 +13,7 @@ public class ControllerAlbum {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
-    private int LIST_SIZE = 5;
+    private static final Integer LIST_SIZE = 10;
 
 
     public ControllerAlbum(Context context) {
@@ -42,8 +42,8 @@ public class ControllerAlbum {
                     if (resultado.size() < LIST_SIZE) {
                         hayPaginas = false;
                     }
-                    resultListenerDeLaVista.finish(resultado);
                     offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
         }

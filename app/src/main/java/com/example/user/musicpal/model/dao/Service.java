@@ -13,8 +13,8 @@ import retrofit2.http.Query;
 public interface Service {
 
     @GET("chart/0/albums")
-    Call<ContenedorAlbum> obtenerAlbumes(@Query("index") int offset,
-                                         @Query("limit") int limit);
+    Call<ContenedorAlbum> obtenerAlbumes(@Query("index") Integer offset,
+                                         @Query("limit") Integer limit);
 
     @GET("chart/0/playlists")
     Call<ContenedorPlaylist> obtenerPlaylist();

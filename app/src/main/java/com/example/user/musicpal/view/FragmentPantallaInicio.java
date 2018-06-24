@@ -37,9 +37,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private LinearLayoutManager linearLayoutManagerArtista;
     private LinearLayoutManager linearLayoutManagerCancion;
     private AdapterAlbum adapterAlbum;
+    private Boolean isLoading = false;
     private ControllerAlbum controllerAlbum;
     private ControllerArtista controllerArtista;
-    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 2;
+    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,10 +60,13 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (isLoading) {
+                    return;
+                }
                 int ultimaPosicion = linearLayoutManagerAlbum.getItemCount();
                 int posicionActual = linearLayoutManagerAlbum.findLastVisibleItemPosition();
 
-                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO){
+                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
                     obtenerAlbumes();
                 }
 
@@ -82,13 +86,16 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     }
 
     private void obtenerAlbumes() {
-        if(controllerAlbum.getHayPaginas()){
+
+        if (controllerAlbum.getHayPaginas()) {
+            isLoading = true;
             controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {
                     if (resultado.size() == 0) {
                         Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
                     } else {
+                        isLoading = false;
                         adapterAlbum.agregarAlbumes(resultado);
                     }
 
@@ -96,9 +103,9 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             });
         }
     }
-    
 
-    private void obtenerArtistas(){
+
+    private void obtenerArtistas() {
         controllerArtista.obtenerArtistas(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> resultado) {
@@ -125,9 +132,9 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     }
 
 
-
     public interface NotificadorActivities {
         public void notificar(List<Album> listaAlbums, int posicion, String categoria);
+
         public void notificarArtista(Artista artista);
     }
 
