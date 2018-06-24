@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class AlbumDao {
+public class DaoAlbum {
     private List<Album> albumListaRecomendaciones;
     private List<Album> albumListaTop;
     private List<Album> albumListaPopulares;
@@ -33,7 +33,7 @@ public class AlbumDao {
     private Retrofit retrofit;
     private Service service;
 
-    public AlbumDao() {
+    public DaoAlbum() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit.Builder retroBuilder = new Retrofit.Builder()
                 .baseUrl("https://api.deezer.com/")
@@ -97,35 +97,35 @@ public class AlbumDao {
     private void armarListadoAlbum() {
         albumListaRecomendaciones = new ArrayList<>();
         albumListaRecomendaciones.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
-        albumListaRecomendaciones.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.urbanhymns, cancionesUrbanHymns));
-        albumListaRecomendaciones.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.recoveryeminem, cancionesRecovery));
+        albumListaRecomendaciones.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.urban_hymns_album, cancionesUrbanHymns));
+        albumListaRecomendaciones.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.recovery_eminem_album, cancionesRecovery));
         albumListaRecomendaciones.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaRecomendaciones.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
-        albumListaRecomendaciones.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora2, cancionesMeteora));
+        albumListaRecomendaciones.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
 
         albumListaTop = new ArrayList<>();
         albumListaTop.add(new Album("Under Pressure", new Artista("Logic"), R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaTop.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), R.drawable.post_traumatic_album, cancionesPostTraumatic));
-        albumListaTop.add(new Album("Meteora", new Artista("Linkin Park"), R.drawable.meteora2, cancionesMeteora));
-        albumListaTop.add(new Album("Urban Hymns", new Artista("The Verve") , R.drawable.urbanhymns, cancionesUrbanHymns));
+        albumListaTop.add(new Album("Meteora", new Artista("Linkin Park"), R.drawable.meteora_album, cancionesMeteora));
+        albumListaTop.add(new Album("Urban Hymns", new Artista("The Verve") , R.drawable.urban_hymns_album, cancionesUrbanHymns));
         albumListaTop.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
-        albumListaTop.add(new Album("Recovery", new Artista("Eminem"), R.drawable.recoveryeminem, cancionesRecovery));
+        albumListaTop.add(new Album("Recovery", new Artista("Eminem"), R.drawable.recovery_eminem_album, cancionesRecovery));
 
         albumListaPopulares = new ArrayList<>();
-        albumListaPopulares.add(new Album("Meteora", new Artista("Linkin Park"), R.drawable.meteora2, cancionesMeteora));
-        albumListaPopulares.add(new Album("Urban Hymns", new Artista("The Verve"), R.drawable.urbanhymns, cancionesUrbanHymns));
+        albumListaPopulares.add(new Album("Meteora", new Artista("Linkin Park"), R.drawable.meteora_album, cancionesMeteora));
+        albumListaPopulares.add(new Album("Urban Hymns", new Artista("The Verve"), R.drawable.urban_hymns_album, cancionesUrbanHymns));
         albumListaPopulares.add(new Album("Under Pressure", new Artista("Logic"), R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaPopulares.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), R.drawable.post_traumatic_album, cancionesPostTraumatic));
         albumListaPopulares.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
-        albumListaPopulares.add(new Album("Recovery", new Artista("Eminem"), R.drawable.recoveryeminem, cancionesRecovery));
+        albumListaPopulares.add(new Album("Recovery", new Artista("Eminem"), R.drawable.recovery_eminem_album, cancionesRecovery));
 
         albumListaClasicos = new ArrayList<>();
-        albumListaClasicos.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.urbanhymns, cancionesUrbanHymns));
+        albumListaClasicos.add(new Album("Urban Hymns", new Artista("The Verve"), "2009", R.drawable.urban_hymns_album, cancionesUrbanHymns));
         albumListaClasicos.add(new Album("Loyal to the game", new Artista("Tupac Shakur"), "2000", R.drawable.tupac_loyal_album, cancionesLoyalToTheGame));
-        albumListaClasicos.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.recoveryeminem, cancionesRecovery));
+        albumListaClasicos.add(new Album("Recovery", new Artista("Eminem"), "2010", R.drawable.recovery_eminem_album, cancionesRecovery));
         albumListaClasicos.add(new Album("Under Pressure", new Artista("Logic"), "2005", R.drawable.underpressure_album, cancionesUnderPressure));
         albumListaClasicos.add(new Album("Post Traumatic", new Artista("Mike Shinoda"), "2018", R.drawable.post_traumatic_album, cancionesPostTraumatic));
-        albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora2, cancionesMeteora));
+        albumListaClasicos.add(new Album("Meteora", new Artista("Linkin Park"), "2003", R.drawable.meteora_album, cancionesMeteora));
     }
 
     private void armarListadoDeCanciones() {

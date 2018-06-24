@@ -14,14 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.controller.ControllerCancion;
-import com.example.user.musicpal.model.adapters.CancionesAdapter;
+import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalle extends Fragment implements CancionesAdapter.NotificadorCancionCelda {
+public class FragmentDetalle extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String ALBUM_KEY = "album_key";
 
@@ -38,7 +37,7 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
     private TextView textArtista;
     private TextView textAlbum;
     private RecyclerView recyclerViewCanciones;
-    private CancionesAdapter cancionesAdapter;
+    private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
     private ControllerCancion controllerCancion;
     private NotificadorCancion notificadorCancion;
@@ -71,7 +70,7 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
         controllerCancion = new ControllerCancion();
 
         listaCanciones = new ArrayList<>();
-        cancionesAdapter = new CancionesAdapter(listaCanciones, getActivity().getSupportFragmentManager(),this);
+        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
@@ -80,7 +79,7 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
         recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
         recyclerViewCanciones.setHasFixedSize(true);
-        recyclerViewCanciones.setAdapter(cancionesAdapter);
+        recyclerViewCanciones.setAdapter(adapterCanciones);
 
         obtenerCancionesPorAlbum(album);
 
@@ -95,7 +94,7 @@ public class FragmentDetalle extends Fragment implements CancionesAdapter.Notifi
         controllerCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-                cancionesAdapter.setListaDeCanciones(resultado);
+                adapterCanciones.setListaDeCanciones(resultado);
             }
         }, album.getId());
     }

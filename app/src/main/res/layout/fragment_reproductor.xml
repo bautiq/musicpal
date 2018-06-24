@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
     tools:context="com.example.user.musicpal.view.FragmentReproductor">
@@ -10,10 +10,10 @@
     <TextView
         android:id="@+id/text_reproductor_artista"
         style="@style/StyleTituloListadoScroll"
-        android:gravity="center"
         android:layout_marginTop="15dp"
-        android:textSize="20sp"
-        android:text="Bitter Sweet Symphony" />
+        android:gravity="center"
+        android:text="Bitter Sweet Symphony"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_reproductor_cancion"
@@ -22,9 +22,9 @@
         android:layout_margin="15dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
-        android:textSize="20sp"
         android:text="The Verve - Urban Hymns"
-        android:textColor="@color/grisBlanco" />
+        android:textColor="@color/grisBlanco"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imagen_reproductor"
@@ -32,8 +32,7 @@
         android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:src="@drawable/urbanhymns" />
-
+        android:src="@drawable/urban_hymns_album" />
 
     <LinearLayout
         android:layout_width="match_parent"

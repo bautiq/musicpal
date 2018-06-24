@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -36,7 +34,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="18"
                 android:scaleType="centerCrop"
-                android:src="@drawable/logoprueba" />
+                android:src="@drawable/logo_music_pal_prueba" />
 
             <ImageView
                 android:id="@+id/search_button"
@@ -61,8 +59,8 @@
             android:id="@+id/container_fragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7.25"
-            android:background="@drawable/fondo1">
+            android:layout_weight="7"
+            android:background="@drawable/fondo_negro_con_trama">
 
         </FrameLayout>
 
@@ -76,17 +74,18 @@
 
 
         <FrameLayout
+            android:id="@+id/contenedor_reproductor_chico"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/contenedor_reproductor_chico">
+            android:background="@color/negroposta"
+            android:layout_weight="1.25">
 
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/fondo2" />
+            android:background="@color/fondoNaranja" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,7 +103,7 @@
             <ImageView
                 android:id="@+id/playlist_button"
                 style="@style/StyleBotonBarraInferior"
-                android:src="@drawable/playlist_icon" />
+                android:src="@drawable/icono_playlist" />
 
             <ImageView
                 android:id="@+id/compartir_button"

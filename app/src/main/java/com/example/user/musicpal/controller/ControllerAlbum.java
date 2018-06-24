@@ -3,7 +3,7 @@ package com.example.user.musicpal.controller;
 
 import android.content.Context;
 
-import com.example.user.musicpal.model.dao.AlbumDao;
+import com.example.user.musicpal.model.dao.DaoAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -18,8 +18,8 @@ public class ControllerAlbum {
 
     public List<Album> getListaAlbumes(String categoria) {
 
-        AlbumDao albumDao = new AlbumDao();
-        List<Album> list = albumDao.obtenerAlbumes(context, categoria);
+        DaoAlbum daoAlbum = new DaoAlbum();
+        List<Album> list = daoAlbum.obtenerAlbumes(context, categoria);
         return list;
     }
 
@@ -29,7 +29,7 @@ public class ControllerAlbum {
 
     public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
-            AlbumDao daoRetroFit = new AlbumDao();
+            DaoAlbum daoRetroFit = new DaoAlbum();
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {

@@ -13,11 +13,11 @@ import com.example.user.musicpal.model.pojo.RedSocial;
 
 import java.util.List;
 
-public class RedSocialAdapter extends RecyclerView.Adapter {
+public class AdapterRedSocial extends RecyclerView.Adapter {
 
     private List<RedSocial> redesSociales;
 
-    public RedSocialAdapter(List<RedSocial> redesSociales) {
+    public AdapterRedSocial(List<RedSocial> redesSociales) {
         this.redesSociales = redesSociales;
     }
 
@@ -30,7 +30,7 @@ public class RedSocialAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.celda_recycler_red_social, parent, false);
-        RedSocialAdapter.ViewHolderRedSocial viewHolderRedSocial = new ViewHolderRedSocial(view);
+        AdapterRedSocial.ViewHolderRedSocial viewHolderRedSocial = new ViewHolderRedSocial(view);
         return viewHolderRedSocial;
     }
 

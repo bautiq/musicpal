@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:background="@color/header_nav_view">
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/logoprueba"
-    android:scaleType="centerCrop"
-    android:padding="5dp"
-    android:background="@drawable/shadow_2"
-    android:layout_margin="50dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:background="@drawable/shadow_negro"
+        android:padding="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_music_pal_prueba" />
 
 </FrameLayout>

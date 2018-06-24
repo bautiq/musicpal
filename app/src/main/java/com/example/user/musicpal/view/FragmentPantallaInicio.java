@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
-import com.example.user.musicpal.controller.ControllerArtista;
-import com.example.user.musicpal.model.adapters.AlbumAdapter;
-import com.example.user.musicpal.model.adapters.ArtistaAdapter;
+import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Artista;
@@ -22,11 +20,10 @@ import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda, ArtistaAdapter.NotificadorArtistaAdapter {
+public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda {
 
     private NotificadorActivities notificadorActivities;
 
@@ -34,21 +31,15 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
     private RecyclerView recyclerViewPlaylistsTop;
     private RecyclerView recyclerViewArtistasTop;
     private RecyclerView recyclerViewTracksTop;
-    private List<Album> albumListaRecomendaciones;
-    private List<Album> albumListaTop;
-    private List<Album> albumListaPopulares;
-    private List<Album> albumListaClasicos;
-    private AlbumAdapter albumAdapter;
-    private ArtistaAdapter artistaAdapter;
+    private AdapterAlbum adapterAlbum;
     private ControllerAlbum controllerAlbum;
     private ControllerArtista controllerArtista;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
-artistaAdapter = new ArtistaAdapter(getContext(), this);
-        albumAdapter = new AlbumAdapter(getActivity(), this);
+        View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
+
+        adapterAlbum = new AdapterAlbum(getActivity(), this);
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
         recyclerViewArtistasTop = view.findViewById(R.id.recycler_artista_top_id);
@@ -58,26 +49,9 @@ artistaAdapter = new ArtistaAdapter(getContext(), this);
         setAdapterAlbums(recyclerViewArtistasTop);
         setAdapterAlbums(recyclerViewTracksTop);
         setAdapterAlbums(recyclerViewPlaylistsTop);
+
         controllerAlbum = new ControllerAlbum(getActivity());
         controllerArtista = new ControllerArtista();
-
-       /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
-        albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
-        albumListaTop = controllerAlbum.getListaAlbumes("top");
-        albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
-
-        recyclerViewAlbumesTop = view.findViewById(R.id.recycler_recomendaciones_id);
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewAlbumesTop, "recomendaciones");
-
-        recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPlaylistsTop, "populares");
-
-        recyclerViewArtistasTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewArtistasTop, "top");
-
-        recyclerViewTracksTop = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewTracksTop, "clasicos");
-*/
 
         obtenerAlbumes();
         return view;
@@ -90,12 +64,13 @@ artistaAdapter = new ArtistaAdapter(getContext(), this);
                 if (resultado.size() == 0) {
                     Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
                 } else {
-                    albumAdapter.agregarAlbumes(resultado);
+                    adapterAlbum.agregarAlbumes(resultado);
                 }
 
             }
         });
     }
+    
 
     private void obtenerArtistas(){
         controllerArtista.obtenerArtistas(new ResultListener<List<Artista>>() {
@@ -120,7 +95,7 @@ artistaAdapter = new ArtistaAdapter(getContext(), this);
     public void setAdapterAlbums(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(albumAdapter);
+        recyclerView.setAdapter(adapterAlbum);
     }
 
     @Override

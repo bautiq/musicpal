@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerAlbum;
-import com.example.user.musicpal.model.adapters.CancionesAdapter;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
@@ -16,7 +15,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleActivity extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
+public class ActivityDetalle extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";

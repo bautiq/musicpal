@@ -14,11 +14,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CancionDao {
+public class DaoCancion {
     private Retrofit retrofit;
     private Service service;
 
-    public CancionDao() {
+    public DaoCancion() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit.Builder retroBuilder = new Retrofit.Builder()
                 .baseUrl("https://api.deezer.com/")
