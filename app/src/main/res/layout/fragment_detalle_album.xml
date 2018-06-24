@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_negro_con_trama"
+    android:orientation="vertical"
+    tools:context=".view.FragmentDetalleAlbum">
+
+    <ImageView
+        android:id="@+id/id_imagen_vista_previa"
+        style="@style/StyleImagenVistaPrevia" />
+
+    <TextView
+        android:id="@+id/id_nombre_artista"
+        style="@style/StyleTextViewVistaPrevia" />
+
+    <TextView
+        android:id="@+id/id_nombre_album"
+        style="@style/StyleTextViewVistaPrevia" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/margin_imagen_texto"
+        android:background="@color/fondoNaranja" />
+
+    <TextView
+        style="@style/StyleTituloListadoScroll"
+        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:background="@color/negroposta"
+        android:text="Lista de Canciones"
+        android:textColor="@color/blanco" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_canciones_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/negroposta"
+        android:paddingTop="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

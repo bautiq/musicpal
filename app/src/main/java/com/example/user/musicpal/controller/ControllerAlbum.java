@@ -16,18 +16,7 @@ public class ControllerAlbum {
         this.context = context;
     }
 
-    public List<Album> getListaAlbumes(String categoria) {
-
-        DaoAlbum daoAlbum = new DaoAlbum();
-        List<Album> list = daoAlbum.obtenerAlbumes(context, categoria);
-        return list;
-    }
-
-    public List<Album> getListaAlbumOnline() {
-        return null;
-    }
-
-    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
+    public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
             DaoAlbum daoRetroFit = new DaoAlbum();
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {

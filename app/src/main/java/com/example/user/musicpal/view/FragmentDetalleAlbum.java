@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalle extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
+public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String ALBUM_KEY = "album_key";
 
@@ -43,19 +43,18 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
     private NotificadorCancion notificadorCancion;
     private Album album;
 
-    public static FragmentDetalle dameUnFragment(Album album) {
-        FragmentDetalle fragmentCreado = new FragmentDetalle();
+    public static FragmentDetalleAlbum dameUnFragment(Album album) {
+        FragmentDetalleAlbum fragmentCreado = new FragmentDetalleAlbum();
         Bundle bundle = new Bundle();
         bundle.putSerializable(ALBUM_KEY, album);
         fragmentCreado.setArguments(bundle);
         return fragmentCreado;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
 
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
         textArtista = view.findViewById(R.id.id_nombre_artista);

@@ -66,13 +66,6 @@ public class AdapterAlbum extends RecyclerView.Adapter {
     }
 
     public void agregarAlbumes(List<Album> albums) {
-
-       /* for (Album albumAAgregar : albums) {
-            if (!albumLista.contains(albumAAgregar)) {
-                albumLista.add(albumAAgregar);
-            }
-        }*/
-
         albumLista.addAll(albums);
         notifyDataSetChanged();
     }

@@ -28,6 +28,7 @@ import java.io.Serializable;
 public class FragmentReproductor extends Fragment {
     public static final String CANCION_KEY = "key_cancion";
     public static final String ALBUM_KEY = "album_key";
+    public static final String ARTISTA_KEY = "artista_key";
     private TextView textViewArtista;
     private TextView textViewTitulo;
     private ImageView imagen;
@@ -39,7 +40,6 @@ public class FragmentReproductor extends Fragment {
     private Album albumRecibido;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class FragmentReproductor extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
         Bundle bundle = getArguments();
         cancionQueContiene = (Cancion) bundle.getSerializable(CANCION_KEY);
-        albumRecibido= (Album) bundle.getSerializable(ALBUM_KEY);
+        albumRecibido = (Album) bundle.getSerializable(ALBUM_KEY);
         textViewArtista = view.findViewById(R.id.text_reproductor_artista);
         textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
@@ -57,7 +57,11 @@ public class FragmentReproductor extends Fragment {
 
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
-        Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
+        try {
+            Picasso.with(getContext()).load(cancionQueContiene.getAlbum().getImagenUrl()).into(imagen);
+        }catch (NullPointerException e){
+            Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
+        }
 
         mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
         try {

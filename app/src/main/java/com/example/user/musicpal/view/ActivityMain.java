@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.model.pojo.Album;
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
@@ -40,7 +41,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPerfil fragmentPerfil;
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
-
 
 
     @Override
@@ -114,12 +114,22 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificar(List<Album> list, int posicion, String categoria) {
-        Intent intent = new Intent(this, ActivityDetalle.class);
+    public void notificarAlbum(List<Album> list, int posicion, String categoria) {
+        Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ActivityDetalle.ALBUM_KEY, (Serializable) list);
-        bundle.putInt(ActivityDetalle.POSICION_KEY, posicion);
-        bundle.putString(ActivityDetalle.CATEGORIA_CLICKEADA, categoria);
+        bundle.putSerializable(ActivityDetalleAlbum.ALBUM_KEY, (Serializable) list);
+        bundle.putInt(ActivityDetalleAlbum.POSICION_KEY, posicion);
+        bundle.putString(ActivityDetalleAlbum.CATEGORIA_CLICKEADA, categoria);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void notificarArtista(List<Artista> listaArtistas, int posicion) {
+        Intent intent = new Intent(this, ActivityDetalleArtista.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetalleArtista.ARTISTA_KEY, (Serializable) listaArtistas);
+        bundle.putInt(ActivityDetalleArtista.POSICION_KEY_ARTISTA, posicion);
         intent.putExtras(bundle);
         startActivity(intent);
     }

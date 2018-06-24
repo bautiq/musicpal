@@ -19,5 +19,14 @@ public class ControllerCancion {
         }, id);
     }
 
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, int id) {
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                listener.finish(resultado);
+            }
+        },id);
+    }
 }
 

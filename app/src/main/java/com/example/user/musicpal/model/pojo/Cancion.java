@@ -14,13 +14,21 @@ import java.util.ArrayList;
 public class Cancion implements Serializable {
 
     private String title;
+
     @SerializedName("preview")
     private String urlPreview;
 
-    private int imagenCancion;
+    private Album album;
+
     @SerializedName("artist")
     private Artista artista;
+
     private int id;
+
+
+    public Album getAlbum() {
+        return album;
+    }
 
     public int getId() {
         return id;
@@ -32,10 +40,6 @@ public class Cancion implements Serializable {
 
     public void setUrlPreview(String urlPreview) {
         this.urlPreview = urlPreview;
-    }
-
-    public int getImagenCancion() {
-        return imagenCancion;
     }
 
     public Artista getArtista() {
