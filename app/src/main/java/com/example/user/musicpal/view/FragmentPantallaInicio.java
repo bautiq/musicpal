@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.controller.ControllerArtista;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
@@ -98,10 +99,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setAdapter(adapterAlbum);
     }
 
-    @Override
-    public void notificar(Artista artista) {
-        notificadorActivities.notificarArtista(artista);
-    }
+
 
     public interface NotificadorActivities {
         public void notificar(List<Album> listaAlbums, int posicion, String categoria);

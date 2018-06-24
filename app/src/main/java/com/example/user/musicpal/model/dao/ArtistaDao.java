@@ -1,7 +1,7 @@
 package com.example.user.musicpal.model.dao;
 
 import com.example.user.musicpal.model.pojo.Artista;
-import com.example.user.musicpal.model.pojo.ContenedorArtista;
+import com.example.user.musicpal.model.pojo.ContenedorArtistas;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.ArrayList;
@@ -29,22 +29,22 @@ public class ArtistaDao {
 
     public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerController){
 
-        Call<ContenedorArtista> call = service.obtenerArtistas();
+        Call<ContenedorArtistas> call = service.obtenerArtista();
 
-        call.enqueue(new Callback<ContenedorArtista>() {
+        call.enqueue(new Callback<ContenedorArtistas>() {
 
             @Override
-            public void onResponse(Call<ContenedorArtista> call, Response<ContenedorArtista> response) {
-                ContenedorArtista contenedorArtista = response.body();
-                if (contenedorArtista != null && contenedorArtista.getArtistaList() != null){
-                    resultListenerController.finish(contenedorArtista.getArtistaList());
+            public void onResponse(Call<ContenedorArtistas> call, Response<ContenedorArtistas> response) {
+                ContenedorArtistas contenedorArtista = response.body();
+                if (contenedorArtista != null && contenedorArtista.obtenerListaDeArtistas() != null){
+                    resultListenerController.finish(contenedorArtista.obtenerListaDeArtistas());
                 }else{
                     resultListenerController.finish(new ArrayList<Artista>());
                 }
             }
 
             @Override
-            public void onFailure(Call<ContenedorArtista> call, Throwable t) {
+            public void onFailure(Call<ContenedorArtistas> call, Throwable t) {
                 resultListenerController.finish(new ArrayList<Artista>());
             }
         });

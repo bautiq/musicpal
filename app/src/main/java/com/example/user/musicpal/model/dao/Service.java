@@ -3,7 +3,6 @@ package com.example.user.musicpal.model.dao;
 import com.example.user.musicpal.model.pojo.ContenedorAlbum;
 import com.example.user.musicpal.model.pojo.ContenedorArtistas;
 import com.example.user.musicpal.model.pojo.ContenedorDeCanciones;
-import com.example.user.musicpal.model.pojo.ContenedorDeTracks;
 import com.example.user.musicpal.model.pojo.ContenedorPlaylist;
 
 import retrofit2.Call;
@@ -25,6 +24,6 @@ public interface Service {
     Call<ContenedorArtistas> obtenerArtista();
 
     @GET("chart/0/tracks")
-    Call<ContenedorDeTracks> obtenerTracks();
+    Call<ContenedorDeCanciones> obtenerListaCanciones();
 
 }
