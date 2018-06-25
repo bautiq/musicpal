@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.squareup.picasso.Picasso;
@@ -54,6 +55,7 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
+        final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
 
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
@@ -61,7 +63,6 @@ public class FragmentReproductor extends Fragment {
 
         mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
         try {
-            //esta linea siempre es false :/
             if (mP.isPlaying()) {
                 mP.pause();
                 agregarCancionClikeada(mP, cancionQueContiene);

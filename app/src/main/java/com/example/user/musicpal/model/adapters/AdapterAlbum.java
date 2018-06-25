@@ -67,13 +67,11 @@ public class AdapterAlbum extends RecyclerView.Adapter {
 
     public void agregarAlbumes(List<Album> albums) {
 
-       /* for (Album albumAAgregar : albums) {
+        for (Album albumAAgregar : albums) {
             if (!albumLista.contains(albumAAgregar)) {
                 albumLista.add(albumAAgregar);
             }
-        }*/
-
-        albumLista.addAll(albums);
+        }
         notifyDataSetChanged();
     }
 
@@ -99,7 +97,7 @@ public class AdapterAlbum extends RecyclerView.Adapter {
         }
 
         public void cargarAlbum(Album album) {
-            Picasso.with(context).load(album.getImagenUrl()).into(imagenAlbum);
+            Picasso.with(context).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
 

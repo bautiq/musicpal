@@ -11,8 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AdapterCanciones extends RecyclerView.Adapter {
@@ -74,14 +76,26 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
-                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    try {
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
-                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    try {
+                       MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                       mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenMore.setOnClickListener(new View.OnClickListener() {
