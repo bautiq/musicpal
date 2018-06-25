@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
+import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
 
 public class FragmentReproductorChico extends Fragment {
@@ -22,8 +25,12 @@ public class FragmentReproductorChico extends Fragment {
     private Button botonPlay;
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutReproductor;
+    private TextView textCancion;
+    private TextView textArtista;
     private FragmentReproductor fragmentReproductor;
     private FragmentManager fragmentManager;
+    private Cancion cancion;
+    private MediaPlayer mP;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +43,11 @@ public class FragmentReproductorChico extends Fragment {
         botonForward = view.findViewById(R.id.boton_forward);
         botonRewind = view.findViewById(R.id.boton_rewind);
         fragmentManager = getActivity().getSupportFragmentManager();
-
-        final MediaPlayer mP = MediaPlayer.create(getContext(), R.raw.bitter_sweet_symphony);
+        textCancion = view.findViewById(R.id.id_text_cancion_reprochico);
+        textArtista = view.findViewById(R.id.id_nombre_artista);
+        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+        cancion = mediaPlayerGlobal.getCancion();
+        mP = mediaPlayerGlobal.getMediaPlayer();
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +83,13 @@ public class FragmentReproductorChico extends Fragment {
             }
         });
         return view;
+    }
+
+    public void setearDatos(Cancion cancion){
+        if (mP.isPlaying()){
+            textArtista.setText(cancion.getArtista().getNombre());
+            textCancion.setText(cancion.getTitle());
+        }
     }
 
 }

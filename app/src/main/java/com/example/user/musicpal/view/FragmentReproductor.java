@@ -40,7 +40,6 @@ public class FragmentReproductor extends Fragment {
     private Album albumRecibido;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class FragmentReproductor extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
         Bundle bundle = getArguments();
         cancionQueContiene = (Cancion) bundle.getSerializable(CANCION_KEY);
-        albumRecibido= (Album) bundle.getSerializable(ALBUM_KEY);
+        albumRecibido = (Album) bundle.getSerializable(ALBUM_KEY);
         textViewArtista = view.findViewById(R.id.text_reproductor_artista);
         textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
@@ -56,28 +55,16 @@ public class FragmentReproductor extends Fragment {
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
         final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-
+        mP = mediaPlayerGlobal.getMediaPlayer();
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
         Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
 
-        mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
-        try {
-            if (mP.isPlaying()) {
-                mP.pause();
-                agregarCancionClikeada(mP, cancionQueContiene);
-            } else {
-                agregarCancionClikeada(mP, cancionQueContiene);
-            }
-
-        } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
-        }
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mP.isPlaying()) {
-                    mP.pause();
+                    mP.stop();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
                 } else {
                     mP.start();
@@ -101,22 +88,4 @@ public class FragmentReproductor extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mP != null) {
-            mP.release();
-        }
-    }
-
-
-    private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) throws IOException {
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.reset();
-        mediaPlayer.setDataSource(cancion.getUrlPreview());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
-    }
-
 }

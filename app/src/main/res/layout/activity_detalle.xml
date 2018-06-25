@@ -17,5 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container_detalle_activity"/>
+    <FrameLayout
+        android:id="@+id/contenedor_reproductor_chico_detalle_activity"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/negroposta"
+        android:layout_gravity="bottom"/>
 
 </FrameLayout>

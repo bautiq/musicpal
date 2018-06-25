@@ -11,6 +11,7 @@ import java.io.IOException;
 public class MediaPlayerGlobal {
     private static MediaPlayerGlobal mediaPlayerGlobal;
     private MediaPlayer mediaPlayer;
+    private Cancion cancion;
 
     private MediaPlayerGlobal(){
         mediaPlayer = new MediaPlayer();
@@ -29,10 +30,15 @@ public class MediaPlayerGlobal {
     }
 
     public void agregarCancionClikeada(Cancion cancion) throws IOException {
+        this.cancion = cancion;
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
         mediaPlayer.prepare();
         mediaPlayer.start();
+    }
+
+    public Cancion getCancion() {
+        return cancion;
     }
 }

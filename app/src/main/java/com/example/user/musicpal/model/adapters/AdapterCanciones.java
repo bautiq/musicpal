@@ -82,7 +82,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenPlay.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenMore.setOnClickListener(new View.OnClickListener() {

@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif"
+                android:id="@+id/id_text_cancion_reprochico"
                 android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
@@ -77,6 +78,7 @@
                 android:fontFamily="serif-monospace"
                 android:layout_marginBottom="2dp"
                 android:text="The Verve"
+                android:id="@+id/id_text_artista_reprochico"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="italic" />
@@ -87,6 +89,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="serif-monospace"
                 android:text="Urban Hymns"
+                android:id="@+id/id_text_album_reprochico"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="italic" />

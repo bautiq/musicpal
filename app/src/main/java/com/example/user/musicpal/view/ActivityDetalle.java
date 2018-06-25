@@ -25,6 +25,7 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalle> listaFragments;
     private List<Album> listaAlbumesRecibida;
+    private FragmentReproductorChico fragmentReproductorChico;
     private String categoriaRecibida;
     private ViewPager viewPager;
     private ControllerGlobal controllerGlobal;
@@ -33,6 +34,8 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+        fragmentReproductorChico = new FragmentReproductorChico();
+        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity, getSupportFragmentManager());
         controllerGlobal = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
@@ -91,12 +94,14 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     @Override
     public void notificarCancion(Cancion cancion, Album album) {
         fragmentManager = getSupportFragmentManager();
-        FragmentReproductor fragmentReproductor = new FragmentReproductor();
+        fragmentReproductorChico.setearDatos(cancion);
+        /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentReproductor.ALBUM_KEY, album);
         bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
         fragmentReproductor.setArguments(bundle);
         FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity, fragmentManager);
+    */
     }
 }
 
