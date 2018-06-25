@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.musicpal.controller.ControllerCancion;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
@@ -39,7 +39,7 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
-    private ControllerCancion controllerCancion;
+    private ControllerGlobal controller;
     private NotificadorCancion notificadorCancion;
     private Album album;
 
@@ -67,7 +67,7 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
 
 
 
-        controllerCancion = new ControllerCancion();
+        controller = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
         adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
@@ -91,7 +91,7 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
     }
 
     public void obtenerCancionesPorAlbum(Album album){
-        controllerCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
                 adapterCanciones.setListaDeCanciones(resultado);

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.musicpal.view.FragmentReproductorChico">
+    tools:context="com.example.user.musicpal.view.FragmentReproductorChico"
+    android:background="@color/negroposta">
 
     <LinearLayout
         android:id="@+id/linear_layout_reproductor_chico"
@@ -66,13 +67,15 @@
                 android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="serif-monospace"
+                android:layout_marginBottom="2dp"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"

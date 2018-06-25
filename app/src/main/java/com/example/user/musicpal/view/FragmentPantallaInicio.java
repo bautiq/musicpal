@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.user.musicpal.controller.ControllerAlbum;
-import com.example.user.musicpal.controller.ControllerArtista;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
@@ -37,15 +36,14 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private LinearLayoutManager linearLayoutManagerArtista;
     private LinearLayoutManager linearLayoutManagerCancion;
     private AdapterAlbum adapterAlbum;
-    private Boolean isLoading = false;
-    private ControllerAlbum controllerAlbum;
-    private ControllerArtista controllerArtista;
+    private Boolean isLoading;
+    private ControllerGlobal controllerGlobal;
     private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
-
+        isLoading = false;
         adapterAlbum = new AdapterAlbum(getActivity(), this);
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -78,8 +76,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
         setAdapterAlbums(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
-        controllerAlbum = new ControllerAlbum(getActivity());
-        controllerArtista = new ControllerArtista();
+        controllerGlobal = new ControllerGlobal(getActivity());
+
 
         obtenerAlbumes();
         return view;
@@ -87,9 +85,9 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
     private void obtenerAlbumes() {
 
-        if (controllerAlbum.getHayPaginas()) {
+        if (controllerGlobal.getHayPaginas()) {
             isLoading = true;
-            controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
+            controllerGlobal.obtenerAlbumes(new ResultListener<List<Album>>() {
                 @Override
                 public void finish(List<Album> resultado) {
                     if (resultado.size() == 0) {
@@ -106,7 +104,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
 
     private void obtenerArtistas() {
-        controllerArtista.obtenerArtistas(new ResultListener<List<Artista>>() {
+        controllerGlobal.obtenerArtistas(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> resultado) {
 

@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.user.musicpal.R;
-import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
@@ -27,13 +27,13 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     private List<Album> listaAlbumesRecibida;
     private String categoriaRecibida;
     private ViewPager viewPager;
-    private ControllerAlbum controllerAlbum;
+    private ControllerGlobal controllerGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
-        controllerAlbum = new ControllerAlbum(this);
+        controllerGlobal = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -60,25 +60,25 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
         List<Album> populares;
         switch (categoria) {
             case "clasicos":
-                clasicos = controllerAlbum.getListaAlbumes( "clasicos");
+                clasicos = controllerGlobal.getListaAlbumes( "clasicos");
                 for (Album clasicoRecorrido : clasicos) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
                 }
                 break;
             case "populares":
-                populares = controllerAlbum.getListaAlbumes("populares");
+                populares = controllerGlobal.getListaAlbumes("populares");
                 for (Album popularRecorrido : populares) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
                 }
                 break;
             case "recomendaciones":
-                recomendaciones = controllerAlbum.getListaAlbumes("recomendaciones");
+                recomendaciones = controllerGlobal.getListaAlbumes("recomendaciones");
                 for (Album recomendacionRecorrido : recomendaciones) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
                 }
                 break;
             case "top":
-                top = controllerAlbum.getListaAlbumes("top");
+                top = controllerGlobal.getListaAlbumes("top");
                 for (Album topRecorrido : top) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
                 }
