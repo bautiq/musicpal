@@ -72,4 +72,9 @@ public class Album implements Serializable {
         Album albumAComparar = (Album) obj;
         return (albumAComparar.getTitulo().equals(this.titulo));
     }
+
+    @Override
+    public String toString() {
+        return getTitulo();
+    }
 }

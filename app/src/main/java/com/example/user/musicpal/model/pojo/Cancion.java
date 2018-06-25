@@ -20,6 +20,14 @@ public class Cancion implements Serializable {
     private int imagenCancion;
     @SerializedName("artist")
     private Artista artista;
+
+    @SerializedName("album")
+    private Album album;
+
+    public Album getAlbum() {
+        return album;
+    }
+
     private int id;
 
     public int getId() {

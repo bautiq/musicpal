@@ -27,6 +27,7 @@ public class FragmentReproductorChico extends Fragment {
     private LinearLayout linearLayoutReproductor;
     private TextView textCancion;
     private TextView textArtista;
+    private TextView textAlbum;
     private FragmentReproductor fragmentReproductor;
     private FragmentManager fragmentManager;
     private Cancion cancion;
@@ -44,7 +45,8 @@ public class FragmentReproductorChico extends Fragment {
         botonRewind = view.findViewById(R.id.boton_rewind);
         fragmentManager = getActivity().getSupportFragmentManager();
         textCancion = view.findViewById(R.id.id_text_cancion_reprochico);
-        textArtista = view.findViewById(R.id.id_nombre_artista);
+        textArtista = view.findViewById(R.id.id_text_artista_reprochico);
+        textAlbum = view.findViewById(R.id.id_text_album_reprochico);
         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         cancion = mediaPlayerGlobal.getCancion();
         mP = mediaPlayerGlobal.getMediaPlayer();
@@ -78,17 +80,24 @@ public class FragmentReproductorChico extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
-               // fragmentReproductor = new FragmentReproductor();
-               // FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
+                // fragmentReproductor = new FragmentReproductor();
+                // FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
             }
         });
         return view;
     }
 
-    public void setearDatos(Cancion cancion){
-        if (mP.isPlaying()){
+    public void setearDatos(Cancion cancion) {
+        if (mP.isPlaying()) {
+            botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
             textArtista.setText(cancion.getArtista().getNombre());
             textCancion.setText(cancion.getTitle());
+           try {
+               textAlbum.setText(cancion.getAlbum().getTitulo());
+           }catch (NullPointerException e){
+               textAlbum.setText(" ");
+           }
+
         }
     }
 
