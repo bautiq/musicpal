@@ -18,6 +18,7 @@ import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
 
+
 public class FragmentReproductorChico extends Fragment {
 
     private Button botonRewind;
@@ -33,11 +34,13 @@ public class FragmentReproductorChico extends Fragment {
     private Cancion cancion;
     private MediaPlayer mP;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_reproductor_chico, container, false);
+
 
         linearLayout = view.findViewById(R.id.linear_layout_reproductor_chico);
         botonPlay = view.findViewById(R.id.boton_play);
@@ -47,6 +50,10 @@ public class FragmentReproductorChico extends Fragment {
         textCancion = view.findViewById(R.id.id_text_cancion_reprochico);
         textArtista = view.findViewById(R.id.id_text_artista_reprochico);
         textAlbum = view.findViewById(R.id.id_text_album_reprochico);
+        textArtista.setSelected(true);
+        textCancion.setSelected(true);
+        textAlbum.setSelected(true);
+
         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         cancion = mediaPlayerGlobal.getCancion();
         mP = mediaPlayerGlobal.getMediaPlayer();
@@ -92,6 +99,7 @@ public class FragmentReproductorChico extends Fragment {
             botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
             textArtista.setText(cancion.getArtista().getNombre());
             textCancion.setText(cancion.getTitle());
+
            try {
                textAlbum.setText(cancion.getAlbum().getTitulo());
            }catch (NullPointerException e){
