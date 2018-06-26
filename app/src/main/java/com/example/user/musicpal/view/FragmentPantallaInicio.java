@@ -11,83 +11,102 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.user.musicpal.controller.ControllerAlbum;
-import com.example.user.musicpal.model.adapters.AlbumAdapter;
+import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.utils.ResultListener;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.NotificadorAlbumCelda {
+public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda {
 
     private NotificadorActivities notificadorActivities;
 
-    private RecyclerView recyclerViewRecomendaciones;
-    private RecyclerView recyclerViewPopulares;
-    private RecyclerView recyclerViewTop;
-    private RecyclerView recyclerViewClasicos;
-    private List<Album> albumListaRecomendaciones;
-    private List<Album> albumListaTop;
-    private List<Album> albumListaPopulares;
-    private List<Album> albumListaClasicos;
-    private AlbumAdapter albumAdapter;
-    private ControllerAlbum controllerAlbum;
+    private RecyclerView recyclerViewAlbumesTop;
+    private RecyclerView recyclerViewPlaylistsTop;
+    private RecyclerView recyclerViewArtistasTop;
+    private RecyclerView recyclerViewCancionTop;
+    private LinearLayoutManager linearLayoutManagerAlbum;
+    private LinearLayoutManager linearLayoutManagerPlaylist;
+    private LinearLayoutManager linearLayoutManagerArtista;
+    private LinearLayoutManager linearLayoutManagerCancion;
+    private AdapterAlbum adapterAlbum;
+    private Boolean isLoading;
+    private ControllerGlobal controllerGlobal;
+    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment_pantalla_inicio, container, false);
+        View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
+        isLoading = false;
+        adapterAlbum = new AdapterAlbum(getActivity(), this);
+        linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerCancion = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
+        recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
+        recyclerViewArtistasTop = view.findViewById(R.id.recycler_artista_top_id);
+        recyclerViewCancionTop = view.findViewById(R.id.recycler_tracks_top_id);
 
-        albumAdapter = new AlbumAdapter(getActivity(), this);
-        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
-        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
+        recyclerViewAlbumesTop.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isLoading) {
+                    return;
+                }
+                int ultimaPosicion = linearLayoutManagerAlbum.getItemCount();
+                int posicionActual = linearLayoutManagerAlbum.findLastVisibleItemPosition();
 
-        setAdapterAlbums(recyclerViewRecomendaciones);
-        setAdapterAlbums(recyclerViewTop);
-        setAdapterAlbums(recyclerViewClasicos);
-        setAdapterAlbums(recyclerViewPopulares);
-        controllerAlbum = new ControllerAlbum(getActivity());
+                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
+                    obtenerAlbumes();
+                }
 
-       /* albumListaRecomendaciones = controllerAlbum.getListaAlbumes( "recomendaciones");
-        albumListaPopulares = controllerAlbum.getListaAlbumes("populares");
-        albumListaTop = controllerAlbum.getListaAlbumes("top");
-        albumListaClasicos= controllerAlbum.getListaAlbumes("clasicos");
+            }
+        });
 
-        recyclerViewRecomendaciones = view.findViewById(R.id.recycler_recomendaciones_id);
-        setAdapterAlbums(albumListaRecomendaciones, recyclerViewRecomendaciones, "recomendaciones");
+        setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
+        setAdapterAlbums(recyclerViewArtistasTop, linearLayoutManagerArtista);
+        setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
+        setAdapterAlbums(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
-        recyclerViewPopulares = view.findViewById(R.id.recycler_populares_id);
-        setAdapterAlbums(albumListaPopulares, recyclerViewPopulares, "populares");
+        controllerGlobal = new ControllerGlobal(getActivity());
 
-        recyclerViewTop = view.findViewById(R.id.recycler_top_id);
-        setAdapterAlbums(albumListaTop, recyclerViewTop, "top");
-
-        recyclerViewClasicos = view.findViewById(R.id.recycler_clasicos_id);
-        setAdapterAlbums(albumListaClasicos, recyclerViewClasicos, "clasicos");
-*/
 
         obtenerAlbumes();
         return view;
     }
 
     private void obtenerAlbumes() {
-        controllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
-            @Override
-            public void finish(List<Album> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
 
-                    albumAdapter.agregarAlbumes(resultado);
+        if (controllerGlobal.getHayPaginas()) {
+            isLoading = true;
+            controllerGlobal.obtenerAlbumes(new ResultListener<List<Album>>() {
+                @Override
+                public void finish(List<Album> resultado) {
+                    if (resultado.size() == 0) {
+                        Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isLoading = false;
+                        adapterAlbum.agregarAlbumes(resultado);
+                    }
+
                 }
+            });
+        }
+    }
+
+
+    private void obtenerArtistas() {
+        controllerGlobal.obtenerArtistas(new ResultListener<List<Artista>>() {
+            @Override
+            public void finish(List<Artista> resultado) {
 
             }
         });
@@ -104,14 +123,17 @@ public class FragmentPantallaInicio extends Fragment implements AlbumAdapter.Not
         notificadorActivities.notificar(list, posicion, categoria);
     }
 
-    public void setAdapterAlbums(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+    public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(albumAdapter);
+        recyclerView.setAdapter(adapterAlbum);
     }
+
 
     public interface NotificadorActivities {
         public void notificar(List<Album> listaAlbums, int posicion, String categoria);
+
+        public void notificarArtista(Artista artista);
     }
 
 }

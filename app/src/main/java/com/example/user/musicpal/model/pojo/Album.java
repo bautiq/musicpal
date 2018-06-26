@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Album implements Serializable {
+
     @SerializedName("title")
     private String titulo;
 
@@ -21,6 +22,9 @@ public class Album implements Serializable {
     private int id;
     private int imagenAlbum;
 
+
+    public Album() {
+    }
 
     public Album(String titulo, Artista artista) {
         this.titulo = titulo;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo1"
+    android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
     tools:context=".view.FragmentCompartir">

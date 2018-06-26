@@ -3,14 +3,14 @@
     <color name="colorPrimary">#161616</color>
     <color name="colorPrimaryDark">#01094b</color>
     <color name="colorAccent">#d50000</color>
-    <color name="colorBarraAbajo">#424242</color>
+    <color name="colorBarraAbajoGris">#424242</color>
     <color name="negroposta">#000000</color>
-    <color name="negro_reproductor">#212121</color>
+    <color name="negro_gris_reproductor">#212121</color>
     <color name="blanco">#FFFFFF</color>
-    <color name="fondo2">#ff9800</color>
+    <color name="fondoNaranja">#ff9800</color>
     <color name="header_nav_view">#c77b0b</color>
     <color name="navigation_view">#000000</color>
-    <color name="fondo3">#fdd835</color>
+    <color name="fondoAmarillo">#fdd835</color>
     <color name="gris">#616161</color>
     <color name="grisBlanco">#e0e0e0</color>
 </resources>

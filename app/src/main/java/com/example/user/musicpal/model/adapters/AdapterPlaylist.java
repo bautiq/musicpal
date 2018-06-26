@@ -13,7 +13,7 @@ import com.example.user.musicpal.model.pojo.Playlist;
 
 import java.util.List;
 
-public class PlaylistAdapter extends RecyclerView.Adapter {
+public class AdapterPlaylist extends RecyclerView.Adapter {
     private List<Playlist> listaPlaylist;
 
     @NonNull

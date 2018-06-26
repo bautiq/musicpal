@@ -16,21 +16,21 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumAdapter extends RecyclerView.Adapter {
+public class AdapterAlbum extends RecyclerView.Adapter {
 
     private List<Album> albumLista;
     private NotificadorAlbumCelda notificadorAlbumCelda;
     private String categoria;
     private Context context;
 
-    public AlbumAdapter(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria, Context context) {
+    public AdapterAlbum(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria, Context context) {
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.categoria = categoria;
         this.context = context;
     }
 
-    public AlbumAdapter(Context context, NotificadorAlbumCelda notificadorAlbumCelda) {
+    public AdapterAlbum(Context context, NotificadorAlbumCelda notificadorAlbumCelda) {
         this.context = context;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.albumLista = new ArrayList<>();
@@ -67,13 +67,11 @@ public class AlbumAdapter extends RecyclerView.Adapter {
 
     public void agregarAlbumes(List<Album> albums) {
 
-       /* for (Album albumAAgregar : albums) {
+        for (Album albumAAgregar : albums) {
             if (!albumLista.contains(albumAAgregar)) {
                 albumLista.add(albumAAgregar);
             }
-        }*/
-
-        albumLista.addAll(albums);
+        }
         notifyDataSetChanged();
     }
 
@@ -99,7 +97,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
         }
 
         public void cargarAlbum(Album album) {
-            Picasso.with(context).load(album.getImagenUrl()).into(imagenAlbum);
+            Picasso.with(context).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
 

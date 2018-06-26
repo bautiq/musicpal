@@ -7,13 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.user.musicpal.R;
-import com.example.user.musicpal.controller.ControllerAlbum;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
+import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.FragmentHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleActivity extends AppCompatActivity {
+public class ActivityDetalle extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
@@ -25,13 +27,13 @@ public class DetalleActivity extends AppCompatActivity {
     private List<Album> listaAlbumesRecibida;
     private String categoriaRecibida;
     private ViewPager viewPager;
-    private ControllerAlbum controllerAlbum;
+    private ControllerGlobal controllerGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
-        controllerAlbum = new ControllerAlbum(this);
+        controllerGlobal = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -58,25 +60,25 @@ public class DetalleActivity extends AppCompatActivity {
         List<Album> populares;
         switch (categoria) {
             case "clasicos":
-                clasicos = controllerAlbum.getListaAlbumes( "clasicos");
+                clasicos = controllerGlobal.getListaAlbumes( "clasicos");
                 for (Album clasicoRecorrido : clasicos) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
                 }
                 break;
             case "populares":
-                populares = controllerAlbum.getListaAlbumes("populares");
+                populares = controllerGlobal.getListaAlbumes("populares");
                 for (Album popularRecorrido : populares) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
                 }
                 break;
             case "recomendaciones":
-                recomendaciones = controllerAlbum.getListaAlbumes("recomendaciones");
+                recomendaciones = controllerGlobal.getListaAlbumes("recomendaciones");
                 for (Album recomendacionRecorrido : recomendaciones) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
                 }
                 break;
             case "top":
-                top = controllerAlbum.getListaAlbumes("top");
+                top = controllerGlobal.getListaAlbumes("top");
                 for (Album topRecorrido : top) {
                     listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
                 }
@@ -85,6 +87,17 @@ public class DetalleActivity extends AppCompatActivity {
                 */
     }
 
+
+    @Override
+    public void notificarCancion(Cancion cancion, Album album) {
+        fragmentManager = getSupportFragmentManager();
+        FragmentReproductor fragmentReproductor = new FragmentReproductor();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentReproductor.ALBUM_KEY, album);
+        bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
+        fragmentReproductor.setArguments(bundle);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity, fragmentManager);
+    }
 }
 
 

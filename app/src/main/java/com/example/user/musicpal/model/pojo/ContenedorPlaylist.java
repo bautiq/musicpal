@@ -4,12 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ContenedorAlbum {
-
+public class ContenedorPlaylist {
     @SerializedName("data")
-    private List<Album> listaAlbumes;
+    private List<Playlist>playlists;
 
-    public List<Album> obtenerListaDeAlbumes() {
-        return listaAlbumes;
+    public List<Playlist> getPlaylists() {
+        return playlists;
     }
 }

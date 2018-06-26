@@ -1,6 +1,7 @@
 package com.example.user.musicpal.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.user.musicpal.controller.ControllerCancion;
-import com.example.user.musicpal.model.adapters.CancionesAdapter;
+import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
@@ -27,17 +28,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalle extends Fragment {
+public class FragmentDetalle extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String ALBUM_KEY = "album_key";
+
 
     private ImageView imagenGrande;
     private TextView textArtista;
     private TextView textAlbum;
     private RecyclerView recyclerViewCanciones;
-    private CancionesAdapter cancionesAdapter;
+    private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
-    private ControllerCancion controllerCancion;
+    private ControllerGlobal controller;
+    private NotificadorCancion notificadorCancion;
+    private Album album;
 
     public static FragmentDetalle dameUnFragment(Album album) {
         FragmentDetalle fragmentCreado = new FragmentDetalle();
@@ -59,13 +63,14 @@ public class FragmentDetalle extends Fragment {
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
 
         Bundle bundle = getArguments();
-        Album album = (Album) bundle.getSerializable(ALBUM_KEY);
+        album = (Album) bundle.getSerializable(ALBUM_KEY);
 
 
-        controllerCancion = new ControllerCancion();
+
+        controller = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        cancionesAdapter = new CancionesAdapter(listaCanciones);
+        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
@@ -74,7 +79,7 @@ public class FragmentDetalle extends Fragment {
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
         recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
         recyclerViewCanciones.setHasFixedSize(true);
-        recyclerViewCanciones.setAdapter(cancionesAdapter);
+        recyclerViewCanciones.setAdapter(adapterCanciones);
 
         obtenerCancionesPorAlbum(album);
 
@@ -86,12 +91,26 @@ public class FragmentDetalle extends Fragment {
     }
 
     public void obtenerCancionesPorAlbum(Album album){
-        controllerCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-                cancionesAdapter.setListaDeCanciones(resultado);
+                adapterCanciones.setListaDeCanciones(resultado);
             }
         }, album.getId());
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        notificadorCancion = (NotificadorCancion) context;
+    }
+
+    @Override
+    public void notificarCeldaClikeada(Cancion cancion) {
+        notificadorCancion.notificarCancion(cancion, album);
+    }
+
+    public interface NotificadorCancion{
+        public void notificarCancion(Cancion cancion, Album album);
+    }
 }
