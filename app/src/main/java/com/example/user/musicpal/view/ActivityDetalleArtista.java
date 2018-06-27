@@ -26,11 +26,14 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
     private List<Artista> listaArtistasRecibida;
     private ViewPager viewPager;
     private ControllerGlobal controllerArtista;
+    private FragmentReproductorChico fragmentReproductorChico;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_artista);
+        fragmentReproductorChico = new FragmentReproductorChico();
+        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity_artista, getSupportFragmentManager());
         controllerArtista = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_artista_id);
         Intent intent = getIntent();
@@ -53,11 +56,13 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
     @Override
     public void notificarCancion(Cancion cancion, Artista artista) {
         fragmentManager = getSupportFragmentManager();
-        FragmentReproductor fragmentReproductor = new FragmentReproductor();
+        fragmentReproductorChico.setearDatos(cancion);
+        /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentReproductor.ARTISTA_KEY, artista);
         bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
         fragmentReproductor.setArguments(bundle);
         FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
+        */
     }
 }

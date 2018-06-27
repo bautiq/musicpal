@@ -65,8 +65,6 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         Bundle bundle = getArguments();
         album = (Album) bundle.getSerializable(ALBUM_KEY);
 
-
-
         controller = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();

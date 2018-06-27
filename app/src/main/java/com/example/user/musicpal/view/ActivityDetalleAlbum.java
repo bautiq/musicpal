@@ -55,39 +55,6 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
         for (Album album : listaAlbumesRecibida) {
             listaFragments.add(FragmentDetalleAlbum.dameUnFragment(album));
         }
-        /*
-        listaFragments = new ArrayList<>();
-        List<Album> clasicos;
-        List<Album> top;
-        List<Album> recomendaciones;
-        List<Album> populares;
-        switch (categoria) {
-            case "clasicos":
-                clasicos = controllerGlobal.getListaAlbumes( "clasicos");
-                for (Album clasicoRecorrido : clasicos) {
-                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(clasicoRecorrido));
-                }
-                break;
-            case "populares":
-                populares = controllerGlobal.getListaAlbumes("populares");
-                for (Album popularRecorrido : populares) {
-                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(popularRecorrido));
-                }
-                break;
-            case "recomendaciones":
-                recomendaciones = controllerGlobal.getListaAlbumes("recomendaciones");
-                for (Album recomendacionRecorrido : recomendaciones) {
-                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(recomendacionRecorrido));
-                }
-                break;
-            case "top":
-                top = controllerGlobal.getListaAlbumes("top");
-                for (Album topRecorrido : top) {
-                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(topRecorrido));
-                }
-                break;
-                default: listaFragments.add(FragmentDetalleAlbum.dameUnFragment(albumRecibido));
-                */
     }
 
 

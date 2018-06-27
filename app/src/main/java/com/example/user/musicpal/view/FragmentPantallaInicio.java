@@ -75,6 +75,24 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             }
         });
 
+        recyclerViewArtistasTop.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isLoading) {
+                    return;
+                }
+                int ultimaPosicion = linearLayoutManagerArtista.getItemCount();
+                int posicionActual = linearLayoutManagerArtista.findLastVisibleItemPosition();
+
+                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
+                    obtenerArtistas();
+                }
+
+            }
+        });
+
+
         setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
         setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
         setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
@@ -101,7 +119,6 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             }
         });
     }
-
 
     private void obtenerArtistas() {
         controllerArtista.obtenerArtistasOnline(new ResultListener<List<Artista>>() {

@@ -19,6 +19,7 @@ import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
+import com.example.user.musicpal.utils.SimpleDividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,10 +58,9 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
         adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
 
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
-        recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
+        recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
 
