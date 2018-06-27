@@ -31,7 +31,7 @@ public class FragmentReproductorChico extends Fragment {
     private TextView textAlbum;
     private FragmentReproductor fragmentReproductor;
     private FragmentManager fragmentManager;
-    private Cancion cancion;
+    private static Cancion cancion;
     private MediaPlayer mP;
 
 
@@ -92,6 +92,13 @@ public class FragmentReproductorChico extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cancion = MediaPlayerGlobal.getInstance().getCancion();
+        setearDatos(cancion);
     }
 
     public void setearDatos(Cancion cancion) {
