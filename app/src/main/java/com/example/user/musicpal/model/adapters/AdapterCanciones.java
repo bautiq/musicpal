@@ -78,7 +78,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -91,7 +91,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

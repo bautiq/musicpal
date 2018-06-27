@@ -20,12 +20,17 @@ public class MediaPlayerGlobal {
     private Context context;
 
     private MediaPlayerGlobal() {
-        mediaPlayer = new MediaPlayer();
         Artista artista = new Artista("Linkin Park");
         cancion = new Cancion("In my remains", "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3", artista, new Album("Living things", artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"));
-
+        mediaPlayer = new MediaPlayer();
+        try {
+            agregarCancionClikeada(cancion, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
 
     public static MediaPlayerGlobal getInstance() {
         if (mediaPlayerGlobal == null) {
@@ -38,13 +43,15 @@ public class MediaPlayerGlobal {
         return mediaPlayer;
     }
 
-    public void agregarCancionClikeada(Cancion cancion) throws IOException {
+    public void agregarCancionClikeada(Cancion cancion, Boolean quieroQueInicie) throws IOException {
         this.cancion = cancion;
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
         mediaPlayer.prepare();
-        mediaPlayer.start();
+        if(quieroQueInicie){
+            mediaPlayer.start();
+        }
     }
 
     public Cancion getCancion() {

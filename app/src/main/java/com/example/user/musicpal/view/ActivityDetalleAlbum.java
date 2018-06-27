@@ -73,7 +73,7 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragment(new FragmentReproductor(), R.id.viewPager_id, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa, fragmentManager);
     }
 }
 

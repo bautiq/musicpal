@@ -232,6 +232,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragment(new FragmentReproductor(), R.id.container_fragment, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.container_reproductor_grande_main, fragmentManager);
     }
 }

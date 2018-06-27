@@ -68,6 +68,6 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragment(new FragmentReproductor(), R.layout.activity_detalle_artista, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
     }
 }

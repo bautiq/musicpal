@@ -52,14 +52,14 @@ public class FragmentReproductor extends Fragment {
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
         mP = MediaPlayerGlobal.getInstance().getMediaPlayer();
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
-        albumRecibido = cancionQueContiene.getAlbum();
+        //albumRecibido = cancionQueContiene.getAlbum();
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
-        try {
+        /*try {
             Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
         } catch (NullPointerException e) {
             Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
-        }
+        }*/
 
 
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
@@ -89,15 +89,6 @@ public class FragmentReproductor extends Fragment {
         });
 
         return view;
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mP != null) {
-            mP.release();
-        }
     }
 
     @Override
