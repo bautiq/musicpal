@@ -25,7 +25,7 @@ public interface Service {
     @GET("chart/0/artists")
     Call<ContenedorArtistas> obtenerArtista();
 
-    @GET("chart/0/tracks")
-    Call<ContenedorDeCanciones> obtenerListaCanciones();
+    @GET("artist/{id}/top")
+    Call<ContenedorDeCanciones> obtenerCancionesPorArtistaConId(@Path("id") int id);
 
 }
