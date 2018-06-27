@@ -13,6 +13,7 @@ public class Artista implements Serializable {
 
     @SerializedName("name")
     private String nombre;
+
     @SerializedName("picture_medium")
     private String imagenUrl;
 
