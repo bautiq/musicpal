@@ -26,14 +26,37 @@ public class DaoCancion {
         retrofit = retroBuilder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
     }
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,int id) {
+
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController, int id) {
         Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbumConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
             public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
                 ContenedorDeCanciones contenedorObtenido = response.body();
 
-                if (contenedorObtenido != null  && contenedorObtenido.getCanciones() != null) {
+                if (contenedorObtenido != null && contenedorObtenido.getCanciones() != null) {
+                    List<Cancion> listaCancion = contenedorObtenido.getCanciones();
+                    resultListenerDelController.finish(listaCancion);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Cancion>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContenedorDeCanciones> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
+
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> resultListenerDelController, int id) {
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorArtistaConId(id);
+        call.enqueue(new Callback<ContenedorDeCanciones>() {
+            @Override
+            public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
+                ContenedorDeCanciones contenedorObtenido = response.body();
+
+                if (contenedorObtenido != null && contenedorObtenido.getCanciones() != null) {
                     List<Cancion> listaCancion = contenedorObtenido.getCanciones();
                     resultListenerDelController.finish(listaCancion);
                 } else {
