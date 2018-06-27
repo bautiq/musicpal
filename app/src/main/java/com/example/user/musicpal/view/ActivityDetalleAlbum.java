@@ -43,7 +43,7 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
         listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
         categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
         crearListaFragments();
-        FragmentDetallePagerAdapter detallePagerAdapter = new FragmentDetallePagerAdapter(getSupportFragmentManager(), listaFragments);
+        FragmentDetalleAlbumPagerAdapter detallePagerAdapter = new FragmentDetalleAlbumPagerAdapter(getSupportFragmentManager(), listaFragments);
         viewPager.setAdapter(detallePagerAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY);
         viewPager.setCurrentItem(posicionDelItem);
