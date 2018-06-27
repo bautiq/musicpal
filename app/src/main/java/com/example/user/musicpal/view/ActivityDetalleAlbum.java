@@ -15,7 +15,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalle extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
+public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
@@ -33,7 +33,7 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle);
+        setContentView(R.layout.activity_detalle_album);
         fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity, getSupportFragmentManager());
         controllerGlobal = new ControllerGlobal(this);

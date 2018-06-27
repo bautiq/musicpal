@@ -116,18 +116,18 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public void notificar(List<Album> list, int posicion, String categoria) {
-        Intent intent = new Intent(this, ActivityDetalle.class);
+        Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ActivityDetalle.ALBUM_KEY, (Serializable) list);
-        bundle.putInt(ActivityDetalle.POSICION_KEY, posicion);
-        bundle.putString(ActivityDetalle.CATEGORIA_CLICKEADA, categoria);
+        bundle.putSerializable(ActivityDetalleAlbum.ALBUM_KEY, (Serializable) list);
+        bundle.putInt(ActivityDetalleAlbum.POSICION_KEY, posicion);
+        bundle.putString(ActivityDetalleAlbum.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
     @Override
     public void notificarArtista(Artista artista) {
-        Intent intent = new Intent(this, ActivityDetalle.class);
+        Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
     }
 
