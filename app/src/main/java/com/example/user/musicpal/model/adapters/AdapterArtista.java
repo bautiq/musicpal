@@ -13,23 +13,24 @@ import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterArtista extends RecyclerView.Adapter {
     private Context context;
     private List<Artista> artistaList;
-    private NotificadorArtistaAdapter notificadorArtistaAdapter;
+    private NotificadorArtistaCelda notificadorArtistaCelda;
 
-    public AdapterArtista(Context context, NotificadorArtistaAdapter notificadorArtistaAdapter) {
+    public AdapterArtista(Context context, NotificadorArtistaCelda notificadorArtistaCelda) {
         this.context = context;
-        this.artistaList = artistaList;
-        this.notificadorArtistaAdapter = notificadorArtistaAdapter;
+        this.artistaList = new ArrayList<>();
+        this.notificadorArtistaCelda = notificadorArtistaCelda;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater= LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.celda_recycler_scroll, parent, false);
         ViewHolderArtista viewHolderArtista = new ViewHolderArtista(view);
         return viewHolderArtista;
@@ -52,6 +53,11 @@ public class AdapterArtista extends RecyclerView.Adapter {
 
     }
 
+    public void agregarArtistas(List<Artista> artistas) {
+        artistaList.addAll(artistas);
+        notifyDataSetChanged();
+    }
+
     private class ViewHolderArtista extends RecyclerView.ViewHolder {
         private TextView textViewNombre;
         private ImageView imagen;
@@ -59,6 +65,14 @@ public class AdapterArtista extends RecyclerView.Adapter {
         public ViewHolderArtista(View itemView) {
             super(itemView);
             textViewNombre = itemView.findViewById(R.id.title_fragment_album);
+            imagen = itemView.findViewById(R.id.imagen_fragment_album);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int posicionDeArtistaCliqueado = getAdapterPosition();
+                    notificadorArtistaCelda.notificarCeldaCliqueadaArtista(artistaList, posicionDeArtistaCliqueado);
+                }
+            });
         }
 
         public void armarCelda(Artista artista) {
@@ -68,7 +82,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
 
     }
 
-    public interface NotificadorArtistaAdapter {
-        public void notificar(Artista artista);
+    public interface NotificadorArtistaCelda {
+        public void notificarCeldaCliqueadaArtista(List<Artista> artistas, int posicion);
     }
 }
