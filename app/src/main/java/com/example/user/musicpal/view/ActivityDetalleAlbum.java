@@ -15,15 +15,15 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
+public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
     public static final String CATEGORIA_CLICKEADA = "clave_categoria";
-    private FragmentDetalle fragmentDetalle;
+    private FragmentDetalleAlbum fragmentDetalleAlbum;
     private FragmentManager fragmentManager;
     //esta lista contiene los fragments que se van a mostrar en el viewpager
-    private List<FragmentDetalle> listaFragments;
+    private List<FragmentDetalleAlbum> listaFragments;
     private List<Album> listaAlbumesRecibida;
     private FragmentReproductorChico fragmentReproductorChico;
     private String categoriaRecibida;
@@ -53,7 +53,7 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
     public void crearListaFragments() {
         listaFragments = new ArrayList<>();
         for (Album album : listaAlbumesRecibida) {
-            listaFragments.add(FragmentDetalle.dameUnFragment(album));
+            listaFragments.add(FragmentDetalleAlbum.dameUnFragment(album));
         }
         /*
         listaFragments = new ArrayList<>();
@@ -65,28 +65,28 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
             case "clasicos":
                 clasicos = controllerGlobal.getListaAlbumes( "clasicos");
                 for (Album clasicoRecorrido : clasicos) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
+                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(clasicoRecorrido));
                 }
                 break;
             case "populares":
                 populares = controllerGlobal.getListaAlbumes("populares");
                 for (Album popularRecorrido : populares) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
+                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(popularRecorrido));
                 }
                 break;
             case "recomendaciones":
                 recomendaciones = controllerGlobal.getListaAlbumes("recomendaciones");
                 for (Album recomendacionRecorrido : recomendaciones) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
+                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(recomendacionRecorrido));
                 }
                 break;
             case "top":
                 top = controllerGlobal.getListaAlbumes("top");
                 for (Album topRecorrido : top) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
+                    listaFragments.add(FragmentDetalleAlbum.dameUnFragment(topRecorrido));
                 }
                 break;
-                default: listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
+                default: listaFragments.add(FragmentDetalleAlbum.dameUnFragment(albumRecibido));
                 */
     }
 

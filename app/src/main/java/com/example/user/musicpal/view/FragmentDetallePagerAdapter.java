@@ -7,21 +7,21 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 public class FragmentDetallePagerAdapter extends FragmentStatePagerAdapter {
-private List<FragmentDetalle> listafragmentDetalle;
+private List<FragmentDetalleAlbum> listafragmentDetalleAlbum;
 
-    public FragmentDetallePagerAdapter(FragmentManager fm, List<FragmentDetalle> listafragmentDetalle) {
+    public FragmentDetallePagerAdapter(FragmentManager fm, List<FragmentDetalleAlbum> listafragmentDetalleAlbum) {
         super(fm);
-        this.listafragmentDetalle = listafragmentDetalle;
+        this.listafragmentDetalleAlbum = listafragmentDetalleAlbum;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return listafragmentDetalle.get(position);
+        return listafragmentDetalleAlbum.get(position);
     }
 
     @Override
     public int getCount() {
-        return listafragmentDetalle.size();
+        return listafragmentDetalleAlbum.size();
     }
 
 

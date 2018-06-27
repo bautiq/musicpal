@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_negro_con_trama"
     android:orientation="vertical"
-    tools:context=".view.FragmentDetalle">
+    tools:context=".view.FragmentDetalleAlbum">
 
     <ImageView
         android:id="@+id/id_imagen_vista_previa"
