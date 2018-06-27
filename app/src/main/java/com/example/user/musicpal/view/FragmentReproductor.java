@@ -27,9 +27,7 @@ import java.io.Serializable;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentReproductor extends Fragment {
-    public static final String CANCION_KEY = "key_cancion";
     public static final String ALBUM_KEY = "album_key";
-    public static final String ARTISTA_KEY = "artista_key";
     private TextView textViewArtista;
     private TextView textViewTitulo;
     private ImageView imagen;
@@ -46,37 +44,24 @@ public class FragmentReproductor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
-        Bundle bundle = getArguments();
-        cancionQueContiene = (Cancion) bundle.getSerializable(CANCION_KEY);
-        albumRecibido = (Album) bundle.getSerializable(ALBUM_KEY);
         textViewArtista = view.findViewById(R.id.text_reproductor_artista);
         textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
-
+        mP = MediaPlayerGlobal.getInstance().getMediaPlayer();
+        cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
+        albumRecibido = cancionQueContiene.getAlbum();
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
         try {
-            Picasso.with(getContext()).load(cancionQueContiene.getAlbum().getImagenUrl()).into(imagen);
+            Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
         } catch (NullPointerException e) {
             Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
         }
 
-        mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
-        try {
-            //esta linea siempre es false :/
-            if (mP.isPlaying()) {
-                mP.pause();
-                agregarCancionClikeada(mP, cancionQueContiene);
-            } else {
-                agregarCancionClikeada(mP, cancionQueContiene);
-            }
 
-        } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
-        }
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +91,7 @@ public class FragmentReproductor extends Fragment {
         return view;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -114,13 +100,25 @@ public class FragmentReproductor extends Fragment {
         }
     }
 
-
-    private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) throws IOException {
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.reset();
-        mediaPlayer.setDataSource(cancion.getUrlPreview());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+    @Override
+    public void onResume() {
+        super.onResume();
+        cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
+        setearDatos(cancionQueContiene);
     }
 
+    public void setearDatos(Cancion cancion) {
+        if (mP.isPlaying()) {
+            buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            textViewArtista.setText(cancion.getArtista().getNombre());
+            textViewTitulo.setText(cancion.getTitle());
+
+         /*   try {
+                textAlbum.setText(cancion.getAlbum().getTitulo());
+            }catch (NullPointerException e){
+                textAlbum.setText(" ");
+            }
+*/
+        }
+    }
 }

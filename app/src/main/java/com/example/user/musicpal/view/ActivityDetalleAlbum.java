@@ -15,7 +15,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion {
+public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
@@ -69,6 +69,11 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
         fragmentReproductor.setArguments(bundle);
         FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity, fragmentManager);
     */
+    }
+
+    @Override
+    public void cargarReproductorGrande() {
+        FragmentHelper.cargarFragment(new FragmentReproductor(), R.id.viewPager_id, fragmentManager);
     }
 }
 

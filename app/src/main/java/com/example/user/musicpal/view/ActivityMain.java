@@ -12,16 +12,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.utils.ResultListener;
 
 import java.io.Serializable;
 import java.util.List;
 
 
-public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
+public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -41,6 +45,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPerfil fragmentPerfil;
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
+    private MediaPlayerGlobal mediaPlayerGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         imageSearch = findViewById(R.id.search_button);
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-
+        mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
@@ -107,6 +112,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
                 Toast.makeText(ActivityMain.this, "Click Search", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void notificarAlbum(List<Album> list, int posicion, String categoria) {
@@ -222,5 +228,10 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         }
         drawerLayout.closeDrawers();
         return false;
+    }
+
+    @Override
+    public void cargarReproductorGrande() {
+        FragmentHelper.cargarFragment(new FragmentReproductor(), R.id.container_fragment, fragmentManager);
     }
 }

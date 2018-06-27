@@ -26,9 +26,10 @@ public class Album implements Serializable {
     public Album() {
     }
 
-    public Album(String titulo, Artista artista) {
+    public Album(String titulo, Artista artista, String imagenUrl) {
         this.titulo = titulo;
         this.artista = artista;
+        this.ImagenUrl = imagenUrl;
 
     }
 

@@ -26,6 +26,8 @@ public class ControllerGlobal {
         offset = 0;
     }
 
+
+
     public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
             DaoAlbum daoRetroFit = new DaoAlbum();

@@ -1,6 +1,8 @@
 package com.example.user.musicpal.view;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,6 +27,7 @@ public class FragmentReproductorChico extends Fragment {
     private Button botonForward;
     private Button botonPlay;
     private LinearLayout linearLayout;
+    private NotificadorReproductorChico notificadorReproductorChico;
     private LinearLayout linearLayoutReproductor;
     private TextView textCancion;
     private TextView textArtista;
@@ -87,11 +90,17 @@ public class FragmentReproductorChico extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
-                // fragmentReproductor = new FragmentReproductor();
-                // FragmentHelper.cargarFragment(fragmentReproductor, R.id.viewPager_id, fragmentManager);
+
+                notificadorReproductorChico.cargarReproductorGrande();
             }
         });
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        notificadorReproductorChico = (NotificadorReproductorChico) context;
     }
 
     @Override
@@ -114,6 +123,10 @@ public class FragmentReproductorChico extends Fragment {
            }
 
         }
+    }
+
+    public interface NotificadorReproductorChico{
+        public void cargarReproductorGrande();
     }
 
 }

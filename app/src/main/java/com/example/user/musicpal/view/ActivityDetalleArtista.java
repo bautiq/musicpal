@@ -16,7 +16,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleArtista extends AppCompatActivity implements FragmentDetalleArtista.NotificadorCancion {
+public class ActivityDetalleArtista extends AppCompatActivity implements FragmentDetalleArtista.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico {
     public static final String ARTISTA_KEY = "clave_artista";
     public static final String POSICION_KEY_ARTISTA = "clave_posicion_artista";
 
@@ -64,5 +64,10 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
         fragmentReproductor.setArguments(bundle);
         FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
         */
+    }
+
+    @Override
+    public void cargarReproductorGrande() {
+        FragmentHelper.cargarFragment(new FragmentReproductor(), R.layout.activity_detalle_artista, fragmentManager);
     }
 }

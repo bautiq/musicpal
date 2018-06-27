@@ -8,7 +8,14 @@ public class ContenedorDeCanciones {
     @SerializedName("data")
     private List<Cancion>canciones;
 
+    private Cancion cancion;
+
     public List<Cancion> getCanciones() {
         return canciones;
     }
+
+    public Cancion getCancion() {
+        return cancion;
+    }
 }
+
