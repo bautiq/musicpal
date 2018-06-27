@@ -29,6 +29,7 @@ import java.io.Serializable;
 public class FragmentReproductor extends Fragment {
     public static final String CANCION_KEY = "key_cancion";
     public static final String ALBUM_KEY = "album_key";
+    public static final String ARTISTA_KEY = "artista_key";
     private TextView textViewArtista;
     private TextView textViewTitulo;
     private ImageView imagen;
@@ -54,17 +55,33 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
-        final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-        mP = mediaPlayerGlobal.getMediaPlayer();
+
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
-        Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
+        try {
+            Picasso.with(getContext()).load(cancionQueContiene.getAlbum().getImagenUrl()).into(imagen);
+        } catch (NullPointerException e) {
+            Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
+        }
 
+        mP = MediaPlayer.create(getActivity(), R.raw.bitter_sweet_symphony);
+        try {
+            //esta linea siempre es false :/
+            if (mP.isPlaying()) {
+                mP.pause();
+                agregarCancionClikeada(mP, cancionQueContiene);
+            } else {
+                agregarCancionClikeada(mP, cancionQueContiene);
+            }
+
+        } catch (IOException | IllegalStateException e) {
+            e.printStackTrace();
+        }
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mP.isPlaying()) {
-                    mP.stop();
+                    mP.pause();
                     buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
                 } else {
                     mP.start();
@@ -88,4 +105,22 @@ public class FragmentReproductor extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mP != null) {
+            mP.release();
+        }
+    }
+
+
+    private void agregarCancionClikeada(MediaPlayer mediaPlayer, Cancion cancion) throws IOException {
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.reset();
+        mediaPlayer.setDataSource(cancion.getUrlPreview());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
+    }
+
 }
