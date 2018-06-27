@@ -33,11 +33,7 @@ public class ControllerGlobal {
         return list;
     }
 
-    public List<Album> getListaAlbumOnline() {
-        return null;
-    }
-
-    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
+    public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
             DaoAlbum daoRetroFit = new DaoAlbum();
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
@@ -63,16 +59,19 @@ public class ControllerGlobal {
         }, id);
     }
 
-    public void obtenerArtistas(final ResultListener<List<Artista>> escuchadorDeLaVista){
-        if (hayInternet()){
+    public void obtenerArtistasOnline(final ResultListener<List<Artista>> resultListenerDeLaVista) {
+        if (hayInternet()) {
             ArtistaDao artistaDao = new ArtistaDao();
             artistaDao.obtenerArtistas(new ResultListener<List<Artista>>() {
                 @Override
                 public void finish(List<Artista> resultado) {
-                    escuchadorDeLaVista.finish(resultado);
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
                 }
-            });
-
+            }, offset, LIST_SIZE);
         }
     }
 
@@ -83,7 +82,7 @@ public class ControllerGlobal {
             public void finish(List<Cancion> resultado) {
                 listener.finish(resultado);
             }
-        },id);
+        }, id);
     }
 
     private boolean hayInternet() {

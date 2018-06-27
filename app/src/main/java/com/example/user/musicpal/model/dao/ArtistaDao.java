@@ -27,9 +27,9 @@ public class ArtistaDao {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerDelController) {
+    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerDelController,Integer offset, Integer limit) {
 
-        Call<ContenedorArtistas> call = service.obtenerArtista();
+        Call<ContenedorArtistas> call = service.obtenerArtista(offset, limit);
         call.enqueue(new Callback<ContenedorArtistas>() {
             @Override
             public void onResponse(Call<ContenedorArtistas> call, Response<ContenedorArtistas> response) {

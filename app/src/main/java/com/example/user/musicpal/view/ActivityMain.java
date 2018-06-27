@@ -115,7 +115,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificar(List<Album> list, int posicion, String categoria) {
+    public void notificarAlbum(List<Album> list, int posicion, String categoria) {
         Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ActivityDetalleAlbum.ALBUM_KEY, (Serializable) list);

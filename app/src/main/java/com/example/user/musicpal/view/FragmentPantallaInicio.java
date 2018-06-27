@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
+import com.example.user.musicpal.model.adapters.AdapterArtista;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Artista;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda {
+public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda, AdapterArtista.NotificadorArtistaCelda {
 
     private NotificadorActivities notificadorActivities;
 
@@ -36,8 +37,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private LinearLayoutManager linearLayoutManagerArtista;
     private LinearLayoutManager linearLayoutManagerCancion;
     private AdapterAlbum adapterAlbum;
+    private AdapterArtista adapterArtista;
     private Boolean isLoading;
-    private ControllerGlobal controllerGlobal;
+    private ControllerGlobal controllerAlbum;
+    private ControllerGlobal controllerArtista;
     private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
@@ -45,6 +48,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
         isLoading = false;
         adapterAlbum = new AdapterAlbum(getActivity(), this);
+        adapterArtista = new AdapterArtista(getActivity(), this);
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -71,43 +75,45 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             }
         });
 
+
+
         setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
-        setAdapterAlbums(recyclerViewArtistasTop, linearLayoutManagerArtista);
+        setAdapterArtistas(recyclerViewArtistasTop,linearLayoutManagerArtista);
         setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
         setAdapterAlbums(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
-        controllerGlobal = new ControllerGlobal(getActivity());
+        controllerAlbum = new ControllerGlobal(getActivity());
+        controllerArtista = new ControllerGlobal(getActivity());
 
-
+        obtenerArtistas();
         obtenerAlbumes();
         return view;
     }
 
     private void obtenerAlbumes() {
-
-        if (controllerGlobal.getHayPaginas()) {
-            isLoading = true;
-            controllerGlobal.obtenerAlbumes(new ResultListener<List<Album>>() {
-                @Override
-                public void finish(List<Album> resultado) {
-                    if (resultado.size() == 0) {
-                        Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                    } else {
-                        isLoading = false;
-                        adapterAlbum.agregarAlbumes(resultado);
-                    }
-
+        controllerAlbum.obtenerAlbumesOnline(new ResultListener<List<Album>>() {
+            @Override
+            public void finish(List<Album> resultado) {
+                if (resultado.size() == 0) {
+                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapterAlbum.agregarAlbumes(resultado);
                 }
-            });
-        }
+
+            }
+        });
     }
 
 
     private void obtenerArtistas() {
-        controllerGlobal.obtenerArtistas(new ResultListener<List<Artista>>() {
+        controllerArtista.obtenerArtistasOnline(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> resultado) {
-
+                if (resultado.size() == 0) {
+                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapterArtista.agregarArtistas(resultado);
+                }
             }
         });
     }
@@ -120,7 +126,12 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
     @Override
     public void notificarCeldaClickeada(List<Album> list, int posicion, String categoria) {
-        notificadorActivities.notificar(list, posicion, categoria);
+        notificadorActivities.notificarAlbum(list, posicion, categoria);
+    }
+
+    @Override
+    public void notificarCeldaCliqueadaArtista(List<Artista> artistas, int posicion) {
+        notificadorActivities.notificarArtista(artistas, posicion);
     }
 
     public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
@@ -129,11 +140,15 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setAdapter(adapterAlbum);
     }
 
-
-    public interface NotificadorActivities {
-        public void notificar(List<Album> listaAlbums, int posicion, String categoria);
-
-        public void notificarArtista(Artista artista);
+    public void setAdapterArtistas(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+        recyclerView.setLayoutManager(linearLayoutManagerArtista);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapterArtista);
     }
 
+    public interface NotificadorActivities {
+        public void notificarAlbum(List<Album> listaAlbums, int posicion, String categoria);
+
+        public void notificarArtista(List<Artista> listaArtistas, int posicion);
+    }
 }
