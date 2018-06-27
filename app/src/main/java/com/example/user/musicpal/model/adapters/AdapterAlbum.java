@@ -100,7 +100,6 @@ public class AdapterAlbum extends RecyclerView.Adapter {
             Picasso.with(context).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
-
         }
     }
 

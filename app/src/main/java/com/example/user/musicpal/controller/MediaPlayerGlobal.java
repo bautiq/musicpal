@@ -13,19 +13,19 @@ public class MediaPlayerGlobal {
     private MediaPlayer mediaPlayer;
     private Cancion cancion;
 
-    private MediaPlayerGlobal(){
+    private MediaPlayerGlobal() {
         mediaPlayer = new MediaPlayer();
 
     }
 
-    public static MediaPlayerGlobal getInstance(){
-        if(mediaPlayerGlobal == null){
+    public static MediaPlayerGlobal getInstance() {
+        if (mediaPlayerGlobal == null) {
             mediaPlayerGlobal = new MediaPlayerGlobal();
         }
         return mediaPlayerGlobal;
     }
 
-    public MediaPlayer getMediaPlayer(){
+    public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
 

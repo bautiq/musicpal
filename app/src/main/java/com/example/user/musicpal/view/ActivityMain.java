@@ -42,8 +42,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +56,8 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         imageMore = findViewById(R.id.more_button);
         imageProfile = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
-
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -70,7 +66,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
         FragmentReproductorChico fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico, fragmentManager);
-
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +109,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         });
     }
 
-    @Override
     public void notificarAlbum(List<Album> list, int posicion, String categoria) {
         Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
@@ -126,9 +120,13 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificarArtista(Artista artista) {
-        Intent intent = new Intent(this, ActivityDetalleAlbum.class);
+    public void notificarArtista(List<Artista> listaArtistas, int posicion) {
+        Intent intent = new Intent(this, ActivityDetalleArtista.class);
         Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetalleArtista.ARTISTA_KEY, (Serializable) listaArtistas);
+        bundle.putInt(ActivityDetalleArtista.POSICION_KEY_ARTISTA, posicion);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public void clickBotonesInferiores(String clickeado) {

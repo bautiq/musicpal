@@ -50,7 +50,6 @@ public class AdapterArtista extends RecyclerView.Adapter {
         } else {
             return 0;
         }
-
     }
 
     public void agregarArtistas(List<Artista> artistas) {
@@ -79,7 +78,6 @@ public class AdapterArtista extends RecyclerView.Adapter {
             textViewNombre.setText(artista.getNombre());
             Picasso.with(context).load(artista.getImagenUrl()).into(imagen);
         }
-
     }
 
     public interface NotificadorArtistaCelda {

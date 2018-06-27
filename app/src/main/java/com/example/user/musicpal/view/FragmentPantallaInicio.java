@@ -75,10 +75,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             }
         });
 
-
-
         setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
-        setAdapterArtistas(recyclerViewArtistasTop,linearLayoutManagerArtista);
+        setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
         setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
         setAdapterAlbums(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
@@ -87,6 +85,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
         obtenerArtistas();
         obtenerAlbumes();
+
         return view;
     }
 
@@ -99,7 +98,6 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
                 } else {
                     adapterAlbum.agregarAlbumes(resultado);
                 }
-
             }
         });
     }

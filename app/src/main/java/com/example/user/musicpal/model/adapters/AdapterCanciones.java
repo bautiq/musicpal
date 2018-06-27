@@ -90,8 +90,8 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
-                       MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                       mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

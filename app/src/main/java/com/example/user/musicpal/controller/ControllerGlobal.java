@@ -17,20 +17,13 @@ public class ControllerGlobal {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
-    private static final Integer LIST_SIZE = 5;
+    private static final Integer LIST_SIZE = 10;
 
 
     public ControllerGlobal(Context context) {
         this.context = context;
         hayPaginas = true;
         offset = 0;
-    }
-
-    public List<Album> getListaAlbumes(String categoria) {
-
-        DaoAlbum daoAlbum = new DaoAlbum();
-        List<Album> list = daoAlbum.obtenerAlbumes(context, categoria);
-        return list;
     }
 
     public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
