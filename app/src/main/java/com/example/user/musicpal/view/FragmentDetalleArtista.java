@@ -72,22 +72,12 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
         recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
-
-        obtenerCancionesPorArtista(artista);
+        adapterCanciones.setListaDeCanciones(artista.getCancionList());
 
         textArtista.setText("Artista: " + artista.getNombre());
         Picasso.with(getContext()).load(artista.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
         return view;
-    }
-
-    private void obtenerCancionesPorArtista(Artista artista) {
-        controllerCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
-            @Override
-            public void finish(List<Cancion> resultado) {
-                adapterCanciones.setListaDeCanciones(resultado);
-            }
-        }, artista.getId());
     }
 
     @Override

@@ -14,6 +14,8 @@ public class Playlist implements Serializable {
     @SerializedName("picture_medium")
     private String imagenPlaylistUrl;
 
+    private List<Cancion> listCanciones;
+
     public int getId() {
         return id;
     }
@@ -21,8 +23,6 @@ public class Playlist implements Serializable {
     public String getImagenPlaylistUrl() {
         return imagenPlaylistUrl;
     }
-
-    private List<Cancion> listCanciones;
 
     public String getNombre() {
         return nombre;

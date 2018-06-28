@@ -20,6 +20,16 @@ public class Artista implements Serializable {
     @SerializedName("tracklist")
     private String cancionesDeArtistaUrl;
 
+    private List<Cancion> cancionList;
+
+    public List<Cancion> getCancionList() {
+        return cancionList;
+    }
+
+    public void setCancionList(List<Cancion> cancionList) {
+        this.cancionList = cancionList;
+    }
+
     private int id;
 
     public int getId() {

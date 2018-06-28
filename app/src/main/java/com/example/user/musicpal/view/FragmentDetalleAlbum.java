@@ -67,7 +67,7 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         controller = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
+        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
@@ -76,23 +76,13 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
-
-        obtenerCancionesPorAlbum(album);
+        adapterCanciones.setListaDeCanciones(album.getListaCanciones());
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
         Picasso.with(getContext()).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
         return view;
-    }
-
-    public void obtenerCancionesPorAlbum(Album album){
-        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
-            @Override
-            public void finish(List<Cancion> resultado) {
-                adapterCanciones.setListaDeCanciones(resultado);
-            }
-        }, album.getId());
     }
 
     @Override
@@ -106,7 +96,7 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         notificadorCancion.notificarCancion(cancion, album);
     }
 
-    public interface NotificadorCancion{
+    public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Album album);
     }
 }

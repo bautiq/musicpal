@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,6 +55,8 @@ public class AdapterAlbum extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Album album = albumLista.get(position);
+        //estaba probando recibir las listas de una, pero no aparecen
+        obtenerCancionesPorAlbum(album);
         ViewHolderAlbum viewHolderAlbum = (ViewHolderAlbum) holder;
         viewHolderAlbum.cargarAlbum(album);
     }
@@ -105,5 +110,15 @@ public class AdapterAlbum extends RecyclerView.Adapter {
 
     public interface NotificadorAlbumCelda {
         public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion, String categoria);
+    }
+
+    public void obtenerCancionesPorAlbum(final Album album){
+        ControllerGlobal controller = new ControllerGlobal(context);
+        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+               album.setListaCanciones(resultado);
+            }
+        }, album.getId());
     }
 }

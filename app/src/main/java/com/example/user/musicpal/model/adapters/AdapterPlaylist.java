@@ -11,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
+import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Playlist playlist = listaPlaylist.get(position);
+        obtenerCancionesPorPlaylist(playlist);
         ViewHolderPlaylist viewHolderPlaylist = (ViewHolderPlaylist) holder;
         viewHolderPlaylist.armarCelda(playlist);
     }
@@ -92,5 +96,15 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
 
     public interface NotificadorPlaylistCelda {
         public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion);
+    }
+
+    private void obtenerCancionesPorPlaylist(final Playlist playlist) {
+        ControllerGlobal controllerCancion = new ControllerGlobal(context);
+        controllerCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                playlist.setListCanciones(resultado);
+            }
+        },playlist.getId());
     }
 }

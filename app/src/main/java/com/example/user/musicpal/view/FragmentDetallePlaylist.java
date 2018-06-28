@@ -77,21 +77,13 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
 
-        obtenerCancionesPorPlaylist(playlist);
+        adapterCanciones.setListaDeCanciones(playlist.getListCanciones());
 
         textArtista.setText("Artista: " + playlist.getNombre());
         Picasso.with(getContext()).load(playlist.getImagenPlaylistUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
         return view;
     }
 
-    private void obtenerCancionesPorPlaylist(Playlist playlist) {
-        controllerCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
-            @Override
-            public void finish(List<Cancion> resultado) {
-                adapterCanciones.setListaDeCanciones(resultado);
-            }
-        },playlist.getId());
-    }
 
     @Override
     public void onAttach(Context context) {

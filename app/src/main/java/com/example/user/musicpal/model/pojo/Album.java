@@ -21,16 +21,21 @@ public class Album implements Serializable {
     private String ImagenUrl;
     private int id;
     private int imagenAlbum;
-
-
-    public Album() {
-    }
+    private List<Cancion> listaCanciones;
 
     public Album(String titulo, Artista artista, String imagenUrl) {
         this.titulo = titulo;
         this.artista = artista;
         this.ImagenUrl = imagenUrl;
 
+    }
+
+    public void setListaCanciones(List<Cancion> listaCanciones) {
+        this.listaCanciones = listaCanciones;
+    }
+
+    public List<Cancion> getListaCanciones() {
+        return listaCanciones;
     }
 
     public int getId() {

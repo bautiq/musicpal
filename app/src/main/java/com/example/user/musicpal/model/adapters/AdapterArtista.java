@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Artista artista = artistaList.get(position);
+        obtenerCancionesPorArtista(artista);
         ViewHolderArtista viewHolderArtista = (ViewHolderArtista) holder;
         viewHolderArtista.armarCelda(artista);
     }
@@ -87,5 +91,15 @@ public class AdapterArtista extends RecyclerView.Adapter {
 
     public interface NotificadorArtistaCelda {
         public void notificarCeldaCliqueadaArtista(List<Artista> artistas, int posicion);
+    }
+
+    private void obtenerCancionesPorArtista(final Artista artista) {
+        ControllerGlobal controllerCancion = new ControllerGlobal(context);
+        controllerCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                artista.setCancionList(resultado);
+            }
+        }, artista.getId());
     }
 }
