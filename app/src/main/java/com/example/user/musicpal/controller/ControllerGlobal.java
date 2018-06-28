@@ -6,9 +6,11 @@ import android.content.Context;
 import com.example.user.musicpal.model.dao.ArtistaDao;
 import com.example.user.musicpal.model.dao.DaoAlbum;
 import com.example.user.musicpal.model.dao.DaoCancion;
+import com.example.user.musicpal.model.dao.PlaylistDao;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
@@ -25,7 +27,6 @@ public class ControllerGlobal {
         hayPaginas = true;
         offset = 0;
     }
-
 
 
     public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
@@ -73,6 +74,33 @@ public class ControllerGlobal {
     public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, int id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                listener.finish(resultado);
+            }
+        }, id);
+    }
+
+    public void obtenerPlaylistOnline(final ResultListener<List<Playlist>> resultListenerDeLaVista) {
+        if (hayInternet()) {
+            PlaylistDao playlistDao = new PlaylistDao();
+            playlistDao.obtenerPlaylist(new ResultListener<List<Playlist>>() {
+                @Override
+                public void finish(List<Playlist> resultado) {
+
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
+                }
+            }, offset, LIST_SIZE);
+        }
+    }
+
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, int id) {
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
                 listener.finish(resultado);

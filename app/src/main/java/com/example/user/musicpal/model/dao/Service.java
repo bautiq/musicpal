@@ -18,7 +18,8 @@ public interface Service {
                                          @Query("limit") Integer limit);
 
     @GET("chart/0/playlists")
-    Call<ContenedorPlaylist> obtenerPlaylist();
+    Call<ContenedorPlaylist> obtenerPlaylist(@Query("index") Integer offset,
+                                             @Query("limit") Integer limit);
 
     @GET("album/{id}/tracks")
     Call<ContenedorDeCanciones> obtenerCancionesPorAlbumConId(@Path("id") int id);
@@ -30,4 +31,6 @@ public interface Service {
     @GET("artist/{id}/top")
     Call<ContenedorDeCanciones> obtenerCancionesPorArtistaConId(@Path("id") int id);
 
+    @GET("playlist/{id}/tracks")
+    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id")int id);
 }

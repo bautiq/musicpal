@@ -17,6 +17,7 @@ import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
@@ -131,6 +132,17 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         Bundle bundle = new Bundle();
         bundle.putSerializable(ActivityDetalleArtista.ARTISTA_KEY, (Serializable) listaArtistas);
         bundle.putInt(ActivityDetalleArtista.POSICION_KEY_ARTISTA, posicion);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void notificarPlaylist(List<Playlist> listaPlaylist, int posicion) {
+        Intent intent = new Intent(this, ActivityDetallePlaylist.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetallePlaylist.PLAYLIST_KEY, (Serializable) listaPlaylist);
+        bundle.putInt(ActivityDetallePlaylist.POSICION_KEY_PLAYLIST, posicion);
         intent.putExtras(bundle);
         startActivity(intent);
     }

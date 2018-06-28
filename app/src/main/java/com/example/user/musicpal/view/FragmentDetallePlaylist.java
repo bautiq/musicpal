@@ -12,25 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Album;
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
-import com.example.user.musicpal.R;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 import com.example.user.musicpal.utils.SimpleDividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
+public class FragmentDetallePlaylist extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
-    public static final String ALBUM_KEY = "album_key";
+    public static final String PLAYLIST_KEY = "playlist_key";
 
     private ImageView imagenGrande;
     private TextView textArtista;
@@ -38,33 +40,31 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
-    private ControllerGlobal controller;
+    private ControllerGlobal controllerCancion;
     private NotificadorCancion notificadorCancion;
-    private Album album;
+    private Playlist playlist;
 
-    public static FragmentDetalleAlbum dameUnFragment(Album album) {
-        FragmentDetalleAlbum fragmentCreado = new FragmentDetalleAlbum();
+    public static FragmentDetallePlaylist dameUnFragment(Playlist playlist) {
+        FragmentDetallePlaylist fragmentCreado = new FragmentDetallePlaylist();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ALBUM_KEY, album);
+        bundle.putSerializable(PLAYLIST_KEY, playlist);
         fragmentCreado.setArguments(bundle);
         return fragmentCreado;
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
-
-        imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
-        textArtista = view.findViewById(R.id.id_nombre_artista);
-        textAlbum = view.findViewById(R.id.id_nombre_album);
-        recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_detalle_playlist, container, false);
+        imagenGrande = view.findViewById(R.id.id_imagen_vista_previa_Playlist);
+        textArtista = view.findViewById(R.id.id_nombre_artista_playlist);
+        recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_id);
 
         Bundle bundle = getArguments();
-        album = (Album) bundle.getSerializable(ALBUM_KEY);
+        playlist= (Playlist) bundle.getSerializable(PLAYLIST_KEY);
 
-        controller = new ControllerGlobal(getContext());
+        controllerCancion = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
         adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
@@ -77,36 +77,34 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
 
-        obtenerCancionesPorAlbum(album);
+        obtenerCancionesPorPlaylist(playlist);
 
-        textArtista.setText("Artista: " + album.getArtista().getNombre());
-        textAlbum.setText("Album: " + album.getTitulo());
-        Picasso.with(getContext()).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
-
+        textArtista.setText("Artista: " + playlist.getNombre());
+        Picasso.with(getContext()).load(playlist.getImagenPlaylistUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
         return view;
     }
 
-    public void obtenerCancionesPorAlbum(Album album){
-        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+    private void obtenerCancionesPorPlaylist(Playlist playlist) {
+        controllerCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
                 adapterCanciones.setListaDeCanciones(resultado);
             }
-        }, album.getId());
+        },playlist.getId());
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        notificadorCancion = (NotificadorCancion) context;
+        notificadorCancion= (NotificadorCancion) context;
     }
 
     @Override
     public void notificarCeldaClikeada(Cancion cancion) {
-        notificadorCancion.notificarCancion(cancion, album);
+        notificadorCancion.notificarCancion(cancion, playlist);
     }
 
-    public interface NotificadorCancion{
-        public void notificarCancion(Cancion cancion, Album album);
+    public interface NotificadorCancion {
+        public void notificarCancion(Cancion cancion, Playlist playlist);
     }
 }

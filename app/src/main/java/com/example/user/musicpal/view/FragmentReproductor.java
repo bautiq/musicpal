@@ -55,11 +55,11 @@ public class FragmentReproductor extends Fragment {
         //albumRecibido = cancionQueContiene.getAlbum();
         textViewTitulo.setText(cancionQueContiene.getTitle());
         textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
-        /*try {
-            Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
+        try {
+            Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
         } catch (NullPointerException e) {
-            Picasso.with(getContext()).load(albumRecibido.getImagenUrl()).into(imagen);
-        }*/
+            Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
+        }
 
 
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +103,11 @@ public class FragmentReproductor extends Fragment {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
             textViewArtista.setText(cancion.getArtista().getNombre());
             textViewTitulo.setText(cancion.getTitle());
-
-         /*   try {
-                textAlbum.setText(cancion.getAlbum().getTitulo());
-            }catch (NullPointerException e){
-                textAlbum.setText(" ");
+            try {
+                Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
+            } catch (NullPointerException e) {
+                Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
             }
-*/
         }
     }
 }

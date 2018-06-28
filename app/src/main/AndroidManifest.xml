@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.ActivityMain"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.ActivityDetalleAlbum"
             android:screenOrientation="portrait" />
@@ -26,7 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ActivityDetalleArtista"></activity>
+        <activity android:name=".view.ActivityDetalleArtista" />
+        <activity android:name=".view.ActivityDetallePlaylist"></activity>
     </application>
 
 </manifest>

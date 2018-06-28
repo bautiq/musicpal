@@ -47,7 +47,6 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
         viewPager.setAdapter(detallePagerAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY);
         viewPager.setCurrentItem(posicionDelItem);
-
     }
 
     public void crearListaFragments() {

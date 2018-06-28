@@ -40,6 +40,15 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
     private NotificadorCancion notificadorCancion;
     private Artista artista;
 
+
+    public static FragmentDetalleArtista dameUnFragment(Artista artista) {
+        FragmentDetalleArtista fragmentCreado = new FragmentDetalleArtista();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ARTISTA_RECIBIDO_KEY, artista);
+        fragmentCreado.setArguments(bundle);
+        return fragmentCreado;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,15 +87,7 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
             public void finish(List<Cancion> resultado) {
                 adapterCanciones.setListaDeCanciones(resultado);
             }
-        },artista.getId());
-    }
-
-    public static FragmentDetalleArtista dameUnFragment(Artista artista) {
-        FragmentDetalleArtista fragmentCreado = new FragmentDetalleArtista();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(ARTISTA_RECIBIDO_KEY, artista);
-        fragmentCreado.setArguments(bundle);
-        return fragmentCreado;
+        }, artista.getId());
     }
 
     @Override

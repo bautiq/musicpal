@@ -53,7 +53,11 @@ public class AdapterArtista extends RecyclerView.Adapter {
     }
 
     public void agregarArtistas(List<Artista> artistas) {
-        artistaList.addAll(artistas);
+        for (Artista artistaAAgregar : artistas) {
+            if (!artistaList.contains(artistaAAgregar)) {
+                artistaList.add(artistaAAgregar);
+            }
+        }
         notifyDataSetChanged();
     }
 
@@ -65,6 +69,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
             super(itemView);
             textViewNombre = itemView.findViewById(R.id.title_fragment_album);
             imagen = itemView.findViewById(R.id.imagen_fragment_album);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,7 +81,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
 
         public void armarCelda(Artista artista) {
             textViewNombre.setText(artista.getNombre());
-            Picasso.with(context).load(artista.getImagenUrl()).into(imagen);
+            Picasso.with(context).load(artista.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagen);
         }
     }
 

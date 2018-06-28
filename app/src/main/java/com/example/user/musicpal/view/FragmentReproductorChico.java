@@ -89,7 +89,7 @@ public class FragmentReproductorChico extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
 
                 notificadorReproductorChico.cargarReproductorGrande();
             }
@@ -117,16 +117,16 @@ public class FragmentReproductorChico extends Fragment {
             textArtista.setText(cancion.getArtista().getNombre());
             textCancion.setText(cancion.getTitle());
 
-           try {
-               textAlbum.setText(cancion.getAlbum().getTitulo());
-           }catch (NullPointerException e){
-               textAlbum.setText(" ");
-           }
+            try {
+                textAlbum.setText(cancion.getAlbum().getTitulo());
+            } catch (NullPointerException e) {
+                textAlbum.setText(" ");
+            }
 
         }
     }
 
-    public interface NotificadorReproductorChico{
+    public interface NotificadorReproductorChico {
         public void cargarReproductorGrande();
     }
 

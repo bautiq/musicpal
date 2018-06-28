@@ -57,13 +57,13 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
     public void notificarCancion(Cancion cancion, Artista artista) {
         fragmentManager = getSupportFragmentManager();
         fragmentReproductorChico.setearDatos(cancion);
-        /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(FragmentReproductor.ARTISTA_KEY, artista);
-        bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
-        fragmentReproductor.setArguments(bundle);
-        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
-        */
+            /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(FragmentReproductor.ARTISTA_KEY, artista);
+            bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
+            fragmentReproductor.setArguments(bundle);
+            FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
+            */
     }
 
     @Override
