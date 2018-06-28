@@ -77,6 +77,7 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
         adapterCanciones.setListaDeCanciones(album.getListaCanciones());
+        chequearListaCanciones();
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
@@ -98,5 +99,20 @@ public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.N
 
     public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Album album);
+    }
+
+    public void chequearListaCanciones() {
+        if (adapterCanciones.getListaDeCanciones() == null) {
+            obtenerCancionesPorAlbum(album);
+        }
+    }
+
+    public void obtenerCancionesPorAlbum(final Album album) {
+        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                adapterCanciones.setListaDeCanciones(resultado);
+            }
+        }, album.getId());
     }
 }

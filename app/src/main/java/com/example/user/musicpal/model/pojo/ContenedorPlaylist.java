@@ -7,7 +7,7 @@ import java.util.List;
 public class ContenedorPlaylist {
 
     @SerializedName("data")
-    private List<Playlist>playlists;
+    private List<Playlist> playlists;
 
     public List<Playlist> getPlaylists() {
         return playlists;

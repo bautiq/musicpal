@@ -15,11 +15,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PlaylistDao {
+public class DaoPlaylist {
     private Retrofit retrofit;
     private Service service;
 
-    public PlaylistDao() {
+    public DaoPlaylist() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://api.deezer.com/")

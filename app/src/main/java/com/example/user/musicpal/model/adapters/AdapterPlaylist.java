@@ -75,7 +75,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
 
         public ViewHolderPlaylist(View itemView) {
             super(itemView);
-            textViewNombre = itemView.findViewById(R.id.id_nombre_album);
+            textViewNombre = itemView.findViewById(R.id.title_fragment_album);
             imageView = itemView.findViewById(R.id.imagen_fragment_album);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +105,6 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
             public void finish(List<Cancion> resultado) {
                 playlist.setListCanciones(resultado);
             }
-        },playlist.getId());
+        }, playlist.getId());
     }
 }

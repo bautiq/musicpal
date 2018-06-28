@@ -62,12 +62,12 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_id);
 
         Bundle bundle = getArguments();
-        playlist= (Playlist) bundle.getSerializable(PLAYLIST_KEY);
+        playlist = (Playlist) bundle.getSerializable(PLAYLIST_KEY);
 
         controllerCancion = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
+        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
@@ -78,7 +78,7 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
         recyclerViewCanciones.setAdapter(adapterCanciones);
 
         adapterCanciones.setListaDeCanciones(playlist.getListCanciones());
-
+        chequearListaCanciones();
         textArtista.setText("Artista: " + playlist.getNombre());
         Picasso.with(getContext()).load(playlist.getImagenPlaylistUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
         return view;
@@ -88,7 +88,7 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        notificadorCancion= (NotificadorCancion) context;
+        notificadorCancion = (NotificadorCancion) context;
     }
 
     @Override
@@ -98,5 +98,20 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
 
     public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Playlist playlist);
+    }
+
+    public void chequearListaCanciones() {
+        if (adapterCanciones.getListaDeCanciones() == null) {
+            obtenerCancionesPorPlaylist(playlist);
+        }
+    }
+
+    private void obtenerCancionesPorPlaylist(final Playlist playlist) {
+        controllerCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                adapterCanciones.setListaDeCanciones(resultado);
+            }
+        }, playlist.getId());
     }
 }

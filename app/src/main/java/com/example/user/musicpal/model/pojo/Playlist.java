@@ -9,15 +9,16 @@ public class Playlist implements Serializable {
 
     @SerializedName("title")
     private String nombre;
-    private int id;
+
+    private double id;
 
     @SerializedName("picture_medium")
     private String imagenPlaylistUrl;
 
     private List<Cancion> listCanciones;
 
-    public int getId() {
-        return id;
+    public double getId() {
+        return (int)Math.round(id);
     }
 
     public String getImagenPlaylistUrl() {

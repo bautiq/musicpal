@@ -6,7 +6,7 @@ import android.content.Context;
 import com.example.user.musicpal.model.dao.ArtistaDao;
 import com.example.user.musicpal.model.dao.DaoAlbum;
 import com.example.user.musicpal.model.dao.DaoCancion;
-import com.example.user.musicpal.model.dao.PlaylistDao;
+import com.example.user.musicpal.model.dao.DaoPlaylist;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
@@ -45,7 +45,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, int id) {
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, Integer id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
@@ -71,7 +71,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, int id) {
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, Integer id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
             @Override
@@ -83,8 +83,8 @@ public class ControllerGlobal {
 
     public void obtenerPlaylistOnline(final ResultListener<List<Playlist>> resultListenerDeLaVista) {
         if (hayInternet()) {
-            PlaylistDao playlistDao = new PlaylistDao();
-            playlistDao.obtenerPlaylist(new ResultListener<List<Playlist>>() {
+            DaoPlaylist daoPlaylist = new DaoPlaylist();
+            daoPlaylist.obtenerPlaylist(new ResultListener<List<Playlist>>() {
                 @Override
                 public void finish(List<Playlist> resultado) {
 
@@ -98,7 +98,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, int id) {
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, double id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
             @Override

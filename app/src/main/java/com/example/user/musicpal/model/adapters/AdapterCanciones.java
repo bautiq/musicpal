@@ -30,6 +30,10 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         this.notificadorCancionCelda = notificadorCancionCelda;
     }
 
+    public List<Cancion> getListaDeCanciones() {
+        return listaDeCanciones;
+    }
+
     public void setListaDeCanciones(List<Cancion> listaDeCanciones) {
         this.listaDeCanciones = listaDeCanciones;
         notifyDataSetChanged();

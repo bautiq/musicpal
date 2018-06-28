@@ -73,6 +73,8 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
         adapterCanciones.setListaDeCanciones(artista.getCancionList());
+        //si no logra conseguir la lista de canciones, vuelve a hacer el pedido
+        chequearListaCanciones();
 
         textArtista.setText("Artista: " + artista.getNombre());
         Picasso.with(getContext()).load(artista.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
@@ -90,7 +92,20 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
     public void notificarCeldaClikeada(Cancion cancion) {
         notificadorCancion.notificarCancion(cancion, artista);
     }
+    public void chequearListaCanciones() {
+        if (adapterCanciones.getListaDeCanciones() == null) {
+            obtenerCancionesPorArtista(artista);
+        }
+    }
 
+    private void obtenerCancionesPorArtista(final Artista artista) {
+        controllerCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                adapterCanciones.setListaDeCanciones(resultado);
+            }
+        }, artista.getId());
+    }
     public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Artista artista);
     }
