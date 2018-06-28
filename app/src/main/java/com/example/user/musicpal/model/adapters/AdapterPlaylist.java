@@ -59,7 +59,6 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
         }
     }
 
-
     public void agregarPlaylist(List<Playlist> playlists) {
         for (Playlist playlistAAgregar : playlists) {
             if (!listaPlaylist.contains(playlistAAgregar)) {

@@ -30,6 +30,9 @@ public class Cancion implements Serializable {
 
     private int id;
 
+    public Cancion() {
+    }
+
     public int getId() {
         return id;
     }

@@ -28,9 +28,13 @@ public interface Service {
     Call<ContenedorArtistas> obtenerArtista(@Query("index") Integer offset,
                                             @Query("limit") Integer limit);
 
+    @GET("chart/0/tracks")
+    Call<ContenedorDeCanciones> obtenerCancionesTop(@Query("index") Integer offset,
+                                                    @Query("limit") Integer limit);
+
     @GET("artist/{id}/top")
     Call<ContenedorDeCanciones> obtenerCancionesPorArtistaConId(@Path("id") int id);
 
     @GET("playlist/{id}/tracks")
-    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id")double id);
+    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id") double id);
 }

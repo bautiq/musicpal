@@ -47,6 +47,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
     private MediaPlayerGlobal mediaPlayerGlobal;
+    private FragmentReproductorChico fragmentReproductorChico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
-        FragmentReproductorChico fragmentReproductorChico = new FragmentReproductorChico();
+        fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico, fragmentManager);
 
         imageHome.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +146,11 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         bundle.putInt(ActivityDetallePlaylist.POSICION_KEY_PLAYLIST, posicion);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void notificarCancion(Cancion cancion , int posicion) {
+        fragmentReproductorChico.setearDatos(cancion);
     }
 
     public void clickBotonesInferiores(String clickeado) {

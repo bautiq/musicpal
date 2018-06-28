@@ -4,6 +4,7 @@ package com.example.user.musicpal.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,9 +16,11 @@ import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.adapters.AdapterArtista;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
+import com.example.user.musicpal.model.adapters.AdapterTopCanciones;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -26,7 +29,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda, AdapterArtista.NotificadorArtistaCelda, AdapterPlaylist.NotificadorPlaylistCelda {
+public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda, AdapterArtista.NotificadorArtistaCelda, AdapterPlaylist.NotificadorPlaylistCelda, AdapterTopCanciones.NotificadorTopCancionesCelda {
 
     private NotificadorActivities notificadorActivities;
 
@@ -37,28 +40,32 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private LinearLayoutManager linearLayoutManagerAlbum;
     private LinearLayoutManager linearLayoutManagerPlaylist;
     private LinearLayoutManager linearLayoutManagerArtista;
-    private LinearLayoutManager linearLayoutManagerCancion;
+    private GridLayoutManager gridLayoutManagerCanciones;
     private AdapterAlbum adapterAlbum;
     private AdapterArtista adapterArtista;
     private AdapterPlaylist adapterPlaylist;
+    private AdapterTopCanciones adapterTopCanciones;
     private Boolean isLoading;
     private ControllerGlobal controllerAlbum;
     private ControllerGlobal controllerPlaylist;
     private ControllerGlobal controllerArtista;
+    private ControllerGlobal controllerTopCancion;
     private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pantalla_inicio, container, false);
         isLoading = false;
+
         adapterAlbum = new AdapterAlbum(getActivity(), this);
         adapterArtista = new AdapterArtista(getActivity(), this);
         adapterPlaylist = new AdapterPlaylist(getActivity(), this);
+        adapterTopCanciones = new AdapterTopCanciones(getActivity(), this);
 
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        linearLayoutManagerCancion = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        gridLayoutManagerCanciones = new GridLayoutManager(getActivity(), 3);
 
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
@@ -115,19 +122,37 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
             }
         });
 
+        recyclerViewCancionTop.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isLoading) {
+                    return;
+                }
+                int ultimaPosicion = gridLayoutManagerCanciones.getItemCount();
+                int posicionActual = gridLayoutManagerCanciones.findLastVisibleItemPosition();
+
+                if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
+                    obtenerCancionesTop();
+                }
+            }
+        });
+
 
         setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
         setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
-        setAdapterAlbums(recyclerViewCancionTop, linearLayoutManagerCancion);
+        setAdapterTopCanciones(recyclerViewCancionTop, gridLayoutManagerCanciones);
         setAdapterPlaylist(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
         controllerAlbum = new ControllerGlobal(getActivity());
         controllerArtista = new ControllerGlobal(getActivity());
         controllerPlaylist = new ControllerGlobal(getActivity());
+        controllerTopCancion = new ControllerGlobal(getActivity());
 
         obtenerArtistas();
         obtenerAlbumes();
         obtenerPlaylists();
+        obtenerCancionesTop();
 
         return view;
     }
@@ -171,6 +196,19 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         });
     }
 
+    private void obtenerCancionesTop() {
+        controllerTopCancion.obtenerCancionesTopOnline(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                if (resultado.size() == 0) {
+                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapterTopCanciones.agregarCanciones(resultado);
+                }
+            }
+        });
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -192,6 +230,11 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         notificadorActivities.notificarPlaylist(playlists, posicion);
     }
 
+    @Override
+    public void notificarCeldaClickeadaDeCancion(Cancion cancion, int posicion) {
+        notificadorActivities.notificarCancion(cancion, posicion);
+    }
+
     public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -210,6 +253,11 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setAdapter(adapterPlaylist);
     }
 
+    public void setAdapterTopCanciones(RecyclerView recyclerView, GridLayoutManager gridLayoutManager) {
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapterTopCanciones);
+    }
 
     public interface NotificadorActivities {
         public void notificarAlbum(List<Album> listaAlbums, int posicion, String categoria);
@@ -217,5 +265,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         public void notificarArtista(List<Artista> listaArtistas, int posicion);
 
         public void notificarPlaylist(List<Playlist> listaPlaylist, int posicion);
+
+        public void notificarCancion(Cancion cancion, int posicion);
     }
 }

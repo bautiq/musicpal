@@ -108,6 +108,24 @@ public class ControllerGlobal {
         }, id);
     }
 
+    public void obtenerCancionesTopOnline(final ResultListener<List<Cancion>> resultListenerDeLaVista) {
+        if (hayInternet()) {
+            DaoCancion daoCancion = new DaoCancion();
+            daoCancion.obtenerCancionesTop(new ResultListener<List<Cancion>>() {
+                @Override
+                public void finish(List<Cancion> resultado) {
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
+                }
+            }, offset, LIST_SIZE);
+        }
+
+    }
+
+
     private boolean hayInternet() {
         return true;
     }
@@ -115,4 +133,6 @@ public class ControllerGlobal {
     public Boolean getHayPaginas() {
         return hayPaginas;
     }
+
+
 }
