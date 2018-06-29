@@ -13,11 +13,22 @@ public class Artista implements Serializable {
 
     @SerializedName("name")
     private String nombre;
+
     @SerializedName("picture_medium")
     private String imagenUrl;
 
     @SerializedName("tracklist")
     private String cancionesDeArtistaUrl;
+
+    private List<Cancion> cancionList;
+
+    public List<Cancion> getCancionList() {
+        return cancionList;
+    }
+
+    public void setCancionList(List<Cancion> cancionList) {
+        this.cancionList = cancionList;
+    }
 
     private int id;
 
@@ -43,5 +54,15 @@ public class Artista implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Artista )){
+            return false;
+        }else{
+            Artista artistaAcomparar = (Artista) obj;
+            return artistaAcomparar.getId() == this.id;
+        }
     }
 }

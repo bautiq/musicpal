@@ -30,6 +30,10 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         this.notificadorCancionCelda = notificadorCancionCelda;
     }
 
+    public List<Cancion> getListaDeCanciones() {
+        return listaDeCanciones;
+    }
+
     public void setListaDeCanciones(List<Cancion> listaDeCanciones) {
         this.listaDeCanciones = listaDeCanciones;
         notifyDataSetChanged();
@@ -78,11 +82,11 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenPlay.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +94,12 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
-                       MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                       mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir);
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
             imagenMore.setOnClickListener(new View.OnClickListener() {

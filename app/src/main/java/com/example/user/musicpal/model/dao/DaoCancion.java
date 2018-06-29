@@ -1,5 +1,6 @@
 package com.example.user.musicpal.model.dao;
 
+import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.ContenedorDeCanciones;
 import com.example.user.musicpal.utils.ResultListener;
@@ -26,16 +27,84 @@ public class DaoCancion {
         retrofit = retroBuilder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
     }
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,int id) {
+
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController, Integer id) {
         Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbumConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
             public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
                 ContenedorDeCanciones contenedorObtenido = response.body();
 
-                if (contenedorObtenido != null  && contenedorObtenido.getCanciones() != null) {
+                if (contenedorObtenido != null && contenedorObtenido.getCanciones() != null) {
                     List<Cancion> listaCancion = contenedorObtenido.getCanciones();
                     resultListenerDelController.finish(listaCancion);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Cancion>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContenedorDeCanciones> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
+
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> resultListenerDelController, Integer id) {
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorArtistaConId(id);
+        call.enqueue(new Callback<ContenedorDeCanciones>() {
+            @Override
+            public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
+                ContenedorDeCanciones contenedorObtenido = response.body();
+
+                if (contenedorObtenido != null && contenedorObtenido.getCanciones() != null) {
+                    List<Cancion> listaCancion = contenedorObtenido.getCanciones();
+                    resultListenerDelController.finish(listaCancion);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Cancion>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContenedorDeCanciones> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
+
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> resultListenerDelController, String id) {
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesPorPlaylistConId(id);
+        call.enqueue(new Callback<ContenedorDeCanciones>() {
+            @Override
+            public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
+                ContenedorDeCanciones contenedorObtenido = response.body();
+
+                if (contenedorObtenido != null && contenedorObtenido.getCanciones() != null) {
+                    List<Cancion> listaCancion = contenedorObtenido.getCanciones();
+                    resultListenerDelController.finish(listaCancion);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Cancion>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContenedorDeCanciones> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
+
+
+    public void obtenerCancionesTop(final ResultListener<List<Cancion>> resultListenerDelController, Integer offset, Integer limit) {
+        Call<ContenedorDeCanciones> call = service.obtenerCancionesTop(offset, limit);
+        call.enqueue(new Callback<ContenedorDeCanciones>() {
+            @Override
+            public void onResponse(Call<ContenedorDeCanciones> call, Response<ContenedorDeCanciones> response) {
+                ContenedorDeCanciones contenedorDeCancionesObtenido = response.body();
+
+                if (contenedorDeCancionesObtenido != null && contenedorDeCancionesObtenido.getCanciones() != null) {
+                    List<Cancion> cancionesLista = contenedorDeCancionesObtenido.getCanciones();
+                    resultListenerDelController.finish(cancionesLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Cancion>());
                 }

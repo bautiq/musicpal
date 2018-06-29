@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_negro_con_trama"
     android:orientation="vertical"
-    tools:context=".view.FragmentDetalle">
+    tools:context=".view.FragmentDetallePlaylist">
 
     <ImageView
-        android:id="@+id/id_imagen_vista_previa"
+        android:id="@+id/id_imagen_vista_previa_Playlist"
         style="@style/StyleImagenVistaPrevia" />
 
     <TextView
-        android:id="@+id/id_nombre_artista"
-        style="@style/StyleTextViewVistaPrevia" />
-
-    <TextView
-        android:id="@+id/id_nombre_album"
+        android:id="@+id/id_nombre_artista_playlist"
         style="@style/StyleTextViewVistaPrevia" />
 
     <ImageView
@@ -37,7 +32,7 @@
         android:textColor="@color/blanco" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_canciones_id"
+        android:id="@+id/recycler_canciones_playlist_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/negroposta"

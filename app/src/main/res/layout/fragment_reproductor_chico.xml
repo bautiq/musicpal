@@ -2,21 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.musicpal.view.FragmentReproductorChico"
-    android:background="@color/negroposta">
+    android:background="@color/negroposta"
+    tools:context="com.example.user.musicpal.view.FragmentReproductorChico">
 
     <LinearLayout
         android:id="@+id/linear_layout_reproductor_chico"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:background="@color/colorBarraAbajoGris"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:background="@color/negro_gris_reproductor"
             android:gravity="center"
             android:orientation="horizontal">
@@ -55,37 +54,55 @@
             android:id="@+id/reproductor_main_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:background="@color/negro_gris_reproductor"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/id_text_cancion_reprochico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="3dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
                 android:fontFamily="sans-serif"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Bitter Sweet Symphony"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="2dp"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/id_text_artista_reprochico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="serif-monospace"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:fontFamily="serif-monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="The Verve"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="italic" />
 
             <TextView
+                android:id="@+id/id_text_album_reprochico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
                 android:fontFamily="serif-monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Urban Hymns"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"

@@ -12,20 +12,29 @@ import retrofit2.http.Query;
 
 public interface Service {
 
+
     @GET("chart/0/albums")
     Call<ContenedorAlbum> obtenerAlbumes(@Query("index") Integer offset,
                                          @Query("limit") Integer limit);
 
     @GET("chart/0/playlists")
-    Call<ContenedorPlaylist> obtenerPlaylist();
+    Call<ContenedorPlaylist> obtenerPlaylist(@Query("index") Integer offset,
+                                             @Query("limit") Integer limit);
 
     @GET("album/{id}/tracks")
     Call<ContenedorDeCanciones> obtenerCancionesPorAlbumConId(@Path("id") int id);
 
     @GET("chart/0/artists")
-    Call<ContenedorArtistas> obtenerArtista();
+    Call<ContenedorArtistas> obtenerArtista(@Query("index") Integer offset,
+                                            @Query("limit") Integer limit);
 
     @GET("chart/0/tracks")
-    Call<ContenedorDeCanciones> obtenerListaCanciones();
+    Call<ContenedorDeCanciones> obtenerCancionesTop(@Query("index") Integer offset,
+                                                    @Query("limit") Integer limit);
 
+    @GET("artist/{id}/top")
+    Call<ContenedorDeCanciones> obtenerCancionesPorArtistaConId(@Path("id") int id);
+
+    @GET("playlist/{id}/tracks")
+    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id") String id);
 }

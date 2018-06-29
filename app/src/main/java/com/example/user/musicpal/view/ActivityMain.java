@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
@@ -21,7 +24,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener {
+public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -31,7 +34,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private boolean playlistIsClicked;
     private boolean compartirIsClicked;
     private boolean moreIsClicked;
-    private ImageView imageProfile;
+    private ImageView imageMenu;
     private ImageView imageSearch;
 
     private FragmentPantallaInicio fragmentPantallaInicio;
@@ -41,8 +44,8 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPerfil fragmentPerfil;
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
-
-
+    private MediaPlayerGlobal mediaPlayerGlobal;
+    private FragmentReproductorChico fragmentReproductorChico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,21 +59,18 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         imagePlaylist = findViewById(R.id.playlist_button);
         imageCompartir = findViewById(R.id.compartir_button);
         imageMore = findViewById(R.id.more_button);
-        imageProfile = findViewById(R.id.menu_button);
+        imageMenu = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
-
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-
-
+        mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
-        FragmentReproductorChico fragmentReproductorChico = new FragmentReproductorChico();
+        fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico, fragmentManager);
-
 
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,35 +100,55 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
             }
         });
 
-        imageProfile.setOnClickListener(new View.OnClickListener() {
+        imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMain.this, "Click Menu", Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(navigationView);
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMain.this, "Click Search", Toast.LENGTH_SHORT).show();
+                FragmentHelper.cargarFragmentConBackStack(new FragmentBusqueda(), R.id.container_fragment, fragmentManager);
             }
         });
+
     }
 
-    @Override
-    public void notificar(List<Album> list, int posicion, String categoria) {
-        Intent intent = new Intent(this, ActivityDetalle.class);
+    public void notificarAlbum(List<Album> list, int posicion, String categoria) {
+        Intent intent = new Intent(this, ActivityDetalleAlbum.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ActivityDetalle.ALBUM_KEY, (Serializable) list);
-        bundle.putInt(ActivityDetalle.POSICION_KEY, posicion);
-        bundle.putString(ActivityDetalle.CATEGORIA_CLICKEADA, categoria);
+        bundle.putSerializable(ActivityDetalleAlbum.ALBUM_KEY, (Serializable) list);
+        bundle.putInt(ActivityDetalleAlbum.POSICION_KEY, posicion);
+        bundle.putString(ActivityDetalleAlbum.CATEGORIA_CLICKEADA, categoria);
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
     @Override
-    public void notificarArtista(Artista artista) {
-        Intent intent = new Intent(this, ActivityDetalle.class);
+    public void notificarArtista(List<Artista> listaArtistas, int posicion) {
+        Intent intent = new Intent(this, ActivityDetalleArtista.class);
         Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetalleArtista.ARTISTA_KEY, (Serializable) listaArtistas);
+        bundle.putInt(ActivityDetalleArtista.POSICION_KEY_ARTISTA, posicion);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void notificarPlaylist(List<Playlist> listaPlaylist, int posicion) {
+        Intent intent = new Intent(this, ActivityDetallePlaylist.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ActivityDetallePlaylist.PLAYLIST_KEY, (Serializable) listaPlaylist);
+        bundle.putInt(ActivityDetallePlaylist.POSICION_KEY_PLAYLIST, posicion);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void notificarCancion(Cancion cancion) {
+fragmentReproductorChico.setearDatos(cancion);
     }
 
     public void clickBotonesInferiores(String clickeado) {
@@ -224,5 +244,10 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         }
         drawerLayout.closeDrawers();
         return false;
+    }
+
+    @Override
+    public void cargarReproductorGrande() {
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.container_reproductor_grande_main, fragmentManager);
     }
 }

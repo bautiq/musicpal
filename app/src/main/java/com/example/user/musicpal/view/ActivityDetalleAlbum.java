@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
@@ -15,16 +16,17 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalle extends AppCompatActivity implements FragmentDetalle.NotificadorCancion {
+public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
     public static final String CATEGORIA_CLICKEADA = "clave_categoria";
-    private FragmentDetalle fragmentDetalle;
+    private FragmentDetalleAlbum fragmentDetalleAlbum;
     private FragmentManager fragmentManager;
     //esta lista contiene los fragments que se van a mostrar en el viewpager
-    private List<FragmentDetalle> listaFragments;
+    private List<FragmentDetalleAlbum> listaFragments;
     private List<Album> listaAlbumesRecibida;
+    private FragmentReproductorChico fragmentReproductorChico;
     private String categoriaRecibida;
     private ViewPager viewPager;
     private ControllerGlobal controllerGlobal;
@@ -32,7 +34,9 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle);
+        setContentView(R.layout.activity_detalle_album);
+        fragmentReproductorChico = new FragmentReproductorChico();
+        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity, getSupportFragmentManager());
         controllerGlobal = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
@@ -40,63 +44,42 @@ public class ActivityDetalle extends AppCompatActivity implements FragmentDetall
         listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
         categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
         crearListaFragments();
-        FragmentDetallePagerAdapter detallePagerAdapter = new FragmentDetallePagerAdapter(getSupportFragmentManager(), listaFragments);
+        FragmentDetalleAlbumPagerAdapter detallePagerAdapter = new FragmentDetalleAlbumPagerAdapter(getSupportFragmentManager(), listaFragments);
         viewPager.setAdapter(detallePagerAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY);
         viewPager.setCurrentItem(posicionDelItem);
-
     }
 
     public void crearListaFragments() {
         listaFragments = new ArrayList<>();
         for (Album album : listaAlbumesRecibida) {
-            listaFragments.add(FragmentDetalle.dameUnFragment(album));
+            listaFragments.add(FragmentDetalleAlbum.dameUnFragment(album));
         }
-        /*
-        listaFragments = new ArrayList<>();
-        List<Album> clasicos;
-        List<Album> top;
-        List<Album> recomendaciones;
-        List<Album> populares;
-        switch (categoria) {
-            case "clasicos":
-                clasicos = controllerGlobal.getListaAlbumes( "clasicos");
-                for (Album clasicoRecorrido : clasicos) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(clasicoRecorrido));
-                }
-                break;
-            case "populares":
-                populares = controllerGlobal.getListaAlbumes("populares");
-                for (Album popularRecorrido : populares) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(popularRecorrido));
-                }
-                break;
-            case "recomendaciones":
-                recomendaciones = controllerGlobal.getListaAlbumes("recomendaciones");
-                for (Album recomendacionRecorrido : recomendaciones) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(recomendacionRecorrido));
-                }
-                break;
-            case "top":
-                top = controllerGlobal.getListaAlbumes("top");
-                for (Album topRecorrido : top) {
-                    listaFragments.add(FragmentDetalle.dameUnFragment(topRecorrido));
-                }
-                break;
-                default: listaFragments.add(FragmentDetalle.dameUnFragment(albumRecibido));
-                */
     }
 
 
     @Override
     public void notificarCancion(Cancion cancion, Album album) {
         fragmentManager = getSupportFragmentManager();
-        FragmentReproductor fragmentReproductor = new FragmentReproductor();
+        fragmentReproductorChico.setearDatos(cancion);
+        /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentReproductor.ALBUM_KEY, album);
         bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
         fragmentReproductor.setArguments(bundle);
         FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity, fragmentManager);
+    */
+    }
+
+    @Override
+    public void cargarReproductorGrande() {
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa, fragmentManager);
+    }
+
+    @Override
+    public void notificarPlayPausa() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
     }
 }
 

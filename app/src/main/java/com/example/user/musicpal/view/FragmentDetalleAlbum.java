@@ -4,7 +4,6 @@ package com.example.user.musicpal.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +18,7 @@ import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.utils.ResultListener;
+import com.example.user.musicpal.utils.SimpleDividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,10 +28,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalle extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
+public class FragmentDetalleAlbum extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String ALBUM_KEY = "album_key";
-
 
     private ImageView imagenGrande;
     private TextView textArtista;
@@ -43,8 +42,8 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
     private NotificadorCancion notificadorCancion;
     private Album album;
 
-    public static FragmentDetalle dameUnFragment(Album album) {
-        FragmentDetalle fragmentCreado = new FragmentDetalle();
+    public static FragmentDetalleAlbum dameUnFragment(Album album) {
+        FragmentDetalleAlbum fragmentCreado = new FragmentDetalleAlbum();
         Bundle bundle = new Bundle();
         bundle.putSerializable(ALBUM_KEY, album);
         fragmentCreado.setArguments(bundle);
@@ -55,7 +54,7 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
 
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
         textArtista = view.findViewById(R.id.id_nombre_artista);
@@ -65,38 +64,26 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
         Bundle bundle = getArguments();
         album = (Album) bundle.getSerializable(ALBUM_KEY);
 
-
-
         controller = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(),this);
+        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), linearLayoutManager.getOrientation());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
 
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
-        recyclerViewCanciones.addItemDecoration(dividerItemDecoration);
+        recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
-
-        obtenerCancionesPorAlbum(album);
+        adapterCanciones.setListaDeCanciones(album.getListaCanciones());
+        chequearListaCanciones();
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
         Picasso.with(getContext()).load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
 
         return view;
-    }
-
-    public void obtenerCancionesPorAlbum(Album album){
-        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
-            @Override
-            public void finish(List<Cancion> resultado) {
-                adapterCanciones.setListaDeCanciones(resultado);
-            }
-        }, album.getId());
     }
 
     @Override
@@ -110,7 +97,22 @@ public class FragmentDetalle extends Fragment implements AdapterCanciones.Notifi
         notificadorCancion.notificarCancion(cancion, album);
     }
 
-    public interface NotificadorCancion{
+    public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Album album);
+    }
+
+    public void chequearListaCanciones() {
+        if (adapterCanciones.getListaDeCanciones() == null) {
+            obtenerCancionesPorAlbum(album);
+        }
+    }
+
+    public void obtenerCancionesPorAlbum(final Album album) {
+        controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                adapterCanciones.setListaDeCanciones(resultado);
+            }
+        }, album.getId());
     }
 }

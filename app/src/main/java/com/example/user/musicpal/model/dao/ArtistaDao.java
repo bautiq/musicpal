@@ -18,7 +18,7 @@ public class ArtistaDao {
     private Retrofit retrofit;
     private Service service;
 
-    public ArtistaDao(){
+    public ArtistaDao() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://api.deezer.com/")
@@ -27,27 +27,26 @@ public class ArtistaDao {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerController){
+    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerDelController, Integer offset, Integer limit) {
 
-        Call<ContenedorArtistas> call = service.obtenerArtista();
-
+        Call<ContenedorArtistas> call = service.obtenerArtista(offset, limit);
         call.enqueue(new Callback<ContenedorArtistas>() {
-
             @Override
             public void onResponse(Call<ContenedorArtistas> call, Response<ContenedorArtistas> response) {
-                ContenedorArtistas contenedorArtista = response.body();
-                if (contenedorArtista != null && contenedorArtista.obtenerListaDeArtistas() != null){
-                    resultListenerController.finish(contenedorArtista.obtenerListaDeArtistas());
-                }else{
-                    resultListenerController.finish(new ArrayList<Artista>());
+                ContenedorArtistas contenedorArtistasObtenido = response.body();
+
+                if (contenedorArtistasObtenido != null && contenedorArtistasObtenido.obtenerListaDeArtistas() != null) {
+                    List<Artista> artistaLista = contenedorArtistasObtenido.obtenerListaDeArtistas();
+                    resultListenerDelController.finish(artistaLista);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Artista>());
                 }
             }
 
             @Override
             public void onFailure(Call<ContenedorArtistas> call, Throwable t) {
-                resultListenerController.finish(new ArrayList<Artista>());
+                resultListenerDelController.finish(new ArrayList<Artista>());
             }
         });
-
     }
 }

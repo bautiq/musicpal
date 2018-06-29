@@ -6,9 +6,11 @@ import android.content.Context;
 import com.example.user.musicpal.model.dao.ArtistaDao;
 import com.example.user.musicpal.model.dao.DaoAlbum;
 import com.example.user.musicpal.model.dao.DaoCancion;
+import com.example.user.musicpal.model.dao.DaoPlaylist;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public class ControllerGlobal {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
-    private static final Integer LIST_SIZE = 5;
+    private static final Integer LIST_SIZE = 10;
 
 
     public ControllerGlobal(Context context) {
@@ -26,18 +28,8 @@ public class ControllerGlobal {
         offset = 0;
     }
 
-    public List<Album> getListaAlbumes(String categoria) {
 
-        DaoAlbum daoAlbum = new DaoAlbum();
-        List<Album> list = daoAlbum.obtenerAlbumes(context, categoria);
-        return list;
-    }
-
-    public List<Album> getListaAlbumOnline() {
-        return null;
-    }
-
-    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDeLaVista) {
+    public void obtenerAlbumesOnline(final ResultListener<List<Album>> resultListenerDeLaVista) {
         if (hayInternet()) {
             DaoAlbum daoRetroFit = new DaoAlbum();
             daoRetroFit.obtenerAlbumes(new ResultListener<List<Album>>() {
@@ -53,7 +45,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, int id) {
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, Integer id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
@@ -63,18 +55,76 @@ public class ControllerGlobal {
         }, id);
     }
 
-    public void obtenerArtistas(final ResultListener<List<Artista>> escuchadorDeLaVista){
-        if (hayInternet()){
+    public void obtenerArtistasOnline(final ResultListener<List<Artista>> resultListenerDeLaVista) {
+        if (hayInternet()) {
             ArtistaDao artistaDao = new ArtistaDao();
             artistaDao.obtenerArtistas(new ResultListener<List<Artista>>() {
                 @Override
                 public void finish(List<Artista> resultado) {
-                    escuchadorDeLaVista.finish(resultado);
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
                 }
-            });
-
+            }, offset, LIST_SIZE);
         }
     }
+
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, Integer id) {
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                listener.finish(resultado);
+            }
+        }, id);
+    }
+
+    public void obtenerPlaylistOnline(final ResultListener<List<Playlist>> resultListenerDeLaVista) {
+        if (hayInternet()) {
+            DaoPlaylist daoPlaylist = new DaoPlaylist();
+            daoPlaylist.obtenerPlaylist(new ResultListener<List<Playlist>>() {
+                @Override
+                public void finish(List<Playlist> resultado) {
+
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
+                }
+            }, offset, LIST_SIZE);
+        }
+    }
+
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, String id) {
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                listener.finish(resultado);
+            }
+        }, id);
+    }
+
+    public void obtenerCancionesTopOnline(final ResultListener<List<Cancion>> resultListenerDeLaVista) {
+        if (hayInternet()) {
+            DaoCancion daoCancion = new DaoCancion();
+            daoCancion.obtenerCancionesTop(new ResultListener<List<Cancion>>() {
+                @Override
+                public void finish(List<Cancion> resultado) {
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLaVista.finish(resultado);
+                }
+            }, offset, LIST_SIZE);
+        }
+
+    }
+
 
     private boolean hayInternet() {
         return true;
@@ -83,4 +133,6 @@ public class ControllerGlobal {
     public Boolean getHayPaginas() {
         return hayPaginas;
     }
+
+
 }
