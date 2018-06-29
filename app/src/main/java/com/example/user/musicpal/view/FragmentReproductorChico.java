@@ -111,6 +111,7 @@ public class FragmentReproductorChico extends Fragment {
         setearDatos(cancion);
     }
 
+
     public void setearDatos(Cancion cancion) {
         textArtista.setText(cancion.getArtista().getNombre());
         textCancion.setText(cancion.getTitle());
@@ -121,6 +122,8 @@ public class FragmentReproductorChico extends Fragment {
         }
         if (mP.isPlaying()) {
             botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+        }else{
+            botonPlay.setBackgroundResource(R.drawable.ic_play_circle);
         }
     }
 

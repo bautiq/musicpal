@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
 
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetallePlaylist extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico {
+public class ActivityDetallePlaylist extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
 
     public static final String PLAYLIST_KEY = "clave_playlist";
     public static final String POSICION_KEY_PLAYLIST = "clave_posicion_playlist";
@@ -71,5 +72,11 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
             fragmentReproductor.setArguments(bundle);
             FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
          */
+    }
+
+    @Override
+    public void notificarPlayPausa() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
     }
 }

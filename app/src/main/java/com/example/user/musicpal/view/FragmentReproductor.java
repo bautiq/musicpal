@@ -37,6 +37,7 @@ public class FragmentReproductor extends Fragment {
     private ImageView buttonBack;
     private MediaPlayer mP;
     private Album albumRecibido;
+    private NotificadorReproductorGrande notificadorReproductorGrande;
 
 
     @Override
@@ -86,6 +87,12 @@ public class FragmentReproductor extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        notificadorReproductorGrande = (NotificadorReproductorGrande) context;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
@@ -106,6 +113,11 @@ public class FragmentReproductor extends Fragment {
         }
         if (mP.isPlaying()) {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+        }else{
+            buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
         }
+    }
+    protected interface NotificadorReproductorGrande{
+        public void notificarPlayPausa();
     }
 }
