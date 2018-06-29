@@ -87,6 +87,12 @@ public class FragmentReproductor extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        notificadorReproductorGrande.notificarPlayPausa();
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorReproductorGrande = (NotificadorReproductorGrande) context;
