@@ -139,10 +139,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         });
 
 
-        setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
-        setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
+        setAdapterLinear(recyclerViewAlbumesTop, linearLayoutManagerAlbum, adapterAlbum);
+        setAdapterLinear(recyclerViewArtistasTop, linearLayoutManagerArtista, adapterArtista);
         setAdapterTopCanciones(recyclerViewCancionTop, gridLayoutManagerCanciones);
-        setAdapterPlaylist(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
+        setAdapterLinear(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist, adapterPlaylist);
 
         controllerAlbum = new ControllerGlobal(getActivity());
         controllerArtista = new ControllerGlobal(getActivity());
@@ -235,22 +235,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         notificadorActivities.notificarCancion(cancion, posicion);
     }
 
-    public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+    public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterAlbum);
-    }
-
-    public void setAdapterArtistas(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterArtista);
-    }
-
-    public void setAdapterPlaylist(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterPlaylist);
+        recyclerView.setAdapter(adapter);
     }
 
     public void setAdapterTopCanciones(RecyclerView recyclerView, GridLayoutManager gridLayoutManager) {
