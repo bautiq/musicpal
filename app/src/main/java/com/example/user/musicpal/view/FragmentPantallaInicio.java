@@ -231,8 +231,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     }
 
     @Override
-    public void notificarCeldaClickeadaDeCancion(Cancion cancion, int posicion) {
-        notificadorActivities.notificarCancion(cancion, posicion);
+    public void notificarCeldaClickeadaDeCancion(Cancion cancion) {
+        notificadorActivities.notificarCancion(cancion);
     }
 
     public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
@@ -248,6 +248,6 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
         public void notificarPlaylist(List<Playlist> listaPlaylist, int posicion);
 
-        public void notificarCancion(Cancion cancion, int posicion);
+        public void notificarCancion(Cancion cancion);
     }
 }

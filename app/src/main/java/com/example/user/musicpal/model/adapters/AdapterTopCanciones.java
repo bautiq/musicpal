@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +80,14 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int posicionCancionCliqueada = getAdapterPosition();
-                    notificadorTopCancionesCelda.notificarCeldaClickeadaDeCancion(cancion, posicionCancionCliqueada);
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    try {
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    notificadorTopCancionesCelda.notificarCeldaClickeadaDeCancion(cancionAreproducir);
                 }
             });
         }
@@ -92,6 +100,6 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
     }
 
     public interface NotificadorTopCancionesCelda {
-        public void notificarCeldaClickeadaDeCancion(Cancion cancion, int posicion);
+        public void notificarCeldaClickeadaDeCancion(Cancion cancion);
     }
 }
