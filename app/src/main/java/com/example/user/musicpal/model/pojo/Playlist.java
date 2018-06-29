@@ -10,15 +10,15 @@ public class Playlist implements Serializable {
     @SerializedName("title")
     private String nombre;
 
-    private double id;
+    private String id;
 
     @SerializedName("picture_medium")
     private String imagenPlaylistUrl;
 
     private List<Cancion> listCanciones;
 
-    public double getId() {
-        return (int)Math.round(id);
+    public String getId() {
+        return id;
     }
 
     public String getImagenPlaylistUrl() {
@@ -47,7 +47,7 @@ public class Playlist implements Serializable {
             return false;
         }else{
             Playlist playlistAcomparar = (Playlist) obj;
-            return playlistAcomparar.getId() == this.id;
+            return playlistAcomparar.getId().equals(this.id);
         }
     }
 }

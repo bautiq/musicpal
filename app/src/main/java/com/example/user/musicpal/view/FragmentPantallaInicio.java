@@ -232,6 +232,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
     @Override
     public void notificarCeldaClickeadaDeCancion(Cancion cancion) {
+        //este es el notificador de canciones top
         notificadorActivities.notificarCancion(cancion);
     }
 

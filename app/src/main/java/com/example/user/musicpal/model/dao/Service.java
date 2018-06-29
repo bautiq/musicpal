@@ -36,5 +36,5 @@ public interface Service {
     Call<ContenedorDeCanciones> obtenerCancionesPorArtistaConId(@Path("id") int id);
 
     @GET("playlist/{id}/tracks")
-    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id") double id);
+    Call<ContenedorDeCanciones> obtenerCancionesPorPlaylistConId(@Path("id") String id);
 }

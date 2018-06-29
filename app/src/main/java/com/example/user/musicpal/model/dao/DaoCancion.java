@@ -72,7 +72,7 @@ public class DaoCancion {
         });
     }
 
-    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> resultListenerDelController, double id) {
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> resultListenerDelController, String id) {
         Call<ContenedorDeCanciones> call = service.obtenerCancionesPorPlaylistConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override

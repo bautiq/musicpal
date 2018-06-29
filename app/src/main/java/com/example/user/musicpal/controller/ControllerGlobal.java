@@ -98,7 +98,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, double id) {
+    public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, String id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
             @Override
