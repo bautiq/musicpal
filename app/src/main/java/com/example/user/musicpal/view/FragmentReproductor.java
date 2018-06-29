@@ -53,13 +53,7 @@ public class FragmentReproductor extends Fragment {
         mP = MediaPlayerGlobal.getInstance().getMediaPlayer();
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
         //albumRecibido = cancionQueContiene.getAlbum();
-        textViewTitulo.setText(cancionQueContiene.getTitle());
-        textViewArtista.setText(cancionQueContiene.getArtista().getNombre());
-        try {
-            Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
-        } catch (NullPointerException e) {
-            Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
-        }
+        setearDatos(cancionQueContiene);
 
 
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +93,19 @@ public class FragmentReproductor extends Fragment {
     }
 
     public void setearDatos(Cancion cancion) {
+        textViewArtista.setText(cancion.getArtista().getNombre());
+        textViewTitulo.setText(cancion.getTitle());
+        if(cancion.getArtista().getImagenUrl() == null){
+            if(cancion.getAlbum() != null){
+                Picasso.with(getContext()).load(cancion.getAlbum().getImagenUrl()).into(imagen);
+            }
+        }else if (cancion.getAlbum().getImagenUrl() == null){
+            if(cancion.getArtista() != null){
+                Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
+            }
+        }
         if (mP.isPlaying()) {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
-            textViewArtista.setText(cancion.getArtista().getNombre());
-            textViewTitulo.setText(cancion.getTitle());
-            try {
-                Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
-            } catch (NullPointerException e) {
-                Picasso.with(getContext()).load(cancionQueContiene.getArtista().getImagenUrl()).into(imagen);
-            }
         }
     }
 }
