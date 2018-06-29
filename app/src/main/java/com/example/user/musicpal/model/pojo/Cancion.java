@@ -73,5 +73,12 @@ public class Cancion implements Serializable {
         this.title = title;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Cancion)) {
+            return false;
+        }
+        Cancion cancionAComparar = (Cancion) obj;
+        return cancionAComparar.getId() == this.id;
+    }
 }

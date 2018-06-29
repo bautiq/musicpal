@@ -68,14 +68,12 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
         private ImageView imagen;
         private TextView textNombre;
         private TextView textArtista;
-        private TextView textAlbum;
 
         public ViewHolderCancion(View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.imagen_fragment_cancion_top);
             textNombre = itemView.findViewById(R.id.title_fragment_cancion_top);
             textArtista = itemView.findViewById(R.id.title_fragment_artista_cancion_top);
-            textAlbum = itemView.findViewById(R.id.title_fragment_album_cancion_top);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,7 +88,6 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
             Picasso.with(context).load(cancion.getArtista().getImagenUrl()).placeholder(R.drawable.placeholder).into(imagen);
             textNombre.setText(cancion.getTitle());
             textArtista.setText(cancion.getArtista().getNombre());
-            textAlbum.setText(cancion.getAlbum().getTitulo());
         }
     }
 

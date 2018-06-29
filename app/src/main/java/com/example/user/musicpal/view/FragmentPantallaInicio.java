@@ -141,7 +141,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
         setAdapterLinear(recyclerViewAlbumesTop, linearLayoutManagerAlbum, adapterAlbum);
         setAdapterLinear(recyclerViewArtistasTop, linearLayoutManagerArtista, adapterArtista);
-        setAdapterTopCanciones(recyclerViewCancionTop, gridLayoutManagerCanciones);
+        setAdapterLinear(recyclerViewCancionTop, linearLayoutManagerCanciones, adapterTopCanciones);
         setAdapterLinear(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist, adapterPlaylist);
 
         controllerAlbum = new ControllerGlobal(getActivity());
@@ -239,24 +239,6 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-    }
-
-    public void setAdapterArtistas(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterArtista);
-    }
-
-    public void setAdapterPlaylist(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterPlaylist);
-    }
-
-    public void setAdapterTopCanciones(RecyclerView recyclerView, GridLayoutManager gridLayoutManager) {
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterTopCanciones);
     }
 
     public interface NotificadorActivities {
