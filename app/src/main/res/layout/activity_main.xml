@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
-        android:id="@+id/container_reproductor_grande_main">
+       >
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico {
+public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -248,6 +248,12 @@ fragmentReproductorChico.setearDatos(cancion);
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.container_reproductor_grande_main, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.drawer_layout, fragmentManager);
+    }
+
+    @Override
+    public void notificarPlayPausa() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
     }
 }
