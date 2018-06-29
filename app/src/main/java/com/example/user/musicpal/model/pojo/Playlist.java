@@ -40,4 +40,14 @@ public class Playlist implements Serializable {
     public void setListCanciones(List<Cancion> listCanciones) {
         this.listCanciones = listCanciones;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Playlist)){
+            return false;
+        }else{
+            Playlist playlistAcomparar = (Playlist) obj;
+            return playlistAcomparar.getId() == this.id;
+        }
+    }
 }

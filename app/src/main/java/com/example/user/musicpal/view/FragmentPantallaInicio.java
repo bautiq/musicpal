@@ -139,10 +139,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         });
 
 
-        setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
-        setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
-        setAdapterTopCanciones(recyclerViewCancionTop, linearLayoutManagerCanciones);
-        setAdapterPlaylist(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
+        setAdapterLinear(recyclerViewAlbumesTop, linearLayoutManagerAlbum, adapterAlbum);
+        setAdapterLinear(recyclerViewArtistasTop, linearLayoutManagerArtista, adapterArtista);
+        setAdapterTopCanciones(recyclerViewCancionTop, gridLayoutManagerCanciones);
+        setAdapterLinear(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist, adapterPlaylist);
 
         controllerAlbum = new ControllerGlobal(getActivity());
         controllerArtista = new ControllerGlobal(getActivity());
@@ -235,10 +235,10 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         notificadorActivities.notificarCancion(cancion, posicion);
     }
 
-    public void setAdapterAlbums(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+    public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapterAlbum);
+        recyclerView.setAdapter(adapter);
     }
 
     public void setAdapterArtistas(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
@@ -253,8 +253,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setAdapter(adapterPlaylist);
     }
 
-    public void setAdapterTopCanciones(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
-        recyclerView.setLayoutManager(linearLayoutManager);
+    public void setAdapterTopCanciones(RecyclerView recyclerView, GridLayoutManager gridLayoutManager) {
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterTopCanciones);
     }

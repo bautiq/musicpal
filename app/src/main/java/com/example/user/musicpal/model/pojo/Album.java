@@ -76,7 +76,7 @@ public class Album implements Serializable {
             return false;
         }
         Album albumAComparar = (Album) obj;
-        return (albumAComparar.getTitulo().equals(this.titulo));
+        return albumAComparar.getId() == this.id;
     }
 
     @Override

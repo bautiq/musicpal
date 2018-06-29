@@ -60,6 +60,7 @@ public class FragmentReproductorChico extends Fragment {
         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         cancion = mediaPlayerGlobal.getCancion();
         mP = mediaPlayerGlobal.getMediaPlayer();
+        setearDatos(cancion);
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +107,6 @@ public class FragmentReproductorChico extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         cancion = MediaPlayerGlobal.getInstance().getCancion();
         setearDatos(cancion);
     }

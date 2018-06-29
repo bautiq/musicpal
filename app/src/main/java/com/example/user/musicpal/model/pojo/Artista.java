@@ -55,4 +55,14 @@ public class Artista implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Artista )){
+            return false;
+        }else{
+            Artista artistaAcomparar = (Artista) obj;
+            return artistaAcomparar.getId() == this.id;
+        }
+    }
 }
