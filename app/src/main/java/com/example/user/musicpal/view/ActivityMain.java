@@ -147,8 +147,8 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     }
 
     @Override
-    public void notificarCancion(Cancion cancion , int posicion) {
-        fragmentReproductorChico.setearDatos(cancion);
+    public void notificarCancion(Cancion cancion) {
+
     }
 
     public void clickBotonesInferiores(String clickeado) {
