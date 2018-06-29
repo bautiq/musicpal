@@ -40,7 +40,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private LinearLayoutManager linearLayoutManagerAlbum;
     private LinearLayoutManager linearLayoutManagerPlaylist;
     private LinearLayoutManager linearLayoutManagerArtista;
-    private GridLayoutManager gridLayoutManagerCanciones;
+    private LinearLayoutManager linearLayoutManagerCanciones;
     private AdapterAlbum adapterAlbum;
     private AdapterArtista adapterArtista;
     private AdapterPlaylist adapterPlaylist;
@@ -65,7 +65,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        gridLayoutManagerCanciones = new GridLayoutManager(getActivity(), 3);
+        linearLayoutManagerCanciones = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
 
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
@@ -129,8 +129,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
                 if (isLoading) {
                     return;
                 }
-                int ultimaPosicion = gridLayoutManagerCanciones.getItemCount();
-                int posicionActual = gridLayoutManagerCanciones.findLastVisibleItemPosition();
+                int ultimaPosicion = linearLayoutManagerCanciones.getItemCount();
+                int posicionActual = linearLayoutManagerCanciones.findLastVisibleItemPosition();
 
                 if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
                     obtenerCancionesTop();
@@ -141,7 +141,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
 
         setAdapterAlbums(recyclerViewAlbumesTop, linearLayoutManagerAlbum);
         setAdapterArtistas(recyclerViewArtistasTop, linearLayoutManagerArtista);
-        setAdapterTopCanciones(recyclerViewCancionTop, gridLayoutManagerCanciones);
+        setAdapterTopCanciones(recyclerViewCancionTop, linearLayoutManagerCanciones);
         setAdapterPlaylist(recyclerViewPlaylistsTop, linearLayoutManagerPlaylist);
 
         controllerAlbum = new ControllerGlobal(getActivity());
@@ -253,8 +253,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         recyclerView.setAdapter(adapterPlaylist);
     }
 
-    public void setAdapterTopCanciones(RecyclerView recyclerView, GridLayoutManager gridLayoutManager) {
-        recyclerView.setLayoutManager(gridLayoutManager);
+    public void setAdapterTopCanciones(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager) {
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterTopCanciones);
     }

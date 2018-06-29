@@ -56,7 +56,7 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
     }
 
     public void agregarCanciones(List<Cancion> resultado) {
-        for (Cancion cancionAgregar : listaDeCanciones) {
+        for (Cancion cancionAgregar : resultado) {
             if (!this.listaDeCanciones.contains(cancionAgregar)) {
                 this.listaDeCanciones.add(cancionAgregar);
             }
