@@ -112,17 +112,15 @@ public class FragmentReproductorChico extends Fragment {
     }
 
     public void setearDatos(Cancion cancion) {
+        textArtista.setText(cancion.getArtista().getNombre());
+        textCancion.setText(cancion.getTitle());
+        try {
+            textAlbum.setText(cancion.getAlbum().getTitulo());
+        } catch (NullPointerException e) {
+            textAlbum.setText(" ");
+        }
         if (mP.isPlaying()) {
             botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
-            textArtista.setText(cancion.getArtista().getNombre());
-            textCancion.setText(cancion.getTitle());
-
-            try {
-                textAlbum.setText(cancion.getAlbum().getTitulo());
-            } catch (NullPointerException e) {
-                textAlbum.setText(" ");
-            }
-
         }
     }
 
