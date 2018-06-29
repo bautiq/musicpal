@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
@@ -20,7 +19,6 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
-import com.example.user.musicpal.utils.ResultListener;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,7 +34,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private boolean playlistIsClicked;
     private boolean compartirIsClicked;
     private boolean moreIsClicked;
-    private ImageView imageProfile;
+    private ImageView imageMenu;
     private ImageView imageSearch;
 
     private FragmentPantallaInicio fragmentPantallaInicio;
@@ -61,7 +59,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         imagePlaylist = findViewById(R.id.playlist_button);
         imageCompartir = findViewById(R.id.compartir_button);
         imageMore = findViewById(R.id.more_button);
-        imageProfile = findViewById(R.id.menu_button);
+        imageMenu = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -102,16 +100,16 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
             }
         });
 
-        imageProfile.setOnClickListener(new View.OnClickListener() {
+        imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMain.this, "Click Menu", Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(navigationView);
             }
         });
         imageSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMain.this, "Click Search", Toast.LENGTH_SHORT).show();
+                FragmentHelper.cargarFragmentConBackStack(new FragmentBusqueda(), R.id.container_fragment, fragmentManager);
             }
         });
 
