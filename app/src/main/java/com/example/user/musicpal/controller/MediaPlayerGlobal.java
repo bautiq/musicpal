@@ -16,8 +16,6 @@ public class MediaPlayerGlobal {
     private static MediaPlayerGlobal mediaPlayerGlobal;
     private MediaPlayer mediaPlayer;
     private Cancion cancion;
-    private ControllerGlobal controllerGlobal;
-    private Context context;
 
     private MediaPlayerGlobal() {
         Artista artista = new Artista("Linkin Park");

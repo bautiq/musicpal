@@ -30,8 +30,15 @@ public class Cancion implements Serializable {
 
     private String id;
 
+    private int duration;
+
+    public int getDuration() {
+        return duration;
+    }
+
     public Cancion() {
     }
+
 
     public void setArtista(Artista artista) {
         this.artista = artista;

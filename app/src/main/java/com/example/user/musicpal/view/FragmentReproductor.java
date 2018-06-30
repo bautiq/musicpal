@@ -2,15 +2,15 @@ package com.example.user.musicpal.view;
 
 
 import android.content.Context;
-import android.media.AudioManager;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +22,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +39,15 @@ public class FragmentReproductor extends Fragment {
     private MediaPlayer mP;
     private Album albumRecibido;
     private NotificadorReproductorGrande notificadorReproductorGrande;
+    private double startTime = 0;
+    private double finalTime = 0;
+    private Handler myHandler = new Handler();
+    private SeekBar seekbar;
+    public static int oneTimeOnly = 0;
+    private TextView tiempoTranscurrido;
+    private TextView tiempoDeDuracion;
+    private int forwardTime = 5000;
+    private int backwardTime = 5000;
 
 
     @Override
@@ -56,7 +64,39 @@ public class FragmentReproductor extends Fragment {
         mP = MediaPlayerGlobal.getInstance().getMediaPlayer();
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
         //albumRecibido = cancionQueContiene.getAlbum();
+
+        seekbar = view.findViewById(R.id.seekBar);
+        seekbar.setClickable(false);
+        tiempoTranscurrido = view.findViewById(R.id.text_tiempo_transcurrido);
+        tiempoDeDuracion = view.findViewById(R.id.text_tiempo_restante);
+
+
         setearDatos(cancionQueContiene);
+
+        finalTime = mP.getDuration();
+        startTime = mP.getCurrentPosition();
+
+        if (oneTimeOnly == 0) {
+            seekbar.setMax((int) finalTime);
+            oneTimeOnly = 1;
+        }
+
+        tiempoDeDuracion.setText(String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                finalTime)))
+        );
+
+        tiempoTranscurrido.setText(String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                startTime)))
+        );
+
+        seekbar.setProgress((int) startTime);
+        myHandler.postDelayed(UpdateSongTime, 100);
 
 
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +115,12 @@ public class FragmentReproductor extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Click Back Track", Toast.LENGTH_SHORT).show();
+                int temp = (int) startTime;
+
+                if ((temp - backwardTime) > 0) {
+                    startTime = startTime - backwardTime;
+                    mP.seekTo((int) startTime);
+                }
             }
         });
 
@@ -82,11 +128,31 @@ public class FragmentReproductor extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Click Forward Track", Toast.LENGTH_SHORT).show();
+                int temp = (int) startTime;
+
+                if ((temp + forwardTime) <= finalTime) {
+                    startTime = startTime + forwardTime;
+                    mP.seekTo((int) startTime);
+                }
             }
         });
 
         return view;
     }
+
+    protected Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            startTime = mP.getCurrentPosition();
+            tiempoTranscurrido.setText(String.format("%d min, %d sec",
+                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                    toMinutes((long) startTime)))
+            );
+            seekbar.setProgress((int) startTime);
+            myHandler.postDelayed(this, 100);
+        }
+    };
 
     @Override
     public void onPause() {
@@ -111,6 +177,7 @@ public class FragmentReproductor extends Fragment {
         obtenerCancion(cancion);
         textViewArtista.setText(cancion.getArtista().getNombre());
         textViewTitulo.setText(cancion.getTitle());
+        finalTime = cancion.getDuration();
         /*if(cancion.getArtista().getImagenUrl() == null){
             if(cancion.getAlbum() != null){
                 Picasso.with(getContext()).load(cancion.getAlbum().getImagenUrl()).into(imagen);
@@ -127,12 +194,14 @@ public class FragmentReproductor extends Fragment {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
         }
     }
-    public void obtenerCancion(final Cancion cancion){
+
+    public void obtenerCancion(final Cancion cancion) {
         ControllerGlobal controllerGlobal = new ControllerGlobal(getContext());
         controllerGlobal.obtenerCancionOnline(new ResultListener<Cancion>() {
             @Override
             public void finish(Cancion resultado) {
-                cancion.setArtista(resultado.getArtista());}
+                cancion.setArtista(resultado.getArtista());
+            }
         }, cancion.getId());
     }
 
