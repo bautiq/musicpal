@@ -30,9 +30,9 @@ public class Artista implements Serializable {
         this.cancionList = cancionList;
     }
 
-    private int id;
+    private String id;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -62,7 +62,7 @@ public class Artista implements Serializable {
             return false;
         }else{
             Artista artistaAcomparar = (Artista) obj;
-            return artistaAcomparar.getId() == this.id;
+            return artistaAcomparar.getId().equals(this.id);
         }
     }
 }

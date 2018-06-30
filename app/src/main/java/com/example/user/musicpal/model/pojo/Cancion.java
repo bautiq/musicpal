@@ -28,16 +28,20 @@ public class Cancion implements Serializable {
         return album;
     }
 
-    private int id;
+    private String id;
 
     public Cancion() {
     }
 
-    public int getId() {
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,6 +83,6 @@ public class Cancion implements Serializable {
             return false;
         }
         Cancion cancionAComparar = (Cancion) obj;
-        return cancionAComparar.getId() == this.id;
+        return cancionAComparar.getId().equals(this.id) ;
     }
 }

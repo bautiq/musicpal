@@ -65,7 +65,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        linearLayoutManagerCanciones = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManagerCanciones = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
@@ -161,11 +161,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         controllerAlbum.obtenerAlbumesOnline(new ResultListener<List<Album>>() {
             @Override
             public void finish(List<Album> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterAlbum.agregarAlbumes(resultado);
-                }
+                adapterAlbum.agregarAlbumes(resultado);
             }
         });
     }
@@ -174,11 +170,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         controllerArtista.obtenerArtistasOnline(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterArtista.agregarArtistas(resultado);
-                }
+                adapterArtista.agregarArtistas(resultado);
             }
         });
     }
@@ -187,11 +179,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         controllerPlaylist.obtenerPlaylistOnline(new ResultListener<List<Playlist>>() {
             @Override
             public void finish(List<Playlist> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterPlaylist.agregarPlaylist(resultado);
-                }
+
+                adapterPlaylist.agregarPlaylist(resultado);
             }
         });
     }
@@ -200,11 +189,7 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         controllerTopCancion.obtenerCancionesTopOnline(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-                if (resultado.size() == 0) {
-                    Toast.makeText(getContext(), "No se pudo recibir las listas", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapterTopCanciones.agregarCanciones(resultado);
-                }
+                adapterTopCanciones.agregarCanciones(resultado);
             }
         });
     }

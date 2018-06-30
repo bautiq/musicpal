@@ -15,9 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -105,10 +107,11 @@ public class FragmentReproductor extends Fragment {
         setearDatos(cancionQueContiene);
     }
 
-    public void setearDatos(Cancion cancion) {
+    public void setearDatos(final Cancion cancion) {
+        obtenerCancion(cancion);
         textViewArtista.setText(cancion.getArtista().getNombre());
         textViewTitulo.setText(cancion.getTitle());
-        if(cancion.getArtista().getImagenUrl() == null){
+        /*if(cancion.getArtista().getImagenUrl() == null){
             if(cancion.getAlbum() != null){
                 Picasso.with(getContext()).load(cancion.getAlbum().getImagenUrl()).into(imagen);
             }
@@ -116,14 +119,24 @@ public class FragmentReproductor extends Fragment {
             if(cancion.getArtista() != null){
                 Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
             }
-        }
+        }*/
+        Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
         if (mP.isPlaying()) {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
-        }else{
+        } else {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
         }
     }
-    protected interface NotificadorReproductorGrande{
+    public void obtenerCancion(final Cancion cancion){
+        ControllerGlobal controllerGlobal = new ControllerGlobal(getContext());
+        controllerGlobal.obtenerCancionOnline(new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                cancion.setArtista(resultado.getArtista());}
+        }, cancion.getId());
+    }
+
+    protected interface NotificadorReproductorGrande {
         public void notificarPlayPausa();
     }
 }
