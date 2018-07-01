@@ -119,7 +119,7 @@ public class FragmentReproductor extends Fragment {
                                 finalTime)))
         );
 
-        tiempoTranscurrido.setText(String.format("%d min, %d sec",
+        tiempoTranscurrido.setText(String.format("%d:%d",
                 TimeUnit.MILLISECONDS.toMinutes((long) startTime),
                 TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
@@ -188,7 +188,7 @@ public class FragmentReproductor extends Fragment {
     protected Runnable UpdateSongTime = new Runnable() {
         public void run() {
             startTime = mP.getCurrentPosition();
-            tiempoTranscurrido.setText(String.format("%d min, %d sec",
+            tiempoTranscurrido.setText(String.format("%d:%d",
                     TimeUnit.MILLISECONDS.toMinutes((long) startTime),
                     TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
