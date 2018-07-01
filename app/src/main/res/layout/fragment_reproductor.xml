@@ -13,17 +13,19 @@
         style="@style/StyleTituloListadoScroll"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Bitter Sweet Symphony"
+        android:height="40dp"
+        tools:text="Bitter Sweet Symphony"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_reproductor_cancion"
         style="@style/StyleTituloListadoScroll"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
+        android:height="60dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
-        android:text="The Verve - Urban Hymns"
+        tools:text="The Verve - Urban Hymns"
         android:textColor="@color/grisBlanco"
         android:textSize="20sp" />
 
@@ -36,7 +38,7 @@
         app:civ_border_width="2dp"
         app:civ_shadow_color="@color/gris"
         app:civ_border_color="@color/grisBlanco"
-        android:src="@drawable/urban_hymns_album" />
+        tools:src="@drawable/urban_hymns_album" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +52,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="3dp"
-            android:text="Small Text"
+            tools:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
             android:textSize="15sp" />
@@ -62,7 +64,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="3dp"
-            android:text="Small Text"
+            tools:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
             android:textSize="15sp" />

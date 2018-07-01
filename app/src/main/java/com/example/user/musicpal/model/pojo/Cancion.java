@@ -68,12 +68,12 @@ public class Cancion implements Serializable {
         return urlPreview;
     }
 
-    public Cancion(String title, String urlPreview, Artista artista, Album album) {
+    public Cancion(String title, String urlPreview, Artista artista, Album album, String id) {
         this.title = title;
         this.urlPreview = urlPreview;
         this.artista = artista;
         this.album = album;
-
+        this.id=id;
     }
 
     public String getTitle() {

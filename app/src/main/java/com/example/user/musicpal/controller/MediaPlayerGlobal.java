@@ -20,7 +20,7 @@ public class MediaPlayerGlobal {
 
     private MediaPlayerGlobal() {
         Artista artista = new Artista("Linkin Park");
-        cancion = new Cancion("In my remains", "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3", artista, new Album("Living things", artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"));
+        cancion = new Cancion("In my remains", "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3", artista, new Album("Living things", artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"), "37734401");
         List<Cancion> listaInicial = new ArrayList<>();
         listaInicial.add(cancion);
         mediaPlayer = new MediaPlayer();

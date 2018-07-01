@@ -44,7 +44,6 @@ public class FragmentReproductor extends Fragment {
     private Handler myHandler = new Handler();
     private SeekBar seekbar;
     private Runnable runnable;
-    public static int oneTimeOnly = 0;
     private TextView tiempoTranscurrido;
     private TextView tiempoDeDuracion;
     private int forwardTime = 5000;
@@ -77,10 +76,9 @@ public class FragmentReproductor extends Fragment {
         finalTime = mP.getDuration();
         startTime = mP.getCurrentPosition();
 
-        if (oneTimeOnly == 0) {
-            seekbar.setMax((int) finalTime);
-            oneTimeOnly = 1;
-        }
+        seekbar.setMax((int) finalTime);
+        seekbar.setProgress((int) startTime);
+        myHandler.postDelayed(updateSongTime, 100);
 
         mP.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
             @Override
@@ -119,24 +117,8 @@ public class FragmentReproductor extends Fragment {
             }
         });
 
-
-        tiempoDeDuracion.setText(String.format("%d min, %d sec",
-                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
-                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
-                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
-                                finalTime)))
-        );
-
-        tiempoTranscurrido.setText(String.format("%d:%d",
-                TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-                TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
-                                startTime)))
-        );
-
-        seekbar.setProgress((int) startTime);
-        myHandler.postDelayed(UpdateSongTime, 100);
-
+        tiempoTranscurrido.setText(getHRM(mP.getCurrentPosition()));
+        tiempoDeDuracion.setText(getHRM(mP.getDuration()));
 
         buttonPlayPausa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,23 +171,28 @@ public class FragmentReproductor extends Fragment {
                     playCycle();
                 }
             };
-            myHandler.postDelayed(runnable, 1000);
+            myHandler.postDelayed(runnable, 100);
         }
     }
 
-    protected Runnable UpdateSongTime = new Runnable() {
+    protected Runnable updateSongTime = new Runnable() {
         public void run() {
             startTime = mP.getCurrentPosition();
-            tiempoTranscurrido.setText(String.format("%d:%d",
-                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-                                    toMinutes((long) startTime)))
-            );
+            tiempoTranscurrido.setText(getHRM(mP.getCurrentPosition()));
+            tiempoDeDuracion.setText(getHRM(mP.getDuration()));
             seekbar.setProgress((int) startTime);
             myHandler.postDelayed(this, 100);
         }
     };
+
+    private String getHRM(int milliseconds) {
+        int seconds = (milliseconds / 1000) % 60;
+        int minutes = ((milliseconds / (1000 * 60)) % 60);
+        int hours = ((milliseconds / (1000 * 60 * 60)) % 24);
+        return ((hours < 10) ? "0" + hours : hours) + ":" +
+                ((minutes < 10) ? "0" + minutes : minutes) + ":" +
+                ((seconds < 10) ? "0" + seconds : seconds);
+    }
 
     @Override
     public void onPause() {
@@ -223,17 +210,15 @@ public class FragmentReproductor extends Fragment {
     public void onResume() {
 
         super.onResume();
-
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
-        obtenerCancion(cancionQueContiene);
         setearDatos(cancionQueContiene);
     }
 
     public void setearDatos(final Cancion cancion) {
-        seekbar.setProgress(0);
-        textViewArtista.setText(cancion.getArtista().getNombre());
+        obtenerCancion(cancion);
+       /* textViewArtista.setText(cancion.getArtista().getNombre());
         textViewTitulo.setText(cancion.getTitle());
-        finalTime = cancion.getDuration();
+        finalTime = cancion.getDuration();*/
         /*if(cancion.getArtista().getImagenUrl() == null){
             if(cancion.getAlbum() != null){
                 Picasso.with(getContext()).load(cancion.getAlbum().getImagenUrl()).into(imagen);
@@ -242,8 +227,8 @@ public class FragmentReproductor extends Fragment {
             if(cancion.getArtista() != null){
                 Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
             }
-        }*/
-        Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
+        }
+        Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);*/
         if (mP.isPlaying()) {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
         } else {
@@ -256,7 +241,9 @@ public class FragmentReproductor extends Fragment {
         controllerGlobal.obtenerCancionOnline(new ResultListener<Cancion>() {
             @Override
             public void finish(Cancion resultado) {
-                cancion.setArtista(resultado.getArtista());
+                Picasso.with(getContext()).load(resultado.getAlbum().getImagenUrl()).into(imagen);
+                textViewArtista.setText(resultado.getArtista().getNombre());
+                textViewTitulo.setText(resultado.getTitle());
             }
         }, cancion.getId());
     }
