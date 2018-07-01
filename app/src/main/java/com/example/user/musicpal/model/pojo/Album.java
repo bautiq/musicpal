@@ -28,7 +28,11 @@ public class Album implements Serializable {
         this.titulo = titulo;
         this.artista = artista;
         this.ImagenUrl = imagenUrl;
+    }
 
+    public Album(String titulo, String imagenUrl) {
+        this.titulo = titulo;
+        this.ImagenUrl = imagenUrl;
     }
 
     public void setListaCanciones(List<Cancion> listaCanciones) {

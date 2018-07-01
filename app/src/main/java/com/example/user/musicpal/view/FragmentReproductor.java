@@ -43,6 +43,7 @@ public class FragmentReproductor extends Fragment {
     private double finalTime = 0;
     private Handler myHandler = new Handler();
     private SeekBar seekbar;
+    private Runnable runnable;
     public static int oneTimeOnly = 0;
     private TextView tiempoTranscurrido;
     private TextView tiempoDeDuracion;
@@ -81,6 +82,36 @@ public class FragmentReproductor extends Fragment {
             oneTimeOnly = 1;
         }
 
+        mP.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                seekbar.setMax(mp.getDuration());
+                playCycle();
+                mp.start();
+            }
+        });
+
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean imput) {
+                if (imput) {
+                    mP.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
         tiempoDeDuracion.setText(String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
                 TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
@@ -111,6 +142,7 @@ public class FragmentReproductor extends Fragment {
                 }
             }
         });
+
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +170,19 @@ public class FragmentReproductor extends Fragment {
         });
 
         return view;
+    }
+
+    public void playCycle() {
+        seekbar.setProgress(mP.getCurrentPosition());
+        if (mP.isPlaying()) {
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    playCycle();
+                }
+            };
+            myHandler.postDelayed(runnable, 1000);
+        }
     }
 
     protected Runnable UpdateSongTime = new Runnable() {
@@ -168,13 +213,16 @@ public class FragmentReproductor extends Fragment {
 
     @Override
     public void onResume() {
+
         super.onResume();
+
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
+        obtenerCancion(cancionQueContiene);
         setearDatos(cancionQueContiene);
     }
 
     public void setearDatos(final Cancion cancion) {
-        obtenerCancion(cancion);
+        seekbar.setProgress(0);
         textViewArtista.setText(cancion.getArtista().getNombre());
         textViewTitulo.setText(cancion.getTitle());
         finalTime = cancion.getDuration();
