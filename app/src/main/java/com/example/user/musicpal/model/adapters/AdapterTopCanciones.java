@@ -83,7 +83,7 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -100,6 +100,6 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
     }
 
     public interface NotificadorTopCancionesCelda {
-        public void notificarCeldaClickeadaDeCancion(Cancion cancion);
+        public void  notificarCeldaClickeadaDeCancion(Cancion cancion);
     }
 }

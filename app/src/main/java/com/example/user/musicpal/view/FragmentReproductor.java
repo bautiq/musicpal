@@ -82,6 +82,14 @@ public class FragmentReproductor extends Fragment {
             oneTimeOnly = 1;
         }
 
+        mP.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mediaPlayer) {
+                Cancion cancionSiguiente = MediaPlayerGlobal.getInstance().getCancion();
+                setearDatos(cancionSiguiente);
+            }
+        });
+
         mP.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {

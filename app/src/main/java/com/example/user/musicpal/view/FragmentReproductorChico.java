@@ -112,6 +112,8 @@ public class FragmentReproductorChico extends Fragment {
     }
 
 
+
+
     public void setearDatos(Cancion cancion) {
         textArtista.setText(cancion.getArtista().getNombre());
         textCancion.setText(cancion.getTitle());
