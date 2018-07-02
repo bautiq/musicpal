@@ -22,6 +22,8 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,6 +36,7 @@ public class FragmentReproductor extends Fragment {
     private ImageView imagen;
     private ImageView buttonPlayPausa;
     private Cancion cancionQueContiene;
+    private List<Cancion> playList;
     private ImageView buttonForward;
     private ImageView buttonBack;
     private MediaPlayer mP;
@@ -48,6 +51,7 @@ public class FragmentReproductor extends Fragment {
     private TextView tiempoDeDuracion;
     private int forwardTime = 5000;
     private int backwardTime = 5000;
+    private Integer posicionPlaylist;
 
 
     @Override
@@ -61,8 +65,11 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
-        mP = MediaPlayerGlobal.getInstance().getMediaPlayer();
-        cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
+        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+        posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
+        mP = mediaPlayerGlobal.getMediaPlayer();
+        cancionQueContiene = mediaPlayerGlobal.getCancion();
+        playList = mediaPlayerGlobal.getPlayList();
         //albumRecibido = cancionQueContiene.getAlbum();
 
         seekbar = view.findViewById(R.id.seekBar);
@@ -79,14 +86,6 @@ public class FragmentReproductor extends Fragment {
         seekbar.setMax((int) finalTime);
         seekbar.setProgress((int) startTime);
         myHandler.postDelayed(updateSongTime, 100);
-
-        mP.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-            @Override
-            public void onSeekComplete(MediaPlayer mediaPlayer) {
-                Cancion cancionSiguiente = MediaPlayerGlobal.getInstance().getCancion();
-                setearDatos(cancionSiguiente);
-            }
-        });
 
         mP.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -136,25 +135,64 @@ public class FragmentReproductor extends Fragment {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //este listener va a pasar a la cancion anterior
                 Toast.makeText(getContext(), "Click Back Track", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        buttonBack.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //este listener va a ir hacia atras 5 segundos en la cancion
                 int temp = (int) startTime;
 
                 if ((temp - backwardTime) > 0) {
                     startTime = startTime - backwardTime;
                     mP.seekTo((int) startTime);
                 }
+                return false;
+            }
+        });
+
+        buttonForward.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //este listener va a ir hacia adelante 5 segundos en la cancion
+                int temp = (int) startTime;
+
+                if ((temp + forwardTime) <= finalTime) {
+                    startTime = startTime + forwardTime;
+                    mP.seekTo((int) startTime);
+                }
+                return false;
             }
         });
 
         buttonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Click Forward Track", Toast.LENGTH_SHORT).show();
-                int temp = (int) startTime;
+                //este listener va a pasar a la cancion siguiente
+            }
+        });
+        final Integer[] posicionNueva = {posicionPlaylist};
+        mP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-                if ((temp + forwardTime) <= finalTime) {
-                    startTime = startTime + forwardTime;
-                    mP.seekTo((int) startTime);
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
+                    posicionNueva[0] += 1;
+                    Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+                    cancionQueContiene = cancionSiguiente;
+                    setearDatos(cancionQueContiene);
+                    try {
+                        mediaPlayer.reset();
+                        mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                        buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -247,6 +285,8 @@ public class FragmentReproductor extends Fragment {
             }
         }, cancion.getId());
     }
+
+
 
     protected interface NotificadorReproductorGrande {
         public void notificarPlayPausa();

@@ -17,15 +17,17 @@ public class MediaPlayerGlobal {
     private MediaPlayer mediaPlayer;
     private Cancion cancion;
     private List<Cancion> playList;
+    private Integer posicionPlaylist;
 
     private MediaPlayerGlobal() {
+        posicionPlaylist = 0;
         Artista artista = new Artista("Linkin Park");
         cancion = new Cancion("In my remains", "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3", artista, new Album("Living things", artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"), "37734401");
-        List<Cancion> listaInicial = new ArrayList<>();
-        listaInicial.add(cancion);
+        playList = new ArrayList<>();
+        playList.add(cancion);
         mediaPlayer = new MediaPlayer();
         try {
-            setearPlaylist(listaInicial, false, 0);
+            setearPlaylist(playList, false, 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,6 +50,7 @@ public class MediaPlayerGlobal {
         final Integer[] posicionNueva = {posicion};
         this.cancion = playListAReproducir.get(posicion);
         this.playList = playListAReproducir;
+        posicionPlaylist = posicion;
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
@@ -58,21 +61,20 @@ public class MediaPlayerGlobal {
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
+                if (!(posicionPlaylist + 1 > playList.size() - 1)) {
                     posicionNueva[0] += 1;
-                    Cancion cancionSiguiente = playList.get(posicionNueva[0]);
-                    cancion = cancionSiguiente;
-                    try {
-                        mediaPlayer.reset();
-                        mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
-                        mediaPlayer.prepare();
-                        mediaPlayer.start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    posicionPlaylist = posicionNueva[0];
                 }
             }
         });
+    }
+
+    public List<Cancion> getPlayList() {
+        return playList;
+    }
+
+    public Integer getPosicionPlaylist() {
+        return posicionPlaylist;
     }
 
     public Cancion getCancion() {
