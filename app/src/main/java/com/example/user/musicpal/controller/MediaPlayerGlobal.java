@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.view.FragmentReproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,15 +59,26 @@ public class MediaPlayerGlobal {
         if (quieroQueInicie) {
             mediaPlayer.start();
         }
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        /* mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 if (!(posicionPlaylist + 1 > playList.size() - 1)) {
                     posicionNueva[0] += 1;
                     posicionPlaylist = posicionNueva[0];
+                    Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+                    cancion = cancionSiguiente;
+                    try {
+                        mediaPlayer.reset();
+                        mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
-        });
+        }); */
     }
 
     public List<Cancion> getPlayList() {

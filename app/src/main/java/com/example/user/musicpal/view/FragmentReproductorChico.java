@@ -20,23 +20,24 @@ import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.FragmentHelper;
 
+import java.io.IOException;
+import java.util.List;
+
 
 public class FragmentReproductorChico extends Fragment {
-
     private Button botonRewind;
     private Button botonForward;
     private Button botonPlay;
     private LinearLayout linearLayout;
     private NotificadorReproductorChico notificadorReproductorChico;
-    private LinearLayout linearLayoutReproductor;
     private TextView textCancion;
     private TextView textArtista;
     private TextView textAlbum;
-    private FragmentReproductor fragmentReproductor;
     private FragmentManager fragmentManager;
     private static Cancion cancion;
     private MediaPlayer mP;
-
+    private Integer posicionPlaylist;
+    private List<Cancion> playList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +61,8 @@ public class FragmentReproductorChico extends Fragment {
         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         cancion = mediaPlayerGlobal.getCancion();
         mP = mediaPlayerGlobal.getMediaPlayer();
+        posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
+        playList = mediaPlayerGlobal.getPlayList();
         setearDatos(cancion);
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,8 @@ public class FragmentReproductorChico extends Fragment {
                 notificadorReproductorChico.cargarReproductorGrande();
             }
         });
+
+        final Integer[] posicionNueva = {posicionPlaylist};
         return view;
     }
 

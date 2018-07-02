@@ -65,7 +65,7 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
-        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+        final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
         mP = mediaPlayerGlobal.getMediaPlayer();
         cancionQueContiene = mediaPlayerGlobal.getCancion();
@@ -176,19 +176,17 @@ public class FragmentReproductor extends Fragment {
         });
         final Integer[] posicionNueva = {posicionPlaylist};
         mP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
                     posicionNueva[0] += 1;
+                    posicionPlaylist = posicionNueva[0];
                     Cancion cancionSiguiente = playList.get(posicionNueva[0]);
                     cancionQueContiene = cancionSiguiente;
                     setearDatos(cancionQueContiene);
                     try {
-                        mediaPlayer.reset();
-                        mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
-                        mediaPlayer.prepare();
-                        mediaPlayer.start();
+                        mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
+                        notificadorReproductorGrande.notificarPlayPausa();
                         buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -254,19 +252,6 @@ public class FragmentReproductor extends Fragment {
 
     public void setearDatos(final Cancion cancion) {
         obtenerCancion(cancion);
-       /* textViewArtista.setText(cancion.getArtista().getNombre());
-        textViewTitulo.setText(cancion.getTitle());
-        finalTime = cancion.getDuration();*/
-        /*if(cancion.getArtista().getImagenUrl() == null){
-            if(cancion.getAlbum() != null){
-                Picasso.with(getContext()).load(cancion.getAlbum().getImagenUrl()).into(imagen);
-            }
-        }else if (cancion.getAlbum().getImagenUrl() == null){
-            if(cancion.getArtista() != null){
-                Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);
-            }
-        }
-        Picasso.with(getContext()).load(cancion.getArtista().getImagenUrl()).into(imagen);*/
         if (mP.isPlaying()) {
             buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
         } else {
