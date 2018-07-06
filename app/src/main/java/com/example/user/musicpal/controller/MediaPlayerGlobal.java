@@ -19,6 +19,7 @@ public class MediaPlayerGlobal {
     private Cancion cancion;
     private List<Cancion> playList;
     private Integer posicionPlaylist;
+    private NotificadorQueTermino notificadorQueTermino;
 
     private MediaPlayerGlobal() {
         posicionPlaylist = 0;
@@ -59,7 +60,7 @@ public class MediaPlayerGlobal {
         if (quieroQueInicie) {
             mediaPlayer.start();
         }
-        /* mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 if (!(posicionPlaylist + 1 > playList.size() - 1)) {
@@ -69,6 +70,7 @@ public class MediaPlayerGlobal {
                     cancion = cancionSiguiente;
                     try {
                         mediaPlayer.reset();
+                        notificadorQueTermino.cambioCancion();
                         mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
                         mediaPlayer.prepare();
                         mediaPlayer.start();
@@ -78,7 +80,7 @@ public class MediaPlayerGlobal {
 
                 }
             }
-        }); */
+        });
     }
 
     public List<Cancion> getPlayList() {
@@ -95,5 +97,9 @@ public class MediaPlayerGlobal {
 
     public void setCancion(Cancion cancion) {
         this.cancion = cancion;
+    }
+
+    public interface NotificadorQueTermino{
+        public void cambioCancion();
     }
 }

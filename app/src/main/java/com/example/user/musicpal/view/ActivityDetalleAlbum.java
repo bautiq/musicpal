@@ -16,7 +16,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
+public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
@@ -30,11 +30,13 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
     private String categoriaRecibida;
     private ViewPager viewPager;
     private ControllerGlobal controllerGlobal;
+    private FragmentReproductor fragmentReproductor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_album);
+        fragmentReproductor = new FragmentReproductor();
         fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity, getSupportFragmentManager());
         controllerGlobal = new ControllerGlobal(this);
@@ -73,13 +75,20 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa, getSupportFragmentManager());
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.contenedor_fragment_vista_previa, getSupportFragmentManager());
     }
 
     @Override
     public void notificarPlayPausa() {
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
+    }
+
+    @Override
+    public void cambioCancion() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
+        fragmentReproductor.setearDatos(cancion);
     }
 }
 

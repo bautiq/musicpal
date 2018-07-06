@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
+public class ActivityMain extends AppCompatActivity implements FragmentPantallaInicio.NotificadorActivities, NavigationView.OnNavigationItemSelectedListener, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -45,6 +45,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
     private FragmentPlaylist fragmentPlaylist;
     private FragmentCompartir fragmentCompartir;
     private MediaPlayerGlobal mediaPlayerGlobal;
+    private FragmentReproductor fragmentReproductor;
     private FragmentReproductorChico fragmentReproductorChico;
 
     @Override
@@ -65,7 +66,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         drawerLayout = findViewById(R.id.drawer_layout);
         mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         navigationView.setNavigationItemSelectedListener(this);
-
+        fragmentReproductor = new FragmentReproductor();
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
         FragmentHelper.cargarFragment(fragmentPantallaInicio, R.id.container_fragment, fragmentManager);
@@ -148,7 +149,7 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
 
     @Override
     public void notificarCancion(Cancion cancion) {
-fragmentReproductorChico.setearDatos(cancion);
+        fragmentReproductorChico.setearDatos(cancion);
     }
 
     public void clickBotonesInferiores(String clickeado) {
@@ -248,12 +249,19 @@ fragmentReproductorChico.setearDatos(cancion);
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.drawer_layout, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.drawer_layout, fragmentManager);
     }
 
     @Override
     public void notificarPlayPausa() {
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
+    }
+
+    @Override
+    public void cambioCancion() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
+        fragmentReproductor.setearDatos(cancion);
     }
 }

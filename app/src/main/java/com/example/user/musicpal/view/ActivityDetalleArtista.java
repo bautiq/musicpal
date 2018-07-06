@@ -17,7 +17,7 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleArtista extends AppCompatActivity implements FragmentDetalleArtista.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
+public class ActivityDetalleArtista extends AppCompatActivity implements FragmentDetalleArtista.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
     public static final String ARTISTA_KEY = "clave_artista";
     public static final String POSICION_KEY_ARTISTA = "clave_posicion_artista";
 
@@ -28,11 +28,13 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
     private ViewPager viewPager;
     private ControllerGlobal controllerArtista;
     private FragmentReproductorChico fragmentReproductorChico;
+    private FragmentReproductor fragmentReproductor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_artista);
+        fragmentReproductor = new FragmentReproductor();
         fragmentReproductorChico = new FragmentReproductorChico();
         FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity_artista, getSupportFragmentManager());
         controllerArtista = new ControllerGlobal(this);
@@ -62,12 +64,19 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
     }
 
     @Override
     public void notificarPlayPausa() {
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
+    }
+
+    @Override
+    public void cambioCancion() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
+        fragmentReproductor.setearDatos(cancion);
     }
 }
