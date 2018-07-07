@@ -71,7 +71,7 @@ public class FragmentReproductor extends Fragment {
         cancionQueContiene = mediaPlayerGlobal.getCancion();
         playList = mediaPlayerGlobal.getPlayList();
         //albumRecibido = cancionQueContiene.getAlbum();
-
+        final Integer[] posicionNueva = {posicionPlaylist};
         seekbar = view.findViewById(R.id.seekBar);
         seekbar.setClickable(false);
         tiempoTranscurrido = view.findViewById(R.id.text_tiempo_transcurrido);
@@ -135,8 +135,7 @@ public class FragmentReproductor extends Fragment {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //este listener va a pasar a la cancion anterior
-                Toast.makeText(getContext(), "Click Back Track", Toast.LENGTH_SHORT).show();
+                cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
 
             }
         });
@@ -172,28 +171,17 @@ public class FragmentReproductor extends Fragment {
             @Override
             public void onClick(View v) {
                 //este listener va a pasar a la cancion siguiente
+                cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
-        final Integer[] posicionNueva = {posicionPlaylist};
+
         mP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
-                    posicionNueva[0] += 1;
-                    posicionPlaylist = posicionNueva[0];
-                    Cancion cancionSiguiente = playList.get(posicionNueva[0]);
-                    cancionQueContiene = cancionSiguiente;
-                    setearDatos(cancionQueContiene);
-                    try {
-                        mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
-                        notificadorReproductorGrande.notificarPlayPausa();
-                        buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
+
 
         return view;
     }
@@ -272,8 +260,41 @@ public class FragmentReproductor extends Fragment {
     }
 
 
-
     protected interface NotificadorReproductorGrande {
         public void notificarPlayPausa();
+    }
+
+    public void cambioCancionSiguiente(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+        if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
+            posicionNueva[0] += 1;
+            posicionPlaylist = posicionNueva[0];
+            Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+            cancionQueContiene = cancionSiguiente;
+            setearDatos(cancionQueContiene);
+            try {
+                mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
+                notificadorReproductorGrande.notificarPlayPausa();
+                buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void cambioCancionAnterior(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+        if (!(posicionNueva[0] <= 0)) {
+            posicionNueva[0] -= 1;
+            posicionPlaylist = posicionNueva[0];
+            Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+            cancionQueContiene = cancionSiguiente;
+            setearDatos(cancionQueContiene);
+            try {
+                mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
+                notificadorReproductorGrande.notificarPlayPausa();
+                buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

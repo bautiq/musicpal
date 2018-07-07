@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -58,12 +59,13 @@ public class FragmentReproductorChico extends Fragment {
         textCancion.setSelected(true);
         textAlbum.setSelected(true);
 
-        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+        final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         cancion = mediaPlayerGlobal.getCancion();
         mP = mediaPlayerGlobal.getMediaPlayer();
         posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
         playList = mediaPlayerGlobal.getPlayList();
         setearDatos(cancion);
+        final Integer[] posicionNueva = {posicionPlaylist};
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,14 +82,14 @@ public class FragmentReproductorChico extends Fragment {
         botonRewind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Click Rewind", Toast.LENGTH_SHORT).show();
+               cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
             }
         });
 
         botonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Click Forward", Toast.LENGTH_SHORT).show();
+                cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +100,6 @@ public class FragmentReproductorChico extends Fragment {
                 notificadorReproductorChico.cargarReproductorGrande();
             }
         });
-
-        final Integer[] posicionNueva = {posicionPlaylist};
         return view;
     }
 
@@ -117,8 +117,6 @@ public class FragmentReproductorChico extends Fragment {
     }
 
 
-
-
     public void setearDatos(Cancion cancion) {
         textArtista.setText(cancion.getArtista().getNombre());
         textCancion.setText(cancion.getTitle());
@@ -131,6 +129,40 @@ public class FragmentReproductorChico extends Fragment {
             botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
         }else{
             botonPlay.setBackgroundResource(R.drawable.ic_play_circle);
+        }
+    }
+    public void cambioCancionSiguiente(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+        playList = mediaPlayerGlobal.getPlayList();
+        if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
+            posicionNueva[0] += 1;
+            posicionPlaylist = posicionNueva[0];
+            Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+            cancion = cancionSiguiente;
+            setearDatos(cancion);
+            try {
+                mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
+
+                botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void cambioCancionAnterior(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+        playList = mediaPlayerGlobal.getPlayList();
+        if (!(posicionNueva[0] <= 0)) {
+            posicionNueva[0] -= 1;
+            posicionPlaylist = posicionNueva[0];
+            Cancion cancionSiguiente = playList.get(posicionNueva[0]);
+            cancion = cancionSiguiente;
+            setearDatos(cancion);
+            try {
+                mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
+                botonPlay.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

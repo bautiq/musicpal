@@ -28,6 +28,12 @@ public class MediaPlayerGlobal {
         playList = new ArrayList<>();
         playList.add(cancion);
         mediaPlayer = new MediaPlayer();
+        notificadorQueTermino = new NotificadorQueTermino() {
+            @Override
+            public void cambioCancion() {
+                //esto esta solo para que no de null
+            }
+        };
         try {
             setearPlaylist(playList, false, 0);
         } catch (IOException e) {
@@ -60,7 +66,7 @@ public class MediaPlayerGlobal {
         if (quieroQueInicie) {
             mediaPlayer.start();
         }
-         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 if (!(posicionPlaylist + 1 > playList.size() - 1)) {
@@ -99,7 +105,7 @@ public class MediaPlayerGlobal {
         this.cancion = cancion;
     }
 
-    public interface NotificadorQueTermino{
+    public interface NotificadorQueTermino {
         public void cambioCancion();
     }
 }
