@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "906607296039",
+    "firebase_url": "https://musicpal-dbf53.firebaseio.com",
+    "project_id": "musicpal-dbf53",
+    "storage_bucket": "musicpal-dbf53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906607296039:android:2aa38881bce31b10",
+        "android_client_info": {
+          "package_name": "com.example.user.musicpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906607296039-up92sq2ua1c2qsf19mi6qmk6fat1oqak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoT7zGJA3Z4s8l-j1AG9dPo9j83X48ss4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

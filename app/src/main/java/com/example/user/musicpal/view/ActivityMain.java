@@ -1,12 +1,17 @@
 package com.example.user.musicpal.view;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +26,8 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -264,4 +271,6 @@ public class ActivityMain extends AppCompatActivity implements FragmentPantallaI
         fragmentReproductorChico.setearDatos(cancion);
         fragmentReproductor.setearDatos(cancion);
     }
+
+
 }

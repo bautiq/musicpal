@@ -28,17 +28,18 @@ public class MediaPlayerGlobal {
         playList = new ArrayList<>();
         playList.add(cancion);
         mediaPlayer = new MediaPlayer();
+
+        try {
+            setearPlaylist(playList, false, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         notificadorQueTermino = new NotificadorQueTermino() {
             @Override
             public void cambioCancion() {
                 //esto esta solo para que no de null
             }
         };
-        try {
-            setearPlaylist(playList, false, 0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
