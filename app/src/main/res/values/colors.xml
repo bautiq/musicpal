@@ -13,4 +13,5 @@
     <color name="fondoAmarillo">#fdd835</color>
     <color name="gris">#616161</color>
     <color name="grisBlanco">#e0e0e0</color>
+    <color name="rojo">#ff0000</color>
 </resources>

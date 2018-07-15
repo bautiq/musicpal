@@ -38,7 +38,7 @@
         app:civ_border_width="2dp"
         app:civ_shadow_color="@color/gris"
         app:civ_border_color="@color/grisBlanco"
-        tools:src="@drawable/urban_hymns_album" />
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
