@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetallePlaylist extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande {
+public class ActivityDetallePlaylist extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
 
     public static final String PLAYLIST_KEY = "clave_playlist";
     public static final String POSICION_KEY_PLAYLIST = "clave_posicion_playlist";
@@ -30,6 +30,7 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
     private ViewPager viewPager;
     private ControllerGlobal controllerPlaylist;
     private FragmentReproductorChico fragmentReproductorChico;
+    private FragmentReproductor fragmentReproductor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(new FragmentReproductor(), R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
     }
 
     @Override
@@ -78,5 +79,12 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
     public void notificarPlayPausa() {
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
+    }
+
+    @Override
+    public void cambioCancion() {
+        Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
+        fragmentReproductorChico.setearDatos(cancion);
+        fragmentReproductor.setearDatos(cancion);
     }
 }

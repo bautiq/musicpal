@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">MusicPal</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-
     <string name="recomendaciones">Recomendaciones</string>
     <string name="populares">Populares</string>
     <string name="top">Top</string>
@@ -18,7 +16,8 @@
     <string name="artistatop">Top Artistas</string>
     <string name="playlistTop">Top Playlists</string>
     <string name="tracksTop">Top Tracks</string>
+    <string name="facebook_app_id">484533575333851</string>
+    <string name="fb_login_protocol_scheme">fb484533575333851</string>
+    <string name="loguin_mensaje">¡Bienvenido, Ingrese o registrese para continuar!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

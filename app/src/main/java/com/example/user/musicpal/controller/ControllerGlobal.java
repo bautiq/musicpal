@@ -45,7 +45,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, Integer id) {
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, String id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
@@ -71,7 +71,7 @@ public class ControllerGlobal {
         }
     }
 
-    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, Integer id) {
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, String id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
             @Override
@@ -123,6 +123,16 @@ public class ControllerGlobal {
             }, offset, LIST_SIZE);
         }
 
+    }
+
+    public void obtenerCancionOnline(final ResultListener<Cancion> listener, String id) {
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerCancion(new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                listener.finish(resultado);
+            }
+        }, id);
     }
 
 

@@ -55,7 +55,6 @@ public class AdapterAlbum extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Album album = albumLista.get(position);
-        //estaba probando recibir las listas de una, pero no aparecen
         obtenerCancionesPorAlbum(album);
         ViewHolderAlbum viewHolderAlbum = (ViewHolderAlbum) holder;
         viewHolderAlbum.cargarAlbum(album);

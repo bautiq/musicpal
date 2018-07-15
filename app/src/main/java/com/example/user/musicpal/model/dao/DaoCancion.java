@@ -1,6 +1,5 @@
 package com.example.user.musicpal.model.dao;
 
-import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.ContenedorDeCanciones;
 import com.example.user.musicpal.utils.ResultListener;
@@ -28,7 +27,7 @@ public class DaoCancion {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController, Integer id) {
+    public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController, String id) {
         Call<ContenedorDeCanciones> call = service.obtenerCancionesPorAlbumConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
@@ -50,7 +49,7 @@ public class DaoCancion {
         });
     }
 
-    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> resultListenerDelController, Integer id) {
+    public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> resultListenerDelController, String id) {
         Call<ContenedorDeCanciones> call = service.obtenerCancionesPorArtistaConId(id);
         call.enqueue(new Callback<ContenedorDeCanciones>() {
             @Override
@@ -113,6 +112,27 @@ public class DaoCancion {
             @Override
             public void onFailure(Call<ContenedorDeCanciones> call, Throwable t) {
                 resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
+
+    public void obtenerCancion(final ResultListener<Cancion> resultListenerDelController, String id) {
+        Call<Cancion> call = service.obtenerCancion(id);
+        call.enqueue(new Callback<Cancion>() {
+            @Override
+            public void onResponse(Call<Cancion> call, Response<Cancion> response) {
+                Cancion cancionObtenidaOnline = response.body();
+                if (cancionObtenidaOnline != null) {
+                    Cancion cancionObtenida = cancionObtenidaOnline;
+                    resultListenerDelController.finish(cancionObtenida);
+                } else {
+                    resultListenerDelController.finish(new Cancion());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Cancion> call, Throwable t) {
+                resultListenerDelController.finish(new Cancion());
             }
         });
     }

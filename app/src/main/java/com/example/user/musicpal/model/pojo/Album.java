@@ -19,15 +19,20 @@ public class Album implements Serializable {
 
     @SerializedName("cover_medium")
     private String ImagenUrl;
-    private int id;
-    private int imagenAlbum;
+
+    private String id;
+
     private List<Cancion> listaCanciones;
 
     public Album(String titulo, Artista artista, String imagenUrl) {
         this.titulo = titulo;
         this.artista = artista;
         this.ImagenUrl = imagenUrl;
+    }
 
+    public Album(String titulo, String imagenUrl) {
+        this.titulo = titulo;
+        this.ImagenUrl = imagenUrl;
     }
 
     public void setListaCanciones(List<Cancion> listaCanciones) {
@@ -38,20 +43,12 @@ public class Album implements Serializable {
         return listaCanciones;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getImagenUrl() {
         return ImagenUrl;
-    }
-
-    public int getImagenAlbum() {
-        return imagenAlbum;
-    }
-
-    public void setImagenAlbum(int imagenAlbum) {
-        this.imagenAlbum = imagenAlbum;
     }
 
     public String getTitulo() {
@@ -76,7 +73,7 @@ public class Album implements Serializable {
             return false;
         }
         Album albumAComparar = (Album) obj;
-        return albumAComparar.getId() == this.id;
+        return albumAComparar.getId().equals(this.id);
     }
 
     @Override

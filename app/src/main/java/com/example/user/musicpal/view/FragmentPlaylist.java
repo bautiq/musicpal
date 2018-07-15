@@ -1,11 +1,14 @@
 package com.example.user.musicpal.view;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,16 +34,30 @@ private ImageView buttonAgregar;
         textAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click agregar", Toast.LENGTH_SHORT).show();
+                abrirVentanaAgregar();
             }
         });
         buttonAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Click agregar", Toast.LENGTH_SHORT).show();
+                abrirVentanaAgregar();
             }
         });
         return view;
+    }
+
+    private void abrirVentanaAgregar() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.ventana_nueva_playlist, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setView(view);
+        EditText editText = view.findViewById(R.id.edit_nueva_playlist);
+        alertDialog.setCancelable(true);
+        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
     }
 
 }

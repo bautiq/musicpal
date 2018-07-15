@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_negro_con_trama"
+    android:orientation="vertical"
+    tools:context="com.example.user.musicpal.view.LoginActivity">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_music_pal_prueba"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/loguin_mensaje"
+    android:textColor="@color/blanco"
+    android:textSize="20sp"
+    android:textAlignment="center"/>
+    <EditText
+        android:id="@+id/edit_text_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:hint="email"
+
+        android:maxLength="30"
+        android:maxLines="1"
+        android:shadowColor="@color/fondoNaranja"
+        android:textColor="@color/fondoNaranja"
+        android:textColorHighlight="@color/fondoNaranja"
+        android:textColorHint="@color/fondoNaranja" />
+
+    <EditText
+        android:id="@+id/edit_text_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="contraseña"
+        android:inputType="textPassword"
+        android:maxLength="30"
+        android:maxLines="1"
+        android:shadowColor="@color/fondoNaranja"
+        android:textColor="@color/fondoNaranja"
+        android:textColorHighlight="@color/fondoNaranja"
+        android:textColorHint="@color/fondoNaranja" />
+
+    <Button
+        android:id="@+id/button_ingresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Ingresar" />
+
+    <Button
+        android:id="@+id/button_registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Registrarse" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/blanco"
+        android:text="O ingrese con facebook"
+        android:textSize="15sp" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/error_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/rojo"
+        android:visibility="invisible" />
+</LinearLayout>

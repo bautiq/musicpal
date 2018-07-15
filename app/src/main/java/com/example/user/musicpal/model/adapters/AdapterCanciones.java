@@ -1,6 +1,5 @@
 package com.example.user.musicpal.model.adapters;
 
-import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,7 +81,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -95,7 +94,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.agregarCancionClikeada(cancionAreproducir, true);
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

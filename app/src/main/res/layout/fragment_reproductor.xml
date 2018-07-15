@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
@@ -12,27 +13,68 @@
         style="@style/StyleTituloListadoScroll"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Bitter Sweet Symphony"
+        android:height="40dp"
+        tools:text="Bitter Sweet Symphony"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_reproductor_cancion"
         style="@style/StyleTituloListadoScroll"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
+        android:height="60dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
-        android:text="The Verve - Urban Hymns"
+        tools:text="The Verve - Urban Hymns"
         android:textColor="@color/grisBlanco"
         android:textSize="20sp" />
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/imagen_reproductor"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:src="@drawable/urban_hymns_album" />
+        app:civ_border_width="2dp"
+        app:civ_shadow_color="@color/gris"
+        app:civ_border_color="@color/grisBlanco"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/text_tiempo_transcurrido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            tools:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/grisBlanco"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/text_tiempo_restante"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            tools:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/grisBlanco"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/gris" />
 
     <LinearLayout
         android:layout_width="match_parent"
