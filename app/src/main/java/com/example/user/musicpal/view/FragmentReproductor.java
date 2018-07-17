@@ -135,6 +135,7 @@ public class FragmentReproductor extends Fragment {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
                 cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
 
             }
@@ -170,7 +171,7 @@ public class FragmentReproductor extends Fragment {
         buttonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //este listener va a pasar a la cancion siguiente
+              posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
                 cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });

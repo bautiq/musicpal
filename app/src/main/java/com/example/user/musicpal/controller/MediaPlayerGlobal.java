@@ -28,6 +28,7 @@ public class MediaPlayerGlobal {
         playList = new ArrayList<>();
         playList.add(cancion);
         mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         try {
             setearPlaylist(playList, false, 0);
@@ -60,7 +61,6 @@ public class MediaPlayerGlobal {
         this.cancion = playListAReproducir.get(posicion);
         this.playList = playListAReproducir;
         posicionPlaylist = posicion;
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
         mediaPlayer.prepare();

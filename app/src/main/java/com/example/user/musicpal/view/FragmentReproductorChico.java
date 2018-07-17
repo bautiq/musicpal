@@ -82,6 +82,7 @@ public class FragmentReproductorChico extends Fragment {
         botonRewind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
                cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
             }
         });
@@ -89,6 +90,7 @@ public class FragmentReproductorChico extends Fragment {
         botonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
                 cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });

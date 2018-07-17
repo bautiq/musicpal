@@ -17,6 +17,10 @@ public class Playlist implements Serializable {
 
     private List<Cancion> listCanciones;
 
+    public Playlist(String nombre){
+        this.nombre = nombre;
+    }
+
     public String getId() {
         return id;
     }
