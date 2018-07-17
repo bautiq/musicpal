@@ -27,7 +27,7 @@
         style="@style/StyleTituloListadoScroll"
         android:layout_width="match_parent"
         android:layout_marginTop="0dp"
-        android:background="@color/negroposta"
+        android:background="@color/negro_posta"
         android:text="Lista de Canciones"
         android:textColor="@color/blanco" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/recycler_canciones_playlist_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/negroposta"
+        android:background="@color/negro_posta"
         android:paddingTop="10dp">
 
     </android.support.v7.widget.RecyclerView>

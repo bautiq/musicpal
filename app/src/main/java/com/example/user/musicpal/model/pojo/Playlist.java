@@ -21,6 +21,9 @@ public class Playlist implements Serializable {
         this.nombre = nombre;
     }
 
+    public Playlist(){
+    }
+
     public String getId() {
         return id;
     }

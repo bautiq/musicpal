@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/negroposta"
+    android:layout_height="85dp"
+    android:background="@color/negro_posta"
     tools:context="com.example.user.musicpal.view.FragmentReproductorChico">
 
     <LinearLayout
@@ -28,15 +28,13 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/ic_fast_rewind"
                 android:backgroundTint="@color/grisBlanco"
-                android:elevation="10dp"
                 android:padding="10dp" />
 
             <Button
                 android:id="@+id/boton_play"
                 style="@style/StyleBotonReproductorChico"
                 android:background="@drawable/ic_play_circle"
-                android:backgroundTint="@color/grisBlanco"
-                android:elevation="10dp" />
+                android:backgroundTint="@color/grisBlanco" />
 
             <Button
                 android:id="@+id/boton_forward"
@@ -60,54 +58,23 @@
 
             <TextView
                 android:id="@+id/id_text_cancion_reprochico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="3dp"
-                android:ellipsize="marquee"
-                android:focusable="false"
+                style="@style/StyleTextoReproChico"
                 android:fontFamily="sans-serif"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Bitter Sweet Symphony"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Bitter Sweet Symphony" />
 
             <TextView
                 android:id="@+id/id_text_artista_reprochico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:ellipsize="marquee"
-                android:focusable="false"
-                android:fontFamily="serif-monospace"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="The Verve"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                style="@style/StyleTextoReproChico"
+                tools:text="The Verve" />
 
             <TextView
                 android:id="@+id/id_text_album_reprochico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="marquee"
-                android:focusable="false"
-                android:fontFamily="serif-monospace"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Urban Hymns"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                style="@style/StyleTextoReproChico"
+                tools:text="Urban Hymns" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </FrameLayout>

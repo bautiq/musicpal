@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ContenedorAlbum {
+public class ContAlbum {
 
     @SerializedName("data")
     private List<Album> listaAlbumes;

@@ -26,13 +26,12 @@ public class ActivityDetalleAlbum
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
 
-    private FragmentDetalleAlbum fragmentDetalleAlbum;
     private FragmentManager fragmentManager;
 
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalleAlbum> listaFragments;
-
     private List<Album> listaAlbumesRecibida;
+
     private FragmentReproductorChico fragmentReproductorChico;
     private ViewPager viewPager;
 

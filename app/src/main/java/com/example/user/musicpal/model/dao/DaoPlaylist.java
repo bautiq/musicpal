@@ -1,7 +1,7 @@
 package com.example.user.musicpal.model.dao;
 
 
-import com.example.user.musicpal.model.pojo.ContenedorPlaylist;
+import com.example.user.musicpal.model.pojo.ContPlaylist;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 
@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DaoPlaylist {
+
     private Retrofit retrofit;
     private Service service;
 
@@ -28,16 +29,17 @@ public class DaoPlaylist {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerPlaylist(final ResultListener<List<Playlist>> resultListenerDelController, Integer offset, Integer limit) {
+    public void obtenerPlaylist(final ResultListener<List<Playlist>> resultListenerDelController,
+                                Integer offset, Integer limit) {
 
-        Call<ContenedorPlaylist> call = service.obtenerPlaylist(offset, limit);
-        call.enqueue(new Callback<ContenedorPlaylist>() {
+        Call<ContPlaylist> call = service.obtenerPlaylist(offset, limit);
+        call.enqueue(new Callback<ContPlaylist>() {
             @Override
-            public void onResponse(Call<ContenedorPlaylist> call, Response<ContenedorPlaylist> response) {
-                ContenedorPlaylist contenedorPlaylistObtenido = response.body();
+            public void onResponse(Call<ContPlaylist> call, Response<ContPlaylist> response) {
+                ContPlaylist contPlaylistObtenido = response.body();
 
-                if (contenedorPlaylistObtenido != null && contenedorPlaylistObtenido.getPlaylists() != null) {
-                    List<Playlist> playlistsLista = contenedorPlaylistObtenido.getPlaylists();
+                if (contPlaylistObtenido != null && contPlaylistObtenido.getPlaylists() != null) {
+                    List<Playlist> playlistsLista = contPlaylistObtenido.getPlaylists();
                     resultListenerDelController.finish(playlistsLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Playlist>());
@@ -45,7 +47,7 @@ public class DaoPlaylist {
             }
 
             @Override
-            public void onFailure(Call<ContenedorPlaylist> call, Throwable t) {
+            public void onFailure(Call<ContPlaylist> call, Throwable t) {
                 resultListenerDelController.finish(new ArrayList<Playlist>());
             }
         });

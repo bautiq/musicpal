@@ -68,7 +68,21 @@
         <item name="android:layout_height">@dimen/tamanio_botones_reproductor</item>
         <item name="android:padding">10dp</item>
         <item name="android:tint">@color/grisBlanco</item>
+    </style>
 
+    <style name="StyleTextoReproChico">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:focusable">false</item>
+        <item name="android:fontFamily">serif-monospace</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/grisBlanco</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 

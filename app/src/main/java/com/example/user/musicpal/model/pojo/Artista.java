@@ -22,6 +22,11 @@ public class Artista implements Serializable {
 
     private List<Cancion> cancionList;
 
+    private String id;
+
+    public Artista(){
+    }
+
     public List<Cancion> getCancionList() {
         return cancionList;
     }
@@ -29,8 +34,6 @@ public class Artista implements Serializable {
     public void setCancionList(List<Cancion> cancionList) {
         this.cancionList = cancionList;
     }
-
-    private String id;
 
     public String getId() {
         return id;

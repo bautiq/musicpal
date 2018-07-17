@@ -1,7 +1,7 @@
 package com.example.user.musicpal.model.dao;
 
 import com.example.user.musicpal.model.pojo.Artista;
-import com.example.user.musicpal.model.pojo.ContenedorArtistas;
+import com.example.user.musicpal.model.pojo.ContArtistas;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.ArrayList;
@@ -27,16 +27,17 @@ public class ArtistaDao {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerDelController, Integer offset, Integer limit) {
+    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerDelController,
+                                Integer offset, Integer limit) {
 
-        Call<ContenedorArtistas> call = service.obtenerArtista(offset, limit);
-        call.enqueue(new Callback<ContenedorArtistas>() {
+        Call<ContArtistas> call = service.obtenerArtista(offset, limit);
+        call.enqueue(new Callback<ContArtistas>() {
             @Override
-            public void onResponse(Call<ContenedorArtistas> call, Response<ContenedorArtistas> response) {
-                ContenedorArtistas contenedorArtistasObtenido = response.body();
+            public void onResponse(Call<ContArtistas> call, Response<ContArtistas> response) {
+                ContArtistas contArtistasObtenido = response.body();
 
-                if (contenedorArtistasObtenido != null && contenedorArtistasObtenido.obtenerListaDeArtistas() != null) {
-                    List<Artista> artistaLista = contenedorArtistasObtenido.obtenerListaDeArtistas();
+                if (contArtistasObtenido != null && contArtistasObtenido.obtenerListaDeArtistas() != null) {
+                    List<Artista> artistaLista = contArtistasObtenido.obtenerListaDeArtistas();
                     resultListenerDelController.finish(artistaLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Artista>());
@@ -44,7 +45,7 @@ public class ArtistaDao {
             }
 
             @Override
-            public void onFailure(Call<ContenedorArtistas> call, Throwable t) {
+            public void onFailure(Call<ContArtistas> call, Throwable t) {
                 resultListenerDelController.finish(new ArrayList<Artista>());
             }
         });

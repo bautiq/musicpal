@@ -81,16 +81,19 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int posicionDeArtistaCliqueado = getAdapterPosition();
-                    notificadorPlaylistCelda.notificarCeldaCliqueadaPlaylist(listaPlaylist, posicionDeArtistaCliqueado);
+                    notificadorPlaylistCelda.notificarCeldaCliqueadaPlaylist(
+                            listaPlaylist, posicionDeArtistaCliqueado);
                 }
             });
         }
 
         public void armarCelda(Playlist playlist) {
             textViewNombre.setText(playlist.getNombre());
-            Picasso.with(context).load(playlist.getImagenPlaylistUrl()).placeholder(R.drawable.placeholder).into(imageView);
+            Picasso.with(context)
+                    .load(playlist.getImagenPlaylistUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(imageView);
         }
-
     }
 
     public interface NotificadorPlaylistCelda {

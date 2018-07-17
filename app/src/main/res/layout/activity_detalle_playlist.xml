@@ -21,6 +21,6 @@
         android:layout_height="0dp"
         android:layout_gravity="bottom"
         android:layout_weight="1.25"
-        android:background="@color/negroposta" />
+        android:background="@color/negro_posta" />
 
 </LinearLayout>

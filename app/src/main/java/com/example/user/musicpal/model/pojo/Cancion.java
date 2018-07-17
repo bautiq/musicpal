@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class Cancion implements Serializable {
 
     private String title;
+
     @SerializedName("preview")
     private String urlPreview;
 
-    private int imagenCancion;
     @SerializedName("artist")
     private Artista artista;
 
@@ -32,13 +32,20 @@ public class Cancion implements Serializable {
 
     private int duration;
 
-    public int getDuration() {
-        return duration;
+    public Cancion(String title, String urlPreview, Artista artista, Album album, String id) {
+        this.title = title;
+        this.urlPreview = urlPreview;
+        this.artista = artista;
+        this.album = album;
+        this.id=id;
     }
 
     public Cancion() {
     }
 
+    public int getDuration() {
+        return duration;
+    }
 
     public void setArtista(Artista artista) {
         this.artista = artista;
@@ -56,24 +63,12 @@ public class Cancion implements Serializable {
         this.urlPreview = urlPreview;
     }
 
-    public int getImagenCancion() {
-        return imagenCancion;
-    }
-
     public Artista getArtista() {
         return artista;
     }
 
     public String getUrlPreview() {
         return urlPreview;
-    }
-
-    public Cancion(String title, String urlPreview, Artista artista, Album album, String id) {
-        this.title = title;
-        this.urlPreview = urlPreview;
-        this.artista = artista;
-        this.album = album;
-        this.id=id;
     }
 
     public String getTitle() {

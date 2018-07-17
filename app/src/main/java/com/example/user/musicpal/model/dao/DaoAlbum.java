@@ -1,10 +1,7 @@
 package com.example.user.musicpal.model.dao;
 
-import android.content.Context;
-
 import com.example.user.musicpal.model.pojo.Album;
-import com.example.user.musicpal.model.pojo.Cancion;
-import com.example.user.musicpal.model.pojo.ContenedorAlbum;
+import com.example.user.musicpal.model.pojo.ContAlbum;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.ArrayList;
@@ -31,16 +28,17 @@ public class DaoAlbum {
         service = retrofit.create(Service.class);
     }
 
-    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController, Integer offset, Integer limit) {
+    public void obtenerAlbumes(final ResultListener<List<Album>> resultListenerDelController,
+                               Integer offset, Integer limit) {
 
-        Call<ContenedorAlbum> call = service.obtenerAlbumes(offset, limit);
-        call.enqueue(new Callback<ContenedorAlbum>() {
+        Call<ContAlbum> call = service.obtenerAlbumes(offset, limit);
+        call.enqueue(new Callback<ContAlbum>() {
             @Override
-            public void onResponse(Call<ContenedorAlbum> call, Response<ContenedorAlbum> response) {
-                ContenedorAlbum contenedorAlbumObtenido = response.body();
+            public void onResponse(Call<ContAlbum> call, Response<ContAlbum> response) {
+                ContAlbum contAlbumObtenido = response.body();
 
-                if (contenedorAlbumObtenido != null && contenedorAlbumObtenido.obtenerListaDeAlbumes() != null) {
-                    List<Album> albumLista = contenedorAlbumObtenido.obtenerListaDeAlbumes();
+                if (contAlbumObtenido != null && contAlbumObtenido.obtenerListaDeAlbumes() != null) {
+                    List<Album> albumLista = contAlbumObtenido.obtenerListaDeAlbumes();
                     resultListenerDelController.finish(albumLista);
                 } else {
                     resultListenerDelController.finish(new ArrayList<Album>());
@@ -48,7 +46,7 @@ public class DaoAlbum {
             }
 
             @Override
-            public void onFailure(Call<ContenedorAlbum> call, Throwable t) {
+            public void onFailure(Call<ContAlbum> call, Throwable t) {
                 resultListenerDelController.finish(new ArrayList<Album>());
             }
         });

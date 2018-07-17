@@ -23,7 +23,9 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     private Cancion cancion;
     private NotificadorCancionCelda notificadorCancionCelda;
 
-    public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
+    public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager,
+                            NotificadorCancionCelda notificadorCancionCelda) {
+
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;

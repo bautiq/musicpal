@@ -26,26 +26,27 @@ import java.util.List;
 
 
 public class FragmentReproductorChico extends Fragment {
+
     private Button botonRewind;
     private Button botonForward;
     private Button botonPlay;
-    private LinearLayout linearLayout;
-    private NotificadorReproductorChico notificadorReproductorChico;
     private TextView textCancion;
     private TextView textArtista;
     private TextView textAlbum;
+
     private FragmentManager fragmentManager;
     private static Cancion cancion;
     private MediaPlayer mP;
     private Integer posicionPlaylist;
     private List<Cancion> playList;
+    private LinearLayout linearLayout;
+    private NotificadorReproductorChico notificadorReproductorChico;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_reproductor_chico, container, false);
-
 
         linearLayout = view.findViewById(R.id.linear_layout_reproductor_chico);
         botonPlay = view.findViewById(R.id.boton_play);
@@ -97,8 +98,6 @@ public class FragmentReproductorChico extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //   Toast.makeText(getContext(), "Click Abrir fragment Reproductor", Toast.LENGTH_SHORT).show();
-
                 notificadorReproductorChico.cargarReproductorGrande();
             }
         });
@@ -118,7 +117,6 @@ public class FragmentReproductorChico extends Fragment {
         setearDatos(cancion);
     }
 
-
     public void setearDatos(Cancion cancion) {
         textArtista.setText(cancion.getArtista().getNombre());
         textCancion.setText(cancion.getTitle());
@@ -133,6 +131,7 @@ public class FragmentReproductorChico extends Fragment {
             botonPlay.setBackgroundResource(R.drawable.ic_play_circle);
         }
     }
+
     public void cambioCancionSiguiente(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
         playList = mediaPlayerGlobal.getPlayList();
         if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
@@ -171,5 +170,4 @@ public class FragmentReproductorChico extends Fragment {
     public interface NotificadorReproductorChico {
         public void cargarReproductorGrande();
     }
-
 }

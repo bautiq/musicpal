@@ -35,6 +35,9 @@ public class Album implements Serializable {
         this.ImagenUrl = imagenUrl;
     }
 
+    public Album(){
+    }
+
     public void setListaCanciones(List<Cancion> listaCanciones) {
         this.listaCanciones = listaCanciones;
     }

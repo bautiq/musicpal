@@ -24,7 +24,12 @@ public class MediaPlayerGlobal {
     private MediaPlayerGlobal() {
         posicionPlaylist = 0;
         Artista artista = new Artista("Linkin Park");
-        cancion = new Cancion("In my remains", "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3", artista, new Album("Living things", artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"), "37734401");
+        cancion = new Cancion(
+                "In my remains",
+                "http://cdn-preview-3.deezer.com/stream/c-361a62705689675bcd00bcf1e2126684-22.mp3",
+                artista, new Album("Living things",
+                artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"),
+                "37734401");
         playList = new ArrayList<>();
         playList.add(cancion);
         mediaPlayer = new MediaPlayer();
@@ -41,9 +46,7 @@ public class MediaPlayerGlobal {
                 //esto esta solo para que no de null
             }
         };
-
     }
-
 
     public static MediaPlayerGlobal getInstance() {
         if (mediaPlayerGlobal == null) {
@@ -56,7 +59,9 @@ public class MediaPlayerGlobal {
         return mediaPlayer;
     }
 
-    public void setearPlaylist(List<Cancion> playListAReproducir, Boolean quieroQueInicie, final Integer posicion) throws IOException {
+    public void setearPlaylist(List<Cancion> playListAReproducir, Boolean quieroQueInicie,
+                               final Integer posicion) throws IOException {
+
         final Integer[] posicionNueva = {posicion};
         this.cancion = playListAReproducir.get(posicion);
         this.playList = playListAReproducir;
@@ -84,7 +89,6 @@ public class MediaPlayerGlobal {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         });

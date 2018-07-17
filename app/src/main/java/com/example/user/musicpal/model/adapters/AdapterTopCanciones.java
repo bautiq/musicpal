@@ -93,13 +93,16 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
         }
 
         public void armarCeldaCancion(Cancion cancion) {
-            Picasso.with(context).load(cancion.getArtista().getImagenUrl()).placeholder(R.drawable.placeholder).into(imagen);
             textNombre.setText(cancion.getTitle());
             textArtista.setText(cancion.getArtista().getNombre());
+            Picasso.with(context)
+                    .load(cancion.getArtista().getImagenUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(imagen);
         }
     }
 
     public interface NotificadorTopCancionesCelda {
-        public void  notificarCeldaClickeadaDeCancion(Cancion cancion);
+        public void notificarCeldaClickeadaDeCancion(Cancion cancion);
     }
 }

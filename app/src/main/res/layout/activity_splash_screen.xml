@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.SplashScreen">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fondo_negro_con_trama"
-        android:src="@drawable/logo_music_pal_prueba"/>
+        android:src="@drawable/logo_music_pal_prueba" />
 
 </FrameLayout>

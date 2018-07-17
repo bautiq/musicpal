@@ -9,23 +9,18 @@
     android:orientation="vertical"
     tools:context=".view.ActivityDetalleAlbum">
 
-
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8.75"
         android:id="@+id/viewPager_id"/>
-    
-  <!--  <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/container_detalle_activity"/> -->
+
     <FrameLayout
         android:id="@+id/contenedor_reproductor_chico_detalle_activity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.25"
-        android:background="@color/negroposta"
+        android:background="@color/negro_posta"
         android:layout_gravity="bottom"/>
 
 </LinearLayout>

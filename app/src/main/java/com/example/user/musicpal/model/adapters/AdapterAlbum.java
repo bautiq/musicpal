@@ -25,7 +25,10 @@ public class AdapterAlbum extends RecyclerView.Adapter {
     private NotificadorAlbumCelda notificadorAlbumCelda;
     private Context context;
 
-    public AdapterAlbum(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, Context context) {
+    public AdapterAlbum(List<Album> albumLista,
+                        NotificadorAlbumCelda notificadorAlbumCelda,
+                        Context context) {
+
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
         this.context = context;
@@ -109,12 +112,12 @@ public class AdapterAlbum extends RecyclerView.Adapter {
         public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion);
     }
 
-    public void obtenerCancionesPorAlbum(final Album album){
+    public void obtenerCancionesPorAlbum(final Album album) {
         ControllerGlobal controller = new ControllerGlobal(context);
         controller.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-               album.setListaCanciones(resultado);
+                album.setListaCanciones(resultado);
             }
         }, album.getId());
     }

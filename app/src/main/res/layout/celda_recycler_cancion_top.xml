@@ -10,11 +10,11 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/imagen_fragment_cancion_top"
-        app:civ_border_color="@color/grisBlanco"
-        app:civ_shadow_color="@color/gris"
         android:layout_width="@dimen/size_home_albums"
+        android:layout_height="@dimen/size_home_albums"
+        app:civ_border_color="@color/grisBlanco"
         app:civ_border_width="2dp"
-        android:layout_height="@dimen/size_home_albums" />
+        app:civ_shadow_color="@color/gris" />
 
     <TextView
         android:id="@+id/title-fragment_cancion_top"

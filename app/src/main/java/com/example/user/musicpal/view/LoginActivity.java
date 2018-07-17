@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);/*
         firebaseAuth = FirebaseAuth.getInstance();
         intent = new Intent(LoginActivity.this, ActivityMain.class);
         emailEdit = findViewById(R.id.edit_text_email);
@@ -166,5 +166,5 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-    }
+   */ }
 }

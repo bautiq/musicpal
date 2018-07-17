@@ -19,12 +19,11 @@
                 android:id="@+id/edit_text_busqueda"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Escribe para buscar"
                 android:layout_marginLeft="5dp"
+                android:hint="Escribe para buscar"
                 android:maxLines="1"
                 android:textColor="@color/blanco"
-                android:textColorHint="@color/blanco"
-                />
+                android:textColorHint="@color/blanco" />
 
             <ImageView
                 android:id="@+id/imagen_search_fragment_busqueda"

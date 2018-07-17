@@ -135,7 +135,6 @@ public class ControllerGlobal {
         }, id);
     }
 
-
     private boolean hayInternet() {
         return true;
     }

@@ -30,17 +30,19 @@ import java.util.concurrent.TimeUnit;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentReproductor extends Fragment {
+
     public static final String ALBUM_KEY = "album_key";
+
     private TextView textViewArtista;
     private TextView textViewTitulo;
     private ImageView imagen;
     private ImageView buttonPlayPausa;
-    private Cancion cancionQueContiene;
-    private List<Cancion> playList;
     private ImageView buttonForward;
     private ImageView buttonBack;
+
+    private Cancion cancionQueContiene;
     private MediaPlayer mP;
-    private Album albumRecibido;
+    private List<Cancion> playList;
     private NotificadorReproductorGrande notificadorReproductorGrande;
     private double startTime = 0;
     private double finalTime = 0;
@@ -59,24 +61,24 @@ public class FragmentReproductor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
+
         textViewArtista = view.findViewById(R.id.text_reproductor_artista);
         textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
+
         final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
         mP = mediaPlayerGlobal.getMediaPlayer();
         cancionQueContiene = mediaPlayerGlobal.getCancion();
         playList = mediaPlayerGlobal.getPlayList();
-        //albumRecibido = cancionQueContiene.getAlbum();
         final Integer[] posicionNueva = {posicionPlaylist};
         seekbar = view.findViewById(R.id.seekBar);
         seekbar.setClickable(false);
         tiempoTranscurrido = view.findViewById(R.id.text_tiempo_transcurrido);
         tiempoDeDuracion = view.findViewById(R.id.text_tiempo_restante);
-
 
         setearDatos(cancionQueContiene);
 
@@ -95,7 +97,6 @@ public class FragmentReproductor extends Fragment {
                 mp.start();
             }
         });
-
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -171,7 +172,7 @@ public class FragmentReproductor extends Fragment {
         buttonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
+                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
                 cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
@@ -182,7 +183,6 @@ public class FragmentReproductor extends Fragment {
                 cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
-
 
         return view;
     }
@@ -265,7 +265,7 @@ public class FragmentReproductor extends Fragment {
         public void notificarPlayPausa();
     }
 
-    public void cambioCancionSiguiente(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+    public void cambioCancionSiguiente(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal) {
         if (!(posicionNueva[0] + 1 > playList.size() - 1)) {
             posicionNueva[0] += 1;
             posicionPlaylist = posicionNueva[0];
@@ -282,7 +282,7 @@ public class FragmentReproductor extends Fragment {
         }
     }
 
-    public void cambioCancionAnterior(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal){
+    public void cambioCancionAnterior(Integer[] posicionNueva, MediaPlayerGlobal mediaPlayerGlobal) {
         if (!(posicionNueva[0] <= 0)) {
             posicionNueva[0] -= 1;
             posicionPlaylist = posicionNueva[0];

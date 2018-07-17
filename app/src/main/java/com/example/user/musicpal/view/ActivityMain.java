@@ -169,7 +169,6 @@ public class ActivityMain
                     FragmentHelper.cargarFragment(fragmentPantallaInicio,
                             R.id.container_fragment,
                             fragmentManager);
-
                 }
                 break;
             case "playlist":
@@ -188,10 +187,7 @@ public class ActivityMain
                             fragmentManager);
                 }
                 break;
-
-
         }
-
     }
 
     @Override

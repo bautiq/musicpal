@@ -78,14 +78,18 @@ public class AdapterArtista extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int posicionDeArtistaCliqueado = getAdapterPosition();
-                    notificadorArtistaCelda.notificarCeldaCliqueadaArtista(artistaList, posicionDeArtistaCliqueado);
+                    notificadorArtistaCelda.notificarCeldaCliqueadaArtista(
+                            artistaList, posicionDeArtistaCliqueado);
                 }
             });
         }
 
         public void armarCelda(Artista artista) {
             textViewNombre.setText(artista.getNombre());
-            Picasso.with(context).load(artista.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagen);
+            Picasso.with(context)
+                    .load(artista.getImagenUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(imagen);
         }
     }
 

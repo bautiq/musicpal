@@ -14,13 +14,15 @@ import com.example.user.musicpal.R;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentBusqueda extends Fragment {
+
     private EditText editText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_busqueda, container, false);
+        View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
+        return view;
     }
 
 }

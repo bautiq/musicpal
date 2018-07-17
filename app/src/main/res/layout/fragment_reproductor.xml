@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
@@ -12,10 +12,10 @@
         android:id="@+id/text_reproductor_artista"
         style="@style/StyleTituloListadoScroll"
         android:layout_marginTop="15dp"
-        android:gravity="center"
         android:height="40dp"
-        tools:text="Bitter Sweet Symphony"
-        android:textSize="20sp" />
+        android:gravity="center"
+        android:textSize="20sp"
+        tools:text="Bitter Sweet Symphony" />
 
     <TextView
         android:id="@+id/text_reproductor_cancion"
@@ -25,9 +25,9 @@
         android:height="60dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
-        tools:text="The Verve - Urban Hymns"
         android:textColor="@color/grisBlanco"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:text="The Verve - Urban Hymns" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/imagen_reproductor"
@@ -35,10 +35,10 @@
         android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        app:civ_border_width="2dp"
-        app:civ_shadow_color="@color/gris"
         app:civ_border_color="@color/grisBlanco"
-        />
+        app:civ_border_width="2dp"
+        app:civ_shadow_color="@color/gris" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,10 +52,10 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="3dp"
-            tools:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:text="Small Text" />
 
         <TextView
             android:id="@+id/text_tiempo_restante"
@@ -64,11 +64,12 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="3dp"
-            tools:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:text="Small Text" />
     </LinearLayout>
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="250dp"
