@@ -78,7 +78,7 @@ public class ActivityMain
         fragmentReproductor = new FragmentReproductor();
         fragmentPantallaInicio = new FragmentPantallaInicio();
         fragmentManager = getSupportFragmentManager();
-        
+
         FragmentHelper.cargarFragment(fragmentPantallaInicio,
                 R.id.container_fragment,
                 fragmentManager);
@@ -116,7 +116,6 @@ public class ActivityMain
                         fragmentManager);
             }
         });
-
     }
 
     public void notificarAlbum(List<Album> list, int posicion) {

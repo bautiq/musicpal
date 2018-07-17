@@ -36,12 +36,12 @@
             android:textStyle="italic" />
 
         <ImageView
-            android:id="@+id/more_chico"
+            android:id="@+id/compartir_chico"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="12dp"
             android:layout_weight="1"
-            android:background="@drawable/icono_more_vert_blanco_24dp"
+            android:background="@drawable/icono_compartir_blanco_24dp"
             android:backgroundTint="@color/gris"
             android:gravity="center"
             android:padding="12dp"
