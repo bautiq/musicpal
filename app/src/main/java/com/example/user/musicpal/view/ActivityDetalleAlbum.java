@@ -16,19 +16,26 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentDetalleAlbum.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
+public class ActivityDetalleAlbum
+        extends AppCompatActivity
+        implements FragmentDetalleAlbum.NotificadorCancion,
+        FragmentReproductorChico.NotificadorReproductorChico,
+        FragmentReproductor.NotificadorReproductorGrande,
+        MediaPlayerGlobal.NotificadorQueTermino {
 
     public static final String POSICION_KEY = "clave_posicion";
     public static final String ALBUM_KEY = "clave_album";
-    public static final String CATEGORIA_CLICKEADA = "clave_categoria";
+
     private FragmentDetalleAlbum fragmentDetalleAlbum;
     private FragmentManager fragmentManager;
+
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalleAlbum> listaFragments;
+
     private List<Album> listaAlbumesRecibida;
     private FragmentReproductorChico fragmentReproductorChico;
-    private String categoriaRecibida;
     private ViewPager viewPager;
+
     private ControllerGlobal controllerGlobal;
     private FragmentReproductor fragmentReproductor;
 
@@ -38,17 +45,21 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
         setContentView(R.layout.activity_detalle_album);
         fragmentReproductor = new FragmentReproductor();
         fragmentReproductorChico = new FragmentReproductorChico();
-        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity,
+
+        FragmentHelper.cargarFragment(fragmentReproductorChico,
+                R.id.contenedor_reproductor_chico_detalle_activity,
                 getSupportFragmentManager());
+
         controllerGlobal = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         listaAlbumesRecibida = (List<Album>) bundle.getSerializable(ALBUM_KEY);
-        categoriaRecibida = bundle.getString(CATEGORIA_CLICKEADA);
         crearListaFragments();
-        FragmentDetalleAlbumPagerAdapter detallePagerAdapter =
-                new FragmentDetalleAlbumPagerAdapter(getSupportFragmentManager(), listaFragments);
+        FragDetalleAlbumPAdapter detallePagerAdapter = new FragDetalleAlbumPAdapter(
+                getSupportFragmentManager(),
+                listaFragments);
+
         viewPager.setAdapter(detallePagerAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY);
         viewPager.setCurrentItem(posicionDelItem);
@@ -60,7 +71,6 @@ public class ActivityDetalleAlbum extends AppCompatActivity implements FragmentD
             listaFragments.add(FragmentDetalleAlbum.dameUnFragment(album));
         }
     }
-
 
     @Override
     public void notificarCancion(Cancion cancion, Album album) {

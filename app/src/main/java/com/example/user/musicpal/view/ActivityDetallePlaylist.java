@@ -18,16 +18,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetallePlaylist extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
+public class ActivityDetallePlaylist
+        extends AppCompatActivity
+        implements FragmentDetallePlaylist.NotificadorCancion,
+        FragmentReproductorChico.NotificadorReproductorChico,
+        FragmentReproductor.NotificadorReproductorGrande,
+        MediaPlayerGlobal.NotificadorQueTermino {
 
     public static final String PLAYLIST_KEY = "clave_playlist";
     public static final String POSICION_KEY_PLAYLIST = "clave_posicion_playlist";
 
     private FragmentManager fragmentManager;
+
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetallePlaylist> listaFragments;
     private List<Playlist> listaPlaylistRecibida;
+
     private ViewPager viewPager;
+
     private ControllerGlobal controllerPlaylist;
     private FragmentReproductorChico fragmentReproductorChico;
     private FragmentReproductor fragmentReproductor;
@@ -36,16 +44,24 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_playlist);
+
         fragmentReproductorChico = new FragmentReproductorChico();
-        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity_playlist, getSupportFragmentManager());
+        fragmentReproductor = new FragmentReproductor();
+        FragmentHelper.cargarFragment(fragmentReproductorChico,
+                R.id.contenedor_reproductor_chico_detalle_activity_playlist,
+                getSupportFragmentManager());
+
         controllerPlaylist = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_playlist_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         listaPlaylistRecibida = (List<Playlist>) bundle.getSerializable(PLAYLIST_KEY);
         crearListaFragments();
-        FragmentDetallePlaylistPagerAdapter fragmentDetallePlaylistPagerAdapter = new FragmentDetallePlaylistPagerAdapter(getSupportFragmentManager(), listaFragments);
-        viewPager.setAdapter(fragmentDetallePlaylistPagerAdapter);
+        FragDetallePlaylistPAdapter fragDetallePlaylistPAdapter = new FragDetallePlaylistPAdapter(
+                getSupportFragmentManager(),
+                listaFragments);
+
+        viewPager.setAdapter(fragDetallePlaylistPAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY_PLAYLIST);
         viewPager.setCurrentItem(posicionDelItem);
     }
@@ -59,20 +75,15 @@ public class ActivityDetallePlaylist extends AppCompatActivity implements Fragme
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor,
+                R.id.contenedor_fragment_vista_previa_playlist,
+                fragmentManager);
     }
 
     @Override
     public void notificarCancion(Cancion cancion, Playlist playlist) {
         fragmentManager = getSupportFragmentManager();
         fragmentReproductorChico.setearDatos(cancion);
-            /*FragmentReproductor fragmentReproductor = new FragmentReproductor();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(FragmentReproductor.ARTISTA_KEY, artista);
-            bundle.putSerializable(FragmentReproductor.CANCION_KEY, cancion);
-            fragmentReproductor.setArguments(bundle);
-            FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.container_detalle_activity_artista, fragmentManager);
-         */
     }
 
     @Override

@@ -9,17 +9,11 @@
     android:weightSum="10"
     tools:context=".view.ActivityDetalleArtista">
 
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager_artista_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8.75" />
-
-   <!-- <FrameLayout
-        android:id="@+id/container_detalle_activity_artista"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" /> -->
 
     <FrameLayout
         android:id="@+id/contenedor_reproductor_chico_detalle_activity_artista"

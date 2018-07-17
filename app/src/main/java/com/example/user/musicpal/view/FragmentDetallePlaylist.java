@@ -30,16 +30,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetallePlaylist extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
+public class FragmentDetallePlaylist
+        extends Fragment
+        implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String PLAYLIST_KEY = "playlist_key";
 
     private ImageView imagenGrande;
     private TextView textArtista;
     private TextView textAlbum;
+
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
+
     private ControllerGlobal controllerCancion;
     private NotificadorCancion notificadorCancion;
     private Playlist playlist;
@@ -67,10 +71,14 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
         controllerCancion = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
+        adapterCanciones = new AdapterCanciones(listaCanciones,
+                getActivity().getSupportFragmentManager(),
+                this);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                getContext(),
+                LinearLayoutManager.VERTICAL,
+                false);
 
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
         recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
@@ -80,7 +88,11 @@ public class FragmentDetallePlaylist extends Fragment implements AdapterCancione
         adapterCanciones.setListaDeCanciones(playlist.getListCanciones());
         chequearListaCanciones();
         textArtista.setText("Artista: " + playlist.getNombre());
-        Picasso.with(getContext()).load(playlist.getImagenPlaylistUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
+        Picasso.with(getContext())
+                .load(playlist.getImagenPlaylistUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(imagenGrande);
+
         return view;
     }
 
