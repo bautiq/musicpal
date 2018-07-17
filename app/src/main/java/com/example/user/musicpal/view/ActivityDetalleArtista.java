@@ -17,15 +17,24 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDetalleArtista extends AppCompatActivity implements FragmentDetalleArtista.NotificadorCancion, FragmentReproductorChico.NotificadorReproductorChico, FragmentReproductor.NotificadorReproductorGrande, MediaPlayerGlobal.NotificadorQueTermino {
+public class ActivityDetalleArtista
+        extends AppCompatActivity
+        implements FragmentDetalleArtista.NotificadorCancion,
+        FragmentReproductorChico.NotificadorReproductorChico,
+        FragmentReproductor.NotificadorReproductorGrande,
+        MediaPlayerGlobal.NotificadorQueTermino {
+
     public static final String ARTISTA_KEY = "clave_artista";
     public static final String POSICION_KEY_ARTISTA = "clave_posicion_artista";
 
     private FragmentManager fragmentManager;
+
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalleArtista> listaFragments;
     private List<Artista> listaArtistasRecibida;
+
     private ViewPager viewPager;
+
     private ControllerGlobal controllerArtista;
     private FragmentReproductorChico fragmentReproductorChico;
     private FragmentReproductor fragmentReproductor;
@@ -34,17 +43,24 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_artista);
+
         fragmentReproductor = new FragmentReproductor();
         fragmentReproductorChico = new FragmentReproductorChico();
-        FragmentHelper.cargarFragment(fragmentReproductorChico, R.id.contenedor_reproductor_chico_detalle_activity_artista, getSupportFragmentManager());
+        FragmentHelper.cargarFragment(fragmentReproductorChico,
+                R.id.contenedor_reproductor_chico_detalle_activity_artista,
+                getSupportFragmentManager());
+
         controllerArtista = new ControllerGlobal(this);
         viewPager = findViewById(R.id.viewPager_artista_id);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         listaArtistasRecibida = (List<Artista>) bundle.getSerializable(ARTISTA_KEY);
         crearListaFragments();
-        FragmentDetalleArtistaPagerAdapter fragmentDetalleArtistaPagerAdapter = new FragmentDetalleArtistaPagerAdapter(getSupportFragmentManager(), listaFragments);
-        viewPager.setAdapter(fragmentDetalleArtistaPagerAdapter);
+        FragDetalleArtistaPAdapter fragDetalleArtistaPAdapter = new FragDetalleArtistaPAdapter(
+                getSupportFragmentManager(),
+                listaFragments);
+
+        viewPager.setAdapter(fragDetalleArtistaPAdapter);
         int posicionDelItem = bundle.getInt(POSICION_KEY_ARTISTA);
         viewPager.setCurrentItem(posicionDelItem);
     }
@@ -64,7 +80,9 @@ public class ActivityDetalleArtista extends AppCompatActivity implements Fragmen
 
     @Override
     public void cargarReproductorGrande() {
-        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor, R.id.contenedor_fragment_vista_previa_artista, fragmentManager);
+        FragmentHelper.cargarFragmentConBackStack(fragmentReproductor,
+                R.id.contenedor_fragment_vista_previa_artista,
+                fragmentManager);
     }
 
     @Override

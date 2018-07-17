@@ -94,7 +94,7 @@
             android:layout_weight="0.75"
             android:background="@color/negroposta"
             android:orientation="horizontal"
-            android:weightSum="4">
+            android:weightSum="2">
 
             <ImageView
                 android:id="@+id/home_button"
@@ -105,16 +105,6 @@
                 android:id="@+id/playlist_button"
                 style="@style/StyleBotonBarraInferior"
                 android:src="@drawable/icono_playlist" />
-
-            <ImageView
-                android:id="@+id/compartir_button"
-                style="@style/StyleBotonBarraInferior"
-                android:src="@drawable/icono_compartir_blanco_24dp" />
-
-            <ImageView
-                android:id="@+id/more_button"
-                style="@style/StyleBotonBarraInferior"
-                android:src="@drawable/icono_more_horiz_blanco_24dp" />
 
         </LinearLayout>
 

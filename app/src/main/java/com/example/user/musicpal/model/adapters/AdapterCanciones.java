@@ -66,14 +66,14 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
         private TextView textViewNombre;
         private ImageView imagenPlay;
-        private ImageView imagenMore;
+        private ImageView imagenCompartir;
 
 
         public ViewHolderCancion(final View itemView) {
             super(itemView);
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
             this.imagenPlay = itemView.findViewById(R.id.play_chico);
-            this.imagenMore = itemView.findViewById(R.id.more_chico);
+            this.imagenCompartir = itemView.findViewById(R.id.compartir_chico);
 
             textViewNombre.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,10 +101,10 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
-            imagenMore.setOnClickListener(new View.OnClickListener() {
+            imagenCompartir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "Click More", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), "Click Compartir", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -28,11 +28,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentDetalleArtista extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
+public class FragmentDetalleArtista
+        extends Fragment
+        implements AdapterCanciones.NotificadorCancionCelda {
 
     private static final String ARTISTA_RECIBIDO_KEY = "clave_artista";
     private ImageView imagenGrande;
     private TextView textArtista;
+
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
     private List<Cancion> listaCanciones;
@@ -64,20 +67,30 @@ public class FragmentDetalleArtista extends Fragment implements AdapterCanciones
         controllerCancion = new ControllerGlobal(getContext());
 
         listaCanciones = new ArrayList<>();
-        adapterCanciones = new AdapterCanciones(listaCanciones, getActivity().getSupportFragmentManager(), this);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        adapterCanciones = new AdapterCanciones(listaCanciones,
+                getActivity().getSupportFragmentManager(),
+                this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                getActivity(),
+                LinearLayoutManager.VERTICAL,
+                false);
 
         recyclerViewCanciones.setLayoutManager(linearLayoutManager);
         recyclerViewCanciones.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerViewCanciones.setHasFixedSize(true);
         recyclerViewCanciones.setAdapter(adapterCanciones);
         adapterCanciones.setListaDeCanciones(artista.getCancionList());
+
         //si no logra conseguir la lista de canciones, vuelve a hacer el pedido
         chequearListaCanciones();
 
         textArtista.setText("Artista: " + artista.getNombre());
-        Picasso.with(getContext()).load(artista.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenGrande);
+        Picasso.with(getContext())
+                .load(artista.getImagenUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(imagenGrande);
 
         return view;
     }

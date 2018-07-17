@@ -23,13 +23,11 @@ public class AdapterAlbum extends RecyclerView.Adapter {
 
     private List<Album> albumLista;
     private NotificadorAlbumCelda notificadorAlbumCelda;
-    private String categoria;
     private Context context;
 
-    public AdapterAlbum(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, String categoria, Context context) {
+    public AdapterAlbum(List<Album> albumLista, NotificadorAlbumCelda notificadorAlbumCelda, Context context) {
         this.albumLista = albumLista;
         this.notificadorAlbumCelda = notificadorAlbumCelda;
-        this.categoria = categoria;
         this.context = context;
     }
 
@@ -95,7 +93,7 @@ public class AdapterAlbum extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int posicionAlbumClickeado = getAdapterPosition();
-                    notificadorAlbumCelda.notificarCeldaClickeada(albumLista, posicionAlbumClickeado, categoria);
+                    notificadorAlbumCelda.notificarCeldaClickeada(albumLista, posicionAlbumClickeado);
                 }
             });
         }
@@ -108,7 +106,7 @@ public class AdapterAlbum extends RecyclerView.Adapter {
     }
 
     public interface NotificadorAlbumCelda {
-        public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion, String categoria);
+        public void notificarCeldaClickeada(List<Album> listaAlbums, int posicion);
     }
 
     public void obtenerCancionesPorAlbum(final Album album){

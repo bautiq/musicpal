@@ -29,7 +29,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.NotificadorAlbumCelda, AdapterArtista.NotificadorArtistaCelda, AdapterPlaylist.NotificadorPlaylistCelda, AdapterTopCanciones.NotificadorTopCancionesCelda {
+public class FragmentPantallaInicio
+        extends Fragment
+        implements AdapterAlbum.NotificadorAlbumCelda,
+        AdapterArtista.NotificadorArtistaCelda,
+        AdapterPlaylist.NotificadorPlaylistCelda,
+        AdapterTopCanciones.NotificadorTopCancionesCelda {
 
     private NotificadorActivities notificadorActivities;
 
@@ -37,19 +42,24 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     private RecyclerView recyclerViewPlaylistsTop;
     private RecyclerView recyclerViewArtistasTop;
     private RecyclerView recyclerViewCancionTop;
+
     private LinearLayoutManager linearLayoutManagerAlbum;
     private LinearLayoutManager linearLayoutManagerPlaylist;
     private LinearLayoutManager linearLayoutManagerArtista;
     private LinearLayoutManager linearLayoutManagerCanciones;
+
     private AdapterAlbum adapterAlbum;
     private AdapterArtista adapterArtista;
     private AdapterPlaylist adapterPlaylist;
     private AdapterTopCanciones adapterTopCanciones;
+
     private Boolean isLoading;
+
     private ControllerGlobal controllerAlbum;
     private ControllerGlobal controllerPlaylist;
     private ControllerGlobal controllerArtista;
     private ControllerGlobal controllerTopCancion;
+
     private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
 
     @Override
@@ -62,10 +72,18 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         adapterPlaylist = new AdapterPlaylist(getActivity(), this);
         adapterTopCanciones = new AdapterTopCanciones(getActivity(), this);
 
-        linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        linearLayoutManagerArtista = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        linearLayoutManagerCanciones = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        linearLayoutManagerPlaylist = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        linearLayoutManagerArtista = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
+        linearLayoutManagerCanciones = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL,
+                false);
 
         recyclerViewAlbumesTop = view.findViewById(R.id.recycler_albumes_top_id);
         recyclerViewPlaylistsTop = view.findViewById(R.id.recycler_playlist_top_id);
@@ -201,8 +219,8 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
     }
 
     @Override
-    public void notificarCeldaClickeada(List<Album> list, int posicion, String categoria) {
-        notificadorActivities.notificarAlbum(list, posicion, categoria);
+    public void notificarCeldaClickeada(List<Album> list, int posicion) {
+        notificadorActivities.notificarAlbum(list, posicion);
     }
 
     @Override
@@ -221,14 +239,17 @@ public class FragmentPantallaInicio extends Fragment implements AdapterAlbum.Not
         notificadorActivities.notificarCancion(cancion);
     }
 
-    public void setAdapterLinear(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
+    public void setAdapterLinear(RecyclerView recyclerView,
+                                 LinearLayoutManager linearLayoutManager,
+                                 RecyclerView.Adapter adapter) {
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
     }
 
     public interface NotificadorActivities {
-        public void notificarAlbum(List<Album> listaAlbums, int posicion, String categoria);
+        public void notificarAlbum(List<Album> listaAlbums, int posicion);
 
         public void notificarArtista(List<Artista> listaArtistas, int posicion);
 

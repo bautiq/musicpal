@@ -6,10 +6,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-public class FragmentDetalleAlbumPagerAdapter extends FragmentStatePagerAdapter {
+public class FragDetalleAlbumPAdapter extends FragmentStatePagerAdapter {
     private List<FragmentDetalleAlbum> listafragmentDetalleAlbum;
 
-    public FragmentDetalleAlbumPagerAdapter(FragmentManager fm, List<FragmentDetalleAlbum> listafragmentDetalleAlbum) {
+    public FragDetalleAlbumPAdapter(FragmentManager fm, List<FragmentDetalleAlbum> listafragmentDetalleAlbum) {
         super(fm);
         this.listafragmentDetalleAlbum = listafragmentDetalleAlbum;
     }

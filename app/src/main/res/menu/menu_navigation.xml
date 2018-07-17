@@ -8,14 +8,6 @@
             android:icon="@drawable/icono_persona_blanco_24dp"
             android:title="@string/perfil" />
 
-        <item
-            android:id="@+id/favoritos"
-            android:icon="@drawable/icono_favoritos_blanco_24dp"
-            android:title="@string/favoritos" />
-        <item
-            android:id="@+id/configuracion"
-            android:icon="@drawable/ic_configuracion_blanco_24dp"
-            android:title="@string/configuracion" />
 
     </group>
 </menu>
