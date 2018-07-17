@@ -3,6 +3,7 @@ package com.example.user.musicpal.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Playlist;
+import com.facebook.AccessToken;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -25,6 +29,8 @@ public class FragmentPlaylist extends Fragment {
 private TextView textAgregar;
 private ImageView buttonAgregar;
 private RecyclerView recyclerView;
+private FirebaseAuth firebaseAuth;
+private Intent intent;
 
 
     @Override
@@ -35,16 +41,19 @@ private RecyclerView recyclerView;
         recyclerView = view.findViewById(R.id.recycler_fragment_playlist);
         textAgregar = view.findViewById(R.id.text_agregar_playlist);
         buttonAgregar = view.findViewById(R.id.button_agregar_playlist);
+        FirebaseApp.initializeApp(getContext());
+        firebaseAuth = FirebaseAuth.getInstance();
+        intent = new Intent(getContext(), LoginActivity.class);
         textAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirVentanaAgregar();
+                chequearSiEstaLogueado();
             }
         });
         buttonAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirVentanaAgregar();
+                chequearSiEstaLogueado();
             }
         });
         return view;
@@ -70,6 +79,17 @@ private RecyclerView recyclerView;
             }
         });
         alertDialog.show();
+    }
+
+
+
+    public void chequearSiEstaLogueado(){
+        if (firebaseAuth.getCurrentUser() == null) {
+            startActivity(intent);
+
+        } else{
+            abrirVentanaAgregar();
+        }
     }
 
 }
