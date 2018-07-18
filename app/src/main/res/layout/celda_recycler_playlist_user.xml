@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:background="@drawable/fondo_negro_con_trama">
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/id_preview_playlist_user"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Playlist"
+            android:textStyle="italic"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/nombre_canciones_playlist_user"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:text="cantidad canciones"
+            android:id="@+id/numero_canciones_playlist_user"/>
+    </LinearLayout>
+
+
+</LinearLayout>

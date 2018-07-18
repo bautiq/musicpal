@@ -2,6 +2,7 @@ package com.example.user.musicpal.model.adapters;
 
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,28 +27,41 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     private Context context;
     private List<Playlist> listaPlaylist;
     private NotificadorPlaylistCelda notificadorPlaylistCelda;
+    private String tipoPlaylist;
 
-    public AdapterPlaylist(Context context, NotificadorPlaylistCelda notificadorPlaylistCelda) {
+    public AdapterPlaylist(Context context, NotificadorPlaylistCelda notificadorPlaylistCelda, String tipoPlaylist) {
         this.context = context;
         this.listaPlaylist = new ArrayList<>();
         this.notificadorPlaylistCelda = notificadorPlaylistCelda;
+        this.tipoPlaylist = tipoPlaylist;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.celda_recycler_scroll, parent, false);
-        ViewHolderPlaylist viewHolderPlaylist = new ViewHolderPlaylist(view);
-        return viewHolderPlaylist;
+
+        if (tipoPlaylist.equals("user")) {
+            View view = inflater.inflate(R.layout.celda_recycler_playlist_user, parent, false);
+            ViewHolderPlaylistUser viewHolderPlaylistUser = new ViewHolderPlaylistUser(view);
+            return viewHolderPlaylistUser;
+        } else {
+            View view = inflater.inflate(R.layout.celda_recycler_scroll, parent, false);
+            ViewHolderPlaylist viewHolderPlaylist = new ViewHolderPlaylist(view);
+            return viewHolderPlaylist;
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Playlist playlist = listaPlaylist.get(position);
         obtenerCancionesPorPlaylist(playlist);
-        ViewHolderPlaylist viewHolderPlaylist = (ViewHolderPlaylist) holder;
-        viewHolderPlaylist.armarCelda(playlist);
+        if(tipoPlaylist.equals("user")){
+            ViewHolderPlaylistUser viewHolderPlaylistUser = (ViewHolderPlaylistUser) holder;
+            viewHolderPlaylistUser.armarCeldaPU(playlist);
+        }else{
+            ViewHolderPlaylist viewHolderPlaylist = (ViewHolderPlaylist) holder;
+            viewHolderPlaylist.armarCelda(playlist);}
     }
 
     @Override
@@ -59,7 +73,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
         }
     }
 
-    public void agregarPlaylist(List<Playlist> playlists) {
+    public void agregarListaPlaylists(List<Playlist> playlists) {
         for (Playlist playlistAAgregar : playlists) {
             if (!listaPlaylist.contains(playlistAAgregar)) {
                 listaPlaylist.add(playlistAAgregar);
@@ -68,7 +82,15 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public class ViewHolderPlaylist extends RecyclerView.ViewHolder {
+    public void agregarPlaylist(Playlist playlistNueva) {
+        if(listaPlaylist.contains(playlistNueva)){
+            return;
+        }
+        listaPlaylist.add(playlistNueva);
+    }
+
+
+    private class ViewHolderPlaylist extends RecyclerView.ViewHolder {
         private TextView textViewNombre;
         private ImageView imageView;
 
@@ -93,6 +115,25 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
                     .load(playlist.getImagenPlaylistUrl())
                     .placeholder(R.drawable.placeholder)
                     .into(imageView);
+        }
+    }
+
+    private class ViewHolderPlaylistUser extends RecyclerView.ViewHolder {
+        private TextView nombrePlaylist;
+        private TextView numeroCanciones;
+        private ImageView imagenPreview;
+
+        public ViewHolderPlaylistUser(View itemView) {
+            super(itemView);
+            nombrePlaylist = itemView.findViewById(R.id.nombre_canciones_playlist_user);
+            numeroCanciones = itemView.findViewById(R.id.numero_canciones_playlist_user);
+            imagenPreview = itemView.findViewById(R.id.id_preview_playlist_user);
+        }
+
+        public void armarCeldaPU(Playlist playlist) {
+            nombrePlaylist.setText(playlist.getNombre());
+            Integer numCanciones = playlist.getListCanciones().size();
+            numeroCanciones.setText(numCanciones.toString() + " canciones.");
         }
     }
 

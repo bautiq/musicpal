@@ -4,13 +4,11 @@ package com.example.user.musicpal.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
@@ -69,7 +67,7 @@ public class FragmentPantallaInicio
 
         adapterAlbum = new AdapterAlbum(getActivity(), this);
         adapterArtista = new AdapterArtista(getActivity(), this);
-        adapterPlaylist = new AdapterPlaylist(getActivity(), this);
+        adapterPlaylist = new AdapterPlaylist(getActivity(), this, "top");
         adapterTopCanciones = new AdapterTopCanciones(getActivity(), this);
 
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(),
@@ -198,7 +196,7 @@ public class FragmentPantallaInicio
             @Override
             public void finish(List<Playlist> resultado) {
 
-                adapterPlaylist.agregarPlaylist(resultado);
+                adapterPlaylist.agregarListaPlaylists(resultado);
             }
         });
     }
