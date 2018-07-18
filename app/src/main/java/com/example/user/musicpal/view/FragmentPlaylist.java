@@ -42,7 +42,7 @@ private Intent intent;
         textAgregar = view.findViewById(R.id.text_agregar_playlist);
         buttonAgregar = view.findViewById(R.id.button_agregar_playlist);
         FirebaseApp.initializeApp(getContext());
-        //firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         intent = new Intent(getContext(), LoginActivity.class);
         textAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,12 +84,12 @@ private Intent intent;
 
 
     public void chequearSiEstaLogueado(){
-       /* if (firebaseAuth.getCurrentUser() == null) {
+        if (firebaseAuth.getCurrentUser() == null) {
             startActivity(intent);
 
         } else{
             abrirVentanaAgregar();
-        }*/
+        }
     }
 
 }

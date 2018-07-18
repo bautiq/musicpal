@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "906607296039-v1r6o3svqh67ei3j0mdphnabnpscdc4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.musicpal",
+            "certificate_hash": "40fa03ef44d44cef34a093d5bf35d48e83edea86"
+          }
+        },
+        {
           "client_id": "906607296039-up92sq2ua1c2qsf19mi6qmk6fat1oqak.apps.googleusercontent.com",
           "client_type": 3
         }
