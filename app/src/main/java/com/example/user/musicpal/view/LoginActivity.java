@@ -24,12 +24,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity
+        extends AppCompatActivity {
+
     private EditText emailEdit;
     private EditText passEdit;
     private Button buttonIngresar;
     private Button buttonRegistrarse;
     private TextView textViewError;
+
     private CallbackManager callbackManager;
     private FirebaseAuth firebaseAuth;
     private LoginButton loginButton;
@@ -39,8 +42,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         firebaseAuth = FirebaseAuth.getInstance();
+
         intent = new Intent(LoginActivity.this, ActivityMain.class);
+
         emailEdit = findViewById(R.id.edit_text_email);
         passEdit = findViewById(R.id.edit_text_password);
         buttonIngresar = findViewById(R.id.button_ingresar);
@@ -48,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions();
+        textViewError=findViewById(R.id.error_text_id);
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
@@ -71,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (emailEdit.getText().toString().equals("") || passEdit.getText().toString().equals("")) {
+                if (emailEdit.getText().toString().isEmpty() || passEdit.getText().toString().isEmpty()) {
                     textViewError.setText("Usted no ingreso nada en el campo de email o contraseña");
                     textViewError.setVisibility(View.VISIBLE);
                     return;
@@ -83,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (emailEdit.getText().toString().equals("") || passEdit.getText().toString().equals("")) {
+                if (emailEdit.getText().toString().isEmpty() || passEdit.getText().toString().isEmpty()) {
                     textViewError.setText("Usted no ingreso nada en el campo de email o contraseña");
                     textViewError.setVisibility(View.VISIBLE);
                     return;

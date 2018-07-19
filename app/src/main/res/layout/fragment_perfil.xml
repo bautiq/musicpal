@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,13 +15,17 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imagen_perfil"
             android:layout_width="0dp"
             android:layout_height="@dimen/size_home_albums"
             android:layout_margin="@dimen/margin_imagen_texto"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@drawable/perfil" />
+            android:src="@drawable/perfil"
+            app:civ_border_color="@color/grisBlanco"
+            app:civ_border_width="2dp"
+            app:civ_shadow_color="@color/gris" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -29,25 +34,32 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/nombre_usuario"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:padding="12dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="@string/nombre_usuario"
                 android:textColor="@color/grisBlanco"
                 android:textSize="@dimen/tamanio_texto_vista_previa"
                 android:textStyle="italic" />
 
             <Button
+                android:id="@+id/cerrar_sesion"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/fondoNaranja"
                 android:padding="12dp"
                 android:shadowRadius="16"
-                android:text="@string/editarPerfil" />
+                android:text="@string/cerrarSesion" />
         </LinearLayout>
 
     </LinearLayout>

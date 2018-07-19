@@ -86,7 +86,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
 
         public void armarCelda(Artista artista) {
             textViewNombre.setText(artista.getNombre());
-            Picasso.with(context)
+            Picasso.get()
                     .load(artista.getImagenUrl())
                     .placeholder(R.drawable.placeholder)
                     .into(imagen);

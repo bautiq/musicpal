@@ -19,5 +19,6 @@
     <string name="facebook_app_id">484533575333851</string>
     <string name="fb_login_protocol_scheme">fb484533575333851</string>
     <string name="loguin_mensaje">¡Bienvenido, Ingrese o registrese para continuar!</string>
+    <string name="cerrarSesion">cerrar sesion</string>
 
 </resources>

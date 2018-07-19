@@ -90,7 +90,7 @@ public class FragmentDetalleAlbum
 
         textArtista.setText("Artista: " + album.getArtista().getNombre());
         textAlbum.setText("Album: " + album.getTitulo());
-        Picasso.with(getContext())
+        Picasso.get()
                 .load(album.getImagenUrl())
                 .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);

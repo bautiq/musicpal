@@ -111,7 +111,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
 
         public void armarCelda(Playlist playlist) {
             textViewNombre.setText(playlist.getNombre());
-            Picasso.with(context)
+            Picasso.get()
                     .load(playlist.getImagenPlaylistUrl())
                     .placeholder(R.drawable.placeholder)
                     .into(imageView);

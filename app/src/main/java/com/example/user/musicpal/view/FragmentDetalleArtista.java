@@ -87,7 +87,7 @@ public class FragmentDetalleArtista
         chequearListaCanciones();
 
         textArtista.setText("Artista: " + artista.getNombre());
-        Picasso.with(getContext())
+        Picasso.get()
                 .load(artista.getImagenUrl())
                 .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
