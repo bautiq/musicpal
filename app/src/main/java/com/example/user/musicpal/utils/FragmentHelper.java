@@ -20,7 +20,7 @@ public class FragmentHelper {
                                                         FragmentManager fragmentManager) {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(container, fragment);
+        fragmentTransaction.replace(container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 

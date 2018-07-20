@@ -45,7 +45,7 @@
                 android:padding="12dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/nombre_usuario"
+                android:text="@string/Usuario_Desconocido"
                 android:textColor="@color/grisBlanco"
                 android:textSize="@dimen/tamanio_texto_vista_previa"
                 android:textStyle="italic" />
@@ -59,7 +59,8 @@
                 android:background="@color/fondoNaranja"
                 android:padding="12dp"
                 android:shadowRadius="16"
-                android:text="@string/cerrarSesion" />
+                android:text="@string/cerrarSesion"
+                android:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>

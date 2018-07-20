@@ -1,6 +1,7 @@
 package com.example.user.musicpal.view;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -30,6 +31,8 @@ public class FragmentPerfil extends Fragment {
     private TextView nombreUsuario;
     private Button botonCerrarSesion;
     private ImageView imagenPerfil;
+    private FirebaseAuth firebaseAuth;
+    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,9 @@ public class FragmentPerfil extends Fragment {
         nombreUsuario.setSelected(true);
         imagenPerfil = view.findViewById(R.id.imagen_perfil);
         botonCerrarSesion = view.findViewById(R.id.cerrar_sesion);
+        firebaseAuth = FirebaseAuth.getInstance();
+        intent = new Intent(getContext(), LoginActivity.class);
+        chequearSiEstaLogueado();
 
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +61,20 @@ public class FragmentPerfil extends Fragment {
                             Toast.LENGTH_SHORT).show();
 
                     botonCerrarSesion.setVisibility(view.INVISIBLE);
+                    nombreUsuario.setText("Usuario_Desconocido");
                 }
             }
         });
         cargarFotoDelUsuario();
         return view;
+    }
+
+    public void chequearSiEstaLogueado() {
+        if (firebaseAuth.getCurrentUser() == null) {
+            startActivity(intent);
+        }else {
+            botonCerrarSesion.setVisibility(View.VISIBLE);
+        }
     }
 
     private void cargarFotoDelUsuario() {

@@ -29,14 +29,16 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPlaylist extends Fragment implements AdapterPlaylist.NotificadorPlaylistCelda {
+public class FragmentPlaylist
+        extends Fragment
+        implements AdapterPlaylist.NotificadorPlaylistCelda {
+
     private TextView textAgregar;
     private ImageView buttonAgregar;
     private RecyclerView recyclerView;
     private FirebaseAuth firebaseAuth;
     private Intent intent;
     private AdapterPlaylist adapterPlaylist;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
