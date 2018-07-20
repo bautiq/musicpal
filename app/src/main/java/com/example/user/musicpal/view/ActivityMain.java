@@ -116,6 +116,8 @@ public class ActivityMain
                         fragmentManager);
             }
         });
+       // printHash();
+
     }
 
     public void notificarAlbum(List<Album> list, int posicion) {
@@ -230,4 +232,22 @@ public class ActivityMain
         fragmentReproductorChico.setearDatos(cancion);
         fragmentReproductor.setearDatos(cancion);
     }
+
+    /*private void printHash() {
+        try {
+            PackageInfo info =
+                    getPackageManager().getPackageInfo(getApplicationContext().getPackageName(),
+                            PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.v("MY KEY HASH:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+    }*/
 }

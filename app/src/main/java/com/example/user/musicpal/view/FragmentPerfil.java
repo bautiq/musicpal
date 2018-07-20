@@ -4,7 +4,6 @@ package com.example.user.musicpal.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.facebook.AccessToken;
-import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +31,7 @@ public class FragmentPerfil extends Fragment {
     private ImageView imagenPerfil;
     private FirebaseAuth firebaseAuth;
     private Intent intent;
+    private Button botonIniciarSesion;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +43,7 @@ public class FragmentPerfil extends Fragment {
         nombreUsuario.setSelected(true);
         imagenPerfil = view.findViewById(R.id.imagen_perfil);
         botonCerrarSesion = view.findViewById(R.id.cerrar_sesion);
+        botonIniciarSesion = view.findViewById(R.id.iniciar_sesion);
         firebaseAuth = FirebaseAuth.getInstance();
         intent = new Intent(getContext(), LoginActivity.class);
         chequearSiEstaLogueado();
@@ -62,28 +62,33 @@ public class FragmentPerfil extends Fragment {
 
                     botonCerrarSesion.setVisibility(view.INVISIBLE);
                     nombreUsuario.setText("Usuario_Desconocido");
+                    imagenPerfil.setImageResource(R.drawable.perfil);
                 }
             }
         });
-        cargarFotoDelUsuario();
+        cargarDatosDelUsuario();
+        botonIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     public void chequearSiEstaLogueado() {
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(intent);
-        }else {
+
+        } else {
             botonCerrarSesion.setVisibility(View.VISIBLE);
+            botonIniciarSesion.setVisibility(View.INVISIBLE);
+
         }
     }
 
-    private void cargarFotoDelUsuario() {
-      /*  if (Profile.getCurrentProfile() != null) {
-            Uri photoUri = Profile.getCurrentProfile().getProfilePictureUri(200, 200);
-            String nombre= Profile.getCurrentProfile().getName();
-            nombreUsuario.setText(nombre);
-            Picasso.get().load(photoUri).into(imagenPerfil);
-        }*/
+    private void cargarDatosDelUsuario() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -95,4 +100,5 @@ public class FragmentPerfil extends Fragment {
             Picasso.get().load(photoUrl).placeholder(R.drawable.perfil).into(imagenPerfil);
         }
     }
+
 }

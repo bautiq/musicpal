@@ -21,5 +21,6 @@
     <string name="loguin_mensaje">¡Bienvenido, Ingrese o registrese para continuar!</string>
     <string name="cerrarSesion">cerrar sesion</string>
     <string name="Usuario_Desconocido">Usuario desconocido</string>
+    <string name="iniciar_sesion">iniciar sesion</string>
 
 </resources>

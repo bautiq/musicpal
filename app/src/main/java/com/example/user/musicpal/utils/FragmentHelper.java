@@ -25,4 +25,11 @@ public class FragmentHelper {
         fragmentTransaction.commit();
 
     }
+
+    public static final void cerrarFragment(Fragment fragment, FragmentManager fragmentManager) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(fragment);
+        fragmentTransaction.commit();
+
+    }
 }

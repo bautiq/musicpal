@@ -27,7 +27,7 @@
             app:civ_border_width="2dp"
             app:civ_shadow_color="@color/gris" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/nombre_usuario"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:ellipsize="marquee"
@@ -53,7 +53,8 @@
             <Button
                 android:id="@+id/cerrar_sesion"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_usuario"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@color/fondoNaranja"
@@ -61,7 +62,20 @@
                 android:shadowRadius="16"
                 android:text="@string/cerrarSesion"
                 android:visibility="invisible" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/iniciar_sesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_usuario"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/fondoNaranja"
+                android:padding="12dp"
+                android:shadowRadius="16"
+                android:text="@string/iniciar_sesion"
+                android:visibility="visible" />
+        </RelativeLayout>
 
     </LinearLayout>
 
