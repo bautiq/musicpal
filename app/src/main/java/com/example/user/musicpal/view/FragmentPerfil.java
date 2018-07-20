@@ -61,8 +61,9 @@ public class FragmentPerfil extends Fragment {
                             Toast.LENGTH_SHORT).show();
 
                     botonCerrarSesion.setVisibility(view.INVISIBLE);
-                    nombreUsuario.setText("Usuario_Desconocido");
+                    nombreUsuario.setText("Usuario Desconocido");
                     imagenPerfil.setImageResource(R.drawable.perfil);
+                    botonIniciarSesion.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -84,7 +85,6 @@ public class FragmentPerfil extends Fragment {
         } else {
             botonCerrarSesion.setVisibility(View.VISIBLE);
             botonIniciarSesion.setVisibility(View.INVISIBLE);
-
         }
     }
 
@@ -96,9 +96,12 @@ public class FragmentPerfil extends Fragment {
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
 
-            nombreUsuario.setText(email);
             Picasso.get().load(photoUrl).placeholder(R.drawable.perfil).into(imagenPerfil);
+            if (name != null) {
+                nombreUsuario.setText(name);
+            } else if (email != null) {
+                nombreUsuario.setText(email);
+            }
         }
     }
-
 }

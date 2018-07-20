@@ -54,7 +54,7 @@ public class LoginActivity
         callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "public_profile");
-        textViewError=findViewById(R.id.error_text_id);
+        textViewError = findViewById(R.id.error_text_id);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
