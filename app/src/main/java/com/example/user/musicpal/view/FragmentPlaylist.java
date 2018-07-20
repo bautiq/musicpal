@@ -24,8 +24,6 @@ import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,18 +69,18 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
                 chequearSiEstaLogueado();
             }
         });
-        obtenerPlaylistFDB();
+       // obtenerPlaylistFDB();
         return view;
     }
 
-    private void obtenerPlaylistFDB() {
+  /*  private void obtenerPlaylistFDB() {
         controllerGlobal.obtenerPlaylistFDB(new ResultListener<List<Playlist>>() {
             @Override
             public void finish(List<Playlist> resultado) {
                 adapterPlaylist.agregarListaPlaylists(resultado);
             }
         });
-    }
+    }*/
 
     @Override
     public void onAttach(Context context) {
@@ -107,22 +105,22 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
             public void onClick(DialogInterface dialogInterface, int i) {
                 List<String> listaIdsCanciones = new ArrayList<>();
                 Playlist playlistNueva = new Playlist(listaIdsCanciones, editText.getText().toString());
-                pushearPlaylistAFDB(playlistNueva);
-                pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
+           //     pushearPlaylistAFDB(playlistNueva);
+            //    pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
                 adapterPlaylist.agregarPlaylist(playlistNueva);
             }
         });
         alertDialog.show();
     }
 
-    private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
+  /*  private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
         controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
     }
 
     private void pushearPlaylistAFDB(Playlist playlistAsubir) {
         controllerGlobal.pushearPlaylistAFDB(playlistAsubir);
 
-    }
+    }*/
 
 
     public void chequearSiEstaLogueado() {

@@ -27,7 +27,7 @@ public class ControllerGlobal {
         this.context = context;
         hayPaginas = true;
         offset = 0;
-        daoPlaylist = new DaoPlaylist();
+//        daoPlaylist = new DaoPlaylist();
     }
 
 
@@ -145,7 +145,7 @@ public class ControllerGlobal {
         return hayPaginas;
     }
 
-    public void pushearPlaylistAFDB(Playlist playlistAsubir) {
+  /*  public void pushearPlaylistAFDB(Playlist playlistAsubir) {
         daoPlaylist.pushearPlaylistAFDB(playlistAsubir);
     }
 
@@ -160,5 +160,5 @@ public class ControllerGlobal {
 
     public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
         daoPlaylist.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
-    }
+    }*/
 }
