@@ -32,7 +32,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPlaylist extends Fragment implements AdapterPlaylist.NotificadorPlaylistUser {
+public class FragmentPlaylist
+        extends Fragment
+        implements AdapterPlaylist.NotificadorPlaylistUser {
+
     private TextView textAgregar;
     private ImageView buttonAgregar;
     private RecyclerView recyclerView;
