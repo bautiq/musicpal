@@ -50,26 +50,34 @@
         android:textColorHighlight="@color/fondoNaranja"
         android:textColorHint="@color/fondoNaranja" />
 
-    <Button
-        android:id="@+id/button_ingresar"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Ingresar" />
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button_registrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Registrarse" />
+        <Button
+            android:id="@+id/button_ingresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ingresar" />
+
+        <Button
+            android:id="@+id/button_registrarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:text="Registrarse" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:padding="2dp"
         android:text="O ingrese con facebook"
         android:textColor="@color/blanco"
@@ -81,7 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="12dp"
+        android:padding="20dp" />
 
     <TextView
         android:id="@+id/error_text_id"
