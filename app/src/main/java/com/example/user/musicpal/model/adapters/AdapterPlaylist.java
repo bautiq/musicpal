@@ -27,12 +27,20 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     private Context context;
     private List<Playlist> listaPlaylist;
     private NotificadorPlaylistCelda notificadorPlaylistCelda;
+    private NotificadorPlaylistUser notificadorPlaylistUser;
     private String tipoPlaylist;
 
     public AdapterPlaylist(Context context, NotificadorPlaylistCelda notificadorPlaylistCelda, String tipoPlaylist) {
         this.context = context;
         this.listaPlaylist = new ArrayList<>();
         this.notificadorPlaylistCelda = notificadorPlaylistCelda;
+        this.tipoPlaylist = tipoPlaylist;
+    }
+
+    public AdapterPlaylist(Context context, NotificadorPlaylistUser notificadorPlaylistUser, String tipoPlaylist) {
+        this.context = context;
+        this.listaPlaylist = new ArrayList<>();
+        this.notificadorPlaylistUser = notificadorPlaylistUser;
         this.tipoPlaylist = tipoPlaylist;
     }
 
@@ -87,6 +95,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
             return;
         }
         listaPlaylist.add(playlistNueva);
+        notifyDataSetChanged();
     }
 
 
@@ -102,9 +111,9 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int posicionDeArtistaCliqueado = getAdapterPosition();
+                    int posicionDePlaylistCliqueado = getAdapterPosition();
                     notificadorPlaylistCelda.notificarCeldaCliqueadaPlaylist(
-                            listaPlaylist, posicionDeArtistaCliqueado);
+                            listaPlaylist, posicionDePlaylistCliqueado);
                 }
             });
         }
@@ -128,17 +137,37 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
             nombrePlaylist = itemView.findViewById(R.id.nombre_canciones_playlist_user);
             numeroCanciones = itemView.findViewById(R.id.numero_canciones_playlist_user);
             imagenPreview = itemView.findViewById(R.id.id_preview_playlist_user);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int posicionDePlaylistCliqueado = getAdapterPosition();
+                    Playlist playlist = listaPlaylist.get(posicionDePlaylistCliqueado);
+                    notificadorPlaylistUser.notificarPlaylistUser(playlist);
+
+                }
+            });
         }
 
         public void armarCeldaPU(Playlist playlist) {
             nombrePlaylist.setText(playlist.getNombre());
-            Integer numCanciones = playlist.getListCanciones().size();
-            numeroCanciones.setText(numCanciones.toString() + " canciones.");
+            if(playlist.getListCanciones() !=null){   Integer numCanciones = playlist.getListCanciones().size();
+                numeroCanciones.setText(numCanciones.toString() + " canciones.");}
+
+            if(playlist.getImagenPlaylistUrl() != null){
+                Picasso.get()
+                        .load(playlist.getImagenPlaylistUrl())
+                        .placeholder(R.drawable.placeholder)
+                        .into(imagenPreview);
+            }
         }
     }
 
     public interface NotificadorPlaylistCelda {
         public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion);
+    }
+
+    public interface NotificadorPlaylistUser{
+        public void notificarPlaylistUser(Playlist playlist);
     }
 
     private void obtenerCancionesPorPlaylist(final Playlist playlist) {

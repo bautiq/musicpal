@@ -37,7 +37,7 @@ public class ActivityMain
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino {
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentPlaylist.NotificadorPlaylistUserClickeada {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -233,21 +233,12 @@ public class ActivityMain
         fragmentReproductor.setearDatos(cancion);
     }
 
-    /*private void printHash() {
-        try {
-            PackageInfo info =
-                    getPackageManager().getPackageInfo(getApplicationContext().getPackageName(),
-                            PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.v("MY KEY HASH:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-    }*/
+    @Override
+    public void notificarPlaylistUserClickeada(Playlist playlist) {
+        Intent intent = new Intent(ActivityMain.this, ActivityPlaylistUserDetalle.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }
