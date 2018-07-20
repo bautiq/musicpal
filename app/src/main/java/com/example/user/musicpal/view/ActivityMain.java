@@ -37,7 +37,7 @@ public class ActivityMain
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino {
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentPlaylist.NotificadorPlaylistUserClickeada {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -229,5 +229,14 @@ public class ActivityMain
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
         fragmentReproductor.setearDatos(cancion);
+    }
+
+    @Override
+    public void notificarPlaylistUserClickeada(Playlist playlist) {
+        Intent intent = new Intent(ActivityMain.this, ActivityPlaylistUserDetalle.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

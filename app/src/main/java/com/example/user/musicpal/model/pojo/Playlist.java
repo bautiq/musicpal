@@ -3,6 +3,7 @@ package com.example.user.musicpal.model.pojo;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist implements Serializable {
@@ -16,14 +17,20 @@ public class Playlist implements Serializable {
     private String imagenPlaylistUrl;
 
     private List<Cancion> listCanciones;
+    private List<String> listaCancionesIDS;
 
-    public Playlist(String nombre, List<Cancion> listCanciones, String id){
+
+    public Playlist(String nombre, List<Cancion> listCanciones){
         this.nombre = nombre;
         this.listCanciones = listCanciones;
-        this.id = id;
     }
 
     public Playlist(){
+    }
+
+    public Playlist(List<String> listaCancionesIDS, String nombre) {
+        this.nombre = nombre;
+        this.listaCancionesIDS = listaCancionesIDS;
     }
 
     public String getId() {
@@ -58,5 +65,9 @@ public class Playlist implements Serializable {
             Playlist playlistAcomparar = (Playlist) obj;
             return playlistAcomparar.getId().equals(this.id);
         }
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

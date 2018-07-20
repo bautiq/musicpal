@@ -2,6 +2,7 @@ package com.example.user.musicpal.view;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
+import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +34,15 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPlaylist extends Fragment implements AdapterPlaylist.NotificadorPlaylistCelda {
+public class FragmentPlaylist extends Fragment implements AdapterPlaylist.NotificadorPlaylistUser {
     private TextView textAgregar;
     private ImageView buttonAgregar;
     private RecyclerView recyclerView;
     private FirebaseAuth firebaseAuth;
+    private ControllerGlobal controllerGlobal;
     private Intent intent;
     private AdapterPlaylist adapterPlaylist;
+    private NotificadorPlaylistUserClickeada notificadorPlaylistUserClickeada;
 
 
     @Override
@@ -44,6 +51,7 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
         recyclerView = view.findViewById(R.id.recycler_fragment_playlist);
+        controllerGlobal = new ControllerGlobal(getContext());
         adapterPlaylist = new AdapterPlaylist(getContext(), this, "user");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapterPlaylist);
@@ -64,7 +72,23 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
                 chequearSiEstaLogueado();
             }
         });
+        obtenerPlaylistFDB();
         return view;
+    }
+
+    private void obtenerPlaylistFDB() {
+        controllerGlobal.obtenerPlaylistFDB(new ResultListener<List<Playlist>>() {
+            @Override
+            public void finish(List<Playlist> resultado) {
+                adapterPlaylist.agregarListaPlaylists(resultado);
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        notificadorPlaylistUserClickeada = (NotificadorPlaylistUserClickeada) context;
     }
 
     private void abrirVentanaAgregar() {
@@ -82,25 +106,41 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
         alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Playlist playlistNueva = new Playlist(editText.getText().toString(), new ArrayList<Cancion>(), "1");
+                List<String> listaIdsCanciones = new ArrayList<>();
+                Playlist playlistNueva = new Playlist(listaIdsCanciones, editText.getText().toString());
+                pushearPlaylistAFDB(playlistNueva);
+                pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
                 adapterPlaylist.agregarPlaylist(playlistNueva);
             }
         });
         alertDialog.show();
     }
 
+    private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
+        controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
+    }
+
+    private void pushearPlaylistAFDB(Playlist playlistAsubir) {
+        controllerGlobal.pushearPlaylistAFDB(playlistAsubir);
+
+    }
+
 
     public void chequearSiEstaLogueado() {
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(intent);
-
         } else {
             abrirVentanaAgregar();
         }
     }
 
-    @Override
-    public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion) {
 
+    @Override
+    public void notificarPlaylistUser(Playlist playlist) {
+        notificadorPlaylistUserClickeada.notificarPlaylistUserClickeada(playlist);
+    }
+
+    public interface NotificadorPlaylistUserClickeada {
+        public void notificarPlaylistUserClickeada(Playlist playlist);
     }
 }
