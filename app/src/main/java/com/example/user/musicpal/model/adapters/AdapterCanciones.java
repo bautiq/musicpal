@@ -14,6 +14,7 @@ import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterCanciones extends RecyclerView.Adapter {
@@ -27,6 +28,12 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                             NotificadorCancionCelda notificadorCancionCelda) {
 
         this.listaDeCanciones = listaDeCanciones;
+        this.fragmentManager = fragmentManager;
+        this.notificadorCancionCelda = notificadorCancionCelda;
+    }
+
+    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
+        listaDeCanciones = new ArrayList<>();
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
     }

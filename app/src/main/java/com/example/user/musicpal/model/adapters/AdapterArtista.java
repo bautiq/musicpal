@@ -55,7 +55,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
             return 0;
         }
     }
-
+//agrega lista de artistas obtenida del pedido desde fragmentDetalleArtista
     public void agregarArtistas(List<Artista> artistas) {
         for (Artista artistaAAgregar : artistas) {
             if (!artistaList.contains(artistaAAgregar)) {

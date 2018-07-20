@@ -173,6 +173,7 @@ public class FragmentPantallaInicio
         return view;
     }
 
+
     private void obtenerAlbumes() {
         controllerAlbum.obtenerAlbumesOnline(new ResultListener<List<Album>>() {
             @Override
@@ -181,7 +182,7 @@ public class FragmentPantallaInicio
             }
         });
     }
-
+///pido a la api la lista de artistas para el recycler del fragment Pantalla inicio
     private void obtenerArtistas() {
         controllerArtista.obtenerArtistasOnline(new ResultListener<List<Artista>>() {
             @Override
@@ -215,7 +216,7 @@ public class FragmentPantallaInicio
         super.onAttach(context);
         notificadorActivities = (NotificadorActivities) context;
     }
-
+//notificar celda clickeada de la lista de albumes del recycler Albumes Top
     @Override
     public void notificarCeldaClickeada(List<Album> list, int posicion) {
         notificadorActivities.notificarAlbum(list, posicion);

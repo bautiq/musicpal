@@ -110,7 +110,7 @@ public class FragmentDetalleArtista
             obtenerCancionesPorArtista(artista);
         }
     }
-
+//pedido a api de lista<canciones> para recycler Top Artistas
     private void obtenerCancionesPorArtista(final Artista artista) {
         controllerCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
             @Override
