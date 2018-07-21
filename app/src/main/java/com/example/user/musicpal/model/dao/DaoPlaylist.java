@@ -5,6 +5,7 @@ import com.example.user.musicpal.model.pojo.ContPlaylist;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,19 +72,27 @@ public class DaoPlaylist {
         databaseReferenceFinal.setValue(playlistAsubir);
     }
 
-    public void obtenerPlaylistFDB(final ResultListener<List<Playlist>> resultListenerController) {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    public void obtenerPlaylistFDB(final ResultListener<Playlist> resultListenerController) {
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!(dataSnapshot.exists())) {
-                    return;
-                }
-                List<Playlist> playlistList = new ArrayList<>();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Playlist playlist = dataSnapshot1.getValue(Playlist.class);
-                    playlistList.add(playlist);
-                }
-                resultListenerController.finish(playlistList);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Playlist playlist = dataSnapshot.getValue(Playlist.class);
+                resultListenerController.finish(playlist);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override

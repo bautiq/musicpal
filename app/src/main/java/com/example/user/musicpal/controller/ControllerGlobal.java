@@ -149,10 +149,11 @@ public class ControllerGlobal {
         daoPlaylist.pushearPlaylistAFDB(playlistAsubir);
     }
 
-    public void obtenerPlaylistFDB(final ResultListener<List<Playlist>> listenerDeLaVista) {
-        daoPlaylist.obtenerPlaylistFDB(new ResultListener<List<Playlist>>() {
+    public void obtenerPlaylistFDB(final ResultListener<Playlist> listenerDeLaVista) {
+        daoPlaylist.obtenerPlaylistFDB(new ResultListener<Playlist>() {
+
             @Override
-            public void finish(List<Playlist> resultado) {
+            public void finish(Playlist resultado) {
                 listenerDeLaVista.finish(resultado);
             }
         });

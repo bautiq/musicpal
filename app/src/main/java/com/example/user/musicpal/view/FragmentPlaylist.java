@@ -52,7 +52,7 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
         recyclerView = view.findViewById(R.id.recycler_fragment_playlist);
         controllerGlobal = new ControllerGlobal(getContext());
         adapterPlaylist = new AdapterPlaylist(getContext(), this, "user");
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapterPlaylist);
         textAgregar = view.findViewById(R.id.text_agregar_playlist);
         buttonAgregar = view.findViewById(R.id.button_agregar_playlist);
@@ -76,10 +76,11 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
     }
 
     private void obtenerPlaylistFDB() {
-        controllerGlobal.obtenerPlaylistFDB(new ResultListener<List<Playlist>>() {
+        controllerGlobal.obtenerPlaylistFDB(new ResultListener<Playlist>() {
+
             @Override
-            public void finish(List<Playlist> resultado) {
-                adapterPlaylist.agregarListaPlaylists(resultado);
+            public void finish(Playlist resultado) {
+                adapterPlaylist.agregarPlaylist(resultado);
             }
         });
     }

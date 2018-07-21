@@ -19,9 +19,6 @@ import com.example.user.musicpal.model.pojo.Cancion;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentBusqueda extends Fragment {
 
     private EditText editText;
