@@ -216,7 +216,7 @@ public class FragmentPantallaInicio
         super.onAttach(context);
         notificadorActivities = (NotificadorActivities) context;
     }
-//notificar celda clickeada de la lista de albumes del recycler Albumes Top
+//notificar celda clickeada de la lista de albumes del adapterAlbum del recycler AlbumesTop
     @Override
     public void notificarCeldaClickeada(List<Album> list, int posicion) {
         notificadorActivities.notificarAlbum(list, posicion);
@@ -231,7 +231,7 @@ public class FragmentPantallaInicio
     public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion) {
         notificadorActivities.notificarPlaylist(playlists, posicion);
     }
-
+////notificar celda clickeada de la lista de albumes del adapterTopCanciones  del recycler AlbumesTop
     @Override
     public void notificarCeldaClickeadaDeCancion(Cancion cancion) {
         //este es el notificador de canciones top
