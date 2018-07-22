@@ -5,11 +5,11 @@ import com.example.user.musicpal.model.pojo.ContPlaylist;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
+/*import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.ValueEventListener;*/
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ public class DaoPlaylist {
 
     private Retrofit retrofit;
     private Service service;
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
+ //   private FirebaseDatabase database;
+  //  private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
 
     public DaoPlaylist() {
@@ -36,9 +36,9 @@ public class DaoPlaylist {
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
-        database = FirebaseDatabase.getInstance();
+ //       database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("playlists");
+  //      databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("playlists");
     }
 
     public void obtenerPlaylist(final ResultListener<List<Playlist>> resultListenerDelController,
@@ -65,7 +65,7 @@ public class DaoPlaylist {
         });
     }
 
-    public void pushearPlaylistAFDB(Playlist playlistAsubir) {
+ /*   public void pushearPlaylistAFDB(Playlist playlistAsubir) {
         DatabaseReference databaseReferenceFinal = databaseReference.push();
         playlistAsubir.setId(databaseReferenceFinal.getKey());
         databaseReferenceFinal.setValue(playlistAsubir);
@@ -97,5 +97,5 @@ public class DaoPlaylist {
     public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
         DatabaseReference databaseReferenceFinal = databaseReference.child(playlistNueva.getId());
         databaseReferenceFinal.setValue(listaIdsCanciones);
-    }
+    }*/
 }

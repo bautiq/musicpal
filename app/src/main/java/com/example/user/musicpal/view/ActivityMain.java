@@ -49,6 +49,7 @@ public class ActivityMain
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private FragmentPerfil fragmentPerfil;
+    private FragmentAboutUs fragmentAboutUs;
 
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
@@ -116,8 +117,6 @@ public class ActivityMain
                         fragmentManager);
             }
         });
-       // printHash();
-
     }
 
     public void notificarAlbum(List<Album> list, int posicion) {
@@ -202,12 +201,13 @@ public class ActivityMain
                         R.id.container_fragment,
                         fragmentManager);
                 break;
-         /*   case R.id.favoritos:
-                Toast.makeText(this, "Click Favoritos", Toast.LENGTH_SHORT).show();
+
+            case R.id.about_us:
+                fragmentAboutUs = new FragmentAboutUs();
+                FragmentHelper.cargarFragmentConBackStack(fragmentAboutUs,
+                        R.id.container_fragment,
+                        fragmentManager);
                 break;
-            case R.id.configuracion:
-                Toast.makeText(this, "Click Configuracion", Toast.LENGTH_SHORT).show();
-                break;*/
         }
         drawerLayout.closeDrawers();
         return false;
