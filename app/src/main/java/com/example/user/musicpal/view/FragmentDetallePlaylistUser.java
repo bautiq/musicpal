@@ -23,7 +23,8 @@ public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanc
 
     public static final String CLAVE_PLAYLIST = "clave_playlist";
     private ImageView imagenGrande;
-    private TextView textArtista;
+    private TextView textNombrePlaylist;
+    private TextView textCantidadCanciones;
 
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
@@ -38,11 +39,12 @@ public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanc
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_detalle_playlist_user, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa_user_Playlist);
-        textArtista = view.findViewById(R.id.id_nombre_artista_user_playlist);
+        textNombrePlaylist = view.findViewById(R.id.id_nombre_user_playlist);
+        textCantidadCanciones = view.findViewById(R.id.id_cantidad_canciones_user_playlist);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_user_id);
         adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext());
         controllerCancion = new ControllerGlobal(getContext());
-setearDatos();
+        setearDatos();
         obtenerCanciones();
         return view;
     }
@@ -50,8 +52,12 @@ setearDatos();
     private void setearDatos() {
         Bundle bundle = getArguments();
         Playlist playlist = (Playlist) bundle.getSerializable(CLAVE_PLAYLIST);
-
-textArtista.setText(playlist.getNombre());
+        if (playlist.getListaCancionesIDS() != null) {
+            textCantidadCanciones.setText(playlist.getListaCancionesIDS().size());
+        }else{
+            textCantidadCanciones.setText("0 canciones.");
+        }
+        textNombrePlaylist.setText(playlist.getNombre());
     }
 
     private void obtenerCanciones() {
