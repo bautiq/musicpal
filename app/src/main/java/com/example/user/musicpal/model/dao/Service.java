@@ -40,4 +40,8 @@ public interface Service {
 
     @GET("track/{id}")
     Call<Cancion> obtenerCancion(@Path("id") String id);
+
+    //pedido busqueda devuelve una lista de canciones
+@GET("search")
+    Call<ContCanciones> obtenerCancionesBusquedaEditText(@Query("q") String stringEditText, @Query("index")Integer offset, @Query("limit") Integer limit);
 }

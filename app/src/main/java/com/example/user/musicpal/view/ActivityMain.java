@@ -33,7 +33,7 @@ import java.util.List;
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentPantallaInicio.NotificadorActivities,
+        implements FragmentPantallaInicio.NotificadorActivities,FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,

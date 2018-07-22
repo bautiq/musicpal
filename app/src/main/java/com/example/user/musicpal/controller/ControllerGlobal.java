@@ -109,7 +109,7 @@ public class ControllerGlobal {
             }
         }, id);
     }
-
+//pide lista de canciones Top
     public void obtenerCancionesTopOnline(final ResultListener<List<Cancion>> resultListenerDeLaVista) {
         if (hayInternet()) {
             DaoCancion daoCancion = new DaoCancion();
@@ -126,7 +126,7 @@ public class ControllerGlobal {
         }
 
     }
-
+//pide lista de canciones por Id
     public void obtenerCancionOnline(final ResultListener<Cancion> listener, String id) {
         DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancion(new ResultListener<Cancion>() {
@@ -135,6 +135,15 @@ public class ControllerGlobal {
                 listener.finish(resultado);
             }
         }, id);
+
+    }public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda){
+        DaoCancion daoCancion = new DaoCancion();
+        daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
+            @Override
+            public void finish(List<Cancion> resultado) {
+                resultListenerDeLFragmentBusqueda.finish(resultado);
+            }
+        },offset,LIST_SIZE);
     }
 
     private boolean hayInternet() {

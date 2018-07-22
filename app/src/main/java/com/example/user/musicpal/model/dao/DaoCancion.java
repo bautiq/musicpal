@@ -146,4 +146,28 @@ public class DaoCancion {
             }
         });
     }
+
+    public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDelController,
+                                                 Integer offset, Integer limit) {
+
+        Call<ContCanciones> call = service.obtenerCancionesBusquedaEditText(stringEditText, offset, limit);
+        call.enqueue(new Callback<ContCanciones>() {
+            @Override
+            public void onResponse(Call<ContCanciones> call, Response<ContCanciones> response) {
+                ContCanciones contCancionesObtenido = response.body();
+
+                if (contCancionesObtenido != null && contCancionesObtenido.getCanciones() != null) {
+                    List<Cancion> cancionesLista = contCancionesObtenido.getCanciones();
+                    resultListenerDelController.finish(cancionesLista);
+                } else {
+                    resultListenerDelController.finish(new ArrayList<Cancion>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContCanciones> call, Throwable t) {
+                resultListenerDelController.finish(new ArrayList<Cancion>());
+            }
+        });
+    }
 }
