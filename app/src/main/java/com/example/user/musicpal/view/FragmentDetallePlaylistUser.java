@@ -19,7 +19,7 @@ import com.example.user.musicpal.model.pojo.Playlist;
 import java.util.List;
 
 
-public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanciones.NotificadorCancionCelda{
+public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanciones.NotificadorCancionCelda {
 
     public static final String CLAVE_PLAYLIST = "clave_playlist";
     private ImageView imagenGrande;
@@ -40,11 +40,18 @@ public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanc
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa_user_Playlist);
         textArtista = view.findViewById(R.id.id_nombre_artista_user_playlist);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_user_id);
-        adapterCanciones = new AdapterCanciones(getFragmentManager(), this);
+        adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext());
         controllerCancion = new ControllerGlobal(getContext());
-
+setearDatos();
         obtenerCanciones();
         return view;
+    }
+
+    private void setearDatos() {
+        Bundle bundle = getArguments();
+        Playlist playlist = (Playlist) bundle.getSerializable(CLAVE_PLAYLIST);
+
+textArtista.setText(playlist.getNombre());
     }
 
     private void obtenerCanciones() {
