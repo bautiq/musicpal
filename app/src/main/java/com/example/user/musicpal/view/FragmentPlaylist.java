@@ -109,8 +109,7 @@ public class FragmentPlaylist extends Fragment implements AdapterPlaylist.Notifi
                 List<String> listaIdsCanciones = new ArrayList<>();
                 Playlist playlistNueva = new Playlist(listaIdsCanciones, editText.getText().toString());
                 pushearPlaylistAFDB(playlistNueva);
-                pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
-                adapterPlaylist.agregarPlaylist(playlistNueva);
+               
             }
         });
         alertDialog.show();

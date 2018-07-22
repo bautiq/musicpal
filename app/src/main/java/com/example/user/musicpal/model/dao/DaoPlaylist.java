@@ -104,7 +104,9 @@ public class DaoPlaylist {
     }
 
     public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
-        DatabaseReference databaseReferenceFinal = databaseReference.child(playlistNueva.getId());
+        DatabaseReference databaseReferenceFinal = databaseReference
+                .child(playlistNueva.getId())
+                .child("IdList");
         databaseReferenceFinal.setValue(listaIdsCanciones);
     }
 }
