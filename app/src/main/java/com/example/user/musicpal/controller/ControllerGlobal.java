@@ -19,6 +19,7 @@ public class ControllerGlobal {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
+    private DaoPlaylist daoPlaylist;
     private static final Integer LIST_SIZE = 10;
 
 
@@ -26,6 +27,7 @@ public class ControllerGlobal {
         this.context = context;
         hayPaginas = true;
         offset = 0;
+        daoPlaylist = new DaoPlaylist();
     }
 
 
@@ -152,5 +154,20 @@ public class ControllerGlobal {
         return hayPaginas;
     }
 
+    public void pushearPlaylistAFDB(Playlist playlistAsubir) {
+        daoPlaylist.pushearPlaylistAFDB(playlistAsubir);
+    }
 
+    public void obtenerPlaylistFDB(final ResultListener<List<Playlist>> listenerDeLaVista) {
+        daoPlaylist.obtenerPlaylistFDB(new ResultListener<List<Playlist>>() {
+            @Override
+            public void finish(List<Playlist> resultado) {
+                listenerDeLaVista.finish(resultado);
+            }
+        });
+    }
+
+    public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
+        daoPlaylist.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
+    }
 }
