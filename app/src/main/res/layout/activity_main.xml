@@ -77,7 +77,7 @@
             android:id="@+id/contenedor_reproductor_chico"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.30"
+            android:layout_weight="1.25"
             android:background="@color/negro_posta">
 
         </FrameLayout>
@@ -90,7 +90,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.70"
+            android:layout_weight="0.75"
             android:background="@color/negro_posta"
             android:orientation="horizontal"
             android:weightSum="2">

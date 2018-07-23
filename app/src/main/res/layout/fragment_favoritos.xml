@@ -8,14 +8,20 @@
     android:orientation="vertical"
     tools:context=".view.FragmentFavorito">
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="@string/favoritos"
-       android:textColor="@color/fondoNaranja"
-       android:textSize="30sp"
-       android:textStyle="bold"
-       android:layout_margin="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/favoritos"
+        android:textColor="@color/fondoNaranja"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/enconstruccion" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_fragment_favoritos"
