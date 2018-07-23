@@ -10,7 +10,7 @@
         <item
             android:id="@+id/about_us"
             android:icon="@drawable/ic_configuracion_blanco_24dp"
-            android:title="@string/desarrollado_por" />
+            android:title="@string/About_us" />
 
     </group>
 </menu>

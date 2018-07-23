@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentPlaylist
+public class FragmentFavorito
         extends Fragment
         implements AdapterPlaylist.NotificadorPlaylistUser {
 
@@ -72,19 +72,10 @@ public class FragmentPlaylist
                 chequearSiEstaLogueado();
             }
         });
-       // obtenerPlaylistFDB();
         return view;
     }
 
-    private void obtenerPlaylistFDB() {
-        controllerGlobal.obtenerPlaylistFDB(new ResultListener<Playlist>() {
 
-            @Override
-            public void finish(Playlist resultado) {
-                adapterPlaylist.agregarPlaylist(resultado);
-            }
-        });
-    }*/
 
     @Override
     public void onAttach(Context context) {
@@ -92,45 +83,17 @@ public class FragmentPlaylist
         notificadorPlaylistUserClickeada = (NotificadorPlaylistUserClickeada) context;
     }
 
-    private void abrirVentanaAgregar() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.ventana_nueva_playlist, null);
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-        alertDialog.setView(view);
-        final EditText editText = view.findViewById(R.id.edit_nueva_playlist);
-        alertDialog.setCancelable(true);
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //nada
-            }
-        });
-        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                List<String> listaIdsCanciones = new ArrayList<>();
-                Playlist playlistNueva = new Playlist(listaIdsCanciones, editText.getText().toString());
-                pushearPlaylistAFDB(playlistNueva);
 
-            }
-        });
-        alertDialog.show();
+    private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
+        controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones);
     }
 
-  /*  private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
-        controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
-    }
 
-    private void pushearPlaylistAFDB(Playlist playlistAsubir) {
-        controllerGlobal.pushearPlaylistAFDB(playlistAsubir);
-
-    }*/
 
 
     public void chequearSiEstaLogueado() {
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(intent);
-        } else {
-            abrirVentanaAgregar();
         }
     }
 

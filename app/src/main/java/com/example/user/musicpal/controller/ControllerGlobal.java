@@ -19,7 +19,7 @@ public class ControllerGlobal {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
-    private DaoPlaylist daoPlaylist;
+    private DaoCancion daoCancion;
     private static final Integer LIST_SIZE = 10;
 
 
@@ -27,7 +27,7 @@ public class ControllerGlobal {
         this.context = context;
         hayPaginas = true;
         offset = 0;
-//        daoPlaylist = new DaoPlaylist();
+      daoCancion = new DaoCancion();
     }
 
 
@@ -48,7 +48,7 @@ public class ControllerGlobal {
     }
 
     public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> listener, String id) {
-        DaoCancion daoCancion = new DaoCancion();
+
         daoCancion.obtenerCancionesPorAlbum(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
@@ -74,7 +74,6 @@ public class ControllerGlobal {
     }
 
     public void obtenerCancionesPorArtista(final ResultListener<List<Cancion>> listener, String id) {
-        DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
@@ -101,7 +100,6 @@ public class ControllerGlobal {
     }
 
     public void obtenerCancionesPorPlaylist(final ResultListener<List<Cancion>> listener, String id) {
-        DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancionesPorPlaylist(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
@@ -112,7 +110,6 @@ public class ControllerGlobal {
 //pide lista de canciones Top
     public void obtenerCancionesTopOnline(final ResultListener<List<Cancion>> resultListenerDeLaVista) {
         if (hayInternet()) {
-            DaoCancion daoCancion = new DaoCancion();
             daoCancion.obtenerCancionesTop(new ResultListener<List<Cancion>>() {
                 @Override
                 public void finish(List<Cancion> resultado) {
@@ -128,7 +125,6 @@ public class ControllerGlobal {
     }
 //pide lista de canciones por Id
     public void obtenerCancionOnline(final ResultListener<Cancion> listener, String id) {
-        DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerCancion(new ResultListener<Cancion>() {
             @Override
             public void finish(Cancion resultado) {
@@ -137,7 +133,6 @@ public class ControllerGlobal {
         }, id);
 
     }public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda){
-        DaoCancion daoCancion = new DaoCancion();
         daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
@@ -154,21 +149,19 @@ public class ControllerGlobal {
         return hayPaginas;
     }
 
-  /*  public void pushearPlaylistAFDB(Playlist playlistAsubir) {
-        daoPlaylist.pushearPlaylistAFDB(playlistAsubir);
-    }
 
-    public void obtenerPlaylistFDB(final ResultListener<Playlist> listenerDeLaVista) {
-        daoPlaylist.obtenerPlaylistFDB(new ResultListener<Playlist>() {
+
+    public void obtenerFavoritosFDB(final ResultListener<Cancion> listenerDeLaVista) {
+        daoCancion.obtenerFavoritosFDB(new ResultListener<Cancion>() {
 
             @Override
-            public void finish(Playlist resultado) {
+            public void finish(Cancion resultado) {
                 listenerDeLaVista.finish(resultado);
             }
         });
     }
 
-    public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
-        daoPlaylist.pushearListaIdsCanciones(listaIdsCanciones, playlistNueva);
-    }*/
+    public void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
+        daoCancion.pushearListaIdsCanciones(listaIdsCanciones);
+    }
 }

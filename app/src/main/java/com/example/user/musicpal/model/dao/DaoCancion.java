@@ -2,7 +2,14 @@ package com.example.user.musicpal.model.dao;
 
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.ContCanciones;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DaoCancion {
     private Retrofit retrofit;
     private Service service;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
     public DaoCancion() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -25,6 +35,9 @@ public class DaoCancion {
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = retroBuilder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
+        database = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("Favoritos");
     }
 
     public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,
@@ -169,5 +182,40 @@ public class DaoCancion {
                 resultListenerDelController.finish(new ArrayList<Cancion>());
             }
         });
+    }
+
+    public void obtenerFavoritosFDB(final ResultListener<Cancion> resultListenerController) {
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Cancion cancion  = dataSnapshot.getValue(Cancion.class);
+                resultListenerController.finish(cancion);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
+       databaseReference.setValue(listaIdsCanciones);
     }
 }

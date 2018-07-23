@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:text="@string/desarrollado_por"
         android:textSize="24sp"
+        android:textAlignment="center"
+        android:padding="15dp"
         android:gravity="center"/>
 
 </FrameLayout>

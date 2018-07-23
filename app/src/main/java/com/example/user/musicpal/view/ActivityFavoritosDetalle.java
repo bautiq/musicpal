@@ -11,7 +11,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 
-public class ActivityPlaylistUserDetalle extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion,
+public class ActivityFavoritosDetalle extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
         MediaPlayerGlobal.NotificadorQueTermino  {

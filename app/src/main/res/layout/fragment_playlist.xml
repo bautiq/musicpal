@@ -6,7 +6,7 @@
     android:background="@drawable/fondo_negro_con_trama"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".view.FragmentPlaylist">
+    tools:context=".view.FragmentFavorito">
 
     <ImageView
         android:id="@+id/button_agregar_playlist"

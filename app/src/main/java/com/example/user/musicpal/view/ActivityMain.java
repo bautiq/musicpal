@@ -1,21 +1,15 @@
 package com.example.user.musicpal.view;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Album;
@@ -26,8 +20,6 @@ import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -37,7 +29,7 @@ public class ActivityMain
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino, FragmentPlaylist.NotificadorPlaylistUserClickeada {
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -53,7 +45,7 @@ public class ActivityMain
 
     private FragmentPantallaInicio fragmentPantallaInicio;
     private FragmentManager fragmentManager;
-    private FragmentPlaylist fragmentPlaylist;
+    private FragmentFavorito fragmentFavorito;
 
     private MediaPlayerGlobal mediaPlayerGlobal;
     private FragmentReproductor fragmentReproductor;
@@ -181,9 +173,9 @@ public class ActivityMain
                     imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
                     imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
 
-                    fragmentPlaylist = new FragmentPlaylist();
+                    fragmentFavorito = new FragmentFavorito();
                     fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmentConBackStack(fragmentPlaylist,
+                    FragmentHelper.cargarFragmentConBackStack(fragmentFavorito,
                             R.id.container_fragment,
                             fragmentManager);
                 }
@@ -235,7 +227,7 @@ public class ActivityMain
 
     @Override
     public void notificarPlaylistUserClickeada(Playlist playlist) {
-        Intent intent = new Intent(ActivityMain.this, ActivityPlaylistUserDetalle.class);
+        Intent intent = new Intent(ActivityMain.this, ActivityFavoritosDetalle.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
         intent.putExtras(bundle);

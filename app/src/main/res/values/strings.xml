@@ -22,6 +22,8 @@
     <string name="cerrarSesion">cerrar sesion</string>
     <string name="Usuario_Desconocido">Usuario desconocido</string>
     <string name="iniciar_sesion">iniciar sesion</string>
+    <string name="desarrollado_por">Desarrollado por Hugo Daniel Mora, Bautista Querejeta, Mariano Potetti.</string>
+    <string name="About_us">About us</string>
 
     <string-array name="drop_spinner_menu">
         <item>Agregar a playlist</item>

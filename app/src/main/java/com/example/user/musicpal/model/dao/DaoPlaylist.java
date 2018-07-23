@@ -10,7 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;*/
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +26,7 @@ public class DaoPlaylist {
 
     private Retrofit retrofit;
     private Service service;
- //   private FirebaseDatabase database;
-  //  private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
+
 
     public DaoPlaylist() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -37,9 +35,7 @@ public class DaoPlaylist {
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.client(httpClient.build()).build();
         service = retrofit.create(Service.class);
- //       database = FirebaseDatabase.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-  //      databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("playlists");
+
     }
 
     public void obtenerPlaylist(final ResultListener<List<Playlist>> resultListenerDelController,
@@ -66,47 +62,9 @@ public class DaoPlaylist {
         });
     }
 
- /*   public void pushearPlaylistAFDB(Playlist playlistAsubir) {
-        DatabaseReference databaseReferenceFinal = databaseReference.push();
-        playlistAsubir.setId(databaseReferenceFinal.getKey());
-        databaseReferenceFinal.setValue(playlistAsubir);
-    }
 
-    public void obtenerPlaylistFDB(final ResultListener<Playlist> resultListenerController) {
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Playlist playlist = dataSnapshot.getValue(Playlist.class);
-                resultListenerController.finish(playlist);
-            }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    public void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
-        DatabaseReference databaseReferenceFinal = databaseReference
-                .child(playlistNueva.getId())
-                .child("IdList");
-        databaseReferenceFinal.setValue(listaIdsCanciones);
-    }*/
 }

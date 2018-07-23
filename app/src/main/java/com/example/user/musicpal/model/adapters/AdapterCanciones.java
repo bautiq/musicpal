@@ -78,8 +78,47 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         }
     }
 
+    private class ViewHolderFavoritos extends RecyclerView.ViewHolder {
+        private TextView textViewNombre;
+        private ImageView imagenPlay;
 
-    public class ViewHolderCancion extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
+        public ViewHolderFavoritos(View itemView) {
+            super(itemView);
+            this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
+            this.imagenPlay = itemView.findViewById(R.id.play_chico);
+            textViewNombre.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    try {
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                }
+            });
+            imagenPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    try {
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
+                }
+            });
+        }
+        public void cargarCancion(Cancion cancion) {
+            textViewNombre.setText(cancion.getTitle());
+        }
+    }
+
+    private class ViewHolderCancion extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
 
         private TextView textViewNombre;
         private ImageView imagenPlay;
