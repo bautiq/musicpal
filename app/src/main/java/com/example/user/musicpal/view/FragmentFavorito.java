@@ -71,8 +71,15 @@ public class FragmentFavorito
         notificadorPlaylistUserClickeada = (NotificadorPlaylistUserClickeada) context;
     }
 
+    public void obtenerIdsYarmarListaCanciones() {
+        List<String> listIds = new ArrayList<>();
+        for (Cancion cancion : adapterCanciones.getListaDeCanciones()) {
+            listIds.add(cancion.getId());
+        }
+    }
 
     private void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
+
         controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones);
     }
 

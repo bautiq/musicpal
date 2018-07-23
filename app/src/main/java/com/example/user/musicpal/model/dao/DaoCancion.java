@@ -37,7 +37,14 @@ public class DaoCancion {
         service = retrofit.create(Service.class);
         database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("Favoritos");
+        chequearSiEstaLogueado();
+
+    }
+
+    private void chequearSiEstaLogueado() {
+        if (firebaseAuth.getCurrentUser() != null){
+            databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("Favoritos");
+        }
     }
 
     public void obtenerCancionesPorAlbum(final ResultListener<List<Cancion>> resultListenerDelController,
