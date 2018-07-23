@@ -42,7 +42,7 @@ public class FragmentDetallePlaylistUser extends Fragment implements AdapterCanc
         textNombrePlaylist = view.findViewById(R.id.id_nombre_user_playlist);
         textCantidadCanciones = view.findViewById(R.id.id_cantidad_canciones_user_playlist);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_user_id);
-        adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext());
+        adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext(), false);
         controllerCancion = new ControllerGlobal(getContext());
         setearDatos();
         obtenerCanciones();

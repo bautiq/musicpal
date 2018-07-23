@@ -7,9 +7,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by DH on 15/5/2018.
- */
 
 public class Cancion implements Serializable {
 

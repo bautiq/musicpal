@@ -97,9 +97,9 @@ public class FragmentPerfil extends Fragment {
             Uri photoUrl = user.getPhotoUrl();
 
             Picasso.get().load(photoUrl).placeholder(R.drawable.perfil).into(imagenPerfil);
-            if (name != null) {
+            if (name != null && (!(name.equals("")))) {
                 nombreUsuario.setText(name);
-            } else if (email != null) {
+            } else if (email != null && (!(email.equals("")))) {
                 nombreUsuario.setText(email);
             }
         }

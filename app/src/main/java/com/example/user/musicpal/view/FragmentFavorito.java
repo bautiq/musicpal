@@ -12,12 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
@@ -34,7 +36,7 @@ import java.util.List;
  */
 public class FragmentFavorito
         extends Fragment
-        implements AdapterPlaylist.NotificadorPlaylistUser {
+        implements AdapterPlaylist.NotificadorPlaylistUser, AdapterCanciones.NotificadorCancionCelda {
 
     private TextView textAgregar;
     private ImageView buttonAgregar;
@@ -42,7 +44,7 @@ public class FragmentFavorito
     private FirebaseAuth firebaseAuth;
     private ControllerGlobal controllerGlobal;
     private Intent intent;
-    private AdapterPlaylist adapterPlaylist;
+    private AdapterCanciones adapterCanciones;
     private NotificadorPlaylistUserClickeada notificadorPlaylistUserClickeada;
 
     @Override
@@ -50,31 +52,17 @@ public class FragmentFavorito
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
-        recyclerView = view.findViewById(R.id.recycler_fragment_playlist);
+        recyclerView = view.findViewById(R.id.recycler_fragment_favoritos);
         controllerGlobal = new ControllerGlobal(getContext());
-        adapterPlaylist = new AdapterPlaylist(getContext(), this, "user");
+        adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext(), true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapterPlaylist);
-        textAgregar = view.findViewById(R.id.text_agregar_playlist);
-        buttonAgregar = view.findViewById(R.id.button_agregar_playlist);
+        recyclerView.setAdapter(adapterCanciones);
         FirebaseApp.initializeApp(getContext());
         firebaseAuth = FirebaseAuth.getInstance();
         intent = new Intent(getContext(), LoginActivity.class);
-        textAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chequearSiEstaLogueado();
-            }
-        });
-        buttonAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chequearSiEstaLogueado();
-            }
-        });
+        chequearSiEstaLogueado();
         return view;
     }
-
 
 
     @Override
@@ -84,11 +72,9 @@ public class FragmentFavorito
     }
 
 
-    private void pushearListaIdsCanciones(List<String> listaIdsCanciones, Playlist playlistNueva) {
+    private void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
         controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones);
     }
-
-
 
 
     public void chequearSiEstaLogueado() {
@@ -101,6 +87,11 @@ public class FragmentFavorito
     @Override
     public void notificarPlaylistUser(Playlist playlist) {
         notificadorPlaylistUserClickeada.notificarPlaylistUserClickeada(playlist);
+    }
+
+    @Override
+    public void notificarCeldaClikeada(Cancion cancion) {
+
     }
 
     public interface NotificadorPlaylistUserClickeada {

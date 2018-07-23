@@ -70,7 +70,7 @@ public class FragmentDetalleArtista
 
         adapterCanciones = new AdapterCanciones(listaCanciones,
                 getActivity().getSupportFragmentManager(),
-                this, getContext());
+                this, getContext(), false);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 getActivity(),

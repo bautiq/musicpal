@@ -67,7 +67,7 @@ public class FragmentPantallaInicio
 
         adapterAlbum = new AdapterAlbum(getActivity(), this);
         adapterArtista = new AdapterArtista(getActivity(), this);
-        adapterPlaylist = new AdapterPlaylist(getActivity(), this, "top");
+        adapterPlaylist = new AdapterPlaylist(getActivity(), this);
         adapterTopCanciones = new AdapterTopCanciones(getActivity(), this);
 
         linearLayoutManagerAlbum = new LinearLayoutManager(getActivity(),

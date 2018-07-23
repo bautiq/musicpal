@@ -28,17 +28,19 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     private Cancion cancion;
     private NotificadorCancionCelda notificadorCancionCelda;
     private Context context;
+    private boolean esDeFavoritos;
 
     public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager,
-                            NotificadorCancionCelda notificadorCancionCelda, Context context) {
+                            NotificadorCancionCelda notificadorCancionCelda, Context context, boolean esDeFavoritos) {
         this.context = context;
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
+        this.esDeFavoritos = esDeFavoritos;
 
     }
 
-    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda, Context context) {
+    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda, Context context, boolean esDeFavoritos) {
         listaDeCanciones = new ArrayList<>();
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
@@ -56,17 +58,28 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.celda_recycler_cancion, parent, false);
-        ViewHolderCancion viewHolderCancion = new ViewHolderCancion(view);
-        return viewHolderCancion;
+        if (esDeFavoritos) {
+            ViewHolderFavoritos viewHolderFavoritos = new ViewHolderFavoritos(view);
+            return viewHolderFavoritos;
+        } else {
+            ViewHolderCancion viewHolderCancion = new ViewHolderCancion(view);
+            return viewHolderCancion;
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         cancion = listaDeCanciones.get(position);
-        ViewHolderCancion viewHolderCancion = (ViewHolderCancion) holder;
-        viewHolderCancion.cargarCancion(cancion);
+        if (esDeFavoritos) {
+            ViewHolderFavoritos viewHolderFavoritos = (ViewHolderFavoritos) holder;
+            viewHolderFavoritos.cargarCancion(cancion);
+        } else {
+            ViewHolderCancion viewHolderCancion = (ViewHolderCancion) holder;
+            viewHolderCancion.cargarCancion(cancion);
+        }
     }
 
     @Override
@@ -113,6 +126,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 }
             });
         }
+
         public void cargarCancion(Cancion cancion) {
             textViewNombre.setText(cancion.getTitle());
         }
@@ -171,11 +185,11 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-           if(adapterView.getItemAtPosition(i).equals("Agregar a playlist")){
-               //aca va la logica de agregar a la playlist
-           } else{
-               //aca va la logica de compartir
-           }
+            if (adapterView.getItemAtPosition(i).equals("Agregar a playlist")) {
+                //aca va la logica de agregar a la playlist
+            } else {
+                //aca va la logica de compartir
+            }
         }
 
         @Override

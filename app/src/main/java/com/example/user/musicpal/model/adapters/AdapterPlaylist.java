@@ -28,20 +28,17 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     private List<Playlist> listaPlaylist;
     private NotificadorPlaylistCelda notificadorPlaylistCelda;
     private NotificadorPlaylistUser notificadorPlaylistUser;
-    private String tipoPlaylist;
 
-    public AdapterPlaylist(Context context, NotificadorPlaylistCelda notificadorPlaylistCelda, String tipoPlaylist) {
+    public AdapterPlaylist(Context context, NotificadorPlaylistCelda notificadorPlaylistCelda) {
         this.context = context;
         this.listaPlaylist = new ArrayList<>();
         this.notificadorPlaylistCelda = notificadorPlaylistCelda;
-        this.tipoPlaylist = tipoPlaylist;
     }
 
-    public AdapterPlaylist(Context context, NotificadorPlaylistUser notificadorPlaylistUser, String tipoPlaylist) {
+    public AdapterPlaylist(Context context, NotificadorPlaylistUser notificadorPlaylistUser) {
         this.context = context;
         this.listaPlaylist = new ArrayList<>();
         this.notificadorPlaylistUser = notificadorPlaylistUser;
-        this.tipoPlaylist = tipoPlaylist;
     }
 
     @NonNull

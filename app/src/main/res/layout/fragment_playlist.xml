@@ -8,25 +8,17 @@
     android:orientation="vertical"
     tools:context=".view.FragmentFavorito">
 
-    <ImageView
-        android:id="@+id/button_agregar_playlist"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/icono_add_circle_48dp"
-        android:padding="5dp" />
-
-    <TextView
-        android:id="@+id/text_agregar_playlist"
-        style="@style/StyleTituloListadoScroll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/agregarPlaylist" />
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/favoritos"
+       android:textColor="@color/fondoNaranja"
+       android:textSize="30sp"
+       android:textStyle="bold"
+       android:layout_margin="10dp"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_fragment_playlist"
+        android:id="@+id/recycler_fragment_favoritos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
