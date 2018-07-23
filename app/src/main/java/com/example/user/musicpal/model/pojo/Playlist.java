@@ -75,6 +75,17 @@ public class Playlist implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                "nombre='" + nombre + '\'' +
+                ", id='" + id + '\'' +
+                ", imagenPlaylistUrl='" + imagenPlaylistUrl + '\'' +
+                ", listCanciones=" + listCanciones +
+                ", listaCancionesIDS=" + listaCancionesIDS +
+                '}';
+    }
+
     public void setId(String id) {
         this.id = id;
     }

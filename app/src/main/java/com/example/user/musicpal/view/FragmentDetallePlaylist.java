@@ -83,7 +83,7 @@ public class FragmentDetallePlaylist
 
         adapterCanciones.setListaDeCanciones(playlist.getListCanciones());
         chequearListaCanciones();
-        textArtista.setText("Artista: " + playlist.getNombre());
+        textArtista.setText("Album: " + playlist.getNombre());
         Picasso.get()
                 .load(playlist.getImagenPlaylistUrl())
                 .placeholder(R.drawable.placeholder)

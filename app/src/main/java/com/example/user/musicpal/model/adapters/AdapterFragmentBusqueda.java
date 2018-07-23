@@ -39,7 +39,7 @@ public class AdapterFragmentBusqueda extends RecyclerView.Adapter{
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.celda_recycler_search, parent, false);
+            View view = inflater.inflate(R.layout.celda_fragment_search_2, parent, false);
           ViewHolderCancionBusqueda viewHolderCancionBusqueda = new ViewHolderCancionBusqueda(view);
             return viewHolderCancionBusqueda;
         }
@@ -62,10 +62,12 @@ public class AdapterFragmentBusqueda extends RecyclerView.Adapter{
         }
 
         public void agregarCanciones(List<Cancion> resultado) {
-            for (Cancion cancionAgregar : resultado) {
-                if (!this.listaDeCanciones.contains(cancionAgregar)) {
-                    this.listaDeCanciones.add(cancionAgregar);
-                }
+            //for (Cancion cancionAgregar : resultado) {
+              //  if (!this.listaDeCanciones.contains(cancionAgregar)) {
+                //    this.listaDeCanciones.add(cancionAgregar);
+                //}
+            if(resultado != null){
+            listaDeCanciones = resultado;
             }
             notifyDataSetChanged();
         }
@@ -80,11 +82,11 @@ public class AdapterFragmentBusqueda extends RecyclerView.Adapter{
 
             public ViewHolderCancionBusqueda(View itemView) {
                 super(itemView);
-                imagenArtista = itemView.findViewById(R.id.imagen_artista_celda_busqueda);
-                imagenAlbum = itemView.findViewById(R.id.imagen_album_celda_busqueda);
-                textNombre = itemView.findViewById(R.id.nombre_canciones_id_celda_recycler_search);
-                textArtista = itemView.findViewById(R.id.nombre_artista_id_celda_recycler_search);
-                textViewAlbum = itemView.findViewById(R.id.nombre_album_id_celda_recycler_search);
+                imagenArtista = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
+                imagenAlbum = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
+                textNombre = itemView.findViewById(R.id.nombre_canciones_id_celda_recycler_search2);
+                textArtista = itemView.findViewById(R.id.nombre_artista_id_celda_recycler_search2);
+                textViewAlbum = itemView.findViewById(R.id.nombre_album_id_celda_recycler_search2);
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
