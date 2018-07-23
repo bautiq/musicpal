@@ -38,11 +38,10 @@ public class DaoCancion {
         database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         chequearSiEstaLogueado();
-
     }
 
     private void chequearSiEstaLogueado() {
-        if (firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
             databaseReference = database.getReference().child("Users").child(firebaseAuth.getUid()).child("Favoritos");
         }
     }
@@ -195,7 +194,7 @@ public class DaoCancion {
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Cancion cancion  = dataSnapshot.getValue(Cancion.class);
+                Cancion cancion = dataSnapshot.getValue(Cancion.class);
                 resultListenerController.finish(cancion);
             }
 
@@ -222,7 +221,9 @@ public class DaoCancion {
 
     }
 
-    public void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
-       databaseReference.setValue(listaIdsCanciones);
+    public void pushearCancion(Cancion cancion) {
+        DatabaseReference dataFinal = databaseReference.push();
+        cancion.setIdFirebase(dataFinal.getKey());
+        databaseReference.push().setValue(cancion);
     }
 }

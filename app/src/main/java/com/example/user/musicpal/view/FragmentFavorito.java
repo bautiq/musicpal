@@ -34,7 +34,6 @@ public class FragmentFavorito
         implements AdapterPlaylist.NotificadorPlaylistUser, AdapterCanciones.NotificadorCancionCelda {
 
     private TextView textAgregar;
-    private ImageView buttonAgregar;
     private RecyclerView recyclerView;
     private FirebaseAuth firebaseAuth;
     private ControllerGlobal controllerGlobal;
@@ -42,12 +41,14 @@ public class FragmentFavorito
     private AdapterCanciones adapterCanciones;
     private NotificadorPlaylistUserClickeada notificadorPlaylistUserClickeada;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         recyclerView = view.findViewById(R.id.recycler_fragment_favoritos);
+        textAgregar = view.findViewById(R.id.text_favoritos_fragment);
         controllerGlobal = new ControllerGlobal(getContext());
         adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext(), true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -55,27 +56,34 @@ public class FragmentFavorito
         FirebaseApp.initializeApp(getContext());
         firebaseAuth = FirebaseAuth.getInstance();
         intent = new Intent(getContext(), LoginActivity.class);
+        obtenerCancionesFDB();
         chequearSiEstaLogueado();
+        chequearSiHayCanciones();
         return view;
     }
 
+    private void chequearSiHayCanciones() {
+        //updatea ui si hay canciones
+        if (adapterCanciones.getListaDeCanciones() != null && adapterCanciones.getListaDeCanciones().size() > 0) {
+            textAgregar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void obtenerCancionesFDB() {
+        controllerGlobal.obtenerFavoritosFDB(new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                if (resultado != null) {
+                    adapterCanciones.agregarPlaylist(resultado);
+                }
+            }
+        });
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorPlaylistUserClickeada = (NotificadorPlaylistUserClickeada) context;
-    }
-
-    public void obtenerIdsYarmarListaCanciones() {
-        List<String> listIds = new ArrayList<>();
-        for (Cancion cancion : adapterCanciones.getListaDeCanciones()) {
-            listIds.add(cancion.getId());
-        }
-    }
-
-    private void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
-
-        controllerGlobal.pushearListaIdsCanciones(listaIdsCanciones);
     }
 
 

@@ -11,9 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 
@@ -45,6 +45,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
         this.context = context;
+        this.esDeFavoritos = esDeFavoritos;
     }
 
     public List<Cancion> getListaDeCanciones() {
@@ -54,6 +55,14 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     public void setListaDeCanciones(List<Cancion> listaDeCanciones) {
         this.listaDeCanciones = listaDeCanciones;
         notifyDataSetChanged();
+    }
+
+    public void agregarPlaylist(Cancion cancionNueva) {
+        if (listaDeCanciones.contains(cancionNueva)) {
+            return;
+        }
+        listaDeCanciones.add(cancionNueva);
+        notifyItemChanged(listaDeCanciones.size() - 1);
     }
 
     @Override
@@ -133,17 +142,19 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     }
 
     private class ViewHolderCancion extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
-
+        private ControllerGlobal controllerGlobal;
         private TextView textViewNombre;
         private ImageView imagenPlay;
         private Spinner spinner;
-
+        private List<String> listaRecibida;
 
         public ViewHolderCancion(final View itemView) {
             super(itemView);
+            listaRecibida = new ArrayList<>();
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
             this.imagenPlay = itemView.findViewById(R.id.play_chico);
             this.spinner = itemView.findViewById(R.id.id_spinner);
+            controllerGlobal = new ControllerGlobal(context);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                     R.array.drop_spinner_menu, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -185,11 +196,17 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            if (adapterView.getItemAtPosition(i).equals("Agregar a playlist")) {
-                //aca va la logica de agregar a la playlist
+            //aca va la logica de agregar a la playlist
+            if (adapterView.getItemAtPosition(i).equals("Agregar a favoritos")) {
+               // agregarAFB();
             } else {
                 //aca va la logica de compartir
             }
+        }
+
+        private void agregarAFB() {
+            Cancion cancion = listaDeCanciones.get(getAdapterPosition());
+            controllerGlobal.pushearCancion(cancion);
         }
 
         @Override
