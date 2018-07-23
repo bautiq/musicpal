@@ -90,6 +90,17 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
         controllerGlobalBusqueda = new ControllerGlobal(getActivity());
 
         //metodo para esconder el teclado al buscar en editTextBusqueda
+        editTextBusqueda.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    obtenerBusqueda();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         imagenLupaSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
