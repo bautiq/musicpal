@@ -23,8 +23,9 @@
     <string name="Usuario_Desconocido">Usuario desconocido</string>
     <string name="iniciar_sesion">iniciar sesion</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="desarrollado_por">Desarrollado por:</string>
+    <string-array name="drop_spinner_menu">
+        <item>Agregar a playlist</item>
+        <item>Compartir</item>
+    </string-array>
 
 </resources>

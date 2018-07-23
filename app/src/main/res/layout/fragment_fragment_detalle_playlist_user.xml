@@ -16,7 +16,10 @@
             style="@style/StyleImagenVistaPrevia" />
 
         <TextView
-            android:id="@+id/id_nombre_artista_user_playlist"
+            android:id="@+id/id_nombre_user_playlist"
+            style="@style/StyleTextViewVistaPrevia" />
+        <TextView
+            android:id="@+id/id_cantidad_canciones_user_playlist"
             style="@style/StyleTextViewVistaPrevia" />
 
         <ImageView

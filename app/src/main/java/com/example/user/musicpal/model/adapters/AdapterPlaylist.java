@@ -64,12 +64,13 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Playlist playlist = listaPlaylist.get(position);
         obtenerCancionesPorPlaylist(playlist);
-        if(tipoPlaylist.equals("user")){
+        if (tipoPlaylist.equals("user")) {
             ViewHolderPlaylistUser viewHolderPlaylistUser = (ViewHolderPlaylistUser) holder;
             viewHolderPlaylistUser.armarCeldaPU(playlist);
-        }else{
+        } else {
             ViewHolderPlaylist viewHolderPlaylist = (ViewHolderPlaylist) holder;
-            viewHolderPlaylist.armarCelda(playlist);}
+            viewHolderPlaylist.armarCelda(playlist);
+        }
     }
 
     @Override
@@ -91,7 +92,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
     }
 
     public void agregarPlaylist(Playlist playlistNueva) {
-        if(listaPlaylist.contains(playlistNueva)){
+        if (listaPlaylist.contains(playlistNueva)) {
             return;
         }
         listaPlaylist.add(playlistNueva);
@@ -150,10 +151,14 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
 
         public void armarCeldaPU(Playlist playlist) {
             nombrePlaylist.setText(playlist.getNombre());
-            if(playlist.getListCanciones() !=null){   Integer numCanciones = playlist.getListCanciones().size();
-                numeroCanciones.setText(numCanciones.toString() + " canciones.");}
+            if (playlist.getListCanciones() != null) {
+                Integer numCanciones = playlist.getListCanciones().size();
+                numeroCanciones.setText(numCanciones.toString() + " canciones.");
+            }else{
+                numeroCanciones.setText("0 canciones.");
+            }
 
-            if(playlist.getImagenPlaylistUrl() != null){
+            if (playlist.getImagenPlaylistUrl() != null) {
                 Picasso.get()
                         .load(playlist.getImagenPlaylistUrl())
                         .placeholder(R.drawable.placeholder)
@@ -166,7 +171,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
         public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion);
     }
 
-    public interface NotificadorPlaylistUser{
+    public interface NotificadorPlaylistUser {
         public void notificarPlaylistUser(Playlist playlist);
     }
 

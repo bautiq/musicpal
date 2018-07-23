@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
@@ -45,6 +47,7 @@ public class FragmentDetalleAlbum
     private ControllerGlobal controller;
     private NotificadorCancion notificadorCancion;
 
+
     private Album album;
 
     public static FragmentDetalleAlbum dameUnFragment(Album album) {
@@ -60,7 +63,6 @@ public class FragmentDetalleAlbum
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
-
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
         textArtista = view.findViewById(R.id.id_nombre_artista);
         textAlbum = view.findViewById(R.id.id_nombre_album);
@@ -74,7 +76,7 @@ public class FragmentDetalleAlbum
         listaCanciones = new ArrayList<>();
         adapterCanciones = new AdapterCanciones(listaCanciones,
                 getActivity().getSupportFragmentManager(),
-                this);
+                this, getContext());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 getContext(),

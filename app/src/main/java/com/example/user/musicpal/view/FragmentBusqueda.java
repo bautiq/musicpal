@@ -22,9 +22,7 @@ import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+public class FragmentBusqueda extends Fragment {
 
 //LA BUSQUEDA DEVUELVE UNA LISTA DE CANCIONES (QUE CONTIENEN NOMBRE DE CANCION, DE ARTISTA Y DE ALBUM, Y SUS RESPECTIVAS IMAGENES
 

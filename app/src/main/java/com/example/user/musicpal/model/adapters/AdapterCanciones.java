@@ -1,11 +1,15 @@
 package com.example.user.musicpal.model.adapters;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,19 +27,22 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     private FragmentManager fragmentManager;
     private Cancion cancion;
     private NotificadorCancionCelda notificadorCancionCelda;
+    private Context context;
 
     public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager,
-                            NotificadorCancionCelda notificadorCancionCelda) {
-
+                            NotificadorCancionCelda notificadorCancionCelda, Context context) {
+        this.context = context;
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
+
     }
 
-    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda) {
+    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda, Context context) {
         listaDeCanciones = new ArrayList<>();
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;
+        this.context = context;
     }
 
     public List<Cancion> getListaDeCanciones() {
@@ -71,18 +78,24 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         }
     }
 
-    public class ViewHolderCancion extends RecyclerView.ViewHolder {
+
+    public class ViewHolderCancion extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
 
         private TextView textViewNombre;
         private ImageView imagenPlay;
-        private ImageView imagenCompartir;
+        private Spinner spinner;
 
 
         public ViewHolderCancion(final View itemView) {
             super(itemView);
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
             this.imagenPlay = itemView.findViewById(R.id.play_chico);
-            this.imagenCompartir = itemView.findViewById(R.id.compartir_chico);
+            this.spinner = itemView.findViewById(R.id.id_spinner);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                    R.array.drop_spinner_menu, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(this);
 
             textViewNombre.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,16 +123,25 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
-            imagenCompartir.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "Click Compartir", Toast.LENGTH_SHORT).show();
-                }
-            });
+
         }
 
         public void cargarCancion(Cancion cancion) {
             textViewNombre.setText(cancion.getTitle());
+        }
+
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+           if(adapterView.getItemAtPosition(i).equals("Agregar a playlist")){
+               //aca va la logica de agregar a la playlist
+           } else{
+               //aca va la logica de compartir
+           }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            //no hacer nada
         }
     }
 

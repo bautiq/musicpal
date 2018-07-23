@@ -33,6 +33,14 @@ public class Playlist implements Serializable {
         this.listaCancionesIDS = listaCancionesIDS;
     }
 
+    public List<String> getListaCancionesIDS() {
+        return listaCancionesIDS;
+    }
+
+    public void setListaCancionesIDS(List<String> listaCancionesIDS) {
+        this.listaCancionesIDS = listaCancionesIDS;
+    }
+
     public String getId() {
         return id;
     }

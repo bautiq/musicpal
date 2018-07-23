@@ -11,6 +11,7 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
+
         <ImageView
             android:id="@+id/play_chico"
             android:layout_width="0dp"
@@ -35,16 +36,13 @@
             android:textColor="@color/fondoNaranja"
             android:textStyle="italic" />
 
-        <ImageView
-            android:id="@+id/compartir_chico"
+        <Spinner
+            android:id="@+id/id_spinner"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp"
             android:layout_weight="1"
-            android:background="@drawable/icono_compartir_blanco_24dp"
-            android:backgroundTint="@color/gris"
-            android:gravity="center"
-            android:padding="12dp"
-            android:scaleType="centerInside" />
+            android:layout_margin="12dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/icono_more_vert_blanco_24dp"/>
+
     </LinearLayout>
 </LinearLayout>
