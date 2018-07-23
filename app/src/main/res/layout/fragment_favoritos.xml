@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_negro_con_trama"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:context=".view.FragmentFavorito">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/favoritos"
+        android:textColor="@color/fondoNaranja"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_favoritos_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/agregar_fav"
+        android:textAlignment="center"
+        android:textColor="@color/blanco"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/add_icon_fav_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/icono_add_circle_48dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_fragment_favoritos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

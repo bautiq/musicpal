@@ -27,7 +27,19 @@ public class Cancion implements Serializable {
 
     private String id;
 
-    private int duration;
+    private String idFirebase;
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public String getIdFirebase() {
+        return idFirebase;
+    }
+
+    public void setIdFirebase(String idFirebase) {
+        this.idFirebase = idFirebase;
+    }
 
     public Cancion(String title, String urlPreview, Artista artista, Album album, String id) {
         this.title = title;
@@ -40,9 +52,6 @@ public class Cancion implements Serializable {
     public Cancion() {
     }
 
-    public int getDuration() {
-        return duration;
-    }
 
     public void setArtista(Artista artista) {
         this.artista = artista;

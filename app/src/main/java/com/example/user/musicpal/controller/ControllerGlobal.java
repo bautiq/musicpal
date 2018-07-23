@@ -161,7 +161,7 @@ public class ControllerGlobal {
         });
     }
 
-    public void pushearListaIdsCanciones(List<String> listaIdsCanciones) {
-        daoCancion.pushearListaIdsCanciones(listaIdsCanciones);
+    public void pushearCancion(Cancion cancion) {
+        daoCancion.pushearCancion(cancion);
     }
 }

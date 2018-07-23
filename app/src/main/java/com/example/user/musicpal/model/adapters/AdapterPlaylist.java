@@ -78,13 +78,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void agregarPlaylist(Playlist playlistNueva) {
-        if (listaPlaylist.contains(playlistNueva)) {
-            return;
-        }
-        listaPlaylist.add(playlistNueva);
-        notifyDataSetChanged();
-    }
+
 
 
     private class ViewHolderPlaylist extends RecyclerView.ViewHolder {
