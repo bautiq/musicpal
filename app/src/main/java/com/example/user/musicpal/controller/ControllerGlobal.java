@@ -157,7 +157,7 @@ public class ControllerGlobal {
     }
 
     //se pide en metodo distinto la 1er vez, con el offset en 0 porque si ya se busco previamente fue cambiando el valor de offset y no muestra
-    //los resultados menores a ese offset.Podria no pasarsele offset y listsiza pero habria que crear otro metodo en dao y otra llamada en service.
+    //los resultados menores a ese offset.Podria no pasarsele offset y listsiza pero habria que crear otro metodo en dao y otro get en service.
     public void obtenerBusquedaCancionesEditTextPrimerPedido(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda) {
         if (hayInternet()) {
             daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
