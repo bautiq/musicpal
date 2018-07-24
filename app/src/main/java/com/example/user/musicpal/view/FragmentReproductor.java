@@ -5,6 +5,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,11 +40,13 @@ public class FragmentReproductor extends Fragment {
     private ImageView buttonPlayPausa;
     private ImageView buttonForward;
     private ImageView buttonBack;
+    private FloatingActionButton floatingActionButton;
 
     private Cancion cancionQueContiene;
     private MediaPlayer mP;
     private List<Cancion> playList;
     private NotificadorReproductorGrande notificadorReproductorGrande;
+    private NotificarCompartir notificarCompartir;
     private double startTime = 0;
     private double finalTime = 0;
     private Handler myHandler = new Handler();
@@ -68,6 +71,7 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
+        floatingActionButton = view.findViewById(R.id.floating_button);
         textViewTitulo.setSelected(true);
         textViewArtista.setSelected(true);
 
@@ -100,6 +104,12 @@ public class FragmentReproductor extends Fragment {
             }
         });
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notificarCompartir.compartir(cancionQueContiene);
+            }
+        });
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean imput) {
@@ -110,12 +120,10 @@ public class FragmentReproductor extends Fragment {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -231,11 +239,11 @@ public class FragmentReproductor extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorReproductorGrande = (NotificadorReproductorGrande) context;
+        notificarCompartir= (NotificarCompartir) context;
     }
 
     @Override
     public void onResume() {
-
         super.onResume();
         cancionQueContiene = MediaPlayerGlobal.getInstance().getCancion();
         setearDatos(cancionQueContiene);
@@ -299,5 +307,9 @@ public class FragmentReproductor extends Fragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    public interface NotificarCompartir{
+        public void compartir(Cancion cancion);
     }
 }

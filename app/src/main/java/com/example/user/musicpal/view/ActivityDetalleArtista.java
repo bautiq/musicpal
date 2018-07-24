@@ -22,12 +22,14 @@ public class ActivityDetalleArtista
         implements FragmentDetalleArtista.NotificadorCancion,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino {
+        MediaPlayerGlobal.NotificadorQueTermino,
+        FragmentReproductor.NotificarCompartir {
 
     public static final String ARTISTA_KEY = "clave_artista";
     public static final String POSICION_KEY_ARTISTA = "clave_posicion_artista";
 
     private FragmentManager fragmentManager;
+    private Cancion cancionACompartir;
 
     //esta lista contiene los fragments que se van a mostrar en el viewpager
     private List<FragmentDetalleArtista> listaFragments;
@@ -96,5 +98,15 @@ public class ActivityDetalleArtista
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
         fragmentReproductor.setearDatos(cancion);
+    }
+
+    @Override
+    public void compartir(Cancion cancion) {
+        cancionACompartir = cancion;
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
+        share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
+        startActivity(Intent.createChooser(share, "Share link!"));
     }
 }

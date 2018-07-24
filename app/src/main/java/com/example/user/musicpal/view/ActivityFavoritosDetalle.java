@@ -11,16 +11,19 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 
-public class ActivityFavoritosDetalle extends AppCompatActivity implements FragmentDetallePlaylist.NotificadorCancion,
+public class ActivityFavoritosDetalle
+        extends AppCompatActivity
+        implements FragmentDetallePlaylist.NotificadorCancion,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino  {
-
+        MediaPlayerGlobal.NotificadorQueTermino,
+        FragmentReproductor.NotificarCompartir{
 
     private FragmentReproductor fragmentReproductor;
     private FragmentReproductorChico fragmentReproductorChico;
     private FragmentManager fragmentManager;
     private FragmentDetallePlaylistUser fragmentDetallePlaylistUser;
+    private Cancion cancionACompartir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +39,12 @@ public class ActivityFavoritosDetalle extends AppCompatActivity implements Fragm
 
         cargarReproductorChico();
         cargarDetalleFragment();
-
     }
 
     private void cargarDetalleFragment() {
-        FragmentHelper.cargarFragment(fragmentDetallePlaylistUser, R.id.contenedor_fragment_user_playlist, fragmentManager);
-
+        FragmentHelper.cargarFragment(fragmentDetallePlaylistUser,
+                R.id.contenedor_fragment_user_playlist,
+                fragmentManager);
     }
 
     private void cargarReproductorChico() {
@@ -74,5 +77,15 @@ public class ActivityFavoritosDetalle extends AppCompatActivity implements Fragm
     public void notificarPlayPausa() {
         Cancion cancion = MediaPlayerGlobal.getInstance().getCancion();
         fragmentReproductorChico.setearDatos(cancion);
+    }
+
+    @Override
+    public void compartir(Cancion cancion) {
+        cancionACompartir = cancion;
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
+        share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
+        startActivity(Intent.createChooser(share, "Share link!"));
     }
 }

@@ -25,11 +25,13 @@ import java.util.List;
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentPantallaInicio.NotificadorActivities,FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
+        implements FragmentPantallaInicio.NotificadorActivities,
+        FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada {
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada,
+        FragmentReproductor.NotificarCompartir {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -37,6 +39,8 @@ public class ActivityMain
     private boolean playlistIsClicked;
     private ImageView imageMenu;
     private ImageView imageSearch;
+
+    private Cancion cancionACompartir;
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -232,5 +236,15 @@ public class ActivityMain
         bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void compartir(Cancion cancion) {
+        cancionACompartir = cancion;
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
+        share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
+        startActivity(Intent.createChooser(share, "Share link!"));
     }
 }
