@@ -227,10 +227,6 @@ public class ActivityMain
 
     @Override
     public void notificarPlaylistUserClickeada(Playlist playlist) {
-        Intent intent = new Intent(ActivityMain.this, ActivityFavoritosDetalle.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
-        intent.putExtras(bundle);
-        startActivity(intent);
+
     }
 }

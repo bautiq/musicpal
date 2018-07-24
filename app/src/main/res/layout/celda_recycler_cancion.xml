@@ -36,13 +36,14 @@
             android:textColor="@color/fondoNaranja"
             android:textStyle="italic" />
 
-        <Spinner
-            android:id="@+id/id_spinner"
+        <ImageView
+            android:id="@+id/fav_icon"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/gris"
             android:layout_margin="12dp"
             android:layout_height="match_parent"
-            android:background="@drawable/icono_more_vert_blanco_24dp"/>
+            android:background="@drawable/ic_star_border"/>
 
     </LinearLayout>
 </LinearLayout>

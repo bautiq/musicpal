@@ -41,6 +41,7 @@ public class FragmentFavorito
     private Intent intent;
     private AdapterCanciones adapterCanciones;
     private NotificadorPlaylistUserClickeada notificadorPlaylistUserClickeada;
+    private ImageView imagenFav;
 
 
     @Override
@@ -103,6 +104,11 @@ public class FragmentFavorito
     @Override
     public void notificarCeldaClikeada(Cancion cancion) {
 
+    }
+
+    @Override
+    public void notificarFavorito(Cancion cancion) {
+        controllerGlobal.eliminarFavFDB(cancion);
     }
 
     public interface NotificadorPlaylistUserClickeada {

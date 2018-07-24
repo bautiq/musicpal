@@ -1,5 +1,7 @@
 package com.example.user.musicpal.model.dao;
 
+import android.util.Log;
+
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.ContCanciones;
 import com.example.user.musicpal.model.pojo.Playlist;
@@ -10,6 +12,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,39 +195,79 @@ public class DaoCancion {
     }
 
     public void obtenerFavoritosFDB(final ResultListener<Cancion> resultListenerController) {
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Cancion cancion = dataSnapshot.getValue(Cancion.class);
-                resultListenerController.finish(cancion);
-            }
+        if (databaseReference != null) {
+            databaseReference.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Cancion cancion = dataSnapshot.getValue(Cancion.class);
+                    resultListenerController.finish(cancion);
+                }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            }
+                }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            }
+                }
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-            }
+                }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
+
 
     }
 
     public void pushearCancion(Cancion cancion) {
         DatabaseReference dataFinal = databaseReference.push();
         cancion.setIdFirebase(dataFinal.getKey());
-        databaseReference.push().setValue(cancion);
+        dataFinal.setValue(cancion);
+    }
+
+    public void eliminarFavFDB(Cancion cancion) {
+        DatabaseReference dataRefFinal = databaseReference.child(cancion.getIdFirebase());
+        dataRefFinal.removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                //podria hacer un toast atraves de un notificador
+
+            }
+        });
+
+
+    }
+
+    public void obtenerFavPorID(Cancion cancion, final ResultListener<Cancion> resultListener) {
+
+        Query query = databaseReference.orderByChild("id").equalTo(cancion.getId());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!(dataSnapshot.exists())) {
+                    resultListener.finish(null);
+                    return;
+                }
+                Cancion cancionRecibida = dataSnapshot.getValue(Cancion.class);
+                resultListener.finish(cancionRecibida);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String TAG = "";
+                Log.e(TAG, "onCancelled", databaseError.toException());
+                resultListener.finish(null);
+            }
+        });
     }
 }

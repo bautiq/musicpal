@@ -6,16 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.ResultListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -103,11 +101,15 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     private class ViewHolderFavoritos extends RecyclerView.ViewHolder {
         private TextView textViewNombre;
         private ImageView imagenPlay;
+        private ImageView imagenFav;
 
         public ViewHolderFavoritos(View itemView) {
             super(itemView);
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
             this.imagenPlay = itemView.findViewById(R.id.play_chico);
+            imagenFav = itemView.findViewById(R.id.fav_icon);
+            imagenFav.setBackgroundResource(R.drawable.ic_star);
+
             textViewNombre.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -134,6 +136,16 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                     notificadorCancionCelda.notificarCeldaClikeada(cancionAreproducir);
                 }
             });
+            imagenFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Cancion cancion = listaDeCanciones.get(getAdapterPosition());
+                    imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                    notificadorCancionCelda.notificarFavorito(cancion);
+                    listaDeCanciones.remove(cancion);
+                    notifyDataSetChanged();
+                }
+            });
         }
 
         public void cargarCancion(Cancion cancion) {
@@ -141,25 +153,22 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         }
     }
 
-    private class ViewHolderCancion extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
+    private class ViewHolderCancion extends RecyclerView.ViewHolder {
         private ControllerGlobal controllerGlobal;
         private TextView textViewNombre;
         private ImageView imagenPlay;
-        private Spinner spinner;
+        private ImageView imagenFav;
         private List<String> listaRecibida;
+        private Boolean favoriteada;
 
         public ViewHolderCancion(final View itemView) {
             super(itemView);
             listaRecibida = new ArrayList<>();
             this.textViewNombre = itemView.findViewById(R.id.nombre_canciones_id);
             this.imagenPlay = itemView.findViewById(R.id.play_chico);
-            this.spinner = itemView.findViewById(R.id.id_spinner);
+            this.imagenFav = itemView.findViewById(R.id.fav_icon);
+            favoriteada = false;
             controllerGlobal = new ControllerGlobal(context);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
-                    R.array.drop_spinner_menu, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
-            spinner.setOnItemSelectedListener(this);
 
             textViewNombre.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -188,34 +197,49 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 }
             });
 
+            imagenFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(favoriteada){
+                        imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                        favoriteada = false;
+                    }else{
+                        imagenFav.setBackgroundResource(R.drawable.ic_star);
+                        favoriteada = true;
+                    }
+                    Cancion cancion = listaDeCanciones.get(getAdapterPosition());
+                    notificadorCancionCelda.notificarFavorito(cancion);
+                }
+            });
+
         }
 
         public void cargarCancion(Cancion cancion) {
             textViewNombre.setText(cancion.getTitle());
+            controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
+                @Override
+                public void finish(Cancion resultado) {
+                    if (resultado == null){
+                        favoriteada = false;
+                        imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                    }else{
+                        favoriteada = true;
+                        imagenFav.setBackgroundResource(R.drawable.ic_star);
+                    }
+                }
+            });
         }
 
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            //aca va la logica de agregar a la playlist
-            if (adapterView.getItemAtPosition(i).equals("Agregar a favoritos")) {
-               // agregarAFB();
-            } else {
-                //aca va la logica de compartir
-            }
-        }
 
         private void agregarAFB() {
             Cancion cancion = listaDeCanciones.get(getAdapterPosition());
-            controllerGlobal.pushearCancion(cancion);
+            controllerGlobal.pushearOeliminarCancion(cancion);
         }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-            //no hacer nada
-        }
     }
 
     public interface NotificadorCancionCelda {
         public void notificarCeldaClikeada(Cancion cancion);
+        public void notificarFavorito(Cancion cancion);
     }
 }
