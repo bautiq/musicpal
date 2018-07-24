@@ -140,7 +140,6 @@ public class AdapterCanciones extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     Cancion cancion = listaDeCanciones.get(getAdapterPosition());
-                    imagenFav.setBackgroundResource(R.drawable.ic_star_border);
                     notificadorCancionCelda.notificarFavorito(cancion);
                     listaDeCanciones.remove(cancion);
                     notifyDataSetChanged();

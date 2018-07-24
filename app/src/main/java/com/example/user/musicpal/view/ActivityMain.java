@@ -25,11 +25,11 @@ import java.util.List;
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentPantallaInicio.NotificadorActivities,FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
+        implements FragmentPantallaInicio.NotificadorActivities, FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada {
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorCancionFavoritaClickeada {
 
     private ImageView imageHome;
     private ImageView imagePlaylist;
@@ -226,7 +226,7 @@ public class ActivityMain
     }
 
     @Override
-    public void notificarPlaylistUserClickeada(Playlist playlist) {
-
+    public void notificarCancionFavoritaClickeada(Cancion cancion) {
+        fragmentReproductorChico.setearDatos(cancion);
     }
 }
