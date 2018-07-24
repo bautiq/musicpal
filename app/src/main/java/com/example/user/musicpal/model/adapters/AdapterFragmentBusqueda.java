@@ -18,109 +18,114 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterFragmentBusqueda extends RecyclerView.Adapter{
+public class AdapterFragmentBusqueda extends RecyclerView.Adapter {
 
 
     private List<Cancion> listaDeCanciones;
     private Context context;
     private Cancion cancion;
-   private NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda;
+    private NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda;
 
 
+    public AdapterFragmentBusqueda(Context context, NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda) {
+        this.notificadorSEARCHCancionesCelda = notificadorSEARCHCancionesCelda;
+        this.listaDeCanciones = new ArrayList<>();
+        this.context = context;
+        this.cancion = new Cancion();
+    }
 
-        public AdapterFragmentBusqueda(Context context, NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda) {
-            this.notificadorSEARCHCancionesCelda = notificadorSEARCHCancionesCelda;
-            this.listaDeCanciones = new ArrayList<>();
-            this.context = context;
-            this.cancion = new Cancion();
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.celda_fragment_search_2, parent, false);
+        ViewHolderCancionBusqueda viewHolderCancionBusqueda = new ViewHolderCancionBusqueda(view);
+        return viewHolderCancionBusqueda;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Cancion cancion = listaDeCanciones.get(position);
+        ViewHolderCancionBusqueda viewHolderCancionBusqueda = (ViewHolderCancionBusqueda) holder;
+        viewHolderCancionBusqueda.armarCeldaCancion(cancion);
+    }
+
+    @Override
+    public int getItemCount() {
+        if (listaDeCanciones != null) {
+            return listaDeCanciones.size();
+        } else {
+            return 0;
         }
 
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.celda_fragment_search_2, parent, false);
-          ViewHolderCancionBusqueda viewHolderCancionBusqueda = new ViewHolderCancionBusqueda(view);
-            return viewHolderCancionBusqueda;
-        }
+    }
 
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            Cancion cancion = listaDeCanciones.get(position);
-            ViewHolderCancionBusqueda viewHolderCancionBusqueda = (ViewHolderCancionBusqueda) holder;
-            viewHolderCancionBusqueda.armarCeldaCancion(cancion);
-        }
+    public void agregarCanciones(List<Cancion> resultado) {
 
-        @Override
-        public int getItemCount() {
-            if (listaDeCanciones != null) {
-                return listaDeCanciones.size();
-            } else {
-                return 0;
-            }
-
-        }
-
-        public void agregarCanciones(List<Cancion> resultado) {
-            //for (Cancion cancionAgregar : resultado) {
-              //  if (!this.listaDeCanciones.contains(cancionAgregar)) {
-                //    this.listaDeCanciones.add(cancionAgregar);
-                //}
-            if(resultado != null){
-            listaDeCanciones = resultado;
+        for (Cancion cancionAgregar : resultado) {
+            if (!this.listaDeCanciones.contains(cancionAgregar)) {
+                this.listaDeCanciones.add(cancionAgregar);
             }
             notifyDataSetChanged();
         }
+    }
 
-        public class ViewHolderCancionBusqueda extends RecyclerView.ViewHolder {
-            private ImageView imagenArtista;
-            private ImageView imagenAlbum;
-            private TextView textNombre;
-            private TextView textArtista;
-            private TextView textViewAlbum;
+    public void obtenerCanciones(List<Cancion> resultado) {
+        if (resultado != null) {
+            listaDeCanciones = resultado;
+        }
+        notifyDataSetChanged();
+    }
+
+    public class ViewHolderCancionBusqueda extends RecyclerView.ViewHolder {
+        private ImageView imagenArtista;
+        private ImageView imagenAlbum;
+        private TextView textNombre;
+        private TextView textArtista;
+        private TextView textViewAlbum;
 
 
-            public ViewHolderCancionBusqueda(View itemView) {
-                super(itemView);
-                imagenArtista = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
-                imagenAlbum = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
-                textNombre = itemView.findViewById(R.id.nombre_canciones_id_celda_recycler_search2);
-                textArtista = itemView.findViewById(R.id.nombre_artista_id_celda_recycler_search2);
-                textViewAlbum = itemView.findViewById(R.id.nombre_album_id_celda_recycler_search2);
+        public ViewHolderCancionBusqueda(View itemView) {
+            super(itemView);
+            imagenArtista = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
+            imagenAlbum = itemView.findViewById(R.id.imagen_album_celda_busqueda2);
+            textNombre = itemView.findViewById(R.id.nombre_canciones_id_celda_recycler_search2);
+            textArtista = itemView.findViewById(R.id.nombre_artista_id_celda_recycler_search2);
+            textViewAlbum = itemView.findViewById(R.id.nombre_album_id_celda_recycler_search2);
 
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
-                        try {
-                            MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                            mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        notificadorSEARCHCancionesCelda.notificarCeldaClickeadaDeCancion(cancionAreproducir);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
+                    try {
+                        MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
-            }
-
-            public void armarCeldaCancion(Cancion cancion) {
-                textNombre.setText(cancion.getTitle());
-                textArtista.setText(cancion.getArtista().getNombre());
-                textViewAlbum.setText((cancion.getAlbum().getTitulo()));
-                Picasso.get()
-                        .load(cancion.getArtista().getImagenUrl())
-                        .placeholder(R.drawable.placeholder)
-                        .into(imagenArtista);
-                Picasso.get()
-                        .load(cancion.getAlbum().getImagenUrl())
-                        .placeholder(R.drawable.placeholder)
-                        .into(imagenAlbum);
-            }
+                    notificadorSEARCHCancionesCelda.notificarCeldaClickeadaDeCancion(cancionAreproducir);
+                }
+            });
         }
 
-        public interface NotificadorSEARCHCancionesCelda {
-            public void notificarCeldaClickeadaDeCancion(Cancion cancion);
+        public void armarCeldaCancion(Cancion cancion) {
+            textNombre.setText(cancion.getTitle());
+            textArtista.setText(cancion.getArtista().getNombre());
+            textViewAlbum.setText((cancion.getAlbum().getTitulo()));
+            Picasso.get()
+                    .load(cancion.getArtista().getImagenUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(imagenArtista);
+            Picasso.get()
+                    .load(cancion.getAlbum().getImagenUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(imagenAlbum);
         }
+    }
+
+    public interface NotificadorSEARCHCancionesCelda {
+        public void notificarCeldaClickeadaDeCancion(Cancion cancion);
+    }
 
 
 }

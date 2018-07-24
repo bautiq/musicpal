@@ -26,7 +26,6 @@ import com.example.user.musicpal.utils.SimpleDividerItemDecoration;
 import java.util.List;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -40,8 +39,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
     private EditText editTextBusqueda;
 
     private ImageView imagenLupaSearch;
-    private TextView textArtista;
-    private TextView textAlbum;
+
 
     private RecyclerView recyclerViewBusqueda;
     private LinearLayoutManager linearLayoutManagerBusqueda;
@@ -81,7 +79,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
                 int posicionActual = linearLayoutManagerBusqueda.findLastVisibleItemPosition();
 
                 if (ultimaPosicion - posicionActual <= CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO) {
-                    obtenerBusqueda();
+                    agregarCancionesBusqueda();
                 }
             }
         });
@@ -95,6 +93,9 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     obtenerBusqueda();
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editTextBusqueda.getWindowToken(), 0);
+
                     return true;
                 }
                 return false;
@@ -106,13 +107,11 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
             public void onClick(View v) {
                 obtenerBusqueda();
                 editTextBusqueda.requestFocus();
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(editTextBusqueda.getWindowToken(), 0);
 
             }
         });
-
-
 
 
         return view;
@@ -129,13 +128,25 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
 
 
     private void obtenerBusqueda() {
-        controllerGlobalBusqueda.obtenerBusquedaCancionesEditText(editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
+        controllerGlobalBusqueda.obtenerBusquedaCancionesEditTextPrimerPedido(editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-                adapterBusqueda.agregarCanciones(resultado);
+                adapterBusqueda.obtenerCanciones(resultado);
             }
         });
     }
+
+    public void agregarCancionesBusqueda() {
+        if (controllerGlobalBusqueda.getHayPaginas()) {
+            controllerGlobalBusqueda.obtenerBusquedaCancionesEditText(editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
+                @Override
+                public void finish(List<Cancion> resultado) {
+                    adapterBusqueda.agregarCanciones(resultado);
+                }
+            });
+        }
+    }
+
 
     @Override
     public void onAttach(Context context) {

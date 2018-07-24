@@ -27,7 +27,7 @@ public class ControllerGlobal {
         this.context = context;
         hayPaginas = true;
         offset = 0;
-      daoCancion = new DaoCancion();
+        daoCancion = new DaoCancion();
     }
 
 
@@ -107,7 +107,8 @@ public class ControllerGlobal {
             }
         }, id);
     }
-//pide lista de canciones Top
+
+    //pide lista de canciones Top
     public void obtenerCancionesTopOnline(final ResultListener<List<Cancion>> resultListenerDeLaVista) {
         if (hayInternet()) {
             daoCancion.obtenerCancionesTop(new ResultListener<List<Cancion>>() {
@@ -123,7 +124,8 @@ public class ControllerGlobal {
         }
 
     }
-//pide lista de canciones por Id
+
+    //pide lista de canciones por Id
     public void obtenerCancionOnline(final ResultListener<Cancion> listener, String id) {
         daoCancion.obtenerCancion(new ResultListener<Cancion>() {
             @Override
@@ -132,13 +134,40 @@ public class ControllerGlobal {
             }
         }, id);
 
-    }public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda){
-        daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
-            @Override
-            public void finish(List<Cancion> resultado) {
-                resultListenerDeLFragmentBusqueda.finish(resultado);
-            }
-        },offset,LIST_SIZE);
+    }
+
+    public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda) {
+        if (hayInternet()) {
+            daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
+
+                @Override
+                public void finish(List<Cancion> resultado) {
+                    resultListenerDeLFragmentBusqueda.finish(resultado);
+
+                    if (resultado.size() < LIST_SIZE) {
+                        hayPaginas = false;
+                    }
+                    offset += resultado.size();
+                    resultListenerDeLFragmentBusqueda.finish(resultado);
+
+                }
+            }, offset, LIST_SIZE);
+        }
+
+    }
+
+    //se pide en metodo distinto la 1er vez, con el offset en 0 porque si ya se busco previamente fue cambiando el valor de offset y no muestra
+    //los resultados menores a ese offset.Podria no pasarsele offset y listsiza pero habria que crear otro metodo en dao y otra llamada en service.
+    public void obtenerBusquedaCancionesEditTextPrimerPedido(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda) {
+        if (hayInternet()) {
+            daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
+                @Override
+                public void finish(List<Cancion> resultado) {
+                    resultListenerDeLFragmentBusqueda.finish(resultado);
+                    offset = 0;
+                }
+            }, offset, LIST_SIZE);
+        }
     }
 
     private boolean hayInternet() {
@@ -148,7 +177,6 @@ public class ControllerGlobal {
     public Boolean getHayPaginas() {
         return hayPaginas;
     }
-
 
 
     public void obtenerFavoritosFDB(final ResultListener<Cancion> listenerDeLaVista) {
