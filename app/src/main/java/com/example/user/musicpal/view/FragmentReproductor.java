@@ -68,6 +68,8 @@ public class FragmentReproductor extends Fragment {
         buttonPlayPausa = view.findViewById(R.id.button_play_reproductorGrande);
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
+        textViewTitulo.setSelected(true);
+        textViewArtista.setSelected(true);
 
         final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();

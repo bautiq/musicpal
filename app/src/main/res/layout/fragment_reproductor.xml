@@ -11,9 +11,14 @@
     <TextView
         android:id="@+id/text_reproductor_artista"
         style="@style/StyleTituloListadoScroll"
-        android:layout_marginTop="15dp"
-        android:height="40dp"
+        android:layout_marginTop="20dp"
+        android:height="60dp"
+        android:ellipsize="marquee"
+        android:focusable="false"
         android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:textSize="20sp"
         tools:text="Bitter Sweet Symphony" />
 
@@ -22,22 +27,43 @@
         style="@style/StyleTituloListadoScroll"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:height="60dp"
+        android:height="40dp"
+        android:ellipsize="marquee"
+        android:focusable="false"
         android:fontFamily="serif-monospace"
         android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:textColor="@color/grisBlanco"
         android:textSize="20sp"
         tools:text="The Verve - Urban Hymns" />
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/imagen_reproductor"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:layout_margin="15dp"
-        app:civ_border_color="@color/grisBlanco"
-        app:civ_border_width="2dp"
-        app:civ_shadow_color="@color/gris" />
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imagen_reproductor"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            app:civ_border_color="@color/grisBlanco"
+            app:civ_border_width="2dp"
+            app:civ_shadow_color="@color/gris" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/fondoNaranja"
+            android:src="@drawable/icono_compartir_blanco_24dp"
+            app:layout_anchor="@id/imagen_reproductor"
+            app:layout_anchorGravity="bottom|right" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,10 +98,11 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/gris" />
+        android:layout_margin="3dp"
+        android:background="@color/grisBlanco" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,6 +123,7 @@
             style="@style/styleBotonesReproductor"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:background="@drawable/ic_pause_circle_outline" />
 
         <ImageView
