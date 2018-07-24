@@ -27,12 +27,11 @@ public class ActivityMain
         extends AppCompatActivity
         implements FragmentPantallaInicio.NotificadorActivities,
         FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
-        implements FragmentPantallaInicio.NotificadorActivities, FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
-        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorCancionFavoritaClickeada {
-        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada,
+        MediaPlayerGlobal.NotificadorQueTermino,
+        FragmentFavorito.NotificadorCancionFavoritaClickeada ,
         FragmentReproductor.NotificarCompartir {
 
     private ImageView imageHome;
@@ -243,6 +242,6 @@ public class ActivityMain
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
         share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
-        startActivity(Intent.createChooser(share, "Share link!"));
+        startActivity(Intent.createChooser(share, "Compartir en!"));
     }
 }

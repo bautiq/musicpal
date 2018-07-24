@@ -107,6 +107,6 @@ public class ActivityDetalleArtista
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
         share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
-        startActivity(Intent.createChooser(share, "Share link!"));
+        startActivity(Intent.createChooser(share, "Compartir en!"));
     }
 }
