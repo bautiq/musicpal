@@ -27,13 +27,6 @@
         android:textColor="@color/blanco"
         android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/add_icon_fav_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/icono_add_circle_48dp" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_fragment_favoritos"
         android:layout_width="match_parent"

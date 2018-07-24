@@ -189,7 +189,32 @@ public class ControllerGlobal {
         });
     }
 
-    public void pushearCancion(Cancion cancion) {
-        daoCancion.pushearCancion(cancion);
+    public void obtenerFavPorID(Cancion cancion, final ResultListener<Cancion> listenerDeLaVista) {
+        daoCancion.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                listenerDeLaVista.finish(resultado);
+
+            }
+        });
+    }
+
+    public void pushearOeliminarCancion(final Cancion cancion) {
+        daoCancion.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                //si clickeo fav y no recibe nada de la db, significa que no esta guardada
+                // y devuelve null, en ese caso se pushea, en caso contrario, la elimina
+                if (resultado == null) {
+                    daoCancion.pushearCancion(cancion);
+                } else {
+                    daoCancion.eliminarFavFDB(cancion);
+                }
+            }
+        });
+    }
+
+    public void eliminarFavFDB(Cancion cancion) {
+        daoCancion.eliminarFavFDB(cancion);
     }
 }

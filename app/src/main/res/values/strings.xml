@@ -24,7 +24,8 @@
     <string name="iniciar_sesion">iniciar sesion</string>
     <string name="desarrollado_por">Desarrollado por: </string>
     <string name="About_us">About us</string>
-    <string name="agregar_fav">Agrega canciones a tu lista de favoritos!</string>
+    <string name="agregar_fav">Agrega canciones a tu lista de favoritos! Podes hacerlo con la estrellita, que aparece al lado de
+    cada cancion</string>
 
     <string-array name="drop_spinner_menu">
         <item>Agregar a favoritos</item>

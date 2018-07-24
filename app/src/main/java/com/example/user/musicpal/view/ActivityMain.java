@@ -27,9 +27,11 @@ public class ActivityMain
         extends AppCompatActivity
         implements FragmentPantallaInicio.NotificadorActivities,
         FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
+        implements FragmentPantallaInicio.NotificadorActivities, FragmentBusqueda.NotificadorAActivityInicioDesdeFragmentBusqueda,
         NavigationView.OnNavigationItemSelectedListener,
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
+        MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorCancionFavoritaClickeada {
         MediaPlayerGlobal.NotificadorQueTermino, FragmentFavorito.NotificadorPlaylistUserClickeada,
         FragmentReproductor.NotificarCompartir {
 
@@ -230,12 +232,8 @@ public class ActivityMain
     }
 
     @Override
-    public void notificarPlaylistUserClickeada(Playlist playlist) {
-        Intent intent = new Intent(ActivityMain.this, ActivityFavoritosDetalle.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(FragmentDetallePlaylistUser.CLAVE_PLAYLIST, playlist);
-        intent.putExtras(bundle);
-        startActivity(intent);
+    public void notificarCancionFavoritaClickeada(Cancion cancion) {
+        fragmentReproductorChico.setearDatos(cancion);
     }
 
     @Override

@@ -104,6 +104,11 @@ public class FragmentDetallePlaylist
         notificadorCancion.notificarCancion(cancion, playlist);
     }
 
+    @Override
+    public void notificarFavorito(Cancion cancion) {
+        controllerCancion.pushearOeliminarCancion(cancion);
+    }
+
     public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Playlist playlist);
     }

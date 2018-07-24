@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.R;
@@ -23,16 +22,13 @@ import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentFavorito
         extends Fragment
-        implements AdapterPlaylist.NotificadorPlaylistUser,
+        implements
         AdapterCanciones.NotificadorCancionCelda {
 
     private TextView textAgregar;
@@ -41,7 +37,7 @@ public class FragmentFavorito
     private ControllerGlobal controllerGlobal;
     private Intent intent;
     private AdapterCanciones adapterCanciones;
-    private NotificadorPlaylistUserClickeada notificadorPlaylistUserClickeada;
+    private NotificadorCancionFavoritaClickeada notificadorCancionFavoritaClickeada;
 
 
     @Override
@@ -67,7 +63,6 @@ public class FragmentFavorito
         intent = new Intent(getContext(), LoginActivity.class);
         obtenerCancionesFDB();
         chequearSiEstaLogueado();
-        chequearSiHayCanciones();
         return view;
     }
 
@@ -84,6 +79,8 @@ public class FragmentFavorito
             public void finish(Cancion resultado) {
                 if (resultado != null) {
                     adapterCanciones.agregarPlaylist(resultado);
+                    chequearSiHayCanciones();
+
                 }
             }
         });
@@ -92,7 +89,7 @@ public class FragmentFavorito
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        notificadorPlaylistUserClickeada = (NotificadorPlaylistUserClickeada) context;
+        notificadorCancionFavoritaClickeada = (NotificadorCancionFavoritaClickeada) context;
     }
 
 
@@ -104,16 +101,16 @@ public class FragmentFavorito
 
 
     @Override
-    public void notificarPlaylistUser(Playlist playlist) {
-        notificadorPlaylistUserClickeada.notificarPlaylistUserClickeada(playlist);
+    public void notificarCeldaClikeada(Cancion cancion) {
+        notificadorCancionFavoritaClickeada.notificarCancionFavoritaClickeada(cancion);
     }
 
     @Override
-    public void notificarCeldaClikeada(Cancion cancion) {
-
+    public void notificarFavorito(Cancion cancion) {
+        controllerGlobal.eliminarFavFDB(cancion);
     }
 
-    public interface NotificadorPlaylistUserClickeada {
-        public void notificarPlaylistUserClickeada(Playlist playlist);
+    public interface NotificadorCancionFavoritaClickeada {
+        public void notificarCancionFavoritaClickeada(Cancion cancion);
     }
 }

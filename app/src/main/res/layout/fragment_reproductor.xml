@@ -63,6 +63,17 @@
             app:layout_anchor="@id/imagen_reproductor"
             app:layout_anchorGravity="bottom|right" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floating_button_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/fondoNaranja"
+            android:src="@drawable/ic_star_border"
+            android:tint="@color/blanco"
+            app:layout_anchor="@id/imagen_reproductor"
+            app:layout_anchorGravity="bottom|left" />
+
+
     </android.support.design.widget.CoordinatorLayout>
 
     <LinearLayout
