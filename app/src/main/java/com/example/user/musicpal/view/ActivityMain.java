@@ -149,6 +149,12 @@ public class ActivityMain
     public void notificarCancion(Cancion cancion) {
         fragmentReproductorChico.setearDatos(cancion);
     }
+//este metodo notificarCancionDesdeFragmentBusqueda
+// de la interface del FragmentBusqueda hace lo mismo q el de arriba notificarCancion pero repito codigo en caso de que necesite usar alguna funcion distinta
+    @Override
+    public void notificarCancionDesdeFragmentBusqueda(Cancion cancion) {
+        fragmentReproductorChico.setearDatos(cancion);
+    }
 
     public void clickBotonesInferiores(String clickeado) {
 

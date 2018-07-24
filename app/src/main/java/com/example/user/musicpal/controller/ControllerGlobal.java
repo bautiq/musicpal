@@ -136,7 +136,7 @@ public class ControllerGlobal {
 
     }
 
-    public void obtenerBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda) {
+    public void agregarBusquedaCancionesEditText(String stringEditText, final ResultListener<List<Cancion>> resultListenerDeLFragmentBusqueda) {
         if (hayInternet()) {
             daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
 
@@ -163,8 +163,8 @@ public class ControllerGlobal {
             daoCancion.obtenerBusquedaCancionesEditText(stringEditText, new ResultListener<List<Cancion>>() {
                 @Override
                 public void finish(List<Cancion> resultado) {
-                    resultListenerDeLFragmentBusqueda.finish(resultado);
                     offset = 0;
+                    resultListenerDeLFragmentBusqueda.finish(resultado);
                 }
             }, offset, LIST_SIZE);
         }
