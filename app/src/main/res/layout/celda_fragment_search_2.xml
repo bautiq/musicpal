@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linear_container_cancion_search2"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="5dp"
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -24,52 +24,46 @@
             app:civ_border_width="2dp"
             app:civ_shadow_color="@color/gris" />
 
-
         <TextView
             android:id="@+id/nombre_canciones_id_celda_recycler_search2"
-            android:layout_width="@dimen/size_home_albums"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_toRightOf="@+id/imagen_album_celda_busqueda2"
-            android:gravity="center"
             android:letterSpacing="-0.05"
-            android:layout_marginTop="10dp"
             android:lines="2"
             android:textColor="@color/grisBlanco"
             android:textSize="@dimen/tamanio_titulo_cancion"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="nombre cancion" />
 
         <TextView
             android:id="@+id/nombre_artista_id_celda_recycler_search2"
-            android:layout_width="@dimen/size_home_albums"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nombre_canciones_id_celda_recycler_search2"
-            android:layout_marginTop="2.5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="3dp"
             android:layout_toRightOf="@+id/imagen_album_celda_busqueda2"
-            android:gravity="center"
             android:letterSpacing="-0.05"
+            android:lines="2"
             android:textColor="@color/gris"
             android:textSize="@dimen/tamanio_titulo_cancion"
-            android:layout_centerHorizontal="true"
-
-           />
-
-
+            tools:text="nombre artista" />
 
         <TextView
             android:id="@+id/nombre_album_id_celda_recycler_search2"
-            android:layout_width="@dimen/size_home_albums"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2.5dp"
-            android:layout_toRightOf="@+id/imagen_album_celda_busqueda2"
-            android:gravity="center"
-            android:letterSpacing="-0.05"
-            android:textColor="@color/gris"
             android:layout_below="@+id/nombre_artista_id_celda_recycler_search2"
+            android:layout_margin="2dp"
+            android:layout_toRightOf="@+id/imagen_album_celda_busqueda2"
+            android:letterSpacing="-0.05"
+            android:lines="2"
+            android:textColor="@color/gris"
             android:textSize="@dimen/tamanio_titulo_cancion"
-            />
-
+            tools:text="nombre album" />
 
     </RelativeLayout>
-
 
 </LinearLayout>

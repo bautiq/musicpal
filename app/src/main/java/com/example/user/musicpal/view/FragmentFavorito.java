@@ -32,7 +32,8 @@ import java.util.List;
  */
 public class FragmentFavorito
         extends Fragment
-        implements AdapterPlaylist.NotificadorPlaylistUser, AdapterCanciones.NotificadorCancionCelda {
+        implements AdapterPlaylist.NotificadorPlaylistUser,
+        AdapterCanciones.NotificadorCancionCelda {
 
     private TextView textAgregar;
     private RecyclerView recyclerView;
@@ -52,8 +53,15 @@ public class FragmentFavorito
         recyclerView = view.findViewById(R.id.recycler_fragment_favoritos);
         textAgregar = view.findViewById(R.id.text_favoritos_fragment);
         controllerGlobal = new ControllerGlobal(getContext());
-        adapterCanciones = new AdapterCanciones(getFragmentManager(), this, getContext(), true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        adapterCanciones = new AdapterCanciones(getFragmentManager(),
+                this,
+                getContext(),
+                true);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL,
+                false));
+
         recyclerView.setAdapter(adapterCanciones);
         FirebaseApp.initializeApp(getContext());
         firebaseAuth = FirebaseAuth.getInstance();
