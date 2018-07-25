@@ -18,6 +18,7 @@ import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
+import com.example.user.musicpal.utils.NavBarUIupdater;
 import com.example.user.musicpal.utils.ResultListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +39,7 @@ public class FragmentFavorito
     private Intent intent;
     private AdapterCanciones adapterCanciones;
     private NotificadorCancionFavoritaClickeada notificadorCancionFavoritaClickeada;
+    private NavBarUIupdater navBarUIupdater;
 
 
     @Override
@@ -90,8 +92,21 @@ public class FragmentFavorito
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorCancionFavoritaClickeada = (NotificadorCancionFavoritaClickeada) context;
+        navBarUIupdater = (NavBarUIupdater) context;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        navBarUIupdater.updateUi("favoritos");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        navBarUIupdater.updateUiOnPause("favoritos");
+    }
 
     public void chequearSiEstaLogueado() {
         if (firebaseAuth.getCurrentUser() == null) {

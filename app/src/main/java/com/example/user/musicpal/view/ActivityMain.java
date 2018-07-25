@@ -18,6 +18,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.FragmentHelper;
 import com.example.user.musicpal.R;
+import com.example.user.musicpal.utils.NavBarUIupdater;
 
 import java.io.Serializable;
 import java.util.List;
@@ -31,13 +32,13 @@ public class ActivityMain
         FragmentReproductorChico.NotificadorReproductorChico,
         FragmentReproductor.NotificadorReproductorGrande,
         MediaPlayerGlobal.NotificadorQueTermino,
-        FragmentFavorito.NotificadorCancionFavoritaClickeada ,
-        FragmentReproductor.NotificarCompartir {
+        FragmentFavorito.NotificadorCancionFavoritaClickeada,
+        FragmentReproductor.NotificarCompartir, NavBarUIupdater {
 
     private ImageView imageHome;
-    private ImageView imagePlaylist;
+    private ImageView imageFavoritos;
     private boolean homeIsClicked;
-    private boolean playlistIsClicked;
+    private boolean favoritoIsClicked;
     private ImageView imageMenu;
     private ImageView imageSearch;
 
@@ -62,9 +63,9 @@ public class ActivityMain
         setContentView(R.layout.activity_main);
 
         homeIsClicked = true;
-        playlistIsClicked = false;
+        favoritoIsClicked = false;
         imageHome = findViewById(R.id.home_button);
-        imagePlaylist = findViewById(R.id.playlist_button);
+        imageFavoritos = findViewById(R.id.fav_button_nav);
         imageMenu = findViewById(R.id.menu_button);
         imageSearch = findViewById(R.id.search_button);
 
@@ -89,14 +90,21 @@ public class ActivityMain
         imageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickBotonesInferiores("home");
+                fragmentPantallaInicio = new FragmentPantallaInicio();
+                FragmentHelper.cargarFragment(fragmentPantallaInicio,
+                        R.id.container_fragment,
+                        fragmentManager);
             }
         });
 
-        imagePlaylist.setOnClickListener(new View.OnClickListener() {
+        imageFavoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickBotonesInferiores("playlist");
+                fragmentFavorito = new FragmentFavorito();
+
+                FragmentHelper.cargarFragmentConBackStack(fragmentFavorito,
+                        R.id.container_fragment,
+                        fragmentManager);
             }
         });
 
@@ -149,44 +157,7 @@ public class ActivityMain
     public void notificarCancion(Cancion cancion) {
         fragmentReproductorChico.setearDatos(cancion);
     }
-
-    public void clickBotonesInferiores(String clickeado) {
-
-        switch (clickeado) {
-            case "home":
-                if (homeIsClicked == true) {
-                    homeIsClicked = false;
-                } else {
-                    homeIsClicked = true;
-                    playlistIsClicked = false;
-                    imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
-                    imagePlaylist.setImageResource(R.drawable.icono_playlist);
-
-                    fragmentPantallaInicio = new FragmentPantallaInicio();
-                    fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragment(fragmentPantallaInicio,
-                            R.id.container_fragment,
-                            fragmentManager);
-                }
-                break;
-            case "playlist":
-                if (playlistIsClicked == true) {
-                    playlistIsClicked = false;
-                } else {
-                    playlistIsClicked = true;
-                    homeIsClicked = false;
-                    imagePlaylist.setImageResource(R.drawable.icono_playlist_play_naranja_28dp);
-                    imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
-
-                    fragmentFavorito = new FragmentFavorito();
-                    fragmentManager = getSupportFragmentManager();
-                    FragmentHelper.cargarFragmentConBackStack(fragmentFavorito,
-                            R.id.container_fragment,
-                            fragmentManager);
-                }
-                break;
-        }
-    }
+    
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -197,6 +168,7 @@ public class ActivityMain
                 FragmentHelper.cargarFragmentConBackStack(fragmentPerfil,
                         R.id.container_fragment,
                         fragmentManager);
+               // clickBotonesInferiores("otro");
                 break;
 
             case R.id.about_us:
@@ -204,6 +176,7 @@ public class ActivityMain
                 FragmentHelper.cargarFragmentConBackStack(fragmentAboutUs,
                         R.id.container_fragment,
                         fragmentManager);
+              //  clickBotonesInferiores("otro");
                 break;
         }
         drawerLayout.closeDrawers();
@@ -243,5 +216,38 @@ public class ActivityMain
         share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
         share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
         startActivity(Intent.createChooser(share, "Compartir en!"));
+    }
+
+    @Override
+    public void updateUi(String queFragmentEs) {
+        //Este listener updatea el UI de la barra baja (que fragment se cargo)
+        switch (queFragmentEs) {
+            case "favoritos":
+                favoritoIsClicked = true;
+                imageFavoritos.setImageResource(R.drawable.ic_star);
+                break;
+
+            case "home":
+                homeIsClicked = true;
+                imageHome.setImageResource(R.drawable.icono_home_naranja_28dp);
+                break;
+        }
+    }
+
+    @Override
+    public void updateUiOnPause(String queFragmentEs) {
+        //Este listener updatea el UI de la barra baja (que fragment ya no esta cargado)
+        // hace lo contrario al de arriba
+        switch (queFragmentEs) {
+            case "favoritos":
+                favoritoIsClicked = false;
+                imageFavoritos.setImageResource(R.drawable.ic_star_blanco);
+                break;
+
+            case "home":
+                homeIsClicked = false;
+                imageHome.setImageResource(R.drawable.icono_home_blanco_24dp);
+                break;
+        }
     }
 }

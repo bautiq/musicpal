@@ -27,9 +27,5 @@
     <string name="agregar_fav">Agrega canciones a tu lista de favoritos! Podes hacerlo con la estrellita, que aparece al lado de
     cada cancion</string>
 
-    <string-array name="drop_spinner_menu">
-        <item>Agregar a favoritos</item>
-        <item>Compartir</item>
-    </string-array>
 
 </resources>

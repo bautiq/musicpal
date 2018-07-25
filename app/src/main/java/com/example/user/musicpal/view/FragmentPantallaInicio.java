@@ -20,6 +20,7 @@ import com.example.user.musicpal.R;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
+import com.example.user.musicpal.utils.NavBarUIupdater;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class FragmentPantallaInicio
     private ControllerGlobal controllerTopCancion;
 
     private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
+    private NavBarUIupdater navBarUIupdater;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -215,8 +217,23 @@ public class FragmentPantallaInicio
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorActivities = (NotificadorActivities) context;
+        navBarUIupdater = (NavBarUIupdater) context;
     }
-//notificar celda clickeada de la lista de albumes del adapterAlbum del recycler AlbumesTop
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        navBarUIupdater.updateUi("home");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        navBarUIupdater.updateUiOnPause("home");
+
+    }
+
+    //notificar celda clickeada de la lista de albumes del adapterAlbum del recycler AlbumesTop
     @Override
     public void notificarCeldaClickeada(List<Album> list, int posicion) {
         notificadorActivities.notificarAlbum(list, posicion);

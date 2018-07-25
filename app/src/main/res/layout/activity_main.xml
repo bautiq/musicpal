@@ -101,9 +101,9 @@
                 android:src="@drawable/icono_home_naranja_28dp" />
 
             <ImageView
-                android:id="@+id/playlist_button"
+                android:id="@+id/fav_button_nav"
                 style="@style/StyleBotonBarraInferior"
-                android:src="@drawable/icono_playlist" />
+                android:src="@drawable/ic_star_blanco" />
 
         </LinearLayout>
 
