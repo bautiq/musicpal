@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:text="@string/favoritos"
         android:textColor="@color/fondoNaranja"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
@@ -25,7 +25,15 @@
         android:text="@string/agregar_fav"
         android:textAlignment="center"
         android:textColor="@color/blanco"
+        android:visibility="invisible"
         android:textSize="20sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/fondoNaranja" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_fragment_favoritos"

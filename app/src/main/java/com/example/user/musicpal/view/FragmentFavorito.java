@@ -20,6 +20,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.NavBarUIupdater;
 import com.example.user.musicpal.utils.ResultListener;
+import com.example.user.musicpal.utils.SimpleDividerItemDecoration;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -50,14 +51,12 @@ public class FragmentFavorito
         textAgregar = view.findViewById(R.id.text_favoritos_fragment);
         controllerGlobal = new ControllerGlobal(getContext());
         adapterCanciones = new AdapterCanciones(getFragmentManager(),
-                this,
-                getContext(),
-                true);
+                this, getContext(), true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL,
-                false));
+                LinearLayoutManager.VERTICAL, false));
 
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
         recyclerView.setAdapter(adapterCanciones);
         FirebaseApp.initializeApp(getContext());
         firebaseAuth = FirebaseAuth.getInstance();
@@ -69,7 +68,9 @@ public class FragmentFavorito
 
     private void chequearSiHayCanciones() {
         //updatea ui si hay canciones
-        if (adapterCanciones.getListaDeCanciones() != null && adapterCanciones.getListaDeCanciones().size() > 0) {
+        if (adapterCanciones.getListaDeCanciones() == null || adapterCanciones.getListaDeCanciones().size() == 0) {
+            textAgregar.setVisibility(View.VISIBLE);
+        } else {
             textAgregar.setVisibility(View.INVISIBLE);
         }
     }
@@ -91,7 +92,7 @@ public class FragmentFavorito
         });
     }
 
-    private void notificarCambiosFav(){
+    private void notificarCambiosFav() {
 
     }
 
@@ -106,7 +107,7 @@ public class FragmentFavorito
     public void onResume() {
         super.onResume();
         navBarUIupdater.updateUi("favoritos");
-
+        chequearSiHayCanciones();
     }
 
     @Override
