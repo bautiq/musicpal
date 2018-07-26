@@ -214,7 +214,7 @@ public class ActivityMain
         share.putExtra(Intent.EXTRA_TEXT,
                 "Estoy Escuchando << " + cancionACompartir.getTitle() + " - " +
                         cancionACompartir.getArtista().getNombre() + " >> En MusicPal");
-        startActivity(Intent.createChooser(share, "Compartir en!"));
+        startActivity(Intent.createChooser(share, "Compartir !"));
     }
 
     @Override

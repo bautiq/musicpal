@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:background="@drawable/desarrolladopor"
     tools:context=".view.FragmentAboutUs">
 
@@ -11,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="@string/desarrollado_por"
         android:textSize="24sp" />
 
@@ -19,8 +21,10 @@
         android:id="@+id/desarrollador1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/desarrollado_por"
+        android:layout_alignLeft="@id/desarrollado_por"
+        android:layout_alignRight="@id/desarrollado_por"
         android:layout_below="@+id/desarrollado_por"
+        android:gravity="center"
         android:text="Bautista Querejeta"
         android:textSize="24sp" />
 
@@ -28,8 +32,10 @@
         android:id="@+id/desarrollador2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/desarrollado_por"
+        android:layout_alignLeft="@id/desarrollado_por"
+        android:layout_alignRight="@id/desarrollado_por"
         android:layout_below="@+id/desarrollador1"
+        android:gravity="center"
         android:text="Mariano Potetti"
         android:textSize="24sp" />
 
@@ -37,10 +43,21 @@
         android:id="@+id/desarrollador3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/desarrollado_por"
+        android:layout_alignLeft="@id/desarrollado_por"
+        android:layout_alignRight="@id/desarrollado_por"
         android:layout_below="@+id/desarrollador2"
+        android:gravity="center"
         android:text="Daniel Mora"
         android:textSize="24sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_alignLeft="@id/desarrollado_por"
+        android:layout_alignRight="@id/desarrollado_por"
+        android:layout_below="@+id/desarrollador3"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_music_pal_3" />
 
 
 </RelativeLayout>
