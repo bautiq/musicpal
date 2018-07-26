@@ -58,7 +58,7 @@ public class FragmentReproductor extends Fragment {
     private int forwardTime = 5000;
     private int backwardTime = 5000;
     private Integer posicionPlaylist;
-    private Boolean cancionFavoriteada;
+    private boolean cancionFavoriteada;
     private ControllerGlobal controllerGlobal;
     private final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
 
@@ -155,23 +155,29 @@ public class FragmentReproductor extends Fragment {
         floatingFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chequearSiEstaLogueado();
-                if (cancionFavoriteada) {
-                    floatingFav.setImageResource(R.drawable.ic_star_border);
-                    cancionFavoriteada = false;
-                } else {
-                    floatingFav.setImageResource(R.drawable.ic_star_negro);
-                    cancionFavoriteada = true;
+                if (chequearSiEstaLogueado()){
+                    if (cancionFavoriteada) {
+                        floatingFav.setImageResource(R.drawable.ic_star_border);
+                        cancionFavoriteada = false;
+                    } else {
+                        floatingFav.setImageResource(R.drawable.ic_star_negro);
+                        cancionFavoriteada = true;
+                    }
+                    Cancion cancion = mediaPlayerGlobal.getCancion();
+                    controllerGlobal.pushearOeliminarCancion(cancion);
                 }
-                Cancion cancion = mediaPlayerGlobal.getCancion();
-                controllerGlobal.pushearOeliminarCancion(cancion);
+
+
             }
         });
     }
 
-    private void chequearSiEstaLogueado() {
+    private boolean chequearSiEstaLogueado() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             abrirPromptDialog();
+            return false;
+        }else{
+            return true;
         }
     }
 
@@ -264,6 +270,9 @@ public class FragmentReproductor extends Fragment {
     }
 
     public void updateFav(Cancion cancion) {
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            return;
+        }
         controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
             @Override
             public void finish(Cancion resultado) {
