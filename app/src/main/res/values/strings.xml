@@ -26,6 +26,7 @@
     <string name="About_us">About us</string>
     <string name="agregar_fav">Agrega canciones a tu lista de favoritos! Podes hacerlo con la estrellita, que aparece al lado de
     cada cancion</string>
+    <string name="prompt_login">Para utilizar la funcion de favoritos debe loguearse!</string>
 
 
 </resources>

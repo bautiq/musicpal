@@ -194,7 +194,7 @@ public class DaoCancion {
         });
     }
 
-    public void obtenerFavoritosFDB(final ResultListener<Cancion> resultListenerController) {
+    public void obtenerFavoritosFDB(final ResultListener<Cancion> resultListenerController, final ResultListener<Cancion> listenerCambioController) {
         if (databaseReference != null) {
             databaseReference.addChildEventListener(new ChildEventListener() {
                 @Override
@@ -210,7 +210,8 @@ public class DaoCancion {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                    Cancion cancion = dataSnapshot.getValue(Cancion.class);
+                    listenerCambioController.finish(cancion);
                 }
 
                 @Override
@@ -220,7 +221,7 @@ public class DaoCancion {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    resultListenerController.finish(null);
                 }
             });
         }
@@ -235,14 +236,33 @@ public class DaoCancion {
     }
 
     public void eliminarFavFDB(Cancion cancion) {
-        DatabaseReference dataRefFinal = databaseReference.child(cancion.getIdFirebase());
-        dataRefFinal.removeValue(new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                //podria hacer un toast atraves de un notificador
+        if (cancion.getIdFirebase() != null) {
+            DatabaseReference dataRefFinal = databaseReference.child(cancion.getIdFirebase());
+            dataRefFinal.removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    //podria hacer un toast atraves de un notificador
+                }
+            });
+        } else {
+            Query query = databaseReference.orderByChild("id").equalTo(cancion.getId());
 
-            }
-        });
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
+                            dataSnap.getRef().removeValue();
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
 
 
     }

@@ -101,7 +101,6 @@ public class ActivityMain
             @Override
             public void onClick(View v) {
                 fragmentFavorito = new FragmentFavorito();
-
                 FragmentHelper.cargarFragmentConBackStack(fragmentFavorito,
                         R.id.container_fragment,
                         fragmentManager);
@@ -157,7 +156,7 @@ public class ActivityMain
     public void notificarCancion(Cancion cancion) {
         fragmentReproductorChico.setearDatos(cancion);
     }
-    
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -168,7 +167,6 @@ public class ActivityMain
                 FragmentHelper.cargarFragmentConBackStack(fragmentPerfil,
                         R.id.container_fragment,
                         fragmentManager);
-               // clickBotonesInferiores("otro");
                 break;
 
             case R.id.about_us:
@@ -176,7 +174,6 @@ public class ActivityMain
                 FragmentHelper.cargarFragmentConBackStack(fragmentAboutUs,
                         R.id.container_fragment,
                         fragmentManager);
-              //  clickBotonesInferiores("otro");
                 break;
         }
         drawerLayout.closeDrawers();
