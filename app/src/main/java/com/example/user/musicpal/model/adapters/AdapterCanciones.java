@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
@@ -214,15 +215,19 @@ public class AdapterCanciones extends RecyclerView.Adapter {
             imagenFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (favoriteada) {
-                        imagenFav.setBackgroundResource(R.drawable.ic_star_border);
-                        favoriteada = false;
-                    } else {
-                        imagenFav.setBackgroundResource(R.drawable.ic_star);
-                        favoriteada = true;
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                        if (favoriteada) {
+                            imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                            favoriteada = false;
+                        } else {
+                            imagenFav.setBackgroundResource(R.drawable.ic_star);
+                            favoriteada = true;
+                        }
+                        Cancion cancion = listaDeCanciones.get(getAdapterPosition());
+                        notificadorCancionCelda.notificarFavorito(cancion);
+                    }else {
+                        Toast.makeText(context, "logueate y disfruta de tus favoritos!", Toast.LENGTH_SHORT).show();
                     }
-                    Cancion cancion = listaDeCanciones.get(getAdapterPosition());
-                    notificadorCancionCelda.notificarFavorito(cancion);
                 }
             });
 
