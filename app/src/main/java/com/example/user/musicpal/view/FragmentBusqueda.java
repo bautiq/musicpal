@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
                              Bundle savedInstanceState) {
         // Inflate the layout for this frag ment
         View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
-        editTextBusqueda = view.findViewById(R.id.edit_text_busqueda);
+        editTextBusqueda = view.findViewById(R.id.edit_text_busqueda);;
         imagenLupaSearch = view.findViewById(R.id.imagen_search_fragment_busqueda);
         isLoading = false;
         adapterBusqueda = new AdapterFragmentBusqueda(getActivity(), this);
@@ -86,16 +87,23 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
 
         setAdapterLinear(recyclerViewBusqueda, linearLayoutManagerBusqueda, adapterBusqueda);
         controllerGlobalBusqueda = new ControllerGlobal(getActivity());
+        editTextBusqueda.requestFocus();
 
-        //metodo para esconder el teclado al buscar en editTextBusqueda
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+
+
+       //metodo para iniciar busqueda desde la tecla enter:
         editTextBusqueda.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     obtenerBusqueda();
+                    // comandos esconder teclado:
+                    editTextBusqueda.requestFocus();
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(editTextBusqueda.getWindowToken(), 0);
-
                     return true;
                 }
                 return false;
@@ -106,6 +114,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
             @Override
             public void onClick(View v) {
                 obtenerBusqueda();
+                //abajo comandos esconder teclado:
                 editTextBusqueda.requestFocus();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(editTextBusqueda.getWindowToken(), 0);
@@ -132,22 +141,23 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
                 editTextBusqueda.getText().toString(),
                 new ResultListener<List<Cancion>>() {
 
-            @Override
-            public void finish(List<Cancion> resultado) {
-                adapterBusqueda.obtenerCanciones(resultado);
-            }
-        });
+                    @Override
+                    public void finish(List<Cancion> resultado) {
+                        adapterBusqueda.obtenerCanciones(resultado);
+                    }
+                });
+
     }
 
     public void agregarCancionesBusqueda() {
         if (controllerGlobalBusqueda.getHayPaginas()) {
             controllerGlobalBusqueda.obtenerBusquedaCancionesEditText(
                     editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
-                @Override
-                public void finish(List<Cancion> resultado) {
-                    adapterBusqueda.agregarCanciones(resultado);
-                }
-            });
+                        @Override
+                        public void finish(List<Cancion> resultado) {
+                            adapterBusqueda.agregarCanciones(resultado);
+                        }
+                    });
         }
     }
 

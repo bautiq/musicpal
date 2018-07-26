@@ -23,7 +23,7 @@
             android:maxLines="1"
             android:textColor="@color/blanco"
             android:textColorHint="@color/blanco"
-            android:layout_weight="9"/>
+            android:layout_weight="9" />
 
         <ImageView
             android:id="@+id/imagen_search_fragment_busqueda"
