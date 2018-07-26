@@ -81,10 +81,18 @@ public class FragmentFavorito
                 if (resultado != null) {
                     adapterCanciones.agregarPlaylist(resultado);
                     chequearSiHayCanciones();
-
                 }
             }
+        }, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                adapterCanciones.eliminarPorCambioEnlaFDB(resultado);
+            }
         });
+    }
+
+    private void notificarCambiosFav(){
+
     }
 
     @Override

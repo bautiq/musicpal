@@ -1,7 +1,10 @@
 package com.example.user.musicpal.view;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,19 +16,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
-import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +42,7 @@ public class FragmentReproductor extends Fragment {
     private ImageView buttonForward;
     private ImageView buttonBack;
     private FloatingActionButton floatingActionButton;
-
+    private FloatingActionButton floatingFav;
     private Cancion cancionQueContiene;
     private MediaPlayer mP;
     private List<Cancion> playList;
@@ -57,6 +58,9 @@ public class FragmentReproductor extends Fragment {
     private int forwardTime = 5000;
     private int backwardTime = 5000;
     private Integer posicionPlaylist;
+    private Boolean cancionFavoriteada;
+    private ControllerGlobal controllerGlobal;
+    private final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
 
 
     @Override
@@ -64,7 +68,7 @@ public class FragmentReproductor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
-
+        controllerGlobal = new ControllerGlobal(getContext());
         textViewArtista = view.findViewById(R.id.text_reproductor_artista);
         textViewTitulo = view.findViewById(R.id.text_reproductor_cancion);
         imagen = view.findViewById(R.id.imagen_reproductor);
@@ -72,10 +76,9 @@ public class FragmentReproductor extends Fragment {
         buttonForward = view.findViewById(R.id.button_forward_reproductorGrande);
         buttonBack = view.findViewById(R.id.button_back_reproductorGrande);
         floatingActionButton = view.findViewById(R.id.floating_button);
+        floatingFav = view.findViewById(R.id.floating_button_fav);
         textViewTitulo.setSelected(true);
         textViewArtista.setSelected(true);
-
-        final MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
         posicionPlaylist = mediaPlayerGlobal.getPosicionPlaylist();
         mP = mediaPlayerGlobal.getMediaPlayer();
         cancionQueContiene = mediaPlayerGlobal.getCancion();
@@ -87,6 +90,7 @@ public class FragmentReproductor extends Fragment {
         tiempoDeDuracion = view.findViewById(R.id.text_tiempo_restante);
 
         setearDatos(cancionQueContiene);
+        updateFav(cancionQueContiene);
 
         finalTime = mP.getDuration();
         startTime = mP.getCurrentPosition();
@@ -104,28 +108,11 @@ public class FragmentReproductor extends Fragment {
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notificarCompartir.compartir(cancionQueContiene);
-            }
-        });
-        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean imput) {
-                if (imput) {
-                    mP.seekTo(progress);
-                }
-            }
+        listenersFloatingButtons();
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
+        seekbarChangeListener();
+
 
         tiempoTranscurrido.setText(getHRM(mP.getCurrentPosition()));
         tiempoDeDuracion.setText(getHRM(mP.getDuration()));
@@ -143,28 +130,72 @@ public class FragmentReproductor extends Fragment {
             }
         });
 
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        listenerButtonBack(posicionNueva);
+        listenerButtonFoward(posicionNueva);
+
+
+        mP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
+            }
+        });
+
+        return view;
+    }
+
+    private void listenersFloatingButtons() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
-                cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
-
+                notificarCompartir.compartir(cancionQueContiene);
             }
         });
-        buttonBack.setOnLongClickListener(new View.OnLongClickListener() {
+
+        floatingFav.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                //este listener va a ir hacia atras 5 segundos en la cancion
-                int temp = (int) startTime;
-
-                if ((temp - backwardTime) > 0) {
-                    startTime = startTime - backwardTime;
-                    mP.seekTo((int) startTime);
+            public void onClick(View view) {
+                chequearSiEstaLogueado();
+                if (cancionFavoriteada) {
+                    floatingFav.setImageResource(R.drawable.ic_star_border);
+                    cancionFavoriteada = false;
+                } else {
+                    floatingFav.setImageResource(R.drawable.ic_star_negro);
+                    cancionFavoriteada = true;
                 }
-                return false;
+                Cancion cancion = mediaPlayerGlobal.getCancion();
+                controllerGlobal.pushearOeliminarCancion(cancion);
             }
         });
+    }
 
+    private void chequearSiEstaLogueado() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            abrirPromptDialog();
+        }
+    }
+
+    private void abrirPromptDialog() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.ventana_prompt_logueo, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setView(view);
+        alertDialog.setPositiveButton("Loguearse", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //no hacer nada
+            }
+        });
+        alertDialog.show();
+    }
+
+    private void listenerButtonFoward(final Integer[] posicionNueva) {
         buttonForward.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -186,15 +217,65 @@ public class FragmentReproductor extends Fragment {
                 cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
             }
         });
+    }
 
-        mP.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+    private void listenerButtonBack(final Integer[] posicionNueva) {
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                cambioCancionSiguiente(posicionNueva, mediaPlayerGlobal);
+            public void onClick(View v) {
+                posicionNueva[0] = mediaPlayerGlobal.getPosicionPlaylist();
+                cambioCancionAnterior(posicionNueva, mediaPlayerGlobal);
+
+            }
+        });
+        buttonBack.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //este listener va a ir hacia atras 5 segundos en la cancion
+                int temp = (int) startTime;
+
+                if ((temp - backwardTime) > 0) {
+                    startTime = startTime - backwardTime;
+                    mP.seekTo((int) startTime);
+                }
+                return false;
+            }
+        });
+    }
+
+    private void seekbarChangeListener() {
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean imput) {
+                if (imput) {
+                    mP.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
 
-        return view;
+    }
+
+    public void updateFav(Cancion cancion) {
+        controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                if (resultado == null) {
+                    cancionFavoriteada = false;
+                    floatingFav.setImageResource(R.drawable.ic_star_border);
+                } else {
+                    cancionFavoriteada = true;
+                    floatingFav.setImageResource(R.drawable.ic_star_negro);
+                }
+            }
+        });
     }
 
     public void playCycle() {
@@ -239,7 +320,7 @@ public class FragmentReproductor extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         notificadorReproductorGrande = (NotificadorReproductorGrande) context;
-        notificarCompartir= (NotificarCompartir) context;
+        notificarCompartir = (NotificarCompartir) context;
     }
 
     @Override
@@ -309,7 +390,7 @@ public class FragmentReproductor extends Fragment {
         }
     }
 
-    public interface NotificarCompartir{
+    public interface NotificarCompartir {
         public void compartir(Cancion cancion);
     }
 }

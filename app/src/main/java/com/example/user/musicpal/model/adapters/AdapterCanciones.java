@@ -104,6 +104,14 @@ public class AdapterCanciones extends RecyclerView.Adapter {
         }
     }
 
+    public void eliminarPorCambioEnlaFDB(Cancion resultado) {
+        if(resultado == null){
+            return;
+        }
+        listaDeCanciones.remove(resultado);
+        notifyDataSetChanged();
+    }
+
     private class ViewHolderFavoritos extends RecyclerView.ViewHolder {
         private TextView textViewNombre;
         private ImageView imagenPlay;

@@ -179,12 +179,19 @@ public class ControllerGlobal {
     }
 
 
-    public void obtenerFavoritosFDB(final ResultListener<Cancion> listenerDeLaVista) {
+    public void obtenerFavoritosFDB(final ResultListener<Cancion> listenerDeLaVista, final ResultListener<Cancion> listenerDeLaVistaCambio) {
         daoCancion.obtenerFavoritosFDB(new ResultListener<Cancion>() {
 
             @Override
             public void finish(Cancion resultado) {
-                listenerDeLaVista.finish(resultado);
+                if (resultado != null) {
+                    listenerDeLaVista.finish(resultado);
+                }
+            }
+        }, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                listenerDeLaVistaCambio.finish(resultado);
             }
         });
     }
