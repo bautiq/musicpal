@@ -8,6 +8,7 @@
     <color name="negro_gris_reproductor">#212121</color>
     <color name="blanco">#FFFFFF</color>
     <color name="fondoNaranja">#ff9800</color>
+    <color name="fondoNaranjaTransparente">#d2ff9800</color>
     <color name="header_nav_view">#c77b0b</color>
     <color name="navigation_view">#000000</color>
     <color name="fondoAmarillo">#fdd835</color>

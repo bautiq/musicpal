@@ -58,6 +58,7 @@ public class FragmentDetalleArtista
         View view = inflater.inflate(R.layout.fragment_detalle_artista, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa_artista);
         textArtista = view.findViewById(R.id.id_nombre_artista_artista);
+        textArtista.setSelected(true);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_de_artista_id);
 
         Bundle bundle = getArguments();
@@ -85,7 +86,7 @@ public class FragmentDetalleArtista
         //si no logra conseguir la lista de canciones, vuelve a hacer el pedido
         chequearListaCanciones();
 
-        textArtista.setText("Artista: " + artista.getNombre());
+        textArtista.setText(artista.getNombre());
         Picasso.get()
                 .load(artista.getImagenUrl())
                 .placeholder(R.drawable.placeholder)

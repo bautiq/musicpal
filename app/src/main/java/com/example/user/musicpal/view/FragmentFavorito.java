@@ -29,8 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class FragmentFavorito
         extends Fragment
-        implements
-        AdapterCanciones.NotificadorCancionCelda {
+        implements AdapterCanciones.NotificadorCancionCelda {
 
     private TextView textAgregar;
     private RecyclerView recyclerView;

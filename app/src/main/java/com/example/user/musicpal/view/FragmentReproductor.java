@@ -135,10 +135,10 @@ public class FragmentReproductor extends Fragment {
             public void onClick(View v) {
                 if (mP.isPlaying()) {
                     mP.pause();
-                    buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
+                    buttonPlayPausa.setImageResource(R.drawable.ic_play_circle);
                 } else {
                     mP.start();
-                    buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                    buttonPlayPausa.setImageResource(R.drawable.ic_pause_circle_outline);
                 }
             }
         });
@@ -252,9 +252,9 @@ public class FragmentReproductor extends Fragment {
     public void setearDatos(final Cancion cancion) {
         obtenerCancion(cancion);
         if (mP.isPlaying()) {
-            buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+            buttonPlayPausa.setImageResource(R.drawable.ic_pause_circle_outline);
         } else {
-            buttonPlayPausa.setBackgroundResource(R.drawable.ic_play_circle);
+            buttonPlayPausa.setImageResource(R.drawable.ic_play_circle);
         }
     }
 
@@ -285,7 +285,7 @@ public class FragmentReproductor extends Fragment {
             try {
                 mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
                 notificadorReproductorGrande.notificarPlayPausa();
-                buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                buttonPlayPausa.setImageResource(R.drawable.ic_pause_circle_outline);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -302,7 +302,7 @@ public class FragmentReproductor extends Fragment {
             try {
                 mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
                 notificadorReproductorGrande.notificarPlayPausa();
-                buttonPlayPausa.setBackgroundResource(R.drawable.ic_pause_circle_outline);
+                buttonPlayPausa.setImageResource(R.drawable.ic_pause_circle_outline);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -28,8 +28,11 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     private Context context;
     private boolean esDeFavoritos;
 
-    public AdapterCanciones(List<Cancion> listaDeCanciones, FragmentManager fragmentManager,
-                            NotificadorCancionCelda notificadorCancionCelda, Context context, boolean esDeFavoritos) {
+    public AdapterCanciones(List<Cancion> listaDeCanciones,
+                            FragmentManager fragmentManager,
+                            NotificadorCancionCelda notificadorCancionCelda,
+                            Context context, boolean esDeFavoritos) {
+
         this.context = context;
         this.listaDeCanciones = listaDeCanciones;
         this.fragmentManager = fragmentManager;
@@ -38,7 +41,10 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
     }
 
-    public AdapterCanciones(FragmentManager fragmentManager, NotificadorCancionCelda notificadorCancionCelda, Context context, boolean esDeFavoritos) {
+    public AdapterCanciones(FragmentManager fragmentManager,
+                            NotificadorCancionCelda notificadorCancionCelda,
+                            Context context, boolean esDeFavoritos) {
+
         listaDeCanciones = new ArrayList<>();
         this.fragmentManager = fragmentManager;
         this.notificadorCancionCelda = notificadorCancionCelda;

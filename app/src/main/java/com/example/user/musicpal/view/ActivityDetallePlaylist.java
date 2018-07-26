@@ -107,7 +107,8 @@ public class ActivityDetallePlaylist
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_SUBJECT, "Compartir");
-        share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando - " + cancionACompartir.getTitle() + " - " + cancionACompartir.getArtista().getNombre() + " - En MusicPal");
+        share.putExtra(Intent.EXTRA_TEXT, "Estoy Escuchando << " + cancionACompartir.getTitle()
+                + " - " + cancionACompartir.getArtista().getNombre() + " >> En MusicPal");
         startActivity(Intent.createChooser(share, "Compartir en!"));
     }
 }

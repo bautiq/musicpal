@@ -34,7 +34,7 @@ public class FragmentDetallePlaylist
     public static final String PLAYLIST_KEY_PAGER = "playlist_key";
 
     private ImageView imagenGrande;
-    private TextView textArtista;
+    private TextView textNombrePlaylist;
 
     private RecyclerView recyclerViewCanciones;
     private AdapterCanciones adapterCanciones;
@@ -58,7 +58,8 @@ public class FragmentDetallePlaylist
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle_playlist, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa_Playlist);
-        textArtista = view.findViewById(R.id.id_nombre_artista_playlist);
+        textNombrePlaylist = view.findViewById(R.id.id_nombre_artista_playlist);
+        textNombrePlaylist.setSelected(true);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_playlist_id);
 
         Bundle bundle = getArguments();
@@ -83,7 +84,7 @@ public class FragmentDetallePlaylist
 
         adapterCanciones.setListaDeCanciones(playlist.getListCanciones());
         chequearListaCanciones();
-        textArtista.setText("Album: " + playlist.getNombre());
+        textNombrePlaylist.setText(playlist.getNombre());
         Picasso.get()
                 .load(playlist.getImagenPlaylistUrl())
                 .placeholder(R.drawable.placeholder)

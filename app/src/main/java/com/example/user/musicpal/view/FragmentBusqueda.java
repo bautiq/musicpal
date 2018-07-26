@@ -128,7 +128,10 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
 
 
     private void obtenerBusqueda() {
-        controllerGlobalBusqueda.obtenerBusquedaCancionesEditTextPrimerPedido(editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
+        controllerGlobalBusqueda.obtenerBusquedaCancionesEditTextPrimerPedido(
+                editTextBusqueda.getText().toString(),
+                new ResultListener<List<Cancion>>() {
+
             @Override
             public void finish(List<Cancion> resultado) {
                 adapterBusqueda.obtenerCanciones(resultado);
@@ -138,7 +141,8 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
 
     public void agregarCancionesBusqueda() {
         if (controllerGlobalBusqueda.getHayPaginas()) {
-            controllerGlobalBusqueda.obtenerBusquedaCancionesEditText(editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
+            controllerGlobalBusqueda.obtenerBusquedaCancionesEditText(
+                    editTextBusqueda.getText().toString(), new ResultListener<List<Cancion>>() {
                 @Override
                 public void finish(List<Cancion> resultado) {
                     adapterBusqueda.agregarCanciones(resultado);

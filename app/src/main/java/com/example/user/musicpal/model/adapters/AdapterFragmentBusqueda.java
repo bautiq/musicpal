@@ -18,7 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterFragmentBusqueda extends RecyclerView.Adapter {
+public class AdapterFragmentBusqueda
+        extends RecyclerView.Adapter {
 
 
     private List<Cancion> listaDeCanciones;
@@ -27,7 +28,9 @@ public class AdapterFragmentBusqueda extends RecyclerView.Adapter {
     private NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda;
 
 
-    public AdapterFragmentBusqueda(Context context, NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda) {
+    public AdapterFragmentBusqueda(Context context,
+                                   NotificadorSEARCHCancionesCelda notificadorSEARCHCancionesCelda) {
+
         this.notificadorSEARCHCancionesCelda = notificadorSEARCHCancionesCelda;
         this.listaDeCanciones = new ArrayList<>();
         this.context = context;
@@ -99,7 +102,10 @@ public class AdapterFragmentBusqueda extends RecyclerView.Adapter {
                     Cancion cancionAreproducir = listaDeCanciones.get(getAdapterPosition());
                     try {
                         MediaPlayerGlobal mediaPlayerGlobal = MediaPlayerGlobal.getInstance();
-                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones, true, getAdapterPosition());
+                        mediaPlayerGlobal.setearPlaylist(listaDeCanciones,
+                                true,
+                                getAdapterPosition());
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
