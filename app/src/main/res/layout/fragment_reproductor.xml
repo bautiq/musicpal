@@ -60,6 +60,7 @@
             android:layout_height="match_parent"
             android:background="@color/fondoNaranja"
             android:padding="2dp"
+            android:tint="@color/grisBlanco"
             android:src="@drawable/icono_compartir_negro_24dp"
             app:layout_anchor="@id/imagen_reproductor"
             app:layout_anchorGravity="bottom|right" />
@@ -70,6 +71,7 @@
             android:layout_height="match_parent"
             android:background="@color/fondoNaranja"
             android:padding="2dp"
+            android:tint="@color/grisBlanco"
             android:src="@drawable/ic_star_border"
             app:layout_anchor="@id/imagen_reproductor"
             app:layout_anchorGravity="bottom|left" />
@@ -114,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="3dp"
+        android:backgroundTint="@color/grisBlanco"
         android:background="@color/gris" />
 
     <LinearLayout
@@ -128,7 +131,6 @@
             android:id="@+id/button_back_reproductorGrande"
             style="@style/styleBotonesReproductor"
             android:layout_gravity="center"
-            android:background="@drawable/shadow_gris"
             android:src="@drawable/ic_fast_rewind" />
 
         <ImageView
@@ -137,14 +139,12 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_margin="10dp"
-            android:background="@drawable/shadow_gris"
             android:src="@drawable/ic_pause_circle_outline" />
 
         <ImageView
             android:id="@+id/button_forward_reproductorGrande"
             style="@style/styleBotonesReproductor"
             android:layout_gravity="center"
-            android:background="@drawable/shadow_gris"
             android:src="@drawable/ic_fast_forward" />
     </LinearLayout>
 
