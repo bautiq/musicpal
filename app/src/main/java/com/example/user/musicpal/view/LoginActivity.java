@@ -1,10 +1,12 @@
 package com.example.user.musicpal.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -78,6 +80,9 @@ public class LoginActivity
         buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonIngresar.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(buttonIngresar.getWindowToken(), 0);
                 if (emailEdit.getText().toString().isEmpty() || passEdit.getText().toString().isEmpty()) {
                     textViewError.setText("Usted no ingreso nada en el campo de email o contraseña");
                     textViewError.setVisibility(View.VISIBLE);
@@ -87,9 +92,14 @@ public class LoginActivity
             }
         });
 
+
+
         buttonRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonRegistrarse.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(buttonRegistrarse.getWindowToken(), 0);
                 if (emailEdit.getText().toString().isEmpty() || passEdit.getText().toString().isEmpty()) {
                     textViewError.setText("Usted no ingreso nada en el campo de email o contraseña");
                     textViewError.setVisibility(View.VISIBLE);
