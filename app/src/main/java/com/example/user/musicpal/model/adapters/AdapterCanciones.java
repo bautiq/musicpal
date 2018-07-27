@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.musicpal.R;
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,7 +107,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
     }
 
     public void eliminarPorCambioEnlaFDB(Cancion resultado) {
-        if(resultado == null){
+        if (resultado == null) {
             return;
         }
         listaDeCanciones.remove(resultado);
@@ -213,15 +215,19 @@ public class AdapterCanciones extends RecyclerView.Adapter {
             imagenFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(favoriteada){
-                        imagenFav.setBackgroundResource(R.drawable.ic_star_border);
-                        favoriteada = false;
-                    }else{
-                        imagenFav.setBackgroundResource(R.drawable.ic_star);
-                        favoriteada = true;
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                        if (favoriteada) {
+                            imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                            favoriteada = false;
+                        } else {
+                            imagenFav.setBackgroundResource(R.drawable.ic_star);
+                            favoriteada = true;
+                        }
+                        Cancion cancion = listaDeCanciones.get(getAdapterPosition());
+                        notificadorCancionCelda.notificarFavorito(cancion);
+                    }else {
+                        Toast.makeText(context, "logueate y disfruta de tus favoritos!", Toast.LENGTH_SHORT).show();
                     }
-                    Cancion cancion = listaDeCanciones.get(getAdapterPosition());
-                    notificadorCancionCelda.notificarFavorito(cancion);
                 }
             });
 
@@ -229,18 +235,20 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
         public void cargarCancion(Cancion cancion) {
             textViewNombre.setText(cancion.getTitle());
-            controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
-                @Override
-                public void finish(Cancion resultado) {
-                    if (resultado == null){
-                        favoriteada = false;
-                        imagenFav.setBackgroundResource(R.drawable.ic_star_border);
-                    }else{
-                        favoriteada = true;
-                        imagenFav.setBackgroundResource(R.drawable.ic_star);
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
+                    @Override
+                    public void finish(Cancion resultado) {
+                        if (resultado == null) {
+                            favoriteada = false;
+                            imagenFav.setBackgroundResource(R.drawable.ic_star_border);
+                        } else {
+                            favoriteada = true;
+                            imagenFav.setBackgroundResource(R.drawable.ic_star);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
 
@@ -253,6 +261,7 @@ public class AdapterCanciones extends RecyclerView.Adapter {
 
     public interface NotificadorCancionCelda {
         public void notificarCeldaClikeada(Cancion cancion);
+
         public void notificarFavorito(Cancion cancion);
     }
 }
