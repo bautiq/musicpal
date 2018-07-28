@@ -353,7 +353,7 @@ public class FragmentReproductor extends Fragment {
         controllerGlobal.obtenerCancionOnline(new ResultListener<Cancion>() {
             @Override
             public void finish(Cancion resultado) {
-                Picasso.get().load(resultado.getAlbum().getImagenUrl()).into(imagen);
+                Picasso.get().load(resultado.getAlbum().getImagenUrl()).placeholder(R.drawable.placeholder).into(imagen);
                 textViewArtista.setText(resultado.getArtista().getNombre());
                 textViewTitulo.setText(resultado.getTitle());
             }
