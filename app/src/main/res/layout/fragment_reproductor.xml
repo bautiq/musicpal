@@ -52,7 +52,8 @@
             android:layout_margin="15dp"
             app:civ_border_color="@color/grisBlanco"
             app:civ_border_width="2dp"
-            app:civ_shadow_color="@color/gris" />
+            app:civ_shadow_color="@color/gris"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floating_button"
@@ -95,7 +96,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
             android:textSize="16sp"
-            tools:text="Small Text" />
+            tools:text="0:00" />
 
         <TextView
             android:id="@+id/text_tiempo_restante"
@@ -107,7 +108,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/grisBlanco"
             android:textSize="16sp"
-            tools:text="Small Text" />
+            tools:text="0:00" />
     </LinearLayout>
 
     <SeekBar
