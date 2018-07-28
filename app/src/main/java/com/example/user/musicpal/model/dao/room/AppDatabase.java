@@ -11,6 +11,7 @@ import com.example.user.musicpal.model.pojo.Cancion;
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "base_interna_mp";
     private static AppDatabase INSTANCE;
+    public abstract CancionDao cancionDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
