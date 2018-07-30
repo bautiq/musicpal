@@ -2,8 +2,10 @@ package com.example.user.musicpal.model.pojo;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -19,9 +21,11 @@ public class Cancion implements Serializable {
     @SerializedName("preview")
     private String urlPreview;
 
+    @Ignore
     @SerializedName("artist")
     private Artista artista;
 
+    @Ignore
     @SerializedName("album")
     private Album album;
 
@@ -30,6 +34,7 @@ public class Cancion implements Serializable {
     }
 
     @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "id")
     private String id;
 

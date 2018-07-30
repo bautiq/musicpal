@@ -25,8 +25,8 @@ public class CancionDaoUtil {
     public void updateCanciones() {
     }
 
-    public void obtenerCancionPorId(String id, ResultListener<Cancion> resultListener) {
-        ObtenerCancionPorIdTask obtenerCancionPorIdTask = new ObtenerCancionPorIdTask(id, resultListener);
+    public void obtenerCancionPorId(Cancion cancion, ResultListener<Cancion> resultListener) {
+        ObtenerCancionPorIdTask obtenerCancionPorIdTask = new ObtenerCancionPorIdTask(cancion, resultListener);
         obtenerCancionPorIdTask.execute();
     }
 
@@ -37,16 +37,17 @@ public class CancionDaoUtil {
     }
 
     private class ObtenerCancionPorIdTask extends AsyncTask<Void, Void, Cancion> {
-        private String id;
+        private Cancion cancion;
         private ResultListener<Cancion> resultListener;
 
-        public ObtenerCancionPorIdTask(String id, ResultListener<Cancion> listenerController) {
-            this.id = id;
+        public ObtenerCancionPorIdTask(Cancion id, ResultListener<Cancion> listenerController) {
+            cancion = id;
             this.resultListener = listenerController;
         }
 
         @Override
         protected Cancion doInBackground(Void... voids) {
+            String id = cancion.getId();
             return appDatabase.cancionDao().getCancionPorId(id);
         }
 
