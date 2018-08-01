@@ -25,7 +25,7 @@
         android:text="@string/agregar_fav"
         android:textAlignment="center"
         android:textColor="@color/blanco"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:textSize="20sp" />
 
     <ImageView

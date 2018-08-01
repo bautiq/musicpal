@@ -71,7 +71,7 @@ public class FragmentFavorito
         if (adapterCanciones.getListaDeCanciones() == null || adapterCanciones.getListaDeCanciones().size() == 0) {
             textAgregar.setVisibility(View.VISIBLE);
         } else {
-            textAgregar.setVisibility(View.INVISIBLE);
+            textAgregar.setVisibility(View.GONE);
         }
     }
 

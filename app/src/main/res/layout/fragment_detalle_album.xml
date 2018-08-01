@@ -51,12 +51,6 @@
                     android:layout_marginLeft="?attr/actionBarSize"
                     android:layout_marginRight="?attr/actionBarSize" />
 
-                <TextView
-                    android:id="@+id/id_nombre_artista"
-                    style="@style/StyleTextoVistaPrevia"
-                    android:layout_marginLeft="?attr/actionBarSize"
-                    android:layout_marginRight="?attr/actionBarSize" />
-
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>

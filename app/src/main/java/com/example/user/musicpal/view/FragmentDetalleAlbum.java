@@ -62,8 +62,8 @@ public class FragmentDetalleAlbum
 
         View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
-        textArtista = view.findViewById(R.id.id_nombre_artista);
-        textArtista.setSelected(true);
+       // textArtista = view.findViewById(R.id.id_nombre_artista);
+       // textArtista.setSelected(true);
         textAlbum = view.findViewById(R.id.id_nombre_album);
         textAlbum.setSelected(true);
         recyclerViewCanciones = view.findViewById(R.id.recycler_canciones_id);
@@ -90,7 +90,7 @@ public class FragmentDetalleAlbum
         adapterCanciones.setListaDeCanciones(album.getListaCanciones());
         chequearListaCanciones();
 
-        textArtista.setText(album.getArtista().getNombre());
+      //  textArtista.setText(album.getArtista().getNombre());
         textAlbum.setText(album.getTitulo());
         Picasso.get()
                 .load(album.getImagenUrl())
