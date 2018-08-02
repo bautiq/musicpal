@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.controller.RoomControllerAlbum;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.adapters.AdapterArtista;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
@@ -177,10 +178,23 @@ public class FragmentPantallaInicio
 
 
     private void obtenerAlbumes() {
+        final RoomControllerAlbum roomControllerAlbum = new RoomControllerAlbum(getContext());
         controllerAlbum.obtenerAlbumesOnline(new ResultListener<List<Album>>() {
             @Override
             public void finish(List<Album> resultado) {
-                adapterAlbum.agregarAlbumes(resultado);
+                if(resultado != null){
+                    adapterAlbum.agregarAlbumes(resultado);
+                    roomControllerAlbum.insertarAlbumes(resultado);
+                }else{
+                    roomControllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
+                        @Override
+                        public void finish(List<Album> resultado) {
+                            if(resultado != null){
+                                adapterAlbum.agregarAlbumes(resultado);
+                            }
+                        }
+                    });
+                }
             }
         });
     }

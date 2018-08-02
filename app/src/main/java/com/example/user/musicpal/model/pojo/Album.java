@@ -1,27 +1,45 @@
 package com.example.user.musicpal.model.pojo;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
+import com.example.user.musicpal.model.dao.room.ArtistaConverter;
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Album implements Serializable {
 
+    @ColumnInfo(name = "titulo")
     @SerializedName("title")
     private String titulo;
 
+    @TypeConverters(ArtistaConverter.class)
+    @Embedded
     @SerializedName("artist")
     private Artista artista;
 
+    @ColumnInfo(name = "cover_medium")
     @SerializedName("cover_medium")
     private String ImagenUrl;
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id_album")
     private String id;
 
+    @Ignore
     private List<Cancion> listaCanciones;
 
     public Album(String titulo, Artista artista, String imagenUrl) {
@@ -35,7 +53,15 @@ public class Album implements Serializable {
         this.ImagenUrl = imagenUrl;
     }
 
-    public Album(){
+    public Album() {
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        ImagenUrl = imagenUrl;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
     }
 
     public void setListaCanciones(List<Cancion> listaCanciones) {

@@ -5,13 +5,15 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
 
-@Database(entities = {Cancion.class}, version = 1)
+@Database(entities = {Cancion.class, Album.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "base_interna_mp";
     private static AppDatabase INSTANCE;
     public abstract CancionDao cancionDao();
+    public abstract AlbumDao albumDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
