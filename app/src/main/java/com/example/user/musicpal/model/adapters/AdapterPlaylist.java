@@ -104,7 +104,7 @@ public class AdapterPlaylist extends RecyclerView.Adapter {
             textViewNombre.setText(playlist.getNombre());
             Picasso.get()
                     .load(playlist.getImagenPlaylistUrl())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.placemusic3)
                     .into(imageView);
         }
     }

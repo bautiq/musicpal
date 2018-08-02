@@ -88,7 +88,6 @@ public class FragmentDetallePlaylist
         textNombrePlaylist.setText(playlist.getNombre());
         Picasso.get()
                 .load(playlist.getImagenPlaylistUrl())
-                .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
 
         return view;

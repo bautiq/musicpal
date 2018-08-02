@@ -88,7 +88,7 @@ public class AdapterArtista extends RecyclerView.Adapter {
             textViewNombre.setText(artista.getNombre());
             Picasso.get()
                     .load(artista.getImagenUrl())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.placemusic4)
                     .into(imagen);
         }
     }

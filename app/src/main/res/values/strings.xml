@@ -18,15 +18,15 @@
     <string name="tracksTop">Top Tracks</string>
     <string name="facebook_app_id">484533575333851</string>
     <string name="fb_login_protocol_scheme">fb484533575333851</string>
-    <string name="loguin_mensaje">¡Bienvenido, Ingrese o registrese para continuar!</string>
+    <string name="loguin_mensaje">¡Bienvenido, Ingrese o Registrese para continuar!</string>
     <string name="cerrarSesion">cerrar sesion</string>
     <string name="Usuario_Desconocido">Usuario desconocido</string>
     <string name="iniciar_sesion">iniciar sesion</string>
     <string name="desarrollado_por">Desarrollado por: </string>
     <string name="About_us">About us</string>
-    <string name="agregar_fav">Agrega canciones a tu lista de favoritos! Podes hacerlo con la estrellita, que aparece al lado de
+    <string name="agregar_fav">Agrega canciones a tu lista de FAVORITOS! Podes hacerlo con la estrellita, que aparece al lado de
     cada cancion</string>
-    <string name="prompt_login">Para utilizar la funcion de favoritos debe loguearse!</string>
+    <string name="prompt_login">Para utilizar la funcion de FAVORITOS debe loguearse!</string>
 
 
 </resources>

@@ -59,7 +59,7 @@ public class FragmentPantallaInicio
     private ControllerGlobal controllerArtista;
     private ControllerGlobal controllerTopCancion;
 
-    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
+    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 8;
     private NavBarUIupdater navBarUIupdater;
 
     @Override

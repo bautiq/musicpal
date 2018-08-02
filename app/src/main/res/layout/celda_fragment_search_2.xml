@@ -19,6 +19,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
+            android:src="@drawable/placemusic2"
             android:layout_marginRight="25dp"
             app:civ_border_color="@color/grisBlanco"
             app:civ_border_width="2dp"

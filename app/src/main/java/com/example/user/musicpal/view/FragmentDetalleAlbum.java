@@ -94,7 +94,6 @@ public class FragmentDetalleAlbum
         textAlbum.setText(album.getTitulo());
         Picasso.get()
                 .load(album.getImagenUrl())
-                .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
 
         return view;
@@ -114,7 +113,6 @@ public class FragmentDetalleAlbum
     @Override
     public void notificarFavorito(Cancion cancion) {
         controller.pushearOeliminarCancion(cancion);
-
     }
 
     public interface NotificadorCancion {

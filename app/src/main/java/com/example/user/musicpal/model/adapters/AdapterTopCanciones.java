@@ -97,7 +97,7 @@ public class AdapterTopCanciones extends RecyclerView.Adapter {
             textArtista.setText(cancion.getArtista().getNombre());
             Picasso.get()
                     .load(cancion.getArtista().getImagenUrl())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.placemusic2)
                     .into(imagen);
         }
     }

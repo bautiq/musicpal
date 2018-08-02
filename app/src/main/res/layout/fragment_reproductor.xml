@@ -50,6 +50,7 @@
             android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_margin="15dp"
+            android:src="@drawable/placemusic2"
             app:civ_border_color="@color/grisBlanco"
             app:civ_border_width="2dp"
             app:civ_shadow_color="@color/gris" />

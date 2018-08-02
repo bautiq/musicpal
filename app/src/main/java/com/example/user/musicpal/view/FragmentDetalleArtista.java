@@ -89,7 +89,6 @@ public class FragmentDetalleArtista
         textArtista.setText(artista.getNombre());
         Picasso.get()
                 .load(artista.getImagenUrl())
-                .placeholder(R.drawable.placeholder)
                 .into(imagenGrande);
 
         return view;
@@ -108,7 +107,7 @@ public class FragmentDetalleArtista
 
     @Override
     public void notificarFavorito(Cancion cancion) {
-controllerCancion.pushearOeliminarCancion(cancion);
+        controllerCancion.pushearOeliminarCancion(cancion);
     }
 
     public void chequearListaCanciones() {
@@ -116,7 +115,8 @@ controllerCancion.pushearOeliminarCancion(cancion);
             obtenerCancionesPorArtista(artista);
         }
     }
-//pedido a api de lista<canciones> para recycler Top Artistas
+
+    //pedido a api de lista<canciones> para recycler Top Artistas
     private void obtenerCancionesPorArtista(final Artista artista) {
         controllerCancion.obtenerCancionesPorArtista(new ResultListener<List<Cancion>>() {
             @Override
@@ -125,6 +125,7 @@ controllerCancion.pushearOeliminarCancion(cancion);
             }
         }, artista.getId());
     }
+
     public interface NotificadorCancion {
         public void notificarCancion(Cancion cancion, Artista artista);
     }

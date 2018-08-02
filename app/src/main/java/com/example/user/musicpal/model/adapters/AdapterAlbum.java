@@ -104,7 +104,7 @@ public class AdapterAlbum extends RecyclerView.Adapter {
         }
 
         public void cargarAlbum(Album album) {
-            Picasso.get().load(album.getImagenUrl()).placeholder(R.drawable.placeholder).into(imagenAlbum);
+            Picasso.get().load(album.getImagenUrl()).placeholder(R.drawable.placealbum).into(imagenAlbum);
             textViewNombreAlbum.setText(album.getTitulo());
             textViewNombreArtista.setText(album.getArtista().getNombre());
         }

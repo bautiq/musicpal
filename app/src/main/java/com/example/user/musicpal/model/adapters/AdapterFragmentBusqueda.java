@@ -120,11 +120,11 @@ public class AdapterFragmentBusqueda
             textViewAlbum.setText((cancion.getAlbum().getTitulo()));
             Picasso.get()
                     .load(cancion.getArtista().getImagenUrl())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.placemusic2)
                     .into(imagenArtista);
             Picasso.get()
                     .load(cancion.getAlbum().getImagenUrl())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.placemusic2)
                     .into(imagenAlbum);
         }
     }

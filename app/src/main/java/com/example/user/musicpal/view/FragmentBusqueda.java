@@ -38,9 +38,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
     private NotificadorAActivityInicioDesdeFragmentBusqueda notificadorAActivityInicioDesdeFragmentBusqueda;
 
     private EditText editTextBusqueda;
-
     private ImageView imagenLupaSearch;
-
 
     private RecyclerView recyclerViewBusqueda;
     private LinearLayoutManager linearLayoutManagerBusqueda;
@@ -51,7 +49,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
     private FragmentDetalleAlbum.NotificadorCancion notificadorCancion;
 
     private Boolean isLoading;
-    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 3;
+    private static final int CANTIDAD_ELEMENTOS_PARA_NUEVO_PEDIDO = 8;
 
 
     @Override
@@ -59,7 +57,8 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
                              Bundle savedInstanceState) {
         // Inflate the layout for this frag ment
         View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
-        editTextBusqueda = view.findViewById(R.id.edit_text_busqueda);;
+        editTextBusqueda = view.findViewById(R.id.edit_text_busqueda);
+        ;
         imagenLupaSearch = view.findViewById(R.id.imagen_search_fragment_busqueda);
         isLoading = false;
         adapterBusqueda = new AdapterFragmentBusqueda(getActivity(), this);
@@ -92,9 +91,7 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
-
-
-       //metodo para iniciar busqueda desde la tecla enter:
+        //metodo para iniciar busqueda desde la tecla enter:
         editTextBusqueda.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -118,11 +115,8 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
                 editTextBusqueda.requestFocus();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(editTextBusqueda.getWindowToken(), 0);
-
             }
         });
-
-
         return view;
     }
 
@@ -134,7 +128,6 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
     }
-
 
     private void obtenerBusqueda() {
         controllerGlobalBusqueda.obtenerBusquedaCancionesEditTextPrimerPedido(
@@ -161,7 +154,6 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
         }
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -170,12 +162,10 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
 
     @Override
     public void notificarCeldaClickeadaDeCancion(Cancion cancion) {
-
         notificadorAActivityInicioDesdeFragmentBusqueda.notificarCancion(cancion);
     }
 
     public interface NotificadorAActivityInicioDesdeFragmentBusqueda {
-
         public void notificarCancion(Cancion cancion);
     }
 }
