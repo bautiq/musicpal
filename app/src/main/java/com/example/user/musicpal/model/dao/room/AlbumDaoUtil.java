@@ -23,7 +23,7 @@ public class AlbumDaoUtil {
         insertarListaAlbumsTask.execute();
     }
 
-    public void obtenerListaAlbumes(final ResultListener<List<Album>> resultListenerController){
+    public void obtenerListaAlbumes(final ResultListener<List<Album>> resultListenerController) {
         ObtenerListaAlbumsTask obtenerListaAlbumsTask = new ObtenerListaAlbumsTask(resultListenerController);
         obtenerListaAlbumsTask.execute();
     }
@@ -57,11 +57,16 @@ public class AlbumDaoUtil {
         @Override
         protected Void doInBackground(Void... voids) {
             List<Album> albums = appDatabase.albumDao().getListaAlbumes();
-            if(albums == null || albums.size() == 0){
-                appDatabase.albumDao().insertarListaAlbumes(albumList);
-            }else{
-                appDatabase.albumDao().updateListaAlbumes(albumList);
+            //este if es para que si la lista viene vacia, que no borre lo que tiene guardado
+            if (albumList != null || albumList.size() > 0) {
+                if (albums == null || albums.size() == 0) {
+                    appDatabase.albumDao().insertarListaAlbumes(albumList);
+                } else {
+                    appDatabase.albumDao().eliminarAlbumes();
+                    appDatabase.albumDao().insertarListaAlbumes(albumList);
+                }
             }
+
             return null;
         }
     }

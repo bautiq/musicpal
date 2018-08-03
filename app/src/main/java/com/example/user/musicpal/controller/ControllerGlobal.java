@@ -74,6 +74,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
     }
 
@@ -100,6 +102,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
     }
 
@@ -125,6 +129,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
 
     }

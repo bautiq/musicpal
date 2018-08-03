@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import com.example.user.musicpal.model.pojo.Cancion;
 import com.example.user.musicpal.utils.ResultListener;
 
+import java.util.List;
+
 public class CancionDaoUtil {
     private Context context;
     private AppDatabase appDatabase;
@@ -16,10 +18,14 @@ public class CancionDaoUtil {
     }
 
 
-    public void insertarCanciones() {
+    public void insertarCanciones(List<Cancion> list) {
+        InsertarListaCancionesTask insertarListaCancionesTask = new InsertarListaCancionesTask(list);
+        insertarListaCancionesTask.execute();
     }
 
-    public void obtenerTodasLasCanciones() {
+    public void obtenerTodasLasCanciones(ResultListener<List<Cancion>> resultListener) {
+        ObtenerTodasLasCancionesTask obtenerTodasLasCancionesTask = new ObtenerTodasLasCancionesTask(resultListener);
+        obtenerTodasLasCancionesTask.execute();
     }
 
     public void updateCanciones() {
@@ -30,11 +36,12 @@ public class CancionDaoUtil {
         obtenerCancionPorIdTask.execute();
     }
 
-    public void insertarCancion(Cancion cancion, ResultListener<Long> resultListener) {
-        InsertarCancionTask insertarCancionTask = new InsertarCancionTask(cancion,resultListener);
+    public void insertarCancion(Cancion cancion) {
+        InsertarCancionTask insertarCancionTask = new InsertarCancionTask(cancion);
         insertarCancionTask.execute();
 
     }
+
 
     private class ObtenerCancionPorIdTask extends AsyncTask<Void, Void, Cancion> {
         private Cancion cancion;
@@ -58,23 +65,61 @@ public class CancionDaoUtil {
         }
     }
 
-    private class InsertarCancionTask extends AsyncTask<Void, Void, Long> {
+    private class InsertarCancionTask extends AsyncTask<Void, Void, Void> {
         private Cancion cancion;
-        private ResultListener<Long> resultListener;
 
-        public InsertarCancionTask(Cancion cancion, ResultListener<Long> resultListener) {
+
+        public InsertarCancionTask(Cancion cancion) {
             this.cancion = cancion;
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            appDatabase.cancionDao().insertarCancion(cancion);
+            return null;
+        }
+
+
+    }
+
+    private class InsertarListaCancionesTask extends AsyncTask<Void, Void, Void> {
+        private List<Cancion> lista;
+
+        public InsertarListaCancionesTask(List<Cancion> cancionList) {
+            this.lista = cancionList;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            List<Cancion> cancionesDB = appDatabase.cancionDao().getTodasLasCanciones();
+            if (lista != null && lista.size() > 0) {
+                if (cancionesDB == null || cancionesDB.size() == 0) {
+                    appDatabase.cancionDao().insertarCanciones(lista);
+                } else {
+                    appDatabase.cancionDao().eliminarTodasLasCanciones();
+                    appDatabase.cancionDao().insertarCanciones(lista);
+                }
+            }
+            return null;
+        }
+    }
+
+    private class ObtenerTodasLasCancionesTask  extends AsyncTask<Void, Void, List<Cancion>>{
+        private ResultListener<List<Cancion>> resultListener;
+        public ObtenerTodasLasCancionesTask(ResultListener<List<Cancion>> resultListener) {
             this.resultListener = resultListener;
         }
 
+
         @Override
-        protected Long doInBackground(Void... voids) {
-            return appDatabase.cancionDao().insertarCancion(cancion);
+        protected List<Cancion> doInBackground(Void... voids) {
+            return appDatabase.cancionDao().getTodasLasCanciones();
         }
 
         @Override
-        protected void onPostExecute(Long aLong) {
-            resultListener.finish(aLong);
+        protected void onPostExecute(List<Cancion> cancionList) {
+            resultListener.finish(cancionList);
         }
     }
 }

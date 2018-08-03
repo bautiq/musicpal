@@ -21,9 +21,12 @@ public interface CancionDao {
     @Query("select * from cancion where id = :id")
     Cancion getCancionPorId(String id);
 
-    @Insert(onConflict = FAIL)
-    Long insertarCancion(Cancion cancion);
+    @Query("delete from cancion")
+    void eliminarTodasLasCanciones();
 
-    @Insert
-    Long[] insertarCanciones(List<Cancion> cancionList);
+    @Insert(onConflict = FAIL)
+    void insertarCancion(Cancion cancion);
+
+    @Insert(onConflict = FAIL)
+    void insertarCanciones(List<Cancion> cancionList);
 }

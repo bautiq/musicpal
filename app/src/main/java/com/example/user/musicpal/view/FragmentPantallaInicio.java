@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.RoomControllerAlbum;
+import com.example.user.musicpal.controller.RoomControllerArtista;
+import com.example.user.musicpal.controller.RoomControllerCancion;
+import com.example.user.musicpal.controller.RoomControllerPlaylist;
 import com.example.user.musicpal.model.adapters.AdapterAlbum;
 import com.example.user.musicpal.model.adapters.AdapterArtista;
 import com.example.user.musicpal.model.adapters.AdapterPlaylist;
@@ -182,14 +185,14 @@ public class FragmentPantallaInicio
         controllerAlbum.obtenerAlbumesOnline(new ResultListener<List<Album>>() {
             @Override
             public void finish(List<Album> resultado) {
-                if(resultado != null){
+                if (resultado != null) {
                     adapterAlbum.agregarAlbumes(resultado);
                     roomControllerAlbum.insertarAlbumes(resultado);
-                }else{
+                } else {
                     roomControllerAlbum.obtenerAlbumes(new ResultListener<List<Album>>() {
                         @Override
                         public void finish(List<Album> resultado) {
-                            if(resultado != null){
+                            if (resultado != null) {
                                 adapterAlbum.agregarAlbumes(resultado);
                             }
                         }
@@ -198,31 +201,73 @@ public class FragmentPantallaInicio
             }
         });
     }
-///pido a la api la lista de artistas para el recycler del fragment Pantalla inicio
+
+    ///pido a la api la lista de artistas para el recycler del fragment Pantalla inicio
     private void obtenerArtistas() {
+        final RoomControllerArtista roomControllerArtista = new RoomControllerArtista(getContext());
         controllerArtista.obtenerArtistasOnline(new ResultListener<List<Artista>>() {
             @Override
             public void finish(List<Artista> resultado) {
-                adapterArtista.agregarArtistas(resultado);
+                if (resultado != null) {
+                    adapterArtista.agregarArtistas(resultado);
+                    roomControllerArtista.insertarArtistas(resultado);
+                } else {
+                    roomControllerArtista.obtenerArtistas(new ResultListener<List<Artista>>() {
+                        @Override
+                        public void finish(List<Artista> resultado) {
+                            if (resultado != null) {
+                                adapterArtista.agregarArtistas(resultado);
+                            }
+                        }
+                    });
+                }
             }
         });
     }
 
     private void obtenerPlaylists() {
+        final RoomControllerPlaylist roomControllerPlaylist = new RoomControllerPlaylist(getContext());
         controllerPlaylist.obtenerPlaylistOnline(new ResultListener<List<Playlist>>() {
             @Override
             public void finish(List<Playlist> resultado) {
+                if(resultado != null){
+                    adapterPlaylist.agregarListaPlaylists(resultado);
+                    roomControllerPlaylist.insertarPlaylists(resultado);
+                }else{
+                    roomControllerPlaylist.obtenerPlaylists(new ResultListener<List<Playlist>>() {
+                        @Override
+                        public void finish(List<Playlist> resultado) {
+                            if(resultado != null){
+                                adapterPlaylist.agregarListaPlaylists(resultado);
+                            }
 
-                adapterPlaylist.agregarListaPlaylists(resultado);
+                        }
+                    });
+                }
+
+
             }
         });
     }
 
     private void obtenerCancionesTop() {
+        final RoomControllerCancion roomControllerCancion = new RoomControllerCancion(getContext());
         controllerTopCancion.obtenerCancionesTopOnline(new ResultListener<List<Cancion>>() {
             @Override
             public void finish(List<Cancion> resultado) {
-                adapterTopCanciones.agregarCanciones(resultado);
+                if (resultado != null) {
+                    adapterTopCanciones.agregarCanciones(resultado);
+                    roomControllerCancion.insertarCanciones(resultado);
+                }else{
+                    roomControllerCancion.obtenerCanciones(new ResultListener<List<Cancion>>() {
+                        @Override
+                        public void finish(List<Cancion> resultado) {
+                            if(resultado != null){
+                                adapterTopCanciones.agregarCanciones(resultado);
+                            }
+                        }
+                    });
+                }
             }
         });
     }
@@ -262,7 +307,8 @@ public class FragmentPantallaInicio
     public void notificarCeldaCliqueadaPlaylist(List<Playlist> playlists, int posicion) {
         notificadorActivities.notificarPlaylist(playlists, posicion);
     }
-////notificar celda clickeada de la lista de albumes del adapterTopCanciones  del recycler AlbumesTop
+
+    ////notificar celda clickeada de la lista de albumes del adapterTopCanciones  del recycler AlbumesTop
     @Override
     public void notificarCeldaClickeadaDeCancion(Cancion cancion) {
         //este es el notificador de canciones top

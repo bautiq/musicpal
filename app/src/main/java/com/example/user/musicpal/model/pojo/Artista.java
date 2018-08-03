@@ -34,7 +34,7 @@ public class Artista implements Serializable {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "id_artista")
     private String id;
 
     public Artista(){

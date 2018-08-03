@@ -18,6 +18,6 @@ public interface AlbumDao {
     @Insert
     void insertarListaAlbumes(List<Album> albumList);
 
-    @Update
-    void updateListaAlbumes(List<Album> albumList);
+    @Query("delete from album")
+    void eliminarAlbumes();
 }

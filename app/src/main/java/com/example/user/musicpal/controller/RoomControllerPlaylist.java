@@ -4,36 +4,32 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.example.user.musicpal.model.dao.room.ArtistaDaoUtil;
-import com.example.user.musicpal.model.pojo.Artista;
+import com.example.user.musicpal.model.dao.room.PlaylistDaoUtil;
+import com.example.user.musicpal.model.pojo.Playlist;
 import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
-public class RoomControllerArtista {
+public class RoomControllerPlaylist {
     private Context context;
-    private ArtistaDaoUtil artistaDaoUtil;
-
-    public RoomControllerArtista(Context context) {
+private PlaylistDaoUtil playlistDaoUtil;
+    public RoomControllerPlaylist(Context context) {
         this.context = context;
-        artistaDaoUtil = new ArtistaDaoUtil(context);
+        playlistDaoUtil = new PlaylistDaoUtil(context);
     }
 
-    public void insertarArtistas(List<Artista> artistas) {
-        if (hayInternet() && artistas != null && artistas.size() > 0) {
-            artistaDaoUtil.insertarArtistas(artistas);
-        }
+    public void insertarPlaylists(List<Playlist> playlistList){
+        playlistDaoUtil.insertarPlaylists(playlistList);
     }
-
-    public void obtenerArtistas(final ResultListener<List<Artista>> resultListenerVista) {
-        if (!(hayInternet())) {
-            artistaDaoUtil.obtenerArtistas(new ResultListener<List<Artista>>() {
+    public void obtenerPlaylists(final ResultListener<List<Playlist>> resultListenerVista){
+        if (!(hayInternet())){
+            playlistDaoUtil.obtenerPlaylists(new ResultListener<List<Playlist>>() {
                 @Override
-                public void finish(List<Artista> resultado) {
+                public void finish(List<Playlist> resultado) {
                     resultListenerVista.finish(resultado);
                 }
             });
-        } else {
+        }else{
             resultListenerVista.finish(null);
         }
 

@@ -4,9 +4,13 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
+import com.example.user.musicpal.model.dao.room.AlbumConverter;
+import com.example.user.musicpal.model.dao.room.ArtistaConverter;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -21,11 +25,11 @@ public class Cancion implements Serializable {
     @SerializedName("preview")
     private String urlPreview;
 
-    @Ignore
+    @TypeConverters(ArtistaConverter.class)
     @SerializedName("artist")
     private Artista artista;
 
-    @Ignore
+    @TypeConverters(AlbumConverter.class)
     @SerializedName("album")
     private Album album;
 
@@ -57,7 +61,7 @@ public class Cancion implements Serializable {
         this.urlPreview = urlPreview;
         this.artista = artista;
         this.album = album;
-        this.id=id;
+        this.id = id;
     }
 
     public Cancion() {
@@ -102,6 +106,6 @@ public class Cancion implements Serializable {
             return false;
         }
         Cancion cancionAComparar = (Cancion) obj;
-        return cancionAComparar.getId().equals(this.id) ;
+        return cancionAComparar.getId().equals(this.id);
     }
 }
