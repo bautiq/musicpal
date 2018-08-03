@@ -19,14 +19,19 @@
 
     <TextView
         android:id="@+id/text_favoritos_fragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="12dp"
+        android:fontFamily="serif"
+        android:letterSpacing="0.125"
+        android:lineSpacingExtra="5dp"
+        android:padding="6dp"
         android:text="@string/agregar_fav"
         android:textAlignment="center"
         android:textColor="@color/blanco"
-        android:visibility="gone"
-        android:textSize="20sp" />
+        android:textSize="22sp"
+        android:textStyle="italic"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="match_parent"

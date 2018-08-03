@@ -155,7 +155,7 @@ public class FragmentReproductor extends Fragment {
         floatingFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (chequearSiEstaLogueado()){
+                if (chequearSiEstaLogueado()) {
                     if (cancionFavoriteada) {
                         floatingFav.setImageResource(R.drawable.ic_star_border);
                         cancionFavoriteada = false;
@@ -176,7 +176,7 @@ public class FragmentReproductor extends Fragment {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             abrirPromptDialog();
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -270,7 +270,7 @@ public class FragmentReproductor extends Fragment {
     }
 
     public void updateFav(Cancion cancion) {
-        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             return;
         }
         controllerGlobal.obtenerFavPorID(cancion, new ResultListener<Cancion>() {
@@ -372,6 +372,7 @@ public class FragmentReproductor extends Fragment {
             Cancion cancionSiguiente = playList.get(posicionNueva[0]);
             cancionQueContiene = cancionSiguiente;
             setearDatos(cancionQueContiene);
+            updateFav(cancionQueContiene);
             try {
                 mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
                 notificadorReproductorGrande.notificarPlayPausa();
@@ -389,6 +390,7 @@ public class FragmentReproductor extends Fragment {
             Cancion cancionSiguiente = playList.get(posicionNueva[0]);
             cancionQueContiene = cancionSiguiente;
             setearDatos(cancionQueContiene);
+            updateFav(cancionQueContiene);
             try {
                 mediaPlayerGlobal.setearPlaylist(playList, true, posicionPlaylist);
                 notificadorReproductorGrande.notificarPlayPausa();
