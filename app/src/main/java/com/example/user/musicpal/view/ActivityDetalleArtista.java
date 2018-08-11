@@ -12,6 +12,8 @@ import com.example.user.musicpal.controller.ControllerGlobal;
 import com.example.user.musicpal.controller.MediaPlayerGlobal;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.DepthPageTransformer;
+import com.example.user.musicpal.utils.FadeTransformer;
 import com.example.user.musicpal.utils.FragmentHelper;
 
 import java.util.ArrayList;
@@ -63,6 +65,8 @@ public class ActivityDetalleArtista
                 listaFragments);
 
         viewPager.setAdapter(fragDetalleArtistaPAdapter);
+        viewPager.setPageTransformer(true, new FadeTransformer());
+
         int posicionDelItem = bundle.getInt(POSICION_KEY_ARTISTA);
         viewPager.setCurrentItem(posicionDelItem);
     }
