@@ -20,15 +20,14 @@ import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-
-public class MediaPlayerGlobal {
+public class MediaPlayerGlobal implements MediaPlayer.OnPreparedListener {
     private static MediaPlayerGlobal mediaPlayerGlobal;
     private MediaPlayer mediaPlayer;
     private Cancion cancion;
     private List<Cancion> playList;
     private Integer posicionPlaylist;
     private NotificadorQueTermino notificadorQueTermino;
-    private RoomControllerCancion roomControllerCancion;
+    private Boolean quieroQueInicie;
 
     private MediaPlayerGlobal() {
         posicionPlaylist = 0;
@@ -51,6 +50,7 @@ public class MediaPlayerGlobal {
         });*/
 
         mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnPreparedListener(this);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         notificadorQueTermino = new NotificadorQueTermino() {
             @Override
@@ -83,17 +83,15 @@ public class MediaPlayerGlobal {
 
     public void setearPlaylist(List<Cancion> playListAReproducir, Boolean quieroQueInicie,
                                final Integer posicion) throws IOException {
-
+        this.quieroQueInicie = quieroQueInicie;
         final Integer[] posicionNueva = {posicion};
         this.cancion = playListAReproducir.get(posicion);
         this.playList = playListAReproducir;
         posicionPlaylist = posicion;
         mediaPlayer.reset();
         mediaPlayer.setDataSource(cancion.getUrlPreview());
-        mediaPlayer.prepare();
-        if (quieroQueInicie) {
-            mediaPlayer.start();
-        }
+        mediaPlayer.prepareAsync();
+
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -106,8 +104,7 @@ public class MediaPlayerGlobal {
                         mediaPlayer.reset();
                         notificadorQueTermino.cambioCancion();
                         mediaPlayer.setDataSource(cancionSiguiente.getUrlPreview());
-                        mediaPlayer.prepare();
-                        mediaPlayer.start();
+                        mediaPlayer.prepareAsync();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -131,6 +128,15 @@ public class MediaPlayerGlobal {
     public void setCancion(Cancion cancion) {
         this.cancion = cancion;
     }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        if (quieroQueInicie) {
+            mediaPlayer.start();
+        }
+
+    }
+
 
     public interface NotificadorQueTermino {
         public void cambioCancion();
