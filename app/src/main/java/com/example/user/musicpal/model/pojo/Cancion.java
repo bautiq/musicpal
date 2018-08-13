@@ -1,23 +1,35 @@
 package com.example.user.musicpal.model.pojo;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
+import com.example.user.musicpal.model.dao.room.AlbumConverter;
+import com.example.user.musicpal.model.dao.room.ArtistaConverter;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
+@Entity
 public class Cancion implements Serializable {
 
+    @ColumnInfo(name = "title")
     private String title;
 
     @SerializedName("preview")
     private String urlPreview;
 
+    @TypeConverters(ArtistaConverter.class)
     @SerializedName("artist")
     private Artista artista;
 
+    @TypeConverters(AlbumConverter.class)
     @SerializedName("album")
     private Album album;
 
@@ -25,6 +37,9 @@ public class Cancion implements Serializable {
         return album;
     }
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
     private String id;
 
     private String idFirebase;
@@ -46,7 +61,7 @@ public class Cancion implements Serializable {
         this.urlPreview = urlPreview;
         this.artista = artista;
         this.album = album;
-        this.id=id;
+        this.id = id;
     }
 
     public Cancion() {
@@ -91,6 +106,6 @@ public class Cancion implements Serializable {
             return false;
         }
         Cancion cancionAComparar = (Cancion) obj;
-        return cancionAComparar.getId().equals(this.id) ;
+        return cancionAComparar.getId().equals(this.id);
     }
 }

@@ -1,16 +1,24 @@
 package com.example.user.musicpal.controller;
 
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Artista;
 import com.example.user.musicpal.model.pojo.Cancion;
+import com.example.user.musicpal.utils.ResultListener;
 import com.example.user.musicpal.view.FragmentReproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class MediaPlayerGlobal {
@@ -20,6 +28,7 @@ public class MediaPlayerGlobal {
     private List<Cancion> playList;
     private Integer posicionPlaylist;
     private NotificadorQueTermino notificadorQueTermino;
+    private RoomControllerCancion roomControllerCancion;
 
     private MediaPlayerGlobal() {
         posicionPlaylist = 0;
@@ -30,22 +39,35 @@ public class MediaPlayerGlobal {
                 artista, new Album("Living things",
                 artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"),
                 "37734401");
-        playList = new ArrayList<>();
-        playList.add(cancion);
+        roomControllerCancion = new RoomControllerCancion(getApplicationContext());
+      /*  roomControllerCancion.InsertarUobtenerCancionPorId(cancion, new ResultListener<Cancion>() {
+            @Override
+            public void finish(Cancion resultado) {
+                cancion = resultado;
+                crearPlaylistConLaCancion();
+
+
+            }
+        });*/
+
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-        try {
-            setearPlaylist(playList, false, 0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         notificadorQueTermino = new NotificadorQueTermino() {
             @Override
             public void cambioCancion() {
                 //esto esta solo para que no de null
             }
         };
+    }
+
+    private void crearPlaylistConLaCancion() {
+        playList = new ArrayList<>();
+        playList.add(cancion);
+        try {
+            setearPlaylist(playList, false, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static MediaPlayerGlobal getInstance() {
