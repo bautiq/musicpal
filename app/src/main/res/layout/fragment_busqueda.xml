@@ -3,9 +3,9 @@
     android:id="@+id/id_relative_busqueda"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_negro_con_trama"
     android:orientation="vertical"
-    tools:context="com.example.user.musicpal.view.FragmentBusqueda"
-    android:background="@drawable/fondo_negro_con_trama">
+    tools:context="com.example.user.musicpal.view.FragmentBusqueda">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,47 +14,42 @@
 
         <EditText
             android:id="@+id/edit_text_busqueda"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_weight="9"
             android:hint="Escribe para buscar"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/blanco"
-            android:textColorHint="@color/blanco"
-            android:layout_weight="9" />
+            android:textColorHint="@color/blanco" />
 
         <ImageView
             android:id="@+id/imagen_search_fragment_busqueda"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/icono_search_blanco_24dp"
-            />
+            android:src="@drawable/icono_search_blanco_24dp" />
 
     </LinearLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/container_fragment_Search"
+    <RelativeLayout
+        android:id="@+id/container_fragment_Search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/id_recycler_busqueda"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
+        </android.support.v7.widget.RecyclerView>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/id_recycler_busqueda"
-                android:layout_centerInParent="true">
-
-
-            </android.support.v7.widget.RecyclerView>
-
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </LinearLayout>

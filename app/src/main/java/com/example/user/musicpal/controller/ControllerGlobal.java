@@ -2,6 +2,8 @@ package com.example.user.musicpal.controller;
 
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.example.user.musicpal.model.dao.ArtistaDao;
 import com.example.user.musicpal.model.dao.DaoAlbum;
@@ -15,7 +17,7 @@ import com.example.user.musicpal.utils.ResultListener;
 
 import java.util.List;
 
-public class ControllerGlobal {
+public class    ControllerGlobal {
     private Context context;
     private Integer offset;
     private Boolean hayPaginas;
@@ -44,6 +46,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
     }
 
@@ -70,6 +74,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
     }
 
@@ -96,6 +102,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
     }
 
@@ -121,6 +129,8 @@ public class ControllerGlobal {
                     resultListenerDeLaVista.finish(resultado);
                 }
             }, offset, LIST_SIZE);
+        }else{
+            resultListenerDeLaVista.finish(null);
         }
 
     }
@@ -171,7 +181,10 @@ public class ControllerGlobal {
     }
 
     private boolean hayInternet() {
-        return true;
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     public Boolean getHayPaginas() {

@@ -58,7 +58,6 @@ public class FragmentBusqueda extends Fragment implements AdapterFragmentBusqued
         // Inflate the layout for this frag ment
         View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
         editTextBusqueda = view.findViewById(R.id.edit_text_busqueda);
-        ;
         imagenLupaSearch = view.findViewById(R.id.imagen_search_fragment_busqueda);
         isLoading = false;
         adapterBusqueda = new AdapterFragmentBusqueda(getActivity(), this);
