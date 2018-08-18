@@ -20,4 +20,7 @@ public interface AlbumDao {
 
     @Query("delete from album")
     void eliminarAlbumes();
+
+    @Insert
+    void insertarAlbum(Album album);
 }

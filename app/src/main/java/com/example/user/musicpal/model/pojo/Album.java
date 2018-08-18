@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.example.user.musicpal.model.dao.room.ArtistaConverter;
+import com.example.user.musicpal.model.dao.room.CancionConverter;
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +27,6 @@ public class Album implements Serializable {
     private String titulo;
 
     @TypeConverters(ArtistaConverter.class)
-    @Embedded
     @SerializedName("artist")
     private Artista artista;
 
@@ -39,7 +39,7 @@ public class Album implements Serializable {
     @ColumnInfo(name = "id_album")
     private String id;
 
-    @Ignore
+    @TypeConverters(CancionConverter.class)
     private List<Cancion> listaCanciones;
 
     public Album(String titulo, Artista artista, String imagenUrl) {

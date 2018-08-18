@@ -56,6 +56,7 @@ public class Cancion implements Serializable {
         this.idFirebase = idFirebase;
     }
 
+    @Ignore
     public Cancion(String title, String urlPreview, Artista artista, Album album, String id) {
         this.title = title;
         this.urlPreview = urlPreview;

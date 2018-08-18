@@ -28,6 +28,11 @@ public class AlbumDaoUtil {
         obtenerListaAlbumsTask.execute();
     }
 
+    public void insertarAlbum(Album album) {
+        InsertarAlbumTask insertarAlbumTask = new InsertarAlbumTask(album);
+        insertarAlbumTask.execute();
+    }
+
     private class ObtenerListaAlbumsTask extends AsyncTask<Void, Void, List<Album>> {
         private ResultListener<List<Album>> resultListener;
 
@@ -63,6 +68,7 @@ public class AlbumDaoUtil {
                     appDatabase.albumDao().insertarListaAlbumes(albumList);
                 } else {
                     appDatabase.albumDao().eliminarAlbumes();
+                  List<Album> listaAlbumesprueba = appDatabase.albumDao().getListaAlbumes();
                     appDatabase.albumDao().insertarListaAlbumes(albumList);
                 }
             }
@@ -71,4 +77,17 @@ public class AlbumDaoUtil {
         }
     }
 
+    private class InsertarAlbumTask extends AsyncTask<Void, Void, Void>{
+        private final Album album;
+
+        public InsertarAlbumTask(Album album) {
+            this.album = album;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            appDatabase.albumDao().insertarAlbum(album);
+            return null;
+        }
+    }
 }

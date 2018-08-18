@@ -38,16 +38,6 @@ public class MediaPlayerGlobal implements MediaPlayer.OnPreparedListener {
                 artista, new Album("Living things",
                 artista, "http://e-cdn-images.deezer.com/images/cover/0ce480e7723712dee352c68fdfef2599/250x250-000000-80-0-0.jpg"),
                 "37734401");
-        roomControllerCancion = new RoomControllerCancion(getApplicationContext());
-      /*  roomControllerCancion.InsertarUobtenerCancionPorId(cancion, new ResultListener<Cancion>() {
-            @Override
-            public void finish(Cancion resultado) {
-                cancion = resultado;
-                crearPlaylistConLaCancion();
-
-
-            }
-        });*/
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnPreparedListener(this);
@@ -58,6 +48,7 @@ public class MediaPlayerGlobal implements MediaPlayer.OnPreparedListener {
                 //esto esta solo para que no de null
             }
         };
+        crearPlaylistConLaCancion();
     }
 
     private void crearPlaylistConLaCancion() {

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.musicpal.controller.ControllerGlobal;
+import com.example.user.musicpal.controller.RoomControllerAlbum;
 import com.example.user.musicpal.model.adapters.AdapterCanciones;
 import com.example.user.musicpal.model.pojo.Album;
 import com.example.user.musicpal.model.pojo.Cancion;
@@ -44,6 +45,7 @@ public class FragmentDetalleAlbum
 
     private ControllerGlobal controller;
     private NotificadorCancion notificadorCancion;
+    private RoomControllerAlbum roomControllerAlbum;
 
 
     private Album album;
@@ -62,6 +64,7 @@ public class FragmentDetalleAlbum
 
         View view = inflater.inflate(R.layout.fragment_detalle_album, container, false);
         imagenGrande = view.findViewById(R.id.id_imagen_vista_previa);
+        roomControllerAlbum = new RoomControllerAlbum(getContext());
        // textArtista = view.findViewById(R.id.id_nombre_artista);
        // textArtista.setSelected(true);
         textAlbum = view.findViewById(R.id.id_nombre_album);
@@ -130,6 +133,7 @@ public class FragmentDetalleAlbum
             @Override
             public void finish(List<Cancion> resultado) {
                 adapterCanciones.setListaDeCanciones(resultado);
+                roomControllerAlbum.insertarAlbum(album);
             }
         }, album.getId());
     }

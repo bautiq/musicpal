@@ -44,4 +44,10 @@ public class RoomControllerAlbum {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
+
+    public void insertarAlbum(Album album) {
+        if(hayInternet() && album != null && album.getListaCanciones() != null){
+            albumDaoUtil.insertarAlbum(album);
+        }
+    }
 }

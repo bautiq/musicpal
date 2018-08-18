@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a6fff24d45b9d851949cbaa7a8318da2",
+    "identityHash": "c84d2b7bdd5a8f20fdb722c9f017e809",
     "entities": [
       {
         "tableName": "Cancion",
@@ -56,11 +56,17 @@
       },
       {
         "tableName": "Album",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`titulo` TEXT, `cover_medium` TEXT, `id_album` TEXT NOT NULL, `nombre` TEXT, `imagenUrl` TEXT, `urlCanciones` TEXT, `id_artista` TEXT, PRIMARY KEY(`id_album`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`titulo` TEXT, `artista` TEXT, `cover_medium` TEXT, `id_album` TEXT NOT NULL, `listaCanciones` TEXT, PRIMARY KEY(`id_album`))",
         "fields": [
           {
             "fieldPath": "titulo",
             "columnName": "titulo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artista",
+            "columnName": "artista",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -77,26 +83,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "artista.nombre",
-            "columnName": "nombre",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "artista.imagenUrl",
-            "columnName": "imagenUrl",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "artista.cancionesDeArtistaUrl",
-            "columnName": "urlCanciones",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "artista.id",
-            "columnName": "id_artista",
+            "fieldPath": "listaCanciones",
+            "columnName": "listaCanciones",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -183,7 +171,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a6fff24d45b9d851949cbaa7a8318da2\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c84d2b7bdd5a8f20fdb722c9f017e809\")"
     ]
   }
 }
